@@ -1,0 +1,9 @@
+{
+  "dir": "ltr",
+  "logo": "logo",
+  "SignIn": "SignIn",
+  "SignOut": "SignOut",
+  "the email or password you entered invalid": "the email or password you entered invalid",
+  "email used!": "email used!",
+  "session ended please login!": "session ended please login!"
+}

@@ -1,0 +1,9 @@
+{
+  "dir": "rtl",
+  "logo": "الشعار",
+  "SignIn": "تسجيل الدخول",
+  "SignOut": "تسجيل الخروج",
+  "the email or password you entered invalid": "البريد الإلكتروني أو كلمة المرور التي أدخلتها غير صالحة",
+  "email used!": "!البريد الإلكتروني مستخدم",
+  "session ended please login!": "انتهت الجلسة الرجاء تسجيل الدخول!"
+}

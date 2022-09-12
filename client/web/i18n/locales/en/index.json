@@ -1,0 +1,10 @@
+{
+  "welcome": "welcome, ",
+  "login_msg": "welcome to my app, login so you can get your data",
+  "post_title": "Title",
+  "post_content": "Content",
+  "post_create": "Create",
+  "post_created": "Post has been created",
+  "post_error": "An Error occoured!",
+  "post_create_button": "Create Post"
+}

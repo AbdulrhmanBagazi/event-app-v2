@@ -1,0 +1,12 @@
+schema:
+  - ${NEXT_PUBLIC_PROTECTED_GRAPHQL}
+  - ${NEXT_PUBLIC_GRAPHQL}
+documents: './graphql/**/*.graphql'
+generates:
+  graphql/generated.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo
+    config:
+      withHooks: true

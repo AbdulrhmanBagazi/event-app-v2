@@ -1,0 +1,10 @@
+{
+  "title": "Login",
+  "email": "email",
+  "required": "Required",
+  "invalid_email": "Invalid email address",
+  "password": "Password",
+  "login": "Login",
+  "register": "Register",
+  "Google_Button": "Sign in with Google"
+}

@@ -1,0 +1,8 @@
+{
+  "title": "Register",
+  "email": "email",
+  "required": "Required",
+  "invalid_email": "Invalid email address",
+  "password": "Password",
+  "register": "Register"
+}
