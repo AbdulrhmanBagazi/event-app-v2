@@ -16,7 +16,7 @@ def fix_hermes(app_name)
   puts "Hermes fixed"
 end
 
-target 'eventapp' do
+target 'events' do
   config = use_native_modules!
 
   # Flags change depending on the env values.
@@ -38,7 +38,7 @@ target 'eventapp' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  target 'eventappTests' do
+  target 'eventsTests' do
     inherit! :complete
     # Pods for testing
   end
@@ -51,6 +51,6 @@ target 'eventapp' do
       :mac_catalyst_enabled => false
     )
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
-    fix_hermes('eventapp')
+    fix_hermes('events')
   end
 end
