@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
 import { Admin, Resource, Loading, useTranslate, CustomRoutes, Login } from 'react-admin'
 import { Route } from 'react-router'
-import { UserIcon, BusinessIcon } from './theme/icons'
+import { UserIcon, BusinessIcon, Festival, LocationOn } from './theme/icons'
 import { MyLayout } from './layout/layout'
 import User from './pages/users'
 import Comapnies from './pages/companies'
+import Events from './pages/events'
+import Section from './pages/sections'
 import authProvider from './auth/authProvider'
 import i18nProvider from './I18n/i18nProvider'
 import { dataProvider } from './data/dataProvider'
@@ -44,13 +46,15 @@ export default function App() {
       dataProvider={isdataProvider}
       layout={MyLayout}
       requireAuth>
-      <Resource options={{ label: translate('Users') }} name="User" icon={UserIcon} {...User} />
+      <Resource options={{ label: translate('Users') }} name="User" icon={<UserIcon />} {...User} />
       <Resource
         options={{ label: translate('Companies') }}
         name="Companies"
-        icon={BusinessIcon}
+        icon={<BusinessIcon />}
         {...Comapnies}
       />
+      <Resource options={{ label: translate('Events') }} name="Event" icon={<Festival />} {...Events} />
+      <Resource options={{ label: translate('Section') }} name="Section" icon={<LocationOn />} {...Section} />
       <CustomRoutes>
         <Route path="/configuration" element={<Configuration />} />
         <Route path="/error" element={<MyError />} />

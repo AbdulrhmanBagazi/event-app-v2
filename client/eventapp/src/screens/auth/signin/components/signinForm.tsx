@@ -86,25 +86,25 @@ const SigninForm = ({i18n}: ScreenType) => {
   return (
     <View style={styles.container}>
       <TextInput
+        mode="outlined"
         label={i18n.Signin.Email}
         value={isEmail}
         onChangeText={val => validateEmail(val)}
         onBlur={() => validateEmail(isEmail)}
-        mode="flat"
         error={isError.Email}
-        activeUnderlineColor={Colors.PrimaryOnBackground}
+        activeOutlineColor={Colors.Secondary}
         editable={!authLoading}
         style={styles.TextInput}
       />
 
       <TextInput
+        mode="outlined"
         label={i18n.Signin.Password}
         value={isPassword}
         onChangeText={val => validatePassword(val)}
         onBlur={() => validatePassword(isPassword)}
-        mode="flat"
         error={isError.Password}
-        activeUnderlineColor={Colors.PrimaryOnBackground}
+        activeOutlineColor={Colors.Secondary}
         editable={!authLoading}
         style={styles.TextInput}
         secureTextEntry
@@ -115,6 +115,7 @@ const SigninForm = ({i18n}: ScreenType) => {
         mode="contained"
         disabled={authLoading || isError.Email || isError.Password}
         color={Colors.Primary}
+        labelStyle={{color: Colors.OnPrimary}}
         style={styles.SignInButton}
         loading={authLoading}>
         {i18n.Signin.Title}

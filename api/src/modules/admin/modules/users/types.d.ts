@@ -3,7 +3,6 @@ export type userType = {
   id: string;
   verfied: boolean;
   suspended: boolean;
-  postsCount: number;
 };
 
 export type userFilterType = {

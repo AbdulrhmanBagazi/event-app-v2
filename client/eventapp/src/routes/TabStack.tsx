@@ -11,6 +11,8 @@ import {useI18nContext} from '../context/I18n/i18n.context';
 import {useThemeContext} from '../context/theme/themeToggle.context';
 import {IconButton, Portal} from 'react-native-paper';
 import {useAuth} from '../context/auth/auth.context';
+import CustomText from '../components/customText/customText';
+import HeaderLogo from './components/headerLogo';
 
 const Tab = createBottomTabNavigator();
 const TabStack = () => {
@@ -21,11 +23,18 @@ const TabStack = () => {
   return (
     <Portal.Host>
       <Tab.Navigator
+        detachInactiveScreens={false}
         screenOptions={({route}) => ({
           tabBarStyle: {
             backgroundColor: Colors.Surface,
             width: '100%',
           },
+          headerStyle: {
+            backgroundColor: 'transparent',
+            elevation: 0, // remove shadow on Android
+            shadowOpacity: 0, // remove shadow on iOS
+          },
+          headerTintColor: Colors.OnBackground,
           tabBarActiveTintColor: Colors.Primary,
           tabBarShowLabel: false,
           tabBarIcon: ({color, size}) => {
@@ -49,8 +58,17 @@ const TabStack = () => {
           <Tab.Screen
             name={route.name}
             options={{
-              title: Locals?.Tabs[route.name] ? Locals?.Tabs[route.name] : '!',
-              headerShown: false,
+              headerTitle: () =>
+                route.name === 'Main' ? (
+                  <HeaderLogo />
+                ) : (
+                  <CustomText
+                    text={Locals?.Tabs[route.name]}
+                    fontWeight="bold"
+                    Color={'OnBackground'}
+                  />
+                ),
+              // headerShown: false,
             }}
             key={i}>
             {props => <route.component {...props} i18n={Locals} />}

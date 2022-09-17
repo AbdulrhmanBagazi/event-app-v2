@@ -15,6 +15,7 @@ import BottomSheet from '../../components/bottomSheet/bottomSheet';
 import BottomSheetLayout from './components/bottomSheetLayout/bottomSheetLayout';
 import CustomBackdrop from '../../components/bottomSheet/customBackdrop';
 import CustomBackground from '../../components/bottomSheet/customBackground';
+import UpdateProfileBanner from './components/updateProfileBanner/updateProfileBanner';
 
 const Profile = ({i18n, navigation}: ScreenType) => {
   const refBottomSheet = useRef<RNBottomSheet>(null);
@@ -43,6 +44,8 @@ const Profile = ({i18n, navigation}: ScreenType) => {
 
   return (
     <Page paddingHorizontal={5}>
+      <UpdateProfileBanner />
+
       <View style={styles.profileContainer}>
         <CustomText
           text={`${
@@ -55,6 +58,7 @@ const Profile = ({i18n, navigation}: ScreenType) => {
 
         <SignOutButton />
       </View>
+
       <BottomSheet
         ref={refBottomSheet}
         index={-1}

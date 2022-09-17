@@ -93,7 +93,6 @@ const startApolloServer = async () => {
 
   // #-- enable to authenticate before excuting Client query
   app.use('/graphql/client', Client_PassportAuthenticate);
-  // app.use('/graphql/public_client');
 
   //Client gql
   const Clientserver = new ApolloServer({

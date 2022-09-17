@@ -24,6 +24,7 @@ const UserEdit = () => {
   return (
     <Edit
       mutationMode="pessimistic"
+      redirect="show"
       // redirect={false}
       // actions={false}
       queryOptions={{
@@ -38,7 +39,7 @@ const UserEdit = () => {
         refetchOnWindowFocus: true,
       }}>
       <TabbedForm toolbar={<UserEditToolbar />}>
-        <FormTab label="resources.User.edittabs.ban">
+        <FormTab label="resources.User.showtabs.edit">
           <BooleanInput label="resources.User.fields.suspended" source="suspended" />
         </FormTab>
       </TabbedForm>

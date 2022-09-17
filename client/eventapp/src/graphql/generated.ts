@@ -16,6 +16,39 @@ export type Scalars = {
   DateTime: any;
 };
 
+export type Companies = {
+  __typename?: 'Companies';
+  createdAt: Scalars['DateTime'];
+  email: Scalars['String'];
+  id: Scalars['String'];
+  logo_url: Scalars['String'];
+  name: Scalars['String'];
+  suspended: Scalars['Boolean'];
+};
+
+export enum EventStatus {
+  Active = 'ACTIVE',
+  Completed = 'COMPLETED',
+  Soon = 'SOON'
+}
+
+export type Events = {
+  __typename?: 'Events';
+  companyId: Scalars['String'];
+  companyLogo: Scalars['String'];
+  content: Scalars['String'];
+  content_en: Scalars['String'];
+  createdAt: Scalars['DateTime'];
+  id: Scalars['String'];
+  image_url: Scalars['String'];
+  location_url: Scalars['String'];
+  published: Scalars['Boolean'];
+  status: EventStatus;
+  title: Scalars['String'];
+  title_en: Scalars['String'];
+  updatedAt: Scalars['DateTime'];
+};
+
 export type ListMetadata = {
   __typename?: 'ListMetadata';
   total: Scalars['Int'];
@@ -50,104 +83,62 @@ export type Post = {
 
 export type Query = {
   __typename?: 'Query';
-  Posts_list: Array<Post>;
-  Posts_list_meta?: Maybe<ListMetadata>;
+  Events_list: Array<Events>;
+  Events_list_meta?: Maybe<ListMetadata>;
   test?: Maybe<Scalars['String']>;
 };
 
 
-export type QueryPosts_ListArgs = {
+export type QueryEvents_ListArgs = {
   page?: InputMaybe<Scalars['Int']>;
   perPage?: InputMaybe<Scalars['Int']>;
   sortOrder?: InputMaybe<Order>;
 };
 
-export type Create_PostMutationVariables = Exact<{
-  title?: InputMaybe<Scalars['String']>;
-  content?: InputMaybe<Scalars['String']>;
-  published?: InputMaybe<Scalars['Boolean']>;
-}>;
-
-
-export type Create_PostMutation = { __typename?: 'Mutation', create_Post?: { __typename?: 'Post', id?: string | null, createdAt?: any | null, updatedAt?: any | null, title?: string | null, content?: string | null, published?: boolean | null } | null };
-
-export type Posts_ListQueryVariables = Exact<{
+export type Events_ListQueryVariables = Exact<{
   page?: InputMaybe<Scalars['Int']>;
   sortOrder?: InputMaybe<Order>;
   perPage?: InputMaybe<Scalars['Int']>;
 }>;
 
 
-export type Posts_ListQuery = { __typename?: 'Query', Posts_list: Array<{ __typename?: 'Post', id?: string | null, createdAt?: any | null, updatedAt?: any | null, title?: string | null, content?: string | null, published?: boolean | null }>, Posts_list_meta?: { __typename?: 'ListMetadata', total: number } | null };
+export type Events_ListQuery = { __typename?: 'Query', Events_list: Array<{ __typename?: 'Events', id: string, published: boolean, createdAt: any, updatedAt: any, companyId: string, title: string, content: string, title_en: string, content_en: string, image_url: string, location_url: string, status: EventStatus, companyLogo: string }>, Events_list_meta?: { __typename?: 'ListMetadata', total: number } | null };
 
 
-export const Create_PostDocument = gql`
-    mutation Create_Post($title: String, $content: String, $published: Boolean) {
-  create_Post(title: $title, content: $content, published: $published) {
+export const Events_ListDocument = gql`
+    query Events_list($page: Int, $sortOrder: Order, $perPage: Int) {
+  Events_list(page: $page, sortOrder: $sortOrder, perPage: $perPage) {
     id
+    published
     createdAt
     updatedAt
+    companyId
     title
     content
-    published
+    title_en
+    content_en
+    image_url
+    location_url
+    status
+    companyLogo
   }
-}
-    `;
-export type Create_PostMutationFn = Apollo.MutationFunction<Create_PostMutation, Create_PostMutationVariables>;
-
-/**
- * __useCreate_PostMutation__
- *
- * To run a mutation, you first call `useCreate_PostMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreate_PostMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createPostMutation, { data, loading, error }] = useCreate_PostMutation({
- *   variables: {
- *      title: // value for 'title'
- *      content: // value for 'content'
- *      published: // value for 'published'
- *   },
- * });
- */
-export function useCreate_PostMutation(baseOptions?: Apollo.MutationHookOptions<Create_PostMutation, Create_PostMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<Create_PostMutation, Create_PostMutationVariables>(Create_PostDocument, options);
-      }
-export type Create_PostMutationHookResult = ReturnType<typeof useCreate_PostMutation>;
-export type Create_PostMutationResult = Apollo.MutationResult<Create_PostMutation>;
-export type Create_PostMutationOptions = Apollo.BaseMutationOptions<Create_PostMutation, Create_PostMutationVariables>;
-export const Posts_ListDocument = gql`
-    query Posts_list($page: Int, $sortOrder: Order, $perPage: Int) {
-  Posts_list(page: $page, sortOrder: $sortOrder, perPage: $perPage) {
-    id
-    createdAt
-    updatedAt
-    title
-    content
-    published
-  }
-  Posts_list_meta {
+  Events_list_meta {
     total
   }
 }
     `;
 
 /**
- * __usePosts_ListQuery__
+ * __useEvents_ListQuery__
  *
- * To run a query within a React component, call `usePosts_ListQuery` and pass it any options that fit your needs.
- * When your component renders, `usePosts_ListQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useEvents_ListQuery` and pass it any options that fit your needs.
+ * When your component renders, `useEvents_ListQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = usePosts_ListQuery({
+ * const { data, loading, error } = useEvents_ListQuery({
  *   variables: {
  *      page: // value for 'page'
  *      sortOrder: // value for 'sortOrder'
@@ -155,14 +146,14 @@ export const Posts_ListDocument = gql`
  *   },
  * });
  */
-export function usePosts_ListQuery(baseOptions?: Apollo.QueryHookOptions<Posts_ListQuery, Posts_ListQueryVariables>) {
+export function useEvents_ListQuery(baseOptions?: Apollo.QueryHookOptions<Events_ListQuery, Events_ListQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<Posts_ListQuery, Posts_ListQueryVariables>(Posts_ListDocument, options);
+        return Apollo.useQuery<Events_ListQuery, Events_ListQueryVariables>(Events_ListDocument, options);
       }
-export function usePosts_ListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Posts_ListQuery, Posts_ListQueryVariables>) {
+export function useEvents_ListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Events_ListQuery, Events_ListQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<Posts_ListQuery, Posts_ListQueryVariables>(Posts_ListDocument, options);
+          return Apollo.useLazyQuery<Events_ListQuery, Events_ListQueryVariables>(Events_ListDocument, options);
         }
-export type Posts_ListQueryHookResult = ReturnType<typeof usePosts_ListQuery>;
-export type Posts_ListLazyQueryHookResult = ReturnType<typeof usePosts_ListLazyQuery>;
-export type Posts_ListQueryResult = Apollo.QueryResult<Posts_ListQuery, Posts_ListQueryVariables>;
+export type Events_ListQueryHookResult = ReturnType<typeof useEvents_ListQuery>;
+export type Events_ListLazyQueryHookResult = ReturnType<typeof useEvents_ListLazyQuery>;
+export type Events_ListQueryResult = Apollo.QueryResult<Events_ListQuery, Events_ListQueryVariables>;

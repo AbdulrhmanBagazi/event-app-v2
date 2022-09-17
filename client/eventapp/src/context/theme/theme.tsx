@@ -1,17 +1,16 @@
 const myTheme = {
   light: {
     //
-    Background: '#FFFFFF',
+    Background: '#FDFDFD',
     OnBackground: '#000000',
     //
     Error: '#B00020',
     onError: '#FFFFFF',
     //
-    PrimaryOnBackground: '#af0029',
     Primary: '#af0029',
     OnPrimary: '#FFFFFF',
     //
-    Surface: '#FFFFFF',
+    Surface: '#fdfdfd',
     OnSurface: '#000000',
     //
     Secondary: '#00af86',
@@ -27,17 +26,16 @@ const myTheme = {
     //
     // Primary: '#ff6f91',
     // OnPrimary: '#000000',
-    PrimaryOnBackground: '#e84951',
-    Primary: '#af0029',
-    OnPrimary: '#FFFFFF',
+    Primary: '#e8959f',
+    OnPrimary: '#000000',
     //
     Surface: '#1e1e1e',
     OnSurface: '#FFFFFF',
     //
     // Secondary: '#00b58b',
     // OnSecondary: '#000000',
-    Secondary: '#00af86',
-    OnSecondary: '#FFFFFF',
+    Secondary: '#7dd1b7',
+    OnSecondary: '#000000',
   },
 };
 

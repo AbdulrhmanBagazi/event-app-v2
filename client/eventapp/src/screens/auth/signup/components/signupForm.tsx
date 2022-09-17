@@ -90,9 +90,9 @@ const SignupForm = ({i18n}: ScreenType) => {
         value={isEmail}
         onChangeText={val => validateEmail(val)}
         onBlur={() => validateEmail(isEmail)}
-        mode="flat"
+        mode="outlined"
         error={isError.Email}
-        activeUnderlineColor={Colors.Primary}
+        activeOutlineColor={Colors.Secondary}
         editable={!authLoading}
         style={styles.TextInput}
       />
@@ -102,9 +102,9 @@ const SignupForm = ({i18n}: ScreenType) => {
         value={isPassword}
         onChangeText={val => validatePassword(val)}
         onBlur={() => validatePassword(isPassword)}
-        mode="flat"
+        mode="outlined"
         error={isError.Password}
-        activeUnderlineColor={Colors.Primary}
+        activeOutlineColor={Colors.Secondary}
         editable={!authLoading}
         style={styles.TextInput}
         secureTextEntry

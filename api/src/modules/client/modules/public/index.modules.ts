@@ -1,12 +1,12 @@
-import { Posts } from './posts/index.modules';
+import { Events } from './events/index.modules';
 
 export const PublicClientResolvers = {
   Query: {
-    ...Posts.Query,
+    ...Events.Query,
   },
   // Mutation: {
   //   ...Posts.Mutation,
   // },
-  // ...Posts.Resolver,
+  ...Events.Resolver,
 };
-export const PublicClientTypeDefs = [Posts.typeDef];
+export const PublicClientTypeDefs = [Events.typeDef];

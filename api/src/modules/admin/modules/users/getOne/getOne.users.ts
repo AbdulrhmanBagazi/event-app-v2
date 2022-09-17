@@ -1,5 +1,4 @@
 import { Context } from '../../../../../context';
-import { userType } from '../types';
 import { gql } from 'apollo-server';
 
 export const getOne_Users_TypeDefs = gql`
@@ -13,7 +12,6 @@ export const getOne_Users_TypeDefs = gql`
     verfied: Boolean!
     suspended: Boolean!
     createdAt: DateTime
-    postsCount: Int!
     Type: String!
   }
 
@@ -27,15 +25,5 @@ export const getOne_Users_Query = {
         id: args.id,
       },
     });
-  },
-};
-
-export const getOne_Users_Resolver = {
-  User: {
-    postsCount: (parent: userType, _args, context: Context) => {
-      return context.prisma.post.count({
-        where: { authorId: parent?.id },
-      });
-    },
   },
 };

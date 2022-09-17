@@ -11,9 +11,9 @@ import {useAuth} from '../../context/auth/auth.context';
 
 GoogleSignin.configure({
   webClientId:
-    '903376713954-3cn2dv783u0q37pguid52dtrlebi16g9.apps.googleusercontent.com',
+    '672593561259-l2tp2rgk8oafu4lkglpn6ipdgi9igqnj.apps.googleusercontent.com',
   iosClientId:
-    '903376713954-1c2qq031mljuft9bgsuj30ds022v4uvb.apps.googleusercontent.com',
+    '672593561259-b3sq8r5s3h5ekmra09au2rktuto7lpng.apps.googleusercontent.com',
   // offlineAccess: false,
 });
 

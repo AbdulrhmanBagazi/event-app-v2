@@ -8,7 +8,7 @@ const I18n_ar = {
   },
   Tabs: {
     Main: 'الرئيسية',
-    Auth: 'تسجيل الدخول',
+    Profile: 'الملف الشخصي',
   },
   Home: {
     Title: 'الرئيسية',
@@ -47,6 +47,7 @@ const I18n_ar = {
     cancel: 'إلغاء',
     yes: 'نعم',
     no: 'لا',
+    settings: 'الإعدادات',
   },
   Profile: {
     Title: 'الملف الشخصي',
@@ -58,8 +59,11 @@ const I18n_ar = {
   },
   Errors: {
     SignIn: 'البريد الإلكتروني أو كلمة مرور غير صحيحة.',
-    EmailUsed: 'البريد الالكتروني مستخدم',
+    EmailUsed: 'البريد الإلكتروني مستخدم',
     unknown: 'حدث خطأ',
+  },
+  Jobs: {
+    Currency: 'ريال',
   },
 };
 
@@ -71,7 +75,7 @@ const I18n_en = {
   },
   Tabs: {
     Main: 'Home',
-    Auth: 'SignIn',
+    Profile: 'Profile',
   },
   Home: {
     Title: 'Home',
@@ -106,10 +110,11 @@ const I18n_en = {
     AllowNotificationsMSG:
       'Push notifications can be enabled from General Settings on your Device.',
     LanguageChange: 'App will restart',
-    ok: 'ok',
-    cancel: 'cancel',
-    yes: 'yes',
-    no: 'no',
+    ok: 'Ok',
+    cancel: 'Cancel',
+    yes: 'Yes',
+    no: 'No',
+    settings: 'Settings',
   },
   Profile: {
     Title: 'Profile',
@@ -123,6 +128,9 @@ const I18n_en = {
     SignIn: 'Incorrect email or password.',
     EmailUsed: 'Email already exists',
     unknown: 'An error occurred',
+  },
+  Jobs: {
+    Currency: 'SAR',
   },
 };
 

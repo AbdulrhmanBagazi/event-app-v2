@@ -30,4 +30,26 @@ export const styles = StyleSheet.create({
   CardPrice: {
     fontWeight: 'bold',
   },
+  TopCardLayer: {
+    borderRadius: 2,
+  },
+  TopCardImage: {
+    opacity: 0.4,
+  },
+  TopCardImageLayer: {
+    position: 'absolute',
+    top: 10,
+    left: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  TopCardAvatart: {
+    padding: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  Image: {
+    width: 50,
+    height: 50,
+  },
 });

@@ -23,6 +23,7 @@ const AuthStack = () => {
 
   return (
     <Auth.Navigator
+      detachInactiveScreens={false}
       screenOptions={{
         headerStyle: {
           backgroundColor: Colors.Background,
@@ -40,7 +41,8 @@ const AuthStack = () => {
         <Auth.Screen
           name={route.name}
           options={() => ({
-            title: Locals[route.name] ? Locals[route.name].Title : '!',
+            title: '',
+            // title: '',
           })}
           key={i}>
           {props => <route.component {...props} i18n={Locals} />}

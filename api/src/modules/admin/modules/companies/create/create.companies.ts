@@ -23,6 +23,7 @@ export const Create_Companies_TypeDefs = gql`
     email: String
     name: String
     createdAt: DateTime
+    logo_url: String
   }
 
   scalar DateTime

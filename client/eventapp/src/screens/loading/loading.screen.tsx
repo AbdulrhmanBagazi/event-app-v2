@@ -13,7 +13,7 @@ const Loading = ({navigation}: ScreenType) => {
   useEffect(() => {
     if (!authLoading) {
       setTimeout(() => {
-        navigation.replace('TabStack');
+        navigation.replace('Home');
       }, 1000);
     }
   }, [authLoading, navigation]);

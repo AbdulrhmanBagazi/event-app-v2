@@ -42,7 +42,7 @@ export const ErrorProvider = ({
       <Snackbar
         visible={visible}
         onDismiss={onDismissSnackBar}
-        duration={2000}
+        duration={1500}
         // action={{
         //   label: 'X',
         //   onPress: () => setVisible(false),

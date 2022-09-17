@@ -11,7 +11,6 @@ model User {
   id                String      @id @default(uuid()) @db.Uuid
   email             String      @unique
   password          String?
-  posts             Post[]
   verfied           Boolean     @default(false)
   verificationEmail DateTime?
   suspended         Boolean     @default(false)
@@ -38,21 +37,75 @@ model Companies {
   id        String   @id @default(uuid()) @db.Uuid
   email     String   @unique
   name      String
+  logo_url  String?
   password  String
   suspended Boolean  @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  Post      Events[]
 }
 
-model Post {
-  title     String
-  content   String
-  published Boolean  @default(false)
+model Events {
+  id           String       @id @default(uuid()) @db.Uuid
+  published    Boolean      @default(false)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  company      Companies    @relation(fields: [companyId], references: [id])
+  companyId    String       @db.Uuid
+  //ar
+  title        String
+  content      String
+  //en
+  title_en     String
+  content_en   String
   //
+  image_url    String
+  location_url String
+  status       EventStatus  @default(SOON)
+  Event_Jobs   Event_Jobs[]
+  //
+  Section      Section      @relation(fields: [sectionId], references: [id])
+  sectionId    String       @db.Uuid
+}
+
+enum EventStatus {
+  SOON
+  ACTIVE
+  COMPLETED
+}
+
+model Event_Jobs {
+  id        String           @id @default(uuid()) @db.Uuid
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+  Event     Events           @relation(fields: [EventId], references: [id])
+  EventId   String           @db.Uuid
+  //ar
+  title     String
+  //en
+  title_en  String
+  //
+  Status    Event_JobsStatus
+  rate      Int
+  rate_type Rate_type        @default(DAY)
+}
+
+enum Event_JobsStatus {
+  CLOSED
+  OPEN
+}
+
+enum Rate_type {
+  HOURLY
+  DAY
+}
+
+model Section {
   id        String   @id @default(uuid()) @db.Uuid
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  viewCount Int      @default(0)
-  author    User     @relation(fields: [authorId], references: [id])
-  authorId  String   @db.Uuid
+  title     String
+  title_en  String
+  published Boolean  @default(false)
+  Events    Events[]
 }

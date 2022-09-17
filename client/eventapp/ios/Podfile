@@ -1,9 +1,11 @@
 require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
+use_frameworks! :linkage => :static
 platform :ios, '12.4'
 install! 'cocoapods', :deterministic_uuids => false
-
+$RNFirebaseAsStaticFramework = true
+# use_frameworks! :linkage => :static
 
 def fix_hermes(app_name)
   path = "Pods/Target Support Files/Pods-" + app_name + "/Pods-" + app_name + "-frameworks.sh"
@@ -33,7 +35,7 @@ target 'events' do
     #
     # Note that if you have use_frameworks! enabled, Flipper will not work and
     # you should disable the next line.
-    :flipper_configuration => FlipperConfiguration.enabled,
+    # :flipper_configuration => FlipperConfiguration.enabled,
     # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
@@ -53,4 +55,9 @@ target 'events' do
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
     fix_hermes('events')
   end
+end
+
+
+target 'OneSignalNotificationServiceExtension' do
+  pod 'OneSignalXCFramework', '>= 3.0', '< 4.0'
 end

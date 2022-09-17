@@ -1,1 +1,1 @@
-export const oneSignal = '381df6d5-4bd5-4792-9d25-bde6d57ed4ce';
+export const oneSignal = '4ae92086-c770-47f9-abe2-9bd77d0a8378';

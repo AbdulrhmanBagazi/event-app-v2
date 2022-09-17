@@ -1,5 +1,5 @@
 import { Context } from '../../../../../context';
-import { userFilterType } from '../types';
+import { companiesTypeFilterType } from '../types';
 import { gql } from 'apollo-server';
 
 export const list_Companies_TypeDefs = gql`
@@ -23,6 +23,7 @@ export const list_Companies_TypeDefs = gql`
     name: String!
     suspended: Boolean!
     createdAt: DateTime
+    logo_url: String
   }
 
   scalar DateTime
@@ -31,7 +32,7 @@ export const list_Companies_TypeDefs = gql`
 export const list_Companies_Query = {
   Companies_list: async (
     _parent,
-    args: { page: number; perPage: number; sortField: string; sortOrder: string; filter: userFilterType },
+    args: { page: number; perPage: number; sortField: string; sortOrder: string; filter: companiesTypeFilterType },
     context: Context,
   ) => {
     const data = await context.prisma.companies.findMany({
@@ -48,7 +49,7 @@ export const list_Companies_Query = {
     // throw Error;
     return data;
   },
-  Companies_list_meta: async (_parent, args: { filter: userFilterType }, context: Context) => {
+  Companies_list_meta: async (_parent, args: { filter: companiesTypeFilterType }, context: Context) => {
     const cal = await context.prisma.companies.aggregate({
       where: {
         email: { contains: args.filter?.email },

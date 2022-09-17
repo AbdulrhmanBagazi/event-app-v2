@@ -93,10 +93,4 @@ public class MainApplication extends Application implements ReactApplication {
       }
     }
   }
-
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    //RNBootSplash.init(this); // <- initialize the splash screen
-    super.onCreate(null) // or super.onCreate(null) with react-native-screens
-  }
 }

@@ -2,12 +2,9 @@ import {
   Labeled,
   DateField,
   TextField,
-  Datagrid,
-  ReferenceManyField,
   Show,
   TabbedShowLayout,
   Tab,
-  Pagination,
   useGetOne,
   useRefresh,
   Loading,
@@ -53,13 +50,10 @@ const UserShow = () => {
           <Labeled label="resources.User.fields.email">
             <TextField source="email" />
           </Labeled>
-          <Labeled label="resources.User.fields.postsCount">
-            <TextField source="postsCount" />
-          </Labeled>
           <Labeled label="resources.User.fields.createdAt">
             <DateField source="createdAt" />
           </Labeled>
-          <Labeled label="resources.User.fields.type">
+          <Labeled label="resources.User.fields.Type">
             <TextField source="Type" />
           </Labeled>
           <Labeled label="resources.User.fields.verfied">
@@ -70,7 +64,7 @@ const UserShow = () => {
           </Labeled>
         </Tab>
 
-        <Tab label="resources.User.showtabs.posts">
+        {/* <Tab label="resources.User.showtabs.posts">
           <ReferenceManyField
             pagination={<Pagination />}
             label=""
@@ -83,7 +77,7 @@ const UserShow = () => {
               <ColoredBooleanField source="published" />
             </Datagrid>
           </ReferenceManyField>
-        </Tab>
+        </Tab> */}
       </TabbedShowLayout>
     </Show>
   )

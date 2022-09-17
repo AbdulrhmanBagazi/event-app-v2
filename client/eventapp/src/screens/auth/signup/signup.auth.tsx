@@ -6,6 +6,7 @@ import SignupForm from './components/signupForm';
 import CustomHeaderBackButton from '../../../components/customHeaderBackButton/customHeaderBackButton';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {styles} from './styles.signup';
+import MySvg from '../mySvg';
 
 const Signup = ({i18n, navigation}: ScreenType) => {
   const {authLoading, isAuthenticated} = useAuth() as AuthenticatedTypes;
@@ -32,6 +33,7 @@ const Signup = ({i18n, navigation}: ScreenType) => {
       <KeyboardAwareScrollView
         style={styles.container}
         keyboardShouldPersistTaps="handled">
+        <MySvg />
         <SignupForm i18n={i18n} />
       </KeyboardAwareScrollView>
     </Page>

@@ -34,13 +34,13 @@ export const NotificationProvider: React.FC<{
           Locals.Settings.AllowNotificationsMSG,
           [
             {
-              text: 'Open Settings',
+              text: Locals.Settings.settings,
               onPress: () => {
                 Linking.openSettings();
               },
             },
             {
-              text: 'Cancel',
+              text: Locals.Settings.cancel,
             },
           ],
         );

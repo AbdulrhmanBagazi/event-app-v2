@@ -13,7 +13,6 @@ export const Update_Users_TypeDefs = gql`
     verfied: Boolean!
     suspended: Boolean!
     createdAt: DateTime
-    postsCount: Int!
   }
 
   type User {
@@ -22,7 +21,6 @@ export const Update_Users_TypeDefs = gql`
     verfied: Boolean!
     suspended: Boolean!
     createdAt: DateTime
-    postsCount: Int!
   }
 
   scalar DateTime

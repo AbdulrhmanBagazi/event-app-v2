@@ -50,10 +50,10 @@ const Auth = ({i18n, navigation}: ScreenType) => {
         <NavigationButton
           disabled={authLoading}
           style={[styles.Buttons]}
-          labelStyle={[{color: Colors.OnSecondary}]}
+          labelStyle={[{color: Colors.Secondary}]}
           to="Signup"
           Color="Secondary"
-          Mode="contained"
+          Mode="text"
         />
 
         <View style={styles.ConnectView}>

@@ -1,4 +1,6 @@
 import UserIcon from '@mui/icons-material/People'
 import BusinessIcon from '@mui/icons-material/Business'
+import Festival from '@mui/icons-material/Festival'
+import LocationOn from '@mui/icons-material/LocationOn'
 
-export { UserIcon, BusinessIcon }
+export { UserIcon, BusinessIcon, Festival, LocationOn }

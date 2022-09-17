@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {AppRegistry} from 'react-native';
+import {AppRegistry, Platform} from 'react-native';
 import Index from './src';
 import {ThemeProvider} from './src/context/theme/themeToggle.context';
 import Layout from './src/layout/layout';
@@ -11,6 +11,8 @@ import Client from './src/api/apollo';
 import OneSignal from 'react-native-onesignal';
 import {oneSignal} from './src/context/notifications/config';
 import {NotificationProvider} from './src/context/notifications/notification.context';
+
+const name = Platform.OS === 'ios' ? 'eventapp' : 'events';
 
 // OneSignal Initialization
 OneSignal.setAppId(oneSignal);
@@ -56,4 +58,4 @@ const App = () => {
   );
 };
 
-export default AppRegistry.registerComponent('eventapp', () => App);
+export default AppRegistry.registerComponent(name, () => App);

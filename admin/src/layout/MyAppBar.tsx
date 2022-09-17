@@ -1,7 +1,7 @@
 import {
   AppBarProps,
   SidebarToggleButton,
-  LoadingIndicator,
+  // LoadingIndicator,
   Logout,
   UserMenu,
   LogoutProps,
@@ -81,7 +81,7 @@ const MyAppBar = (props: AppBarProps | any) => {
             justifyContent: 'flex-end',
             alignItems: 'center',
           }}>
-          <LoadingIndicator />
+          {/* <LoadingIndicator /> */}
           {/* <ThemeToggler /> */}
           <MyUserMenu />
         </div>

@@ -1,10 +1,10 @@
 export const darkTheme = {
   palette: {
     primary: {
-      main: '#01579b',
+      main: '#e8959f',
     },
     secondary: {
-      main: '#4fc3f7',
+      main: '#7dd1b7',
     },
     mode: 'dark' as 'dark', // Switching the dark mode on is a single property value change.
   },
@@ -71,11 +71,11 @@ export const darkTheme = {
 export const lightTheme = {
   palette: {
     primary: {
-      main: '#01579b',
+      main: '#af0029',
     },
     secondary: {
       // light: '#5f5fc4',
-      main: '#4fc3f7',
+      main: '#00af86',
       // dark: '#001064',
       // contrastText: '#fff',
     },

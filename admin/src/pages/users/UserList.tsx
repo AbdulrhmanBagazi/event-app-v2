@@ -50,7 +50,11 @@ const UserList = () => {
         // },
       }}>
       {isSmall ? (
-        <SimpleList primaryText={(record) => record.name} secondaryText={(record) => record.email} />
+        <SimpleList
+          primaryText={(record) => record.email}
+          secondaryText={(record) => record.Type}
+          linkType="show"
+        />
       ) : (
         <Datagrid isRowSelectable={() => false} bulkActionButtons={false} size="medium">
           <TextField source="id" sortable={false} />
@@ -58,7 +62,6 @@ const UserList = () => {
           <ColoredBooleanField source="verfied" />
           <SuspendedBooleanField source="suspended" />
           <DateField source="createdAt" />
-          <TextField source="postsCount" />
           <TextField source="Type" />
           <ShowButton />
           <EditButton />

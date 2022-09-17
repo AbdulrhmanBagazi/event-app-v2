@@ -7,10 +7,13 @@ import {
   useGetList,
   Loading,
   useRefresh,
+  ShowButton,
+  EditButton,
 } from 'react-admin'
 import { useMediaQuery, Theme } from '@mui/material'
 import MyError from '../../layout/MyError'
 import CompaniesListActions from './components/CompaniesListActions'
+import SuspendedBooleanField from './components/SuspendedBooleanField'
 
 const CompaniesList = () => {
   const { data, isLoading } = useGetList(
@@ -44,13 +47,21 @@ const CompaniesList = () => {
         },
       }}>
       {isSmall ? (
-        <SimpleList primaryText={(record) => record.name} secondaryText={(record) => record.email} />
+        <SimpleList
+          primaryText={(record) => record.name}
+          secondaryText={(record) => record.email}
+          linkType="show"
+        />
       ) : (
         <Datagrid isRowSelectable={() => false} bulkActionButtons={false} size="medium">
           <TextField source="id" sortable={false} />
           <TextField source="name" />
           <TextField source="email" />
+          <TextField source="logo_url" />
+          <SuspendedBooleanField source="suspended" />
           <DateField source="createdAt" />
+          <ShowButton />
+          <EditButton />
         </Datagrid>
       )}
     </List>

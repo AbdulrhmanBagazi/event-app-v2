@@ -27,7 +27,6 @@ interface ColorsType {
   Background: string;
   Error: string;
   onError: string;
-  PrimaryOnBackground: string;
   Primary: string;
   OnPrimary: string;
   Surface: string;

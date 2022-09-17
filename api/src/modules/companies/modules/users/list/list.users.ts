@@ -1,5 +1,5 @@
 import { Context } from '../../../../../context';
-import { userType, userFilterType } from '../types';
+import { userFilterType } from '../types';
 import { gql } from 'apollo-server';
 
 export const list_Users_TypeDefs = gql`
@@ -24,7 +24,6 @@ export const list_Users_TypeDefs = gql`
     verfied: Boolean!
     suspended: Boolean!
     createdAt: DateTime
-    postsCount: Int!
   }
 
   scalar DateTime
@@ -36,13 +35,8 @@ export const list_Users_Query = {
     args: { page: number; perPage: number; sortField: string; sortOrder: string; filter: userFilterType },
     context: Context,
   ) => {
-    const order =
-      args.sortField === 'postsCount'
-        ? {
-            _count: args.sortOrder?.toLowerCase(),
-          }
-        : args.sortOrder?.toLowerCase();
-    const OrderField = args.sortField === 'postsCount' ? 'posts' : args.sortField;
+    const order = args.sortOrder?.toLowerCase();
+    const OrderField = args.sortField;
 
     const data = await context.prisma.user.findMany({
       skip: args.page * args.perPage,
@@ -74,15 +68,5 @@ export const list_Users_Query = {
     const count = cal._count.id;
 
     return { count };
-  },
-};
-
-export const list_Users_Resolver = {
-  User: {
-    postsCount: (parent: userType, _args, context: Context) => {
-      return context.prisma.post.count({
-        where: { authorId: parent?.id },
-      });
-    },
   },
 };

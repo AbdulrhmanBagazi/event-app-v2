@@ -13,7 +13,6 @@ export const Update_Users_TypeDefs = gql`
     verfied: Boolean!
     suspended: Boolean!
     createdAt: DateTime
-    postsCount: Int!
     Type: String!
   }
 
@@ -23,7 +22,6 @@ export const Update_Users_TypeDefs = gql`
     verfied: Boolean!
     suspended: Boolean!
     createdAt: DateTime
-    postsCount: Int!
     Type: String!
   }
 

@@ -57,7 +57,7 @@ passport.use(
         },
       });
 
-      if (user) {
+      if (user?.password && user) {
         if (await ValidPassword(user.password, password)) {
           return cb(null, {
             id: user.id,
