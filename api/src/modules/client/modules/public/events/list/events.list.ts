@@ -4,8 +4,8 @@ import { eventType, Order } from '../types';
 
 export const list_Events_TypeDefs = gql`
   type Query {
-    Events_list(page: Int, perPage: Int, sortOrder: Order): [Events!]!
-    Events_list_meta: ListMetadata
+    Events_list(page: Int, perPage: Int, sortOrder: Order, sectionId: String): [Events!]!
+    Events_list_meta(sectionId: String): ListMetadata
   }
 
   type ListMetadata {
@@ -18,6 +18,7 @@ export const list_Events_TypeDefs = gql`
     createdAt: DateTime!
     updatedAt: DateTime!
     companyId: String!
+    sectionId: String!
     title: String!
     content: String!
     title_en: String!
@@ -26,15 +27,6 @@ export const list_Events_TypeDefs = gql`
     location_url: String!
     status: EventStatus!
     companyLogo: String!
-  }
-
-  type Companies {
-    id: String!
-    email: String!
-    name: String!
-    suspended: Boolean!
-    createdAt: DateTime!
-    logo_url: String!
   }
 
   enum Order {
@@ -52,7 +44,11 @@ export const list_Events_TypeDefs = gql`
 `;
 
 export const list_Events_Query = {
-  Events_list: async (_parent, args: { page: number; perPage: number; sortOrder: Order }, context: Context) => {
+  Events_list: async (
+    _parent,
+    args: { page: number; perPage: number; sortOrder: Order; sectionId: string },
+    context: Context,
+  ) => {
     const order = args.sortOrder;
 
     const data = await context.prisma.events.findMany({
@@ -63,17 +59,19 @@ export const list_Events_Query = {
       },
       where: {
         published: true,
+        sectionId: args.sectionId,
       },
     });
     return data;
   },
-  Events_list_meta: async (_parent, _args, context: Context) => {
+  Events_list_meta: async (_parent, args: { sectionId: string }, context: Context) => {
     const cal = await context.prisma.events.aggregate({
       _count: {
         id: true,
       },
       where: {
         published: true,
+        sectionId: args.sectionId,
       },
     });
 

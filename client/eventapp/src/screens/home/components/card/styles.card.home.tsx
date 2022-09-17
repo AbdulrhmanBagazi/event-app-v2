@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
   cardContainer: {
-    marginHorizontal: 2.5,
+    marginHorizontal: 5,
     marginVertical: 5,
   },
   cardImage: {
@@ -11,7 +11,6 @@ export const styles = StyleSheet.create({
   cardTextContainer: {
     flexDirection: 'column',
     marginVertical: 10,
-    marginHorizontal: 5,
   },
   cardTextTitle: {
     width: 300,
@@ -30,11 +29,9 @@ export const styles = StyleSheet.create({
   CardPrice: {
     fontWeight: 'bold',
   },
-  TopCardLayer: {
-    borderRadius: 2,
-  },
   TopCardImage: {
     opacity: 0.4,
+    borderRadius: 2.5,
   },
   TopCardImageLayer: {
     position: 'absolute',
@@ -51,5 +48,17 @@ export const styles = StyleSheet.create({
   Image: {
     width: 50,
     height: 50,
+  },
+  CardBadge: {
+    position: 'absolute',
+    bottom: 10,
+    marginVertical: 5,
+    right: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontSize: 12,
+  },
+  fixCardBorder: {
+    borderRadius: 2,
   },
 });

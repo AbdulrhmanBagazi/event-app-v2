@@ -1,9 +1,15 @@
+import {RouteProp} from '@react-navigation/native';
 import {StackScreenProps} from '@react-navigation/native-stack/lib/typescript/src/types';
+
+type ParamList = {
+  Params: {sectionId: string; title: string};
+};
 
 //Screens
 export type ScreenType = {
   i18n?: array;
   navigation?: StackScreenProps;
+  route?: RouteProp<ParamList, 'Params'>;
 };
 
 //routes.tsx

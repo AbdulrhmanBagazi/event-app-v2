@@ -22,16 +22,16 @@ const Client = new ApolloClient({
     client,
   ),
   cache: new InMemoryCache(),
-  // defaultOptions: {
-  //   watchQuery: {
-  //     fetchPolicy: 'no-cache',
-  //     errorPolicy: 'ignore',
-  //   },
-  //   query: {
-  //     fetchPolicy: 'no-cache',
-  //     errorPolicy: 'all',
-  //   },
-  // },
+  defaultOptions: {
+    watchQuery: {
+      fetchPolicy: 'no-cache',
+      errorPolicy: 'ignore',
+    },
+    query: {
+      fetchPolicy: 'no-cache',
+      errorPolicy: 'all',
+    },
+  },
 });
 
 export default Client;

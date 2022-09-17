@@ -13,6 +13,7 @@ import {useI18nContext} from './context/I18n/i18n.context';
 import {SCREEN_HEIGHT} from './layout/screenDimensions';
 import Page from './layout/page';
 import analytics from '@react-native-firebase/analytics';
+import EventsStack from './routes/EventsStack';
 
 const Main = createStackNavigator();
 
@@ -74,7 +75,7 @@ const Index = () => {
           <Main.Screen name="LoadingStack" component={LoadingStack} />
           <Main.Screen
             options={{
-              title: 'Logo',
+              title: '',
               cardStyleInterpolator: forFade,
             }}
             name="Home"
@@ -103,6 +104,7 @@ const Index = () => {
             name="AuthStack"
             component={AuthStack}
           />
+          <Main.Screen name="Events" component={EventsStack} />
         </Main.Navigator>
       </NavigationContainer>
     </Page>

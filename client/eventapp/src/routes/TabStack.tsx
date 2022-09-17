@@ -28,6 +28,7 @@ const TabStack = () => {
           tabBarStyle: {
             backgroundColor: Colors.Surface,
             width: '100%',
+            borderTopWidth: 0,
           },
           headerStyle: {
             backgroundColor: 'transparent',

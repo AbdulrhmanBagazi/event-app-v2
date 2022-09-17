@@ -16,8 +16,8 @@ const SignupForm = ({i18n}: ScreenType) => {
   const {authLoading, SignUp} = useAuth() as AuthenticatedTypes;
   const {Colors} = useThemeContext() as ThemeContextType;
   const {ThrowError} = useError() as ErrorContextType;
-  const [isEmail, setEmail] = useState('a@a.com');
-  const [isPassword, setPassword] = useState('1233');
+  const [isEmail, setEmail] = useState('');
+  const [isPassword, setPassword] = useState('');
   const [isError, setError] = useState({
     Email: false,
     Password: false,

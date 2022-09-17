@@ -20,7 +20,11 @@ const SignOutButton: React.FC = () => {
 
   if (!isAuthenticated) {
     return (
-      <NavigationButton to="AuthStack" Color="Primary" style={styles.button} />
+      <NavigationButton
+        to="AuthStack"
+        Color="Secondary"
+        style={styles.button}
+      />
     );
   }
 

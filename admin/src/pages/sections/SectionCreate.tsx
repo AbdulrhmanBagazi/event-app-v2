@@ -1,7 +1,7 @@
 import { Create, SimpleForm, TextInput, required } from 'react-admin'
 
 const SectionCreate = () => (
-  <Create redirect="show">
+  <Create redirect="show" sx={{ maxWidth: 600 }}>
     <SimpleForm>
       <TextInput label="resources.Section.fields.title" source="title" validate={[required()]} fullWidth />
       <TextInput

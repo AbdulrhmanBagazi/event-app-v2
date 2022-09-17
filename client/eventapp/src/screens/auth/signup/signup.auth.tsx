@@ -24,7 +24,7 @@ const Signup = ({i18n, navigation}: ScreenType) => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigation.navigate('TabStack');
+      navigation.navigate('Home');
     }
   }, [isAuthenticated, navigation]);
 

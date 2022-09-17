@@ -1,0 +1,41 @@
+query Events_list(
+  $page: Int
+  $sortOrder: Order
+  $perPage: Int
+  $sectionId: String
+) {
+  Events_list(
+    page: $page
+    sortOrder: $sortOrder
+    perPage: $perPage
+    sectionId: $sectionId
+  ) {
+    id
+    published
+    createdAt
+    updatedAt
+    companyId
+    title
+    content
+    title_en
+    content_en
+    image_url
+    location_url
+    status
+    companyLogo
+    sectionId
+  }
+  Events_list_meta(sectionId: $sectionId) {
+    total
+  }
+}
+
+query Sections_list {
+  Sections_list {
+    id
+    published
+    title
+    title_en
+    eventCount
+  }
+}

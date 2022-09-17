@@ -38,7 +38,7 @@ export const I18nProvider: React.FC<{
   useEffect(() => {
     const getLang = async () => {
       const Lang = await MMKV.getStringAsync('Lang');
-      if (Lang === 'en') {
+      if (Lang === 'en' && !I18nManager.isRTL) {
         setLang('en');
         OneSignal.setLanguage('en');
         return setLocals(I18n_en);

@@ -7,6 +7,7 @@ import Loading from '../screens/loading/loading.screen';
 import Profile from '../screens/profile/profile.screen';
 import Auth from '../screens/auth/auth.screen';
 import Signup from '../screens/auth/signup/signup.auth';
+import Events from '../screens/Events/events.screen';
 
 // const HomeScreens: RoutesType[] = [
 //   {
@@ -21,6 +22,13 @@ import Signup from '../screens/auth/signup/signup.auth';
 //     component: Profile,
 //   },
 // ];
+
+const EventsScreens: RoutesType[] = [
+  {
+    name: 'All Events',
+    component: Events,
+  },
+];
 
 const AuthScreens: RoutesType[] = [
   {
@@ -51,4 +59,4 @@ const TabScreens: RoutesType[] = [
   },
 ];
 
-export {AuthScreens, LoadingScreen, TabScreens};
+export {AuthScreens, LoadingScreen, TabScreens, EventsScreens};

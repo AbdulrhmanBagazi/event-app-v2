@@ -19,12 +19,12 @@ const UpdateProfileBanner = () => {
           {
             label: 'Fix it',
             onPress: () => setVisible(false),
-            color: Colors.Primary,
+            color: Colors.Secondary,
           },
           {
             label: 'Learn more',
             onPress: () => setVisible(false),
-            color: Colors.Primary,
+            color: Colors.Secondary,
           },
         ]}
         icon={({size}) => (

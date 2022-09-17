@@ -5,6 +5,7 @@ const I18n_ar = {
     AuthStack: 'تسجيل الدخول',
     Signin: 'تسجيل الدخول',
     Signup: 'إنشاء حساب',
+    Events: 'المزيد',
   },
   Tabs: {
     Main: 'الرئيسية',
@@ -14,6 +15,7 @@ const I18n_ar = {
     Title: 'الرئيسية',
     Welcome: 'مرحبا ',
     Error: 'قم بتسجيل الدخول!',
+    Jobs: 'الوظائف',
   },
   Auth: {
     Title: '',
@@ -64,6 +66,9 @@ const I18n_ar = {
   },
   Jobs: {
     Currency: 'ريال',
+    SOON: 'قريبا',
+    COMPLETED: 'مكتمل',
+    ACTIVE: 'نشط',
   },
 };
 
@@ -72,6 +77,7 @@ const I18n_en = {
     AuthStack: 'SignIn',
     Signin: 'SignIn',
     Signup: 'SignUp',
+    Events: 'More',
   },
   Tabs: {
     Main: 'Home',
@@ -81,6 +87,7 @@ const I18n_en = {
     Title: 'Home',
     Welcome: 'welcome ',
     Error: 'Sign in first!',
+    Jobs: 'Jobs',
   },
   Auth: {
     Title: '',
@@ -131,6 +138,9 @@ const I18n_en = {
   },
   Jobs: {
     Currency: 'SAR',
+    SOON: 'Soon',
+    COMPLETED: 'Completed',
+    ACTIVE: 'Active',
   },
 };
 

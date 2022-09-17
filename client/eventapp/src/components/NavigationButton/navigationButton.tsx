@@ -6,7 +6,7 @@ import {I18nContextType, ThemeContextType} from '../../typs';
 import {useI18nContext} from '../../context/I18n/i18n.context';
 import {StyleProp, TextStyle, ViewStyle} from 'react-native';
 
-type Routes = 'AuthStack' | 'Signin' | 'Signup';
+type Routes = 'AuthStack' | 'Signin' | 'Signup' | 'Events';
 
 type ColorType = 'Primary' | 'OnSurface' | 'Secondary';
 type ButtonMode = 'contained' | 'outlined' | 'text';
