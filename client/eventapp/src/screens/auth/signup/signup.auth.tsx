@@ -1,32 +1,33 @@
 import React, {useEffect} from 'react';
 import Page from '../../../layout/page';
-import {AuthenticatedTypes, ScreenType} from '../../../typs';
+import {AuthenticatedTypes, RootStackParamList} from '../../../typs';
 import {useAuth} from '../../../context/auth/auth.context';
 import SignupForm from './components/signupForm';
 import CustomHeaderBackButton from '../../../components/customHeaderBackButton/customHeaderBackButton';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {styles} from './styles.signup';
 import MySvg from '../mySvg';
+import {useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
 
-const Signup = ({i18n, navigation}: ScreenType) => {
+const Signup = () => {
   const {authLoading, isAuthenticated} = useAuth() as AuthenticatedTypes;
+  const {setOptions, navigate, pop} =
+    useNavigation<StackNavigationProp<RootStackParamList>>();
 
   React.useLayoutEffect(() => {
-    navigation.setOptions({
+    return setOptions({
       headerLeft: () => (
-        <CustomHeaderBackButton
-          disabled={authLoading}
-          onPress={() => navigation.pop()}
-        />
+        <CustomHeaderBackButton disabled={authLoading} onPress={() => pop()} />
       ),
     });
-  }, [navigation, authLoading]);
+  }, [setOptions, authLoading, pop]);
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigation.navigate('Home');
+      navigate('Home', {});
     }
-  }, [isAuthenticated, navigation]);
+  }, [isAuthenticated, navigate]);
 
   return (
     <Page paddingHorizontal={5}>
@@ -34,7 +35,7 @@ const Signup = ({i18n, navigation}: ScreenType) => {
         style={styles.container}
         keyboardShouldPersistTaps="handled">
         <MySvg />
-        <SignupForm i18n={i18n} />
+        <SignupForm />
       </KeyboardAwareScrollView>
     </Page>
   );

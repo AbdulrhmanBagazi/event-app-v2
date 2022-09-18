@@ -1,22 +1,30 @@
 import React, {useEffect} from 'react';
-import {AuthenticatedTypes, ScreenType, ThemeContextType} from '../../typs';
+import {
+  AuthenticatedTypes,
+  RootStackParamList,
+  ThemeContextType,
+} from '../../typs';
 import {StatusBar, View} from 'react-native';
 import {styles} from './styles.loading';
 import {ActivityIndicator} from 'react-native-paper';
 import {useThemeContext} from '../../context/theme/themeToggle.context';
 import {useAuth} from '../../context/auth/auth.context';
+import {useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
 
-const Loading = ({navigation}: ScreenType) => {
+const Loading = () => {
   const {isDarkMode, Colors} = useThemeContext() as ThemeContextType;
   const {authLoading} = useAuth() as AuthenticatedTypes;
+  const {replace} = useNavigation<StackNavigationProp<RootStackParamList>>();
 
   useEffect(() => {
     if (!authLoading) {
       setTimeout(() => {
-        navigation.replace('Home');
+        return replace('Home', {});
       }, 1000);
     }
-  }, [authLoading, navigation]);
+  }, [authLoading, replace]);
+
   return (
     <View
       style={[{backgroundColor: Colors.Background}, styles.loadingContainer]}>

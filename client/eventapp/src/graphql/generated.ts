@@ -1,10 +1,14 @@
-import { gql } from '@apollo/client';
+import {gql} from '@apollo/client';
 import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type Exact<T extends {[key: string]: unknown}> = {[K in keyof T]: T[K]};
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]?: Maybe<T[SubKey]>;
+};
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]: Maybe<T[SubKey]>;
+};
 const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -19,7 +23,7 @@ export type Scalars = {
 export enum EventStatus {
   Active = 'ACTIVE',
   Completed = 'COMPLETED',
-  Soon = 'SOON'
+  Soon = 'SOON',
 }
 
 export type Events = {
@@ -50,7 +54,6 @@ export type Mutation = {
   create_Post?: Maybe<Post>;
 };
 
-
 export type MutationCreate_PostArgs = {
   content?: InputMaybe<Scalars['String']>;
   published?: InputMaybe<Scalars['Boolean']>;
@@ -59,7 +62,7 @@ export type MutationCreate_PostArgs = {
 
 export enum Order {
   Asc = 'asc',
-  Desc = 'desc'
+  Desc = 'desc',
 }
 
 export type Post = {
@@ -80,14 +83,12 @@ export type Query = {
   test?: Maybe<Scalars['String']>;
 };
 
-
 export type QueryEvents_ListArgs = {
   page?: InputMaybe<Scalars['Int']>;
   perPage?: InputMaybe<Scalars['Int']>;
   sectionId?: InputMaybe<Scalars['String']>;
   sortOrder?: InputMaybe<Order>;
 };
-
 
 export type QueryEvents_List_MetaArgs = {
   sectionId?: InputMaybe<Scalars['String']>;
@@ -109,43 +110,75 @@ export type Events_ListQueryVariables = Exact<{
   sectionId?: InputMaybe<Scalars['String']>;
 }>;
 
+export type Events_ListQuery = {
+  __typename?: 'Query';
+  Events_list: Array<{
+    __typename?: 'Events';
+    id: string;
+    published: boolean;
+    createdAt: any;
+    updatedAt: any;
+    companyId: string;
+    title: string;
+    content: string;
+    title_en: string;
+    content_en: string;
+    image_url: string;
+    location_url: string;
+    status: EventStatus;
+    companyLogo: string;
+    sectionId: string;
+  }>;
+  Events_list_meta?: {__typename?: 'ListMetadata'; total: number} | null;
+};
 
-export type Events_ListQuery = { __typename?: 'Query', Events_list: Array<{ __typename?: 'Events', id: string, published: boolean, createdAt: any, updatedAt: any, companyId: string, title: string, content: string, title_en: string, content_en: string, image_url: string, location_url: string, status: EventStatus, companyLogo: string, sectionId: string }>, Events_list_meta?: { __typename?: 'ListMetadata', total: number } | null };
+export type Sections_ListQueryVariables = Exact<{[key: string]: never}>;
 
-export type Sections_ListQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type Sections_ListQuery = { __typename?: 'Query', Sections_list: Array<{ __typename?: 'Sections', id: string, published: boolean, title: string, title_en: string, eventCount: number }> };
-
+export type Sections_ListQuery = {
+  __typename?: 'Query';
+  Sections_list: Array<{
+    __typename?: 'Sections';
+    id: string;
+    published: boolean;
+    title: string;
+    title_en: string;
+    eventCount: number;
+  }>;
+};
 
 export const Events_ListDocument = gql`
-    query Events_list($page: Int, $sortOrder: Order, $perPage: Int, $sectionId: String) {
-  Events_list(
-    page: $page
-    sortOrder: $sortOrder
-    perPage: $perPage
-    sectionId: $sectionId
+  query Events_list(
+    $page: Int
+    $sortOrder: Order
+    $perPage: Int
+    $sectionId: String
   ) {
-    id
-    published
-    createdAt
-    updatedAt
-    companyId
-    title
-    content
-    title_en
-    content_en
-    image_url
-    location_url
-    status
-    companyLogo
-    sectionId
+    Events_list(
+      page: $page
+      sortOrder: $sortOrder
+      perPage: $perPage
+      sectionId: $sectionId
+    ) {
+      id
+      published
+      createdAt
+      updatedAt
+      companyId
+      title
+      content
+      title_en
+      content_en
+      image_url
+      location_url
+      status
+      companyLogo
+      sectionId
+    }
+    Events_list_meta(sectionId: $sectionId) {
+      total
+    }
   }
-  Events_list_meta(sectionId: $sectionId) {
-    total
-  }
-}
-    `;
+`;
 
 /**
  * __useEvents_ListQuery__
@@ -166,28 +199,49 @@ export const Events_ListDocument = gql`
  *   },
  * });
  */
-export function useEvents_ListQuery(baseOptions?: Apollo.QueryHookOptions<Events_ListQuery, Events_ListQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<Events_ListQuery, Events_ListQueryVariables>(Events_ListDocument, options);
-      }
-export function useEvents_ListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Events_ListQuery, Events_ListQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<Events_ListQuery, Events_ListQueryVariables>(Events_ListDocument, options);
-        }
-export type Events_ListQueryHookResult = ReturnType<typeof useEvents_ListQuery>;
-export type Events_ListLazyQueryHookResult = ReturnType<typeof useEvents_ListLazyQuery>;
-export type Events_ListQueryResult = Apollo.QueryResult<Events_ListQuery, Events_ListQueryVariables>;
-export const Sections_ListDocument = gql`
-    query Sections_list {
-  Sections_list {
-    id
-    published
-    title
-    title_en
-    eventCount
-  }
+export function useEvents_ListQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    Events_ListQuery,
+    Events_ListQueryVariables
+  >,
+) {
+  const options = {...defaultOptions, ...baseOptions};
+  return Apollo.useQuery<Events_ListQuery, Events_ListQueryVariables>(
+    Events_ListDocument,
+    options,
+  );
 }
-    `;
+export function useEvents_ListLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    Events_ListQuery,
+    Events_ListQueryVariables
+  >,
+) {
+  const options = {...defaultOptions, ...baseOptions};
+  return Apollo.useLazyQuery<Events_ListQuery, Events_ListQueryVariables>(
+    Events_ListDocument,
+    options,
+  );
+}
+export type Events_ListQueryHookResult = ReturnType<typeof useEvents_ListQuery>;
+export type Events_ListLazyQueryHookResult = ReturnType<
+  typeof useEvents_ListLazyQuery
+>;
+export type Events_ListQueryResult = Apollo.QueryResult<
+  Events_ListQuery,
+  Events_ListQueryVariables
+>;
+export const Sections_ListDocument = gql`
+  query Sections_list {
+    Sections_list {
+      id
+      published
+      title
+      title_en
+      eventCount
+    }
+  }
+`;
 
 /**
  * __useSections_ListQuery__
@@ -204,14 +258,37 @@ export const Sections_ListDocument = gql`
  *   },
  * });
  */
-export function useSections_ListQuery(baseOptions?: Apollo.QueryHookOptions<Sections_ListQuery, Sections_ListQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<Sections_ListQuery, Sections_ListQueryVariables>(Sections_ListDocument, options);
-      }
-export function useSections_ListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Sections_ListQuery, Sections_ListQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<Sections_ListQuery, Sections_ListQueryVariables>(Sections_ListDocument, options);
-        }
-export type Sections_ListQueryHookResult = ReturnType<typeof useSections_ListQuery>;
-export type Sections_ListLazyQueryHookResult = ReturnType<typeof useSections_ListLazyQuery>;
-export type Sections_ListQueryResult = Apollo.QueryResult<Sections_ListQuery, Sections_ListQueryVariables>;
+export function useSections_ListQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    Sections_ListQuery,
+    Sections_ListQueryVariables
+  >,
+) {
+  const options = {...defaultOptions, ...baseOptions};
+  return Apollo.useQuery<Sections_ListQuery, Sections_ListQueryVariables>(
+    Sections_ListDocument,
+    options,
+  );
+}
+export function useSections_ListLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    Sections_ListQuery,
+    Sections_ListQueryVariables
+  >,
+) {
+  const options = {...defaultOptions, ...baseOptions};
+  return Apollo.useLazyQuery<Sections_ListQuery, Sections_ListQueryVariables>(
+    Sections_ListDocument,
+    options,
+  );
+}
+export type Sections_ListQueryHookResult = ReturnType<
+  typeof useSections_ListQuery
+>;
+export type Sections_ListLazyQueryHookResult = ReturnType<
+  typeof useSections_ListLazyQuery
+>;
+export type Sections_ListQueryResult = Apollo.QueryResult<
+  Sections_ListQuery,
+  Sections_ListQueryVariables
+>;

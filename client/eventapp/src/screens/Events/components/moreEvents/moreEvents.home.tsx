@@ -44,14 +44,7 @@ const MoreEvents: React.FC<{sectionId: string}> = ({sectionId}) => {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.FlatlistContainer}
           renderItem={({item, index}) => {
-            return (
-              <MyCard
-                changeWidth={false}
-                data={item}
-                index={index}
-                animation="Down"
-              />
-            );
+            return <MyCard changeWidth={false} data={item} index={index} />;
           }}
           data={data?.Events_list}
           keyExtractor={(_item, index) => index.toString()}

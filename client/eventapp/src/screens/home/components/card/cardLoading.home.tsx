@@ -4,12 +4,15 @@ import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
 import {View} from 'react-native';
 import {useThemeContext} from '../../../../context/theme/themeToggle.context';
 import {ThemeContextType} from '../../../../typs';
+import Animated, {FadeIn, FadeOut} from 'react-native-reanimated';
 
 const CardLoading: React.FC<{}> = () => {
   const {isDarkMode, Colors} = useThemeContext() as ThemeContextType;
 
   return (
-    <>
+    <Animated.View
+      entering={FadeIn.duration(500)}
+      exiting={FadeOut.duration(500)}>
       {isDarkMode ? (
         <View style={styles.cardContainer}>
           <SkeletonPlaceholder
@@ -43,7 +46,7 @@ const CardLoading: React.FC<{}> = () => {
           </SkeletonPlaceholder>
         </View>
       )}
-    </>
+    </Animated.View>
   );
 };
 

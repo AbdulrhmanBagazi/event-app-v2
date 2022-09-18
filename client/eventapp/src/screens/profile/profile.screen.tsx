@@ -1,13 +1,13 @@
 import React, {useMemo, useRef} from 'react';
 import {View} from 'react-native';
 import {styles} from './styles.profile';
-import {AuthenticatedTypes, ScreenType} from '../../typs';
+import {AuthenticatedTypes, I18nContextType} from '../../typs';
 import Page from '../../layout/page';
 import CustomText from '../../components/customText/customText';
 import HeaderLeftButtons from '../../components/headerLeftButtons/headerLeftButtons';
 import {useThemeContext} from '../../context/theme/themeToggle.context';
 import {ThemeContextType} from '../../typs';
-import {useFocusEffect} from '@react-navigation/native';
+import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import SignOutButton from '../../components/signOutButton/signOutButton';
 import {useAuth} from '../../context/auth/auth.context';
 import RNBottomSheet from '@gorhom/bottom-sheet';
@@ -16,21 +16,24 @@ import BottomSheetLayout from './components/bottomSheetLayout/bottomSheetLayout'
 import CustomBackdrop from '../../components/bottomSheet/customBackdrop';
 import CustomBackground from '../../components/bottomSheet/customBackground';
 import UpdateProfileBanner from './components/updateProfileBanner/updateProfileBanner';
+import {useI18nContext} from '../../context/I18n/i18n.context';
 
-const Profile = ({i18n, navigation}: ScreenType) => {
+const Profile = () => {
+  const {Locals} = useI18nContext() as I18nContextType;
   const refBottomSheet = useRef<RNBottomSheet>(null);
   const snapPoints = useMemo(() => ['25%', '50%'], []);
   const handleOpenPress = () => refBottomSheet.current?.expand();
   const {Colors} = useThemeContext() as ThemeContextType;
   const {user} = useAuth() as AuthenticatedTypes;
+  const {setOptions} = useNavigation();
 
   React.useLayoutEffect(() => {
-    navigation.setOptions({
+    return setOptions({
       headerRight: () => (
         <HeaderLeftButtons onPress={() => handleOpenPress()} />
       ),
     });
-  }, [navigation]);
+  }, [setOptions]);
 
   useFocusEffect(
     React.useCallback(() => {
@@ -49,7 +52,7 @@ const Profile = ({i18n, navigation}: ScreenType) => {
       <View style={styles.profileContainer}>
         <CustomText
           text={`${
-            user?.email ? i18n.Home.Welcome + user?.email : i18n.Home.Error
+            user?.email ? Locals.Home.Welcome + user?.email : Locals.Home.Error
           }`}
           fontWeight="normal"
           Color="OnSurface"
@@ -69,7 +72,7 @@ const Profile = ({i18n, navigation}: ScreenType) => {
         backgroundComponent={CustomBackground}
         enablePanDownToClose
         backdropComponent={CustomBackdrop}>
-        <BottomSheetLayout i18n={i18n} />
+        <BottomSheetLayout />
       </BottomSheet>
     </Page>
   );

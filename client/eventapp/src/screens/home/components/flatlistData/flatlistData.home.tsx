@@ -48,7 +48,6 @@ const FlatListData: React.FC<{sectionId: string}> = ({sectionId}) => {
                 }
                 data={item}
                 index={index}
-                animation="Right"
               />
             );
           }}

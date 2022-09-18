@@ -1,18 +1,21 @@
 import React, {useEffect} from 'react';
-import {AuthenticatedTypes, ScreenType} from '../../../typs';
+import {AuthenticatedTypes, RootStackParamList} from '../../../typs';
 import {useAuth} from '../../../context/auth/auth.context';
 import SigninForm from './components/signinForm';
+import {useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
 
-const Signin = ({i18n, navigation}: ScreenType) => {
+const Signin = () => {
   const {isAuthenticated} = useAuth() as AuthenticatedTypes;
+  const {navigate} = useNavigation<StackNavigationProp<RootStackParamList>>();
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigation.navigate('Home');
+      return navigate('Home', {id: 'sadas'});
     }
-  }, [isAuthenticated, navigation]);
+  }, [isAuthenticated, navigate]);
 
-  return <SigninForm i18n={i18n} />;
+  return <SigninForm />;
 };
 
 export default Signin;

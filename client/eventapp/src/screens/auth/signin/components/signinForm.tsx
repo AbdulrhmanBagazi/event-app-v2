@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {
   AuthenticatedTypes,
   ErrorContextType,
-  ScreenType,
+  I18nContextType,
   ThemeContextType,
 } from '../../../../typs';
 import {Button, TextInput} from 'react-native-paper';
@@ -11,11 +11,13 @@ import {styles} from './styles.signinForm';
 import {useThemeContext} from '../../../../context/theme/themeToggle.context';
 import {View} from 'react-native';
 import {useError} from '../../../../context/error/error.context';
+import {useI18nContext} from '../../../../context/I18n/i18n.context';
 
-const SigninForm = ({i18n}: ScreenType) => {
+const SigninForm = () => {
   const {authLoading, SignIn} = useAuth() as AuthenticatedTypes;
   const {Colors} = useThemeContext() as ThemeContextType;
   const {ThrowError} = useError() as ErrorContextType;
+  const {Locals} = useI18nContext() as I18nContextType;
   const [isEmail, setEmail] = useState('');
   const [isPassword, setPassword] = useState('');
   const [isError, setError] = useState({
@@ -66,7 +68,7 @@ const SigninForm = ({i18n}: ScreenType) => {
     const [error] = await SignIn(values);
 
     if (error?.status === 401) {
-      ThrowError(i18n.Errors.SignIn);
+      ThrowError(Locals.Errors.SignIn);
       setError({
         Email: true,
         Password: true,
@@ -87,7 +89,7 @@ const SigninForm = ({i18n}: ScreenType) => {
     <View style={styles.container}>
       <TextInput
         mode="outlined"
-        label={i18n.Signin.Email}
+        label={Locals.Signin.Email}
         value={isEmail}
         onChangeText={val => validateEmail(val)}
         onBlur={() => validateEmail(isEmail)}
@@ -99,7 +101,7 @@ const SigninForm = ({i18n}: ScreenType) => {
 
       <TextInput
         mode="outlined"
-        label={i18n.Signin.Password}
+        label={Locals.Signin.Password}
         value={isPassword}
         onChangeText={val => validatePassword(val)}
         onBlur={() => validatePassword(isPassword)}
@@ -118,7 +120,7 @@ const SigninForm = ({i18n}: ScreenType) => {
         labelStyle={{color: Colors.OnPrimary}}
         style={styles.SignInButton}
         loading={authLoading}>
-        {i18n.Signin.Title}
+        {Locals.Signin.Title}
       </Button>
     </View>
   );

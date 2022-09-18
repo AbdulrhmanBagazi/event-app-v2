@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {
   AuthenticatedTypes,
   ErrorContextType,
-  ScreenType,
+  I18nContextType,
   ThemeContextType,
 } from '../../../../typs';
 import {Button, TextInput} from 'react-native-paper';
@@ -11,8 +11,10 @@ import {styles} from './styles.signupForm';
 import {useThemeContext} from '../../../../context/theme/themeToggle.context';
 import {View} from 'react-native';
 import {useError} from '../../../../context/error/error.context';
+import {useI18nContext} from '../../../../context/I18n/i18n.context';
 
-const SignupForm = ({i18n}: ScreenType) => {
+const SignupForm = () => {
+  const {Locals} = useI18nContext() as I18nContextType;
   const {authLoading, SignUp} = useAuth() as AuthenticatedTypes;
   const {Colors} = useThemeContext() as ThemeContextType;
   const {ThrowError} = useError() as ErrorContextType;
@@ -66,7 +68,7 @@ const SignupForm = ({i18n}: ScreenType) => {
     const [error] = await SignUp(values);
 
     if (error?.status === 400) {
-      ThrowError(i18n.Errors.EmailUsed);
+      ThrowError(Locals.Errors.EmailUsed);
       isError.Email = true;
       setError({
         ...isError,
@@ -86,7 +88,7 @@ const SignupForm = ({i18n}: ScreenType) => {
   return (
     <View style={styles.container}>
       <TextInput
-        label={i18n.Signup.Email}
+        label={Locals.Signup.Email}
         value={isEmail}
         onChangeText={val => validateEmail(val)}
         onBlur={() => validateEmail(isEmail)}
@@ -98,7 +100,7 @@ const SignupForm = ({i18n}: ScreenType) => {
       />
 
       <TextInput
-        label={i18n.Signup.Password}
+        label={Locals.Signup.Password}
         value={isPassword}
         onChangeText={val => validatePassword(val)}
         onBlur={() => validatePassword(isPassword)}
@@ -117,7 +119,7 @@ const SignupForm = ({i18n}: ScreenType) => {
         color={Colors.Primary}
         style={styles.SignInButton}
         loading={authLoading}>
-        {i18n.Signup.Title}
+        {Locals.Signup.Title}
       </Button>
     </View>
   );

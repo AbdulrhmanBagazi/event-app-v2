@@ -3,32 +3,25 @@ import {Card, Title, Paragraph, Avatar, Badge} from 'react-native-paper';
 import {useThemeContext} from '../../../../context/theme/themeToggle.context';
 import {I18nContextType, ThemeContextType} from '../../../../typs';
 import {styles} from './styles.card.home';
-import Animated, {FadeInDown, FadeInRight} from 'react-native-reanimated';
+import Animated, {FadeIn} from 'react-native-reanimated';
 import {SCREEN_WIDTH} from '../../../../layout/screenDimensions';
 import {Image, View} from 'react-native';
 import {useI18nContext} from '../../../../context/I18n/i18n.context';
 import {Events} from '../../../../graphql/generated';
 import Logo from './logo';
 
-type AnimationTypes = 'Right' | 'Down';
-
 const MyCard: React.FC<{
   changeWidth: boolean;
   data: Events;
   index: number;
-  animation: AnimationTypes;
-}> = ({changeWidth, data, index, animation}) => {
+}> = ({changeWidth, data, index}) => {
   const {Colors, Theme} = useThemeContext() as ThemeContextType;
   const {Lang, Locals} = useI18nContext() as I18nContextType;
 
   return (
     <Animated.View
       style={{width: changeWidth ? SCREEN_WIDTH - 20 : SCREEN_WIDTH}}
-      entering={
-        animation === 'Right'
-          ? FadeInRight.duration(700).delay(100 * index)
-          : FadeInDown.duration(700).delay(100 * index)
-      }>
+      entering={FadeIn.duration(500).delay(100 * index)}>
       <Card style={[styles.cardContainer]} mode="elevated">
         <View
           style={[styles.fixCardBorder, {backgroundColor: Theme.dark.Surface}]}>
@@ -41,7 +34,7 @@ const MyCard: React.FC<{
             style={[
               styles.TopCardImage,
               {
-                backgroundColor: Colors.Primary,
+                backgroundColor: Colors.Surface,
               },
             ]}
           />

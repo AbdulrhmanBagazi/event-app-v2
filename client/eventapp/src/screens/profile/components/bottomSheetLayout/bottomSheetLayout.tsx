@@ -2,15 +2,19 @@ import React from 'react';
 import {View} from 'react-native';
 import {styles} from './styles.bottomSheetLayout';
 import SelectLanguage from '../../../../components/selectLanguage/selectLanguage';
-import {NotificationContextType, ThemeContextType} from '../../../../typs';
+import {
+  I18nContextType,
+  NotificationContextType,
+  ThemeContextType,
+} from '../../../../typs';
 import {useThemeContext} from '../../../../context/theme/themeToggle.context';
 import CustomText from '../../../../components/customText/customText';
 import CustomSwitch from '../../../../components/customSwitch/customSwitch';
 import {useNotificationContext} from '../../../../context/notifications/notification.context';
+import {useI18nContext} from '../../../../context/I18n/i18n.context';
 
-const BottomSheetLayout: React.FC<{
-  i18n: any;
-}> = ({i18n}) => {
+const BottomSheetLayout = () => {
+  const {Locals} = useI18nContext() as I18nContextType;
   const {ToggleTheme, isDarkMode} = useThemeContext() as ThemeContextType;
   const {ToggleNotification, Notification, notificationLoading} =
     useNotificationContext() as NotificationContextType;
@@ -18,17 +22,17 @@ const BottomSheetLayout: React.FC<{
   return (
     <View style={styles.bottomSheetContainer}>
       <CustomText
-        text={i18n.Settings.Theme}
+        text={Locals.Settings.Theme}
         fontWeight="bold"
         Color="OnSurface"
       />
       <CustomSwitch
         value={isDarkMode}
         onPress={() => ToggleTheme()}
-        text={i18n.Settings.DarkMode}
+        text={Locals.Settings.DarkMode}
       />
       <CustomText
-        text={i18n.Settings.Notification}
+        text={Locals.Settings.Notification}
         fontWeight="bold"
         Color="OnSurface"
       />
@@ -39,11 +43,11 @@ const BottomSheetLayout: React.FC<{
             : false
         }
         onPress={() => ToggleNotification()}
-        text={i18n.Settings.Push}
+        text={Locals.Settings.Push}
         Loading={notificationLoading}
       />
       <CustomText
-        text={i18n.Settings.Language}
+        text={Locals.Settings.Language}
         fontWeight="bold"
         Color="OnSurface"
       />

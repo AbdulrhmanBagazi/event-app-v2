@@ -1,7 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
 import {Button, Text} from 'react-native-paper';
-import Animated, {FadeInDown} from 'react-native-reanimated';
+import Animated, {FadeIn} from 'react-native-reanimated';
 import {useI18nContext} from '../../../../context/I18n/i18n.context';
 import {useThemeContext} from '../../../../context/theme/themeToggle.context';
 import {Sections} from '../../../../graphql/generated';
@@ -18,7 +18,7 @@ const SectionsHeader: React.FC<{
   const {Lang, Locals} = useI18nContext() as I18nContextType;
 
   return (
-    <Animated.View entering={FadeInDown.duration(700).delay(100 * index)}>
+    <Animated.View entering={FadeIn.duration(500).delay(100 * index)}>
       <View style={styles.SectionView}>
         <View style={styles.TitleView}>
           <Text style={[styles.SectionTitle, {color: Colors.OnBackground}]}>
