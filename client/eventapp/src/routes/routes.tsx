@@ -1,27 +1,23 @@
-//screens
-// import Signin from '../screens/auth/signin/signin.auth';
 import Home from '../screens/home/home.screen';
 import {RoutesType} from '../typs';
-// import AuthStack from './AuthStack';
 import Loading from '../screens/loading/loading.screen';
 import Profile from '../screens/profile/profile.screen';
 import Auth from '../screens/auth/auth.screen';
 import Signup from '../screens/auth/signup/signup.auth';
 import Events from '../screens/Events/events.screen';
+import UserProfile from '../screens/profile/screens/userProfile/userProfile.screens.profile';
+import Earnings from '../screens/profile/screens/earnings/earnings.screen.profile';
 
-// const HomeScreens: RoutesType[] = [
-//   {
-//     name: 'Home',
-//     component: Home,
-//   },
-// ];
-
-// const ProfileScreens: RoutesType[] = [
-//   {
-//     name: 'Profile',
-//     component: Profile,
-//   },
-// ];
+const ProfileScreens: RoutesType[] = [
+  {
+    name: 'UserProfile',
+    component: UserProfile,
+  },
+  {
+    name: 'Earnings',
+    component: Earnings,
+  },
+];
 
 const EventsScreens: RoutesType[] = [
   {
@@ -59,4 +55,4 @@ const TabScreens: RoutesType[] = [
   },
 ];
 
-export {AuthScreens, LoadingScreen, TabScreens, EventsScreens};
+export {AuthScreens, LoadingScreen, TabScreens, EventsScreens, ProfileScreens};

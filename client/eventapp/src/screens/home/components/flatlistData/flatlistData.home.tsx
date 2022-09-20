@@ -7,13 +7,12 @@ import {
   Order,
 } from '../../../../graphql/generated';
 import MyCard from '../card/card.home';
-import CardLoading from '../card/cardLoading.home';
 import {SCREEN_WIDTH} from '../../../../layout/screenDimensions';
 import {FlatList} from 'react-native-gesture-handler';
 import {styles} from './styles.FlatlistData';
 
 const FlatListData: React.FC<{sectionId: string}> = ({sectionId}) => {
-  const {data, loading} = useQuery<Events_ListQuery, Events_ListQueryVariables>(
+  const {data} = useQuery<Events_ListQuery, Events_ListQueryVariables>(
     Events_ListDocument,
     {
       variables: {
@@ -27,35 +26,29 @@ const FlatListData: React.FC<{sectionId: string}> = ({sectionId}) => {
   );
 
   return (
-    <>
-      {loading ? (
-        <CardLoading />
-      ) : (
-        <FlatList
-          horizontal
-          scrollEnabled
-          pagingEnabled
-          decelerationRate={'fast'}
-          snapToInterval={SCREEN_WIDTH - 20}
-          snapToAlignment={'center'}
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.FlatlistContainer}
-          renderItem={({item, index}) => {
-            return (
-              <MyCard
-                changeWidth={
-                  data ? (data?.Events_list.length > 1 ? true : false) : false
-                }
-                data={item}
-                index={index}
-              />
-            );
-          }}
-          data={data?.Events_list}
-          keyExtractor={(_item, index) => index.toString()}
-        />
-      )}
-    </>
+    <FlatList
+      horizontal
+      scrollEnabled
+      pagingEnabled
+      decelerationRate={'fast'}
+      snapToInterval={SCREEN_WIDTH - 20}
+      snapToAlignment={'center'}
+      showsHorizontalScrollIndicator={false}
+      contentContainerStyle={styles.FlatlistContainer}
+      renderItem={({item, index}) => {
+        return (
+          <MyCard
+            changeWidth={
+              data ? (data?.Events_list.length > 1 ? true : false) : false
+            }
+            data={item}
+            index={index}
+          />
+        );
+      }}
+      data={data?.Events_list}
+      keyExtractor={(_item, index) => index.toString()}
+    />
   );
 };
 

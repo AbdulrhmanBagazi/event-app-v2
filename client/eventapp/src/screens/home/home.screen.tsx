@@ -10,30 +10,24 @@ import {
   Sections_ListQueryVariables,
 } from '../../graphql/generated';
 import {FlatList} from 'react-native-gesture-handler';
-import CardLoading from './components/card/cardLoading.home';
-import ReloadButton from '../../components/reloadButton/reloadButton';
 import {useI18nContext} from '../../context/I18n/i18n.context';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 
 const Home = () => {
-  const {Locals} = useI18nContext() as I18nContextType;
+  const {Lang} = useI18nContext() as I18nContextType;
   const {navigate} = useNavigation<StackNavigationProp<RootStackParamList>>();
-  const {data, loading, error, refetch} = useQuery<
+  const {data, loading} = useQuery<
     Sections_ListQuery,
     Sections_ListQueryVariables
   >(Sections_ListDocument, {
     context: {clientName: 'public_client'},
   });
 
-  if (error && !loading) {
-    return <ReloadButton Refetch={() => refetch()} />;
-  }
-
   return (
     <Page paddingHorizontal={0}>
       {loading ? (
-        <CardLoading />
+        <></>
       ) : (
         <FlatList
           ListHeaderComponent={<BannerLoading />}
@@ -47,7 +41,7 @@ const Home = () => {
                     screen: 'All Events',
                     params: {
                       sectionId: item.id,
-                      title: Locals === 'en' ? item.title_en : item.title,
+                      title: Lang === 'en' ? item.title_en : item.title,
                     },
                   })
                 }

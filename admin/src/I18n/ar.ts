@@ -39,6 +39,7 @@ const customArabicMessages: TranslationMessages = {
         summary: 'ملخص',
         posts: 'المنشورات',
         edit: 'تعديل',
+        profile: 'الملف الشخصي',
       },
       edittabs: {
         ban: 'حظر',
@@ -52,6 +53,15 @@ const customArabicMessages: TranslationMessages = {
         createdAt: 'تاريخ الإنشاء',
         // postsCount: 'المنشورات',
         Type: 'الحساب',
+        Profile: {
+          firstName: 'الإسم الآول',
+          lastName: 'الإسم الآخير',
+          nationality: 'الجنسية',
+          nationalID: 'رقم الهوية',
+          dateOfBirth: 'تاريخ الميلاد',
+          createdAt: 'تاريخ الإنشاء',
+          null: 'لم يتم إضافة بيانات الملف الشخصي من قبل المستخدم',
+        },
       },
     },
     Companies: {

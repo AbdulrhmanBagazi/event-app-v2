@@ -5,6 +5,7 @@ import passportJwt from 'passport-jwt';
 import { ValidPassword, CookieExtractor } from './index.utils';
 import { JWT_PublicKey, ClientTokenMeta } from '../../config/jwt.config';
 import { Request } from 'express';
+
 const JwtStrategy = passportJwt.Strategy;
 const LocalStrategy = passportLocal.Strategy;
 const ExtractJwt = passportJwt.ExtractJwt;
@@ -54,17 +55,13 @@ passport.use(
           verfied: true,
           verificationEmail: true,
           Type: true,
+          Profile: true,
         },
       });
 
       if (user?.password && user) {
         if (await ValidPassword(user.password, password)) {
-          return cb(null, {
-            id: user.id,
-            email: user.email,
-            verfied: user.verfied,
-            verificationEmail: user.verificationEmail,
-          });
+          return cb(null, user);
         }
 
         return cb(null, false);
@@ -88,6 +85,7 @@ passport.use(
         verfied: true,
         verificationEmail: true,
         Type: true,
+        Profile: true,
       },
     });
     if (user) {
@@ -111,6 +109,7 @@ passport.use(
         verfied: true,
         verificationEmail: true,
         Type: true,
+        Profile: true,
       },
     });
     if (user) {
@@ -133,6 +132,7 @@ passport.use(
         email: true,
         verfied: true,
         Type: true,
+        Profile: true,
       },
     });
 

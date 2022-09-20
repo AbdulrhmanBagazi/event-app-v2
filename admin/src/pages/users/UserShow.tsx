@@ -8,6 +8,8 @@ import {
   useGetOne,
   useRefresh,
   Loading,
+  WithRecord,
+  FunctionField,
 } from 'react-admin'
 import ColoredBooleanField from './components/ColoredBooleanField'
 import SuspendedBooleanField from './components/SuspendedBooleanField'
@@ -37,9 +39,6 @@ const UserShow = () => {
         onError: (err) => {
           return null
         },
-        // useErrorBoundary: (err) => {
-        //   return true
-        // },
       }}
       emptyWhileLoading>
       <TabbedShowLayout>
@@ -64,20 +63,38 @@ const UserShow = () => {
           </Labeled>
         </Tab>
 
-        {/* <Tab label="resources.User.showtabs.posts">
-          <ReferenceManyField
-            pagination={<Pagination />}
-            label=""
-            reference="UserPosts"
-            target="autherId"
-            perPage={5}>
-            <Datagrid isRowSelectable={() => false} bulkActionButtons={false}>
-              <TextField source="title" label="resources.User.posts.title" />
-              <DateField source="createdAt" label="resources.User.posts.createdAt" />
-              <ColoredBooleanField source="published" />
-            </Datagrid>
-          </ReferenceManyField>
-        </Tab> */}
+        <Tab label="resources.User.showtabs.profile">
+          <WithRecord
+            render={(record) =>
+              record.Profile ? (
+                <>
+                  <Labeled label="resources.User.fields.Profile.firstName">
+                    <FunctionField render={(record: any) => record.Profile.firstName} />
+                  </Labeled>
+                  <Labeled label="resources.User.fields.Profile.lastName">
+                    <FunctionField render={(record: any) => record.Profile.lastName} />
+                  </Labeled>
+                  <Labeled label="resources.User.fields.Profile.nationality">
+                    <FunctionField render={(record: any) => record.Profile.nationality} />
+                  </Labeled>
+                  <Labeled label="resources.User.fields.Profile.nationalID">
+                    <FunctionField render={(record: any) => record.Profile.nationalID} />
+                  </Labeled>
+                  <Labeled label="resources.User.fields.Profile.dateOfBirth">
+                    <DateField source="Profile.dateOfBirth" />
+                  </Labeled>
+                  <Labeled label="resources.User.fields.Profile.createdAt">
+                    <DateField source="Profile.createdAt" />
+                  </Labeled>
+                </>
+              ) : (
+                <Labeled label="resources.User.fields.Profile.null">
+                  <FunctionField render={(_record: any) => ''} />
+                </Labeled>
+              )
+            }
+          />
+        </Tab>
       </TabbedShowLayout>
     </Show>
   )

@@ -11,11 +11,25 @@ export const getOne_Users_TypeDefs = gql`
     id: String!
     verfied: Boolean!
     suspended: Boolean!
-    createdAt: DateTime
+    createdAt: DateTime!
     Type: String!
+    Profile: Profile
+  }
+
+  type Profile {
+    id: String
+    createdAt: DateTime
+    updatedAt: DateTime
+    userId: String
+    firstName: String
+    lastName: String
+    nationality: String
+    nationalID: String
+    dateOfBirth: String
   }
 
   scalar DateTime
+  scalar Date
 `;
 
 export const getOne_Users_Query = {
@@ -23,6 +37,15 @@ export const getOne_Users_Query = {
     return context.prisma.user.findUnique({
       where: {
         id: args.id,
+      },
+      select: {
+        email: true,
+        id: true,
+        verfied: true,
+        suspended: true,
+        createdAt: true,
+        Type: true,
+        Profile: true,
       },
     });
   },

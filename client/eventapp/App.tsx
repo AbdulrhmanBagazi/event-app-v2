@@ -1,3 +1,4 @@
+import {en, registerTranslation} from 'react-native-paper-dates';
 import * as React from 'react';
 import {AppRegistry, Platform} from 'react-native';
 import Index from './src';
@@ -57,5 +58,7 @@ const App = () => {
     </ThemeProvider>
   );
 };
+
+registerTranslation('en', en);
 
 export default AppRegistry.registerComponent(name, () => App);

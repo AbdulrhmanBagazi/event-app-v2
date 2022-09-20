@@ -1,5 +1,13 @@
 import * as React from 'react';
-import {Card, Title, Paragraph, Avatar, Badge} from 'react-native-paper';
+import {
+  Card,
+  Paragraph,
+  Avatar,
+  Badge,
+  Title,
+  Button,
+} from 'react-native-paper';
+import moment from 'moment';
 import {useThemeContext} from '../../../../context/theme/themeToggle.context';
 import {I18nContextType, ThemeContextType} from '../../../../typs';
 import {styles} from './styles.card.home';
@@ -15,16 +23,20 @@ const MyCard: React.FC<{
   data: Events;
   index: number;
 }> = ({changeWidth, data, index}) => {
-  const {Colors, Theme} = useThemeContext() as ThemeContextType;
+  const {Colors, Theme, isDarkMode} = useThemeContext() as ThemeContextType;
   const {Lang, Locals} = useI18nContext() as I18nContextType;
 
   return (
     <Animated.View
-      style={{width: changeWidth ? SCREEN_WIDTH - 20 : SCREEN_WIDTH}}
+      style={{
+        width: changeWidth ? SCREEN_WIDTH - 20 : SCREEN_WIDTH,
+      }}
       entering={FadeIn.duration(500).delay(100 * index)}>
-      <Card style={[styles.cardContainer]} mode="elevated">
-        <View
-          style={[styles.fixCardBorder, {backgroundColor: Theme.dark.Surface}]}>
+      <Card
+        // eslint-disable-next-line react-native/no-inline-styles
+        style={[styles.cardContainer, {borderWidth: isDarkMode ? 0 : 1}]}
+        mode="outlined">
+        <View style={{backgroundColor: Theme.dark.Surface}}>
           <Card.Cover
             source={{
               uri: data.image_url
@@ -62,36 +74,46 @@ const MyCard: React.FC<{
               }
             />
           </View>
+          <View style={styles.TopCardTextLayer}>
+            <Title style={styles.CardText}>
+              {Lang === 'en' ? data.title_en : data.title}
+            </Title>
+            <Paragraph style={styles.CardText}>
+              {Lang === 'en' ? data.content_en : data.content}
+            </Paragraph>
+          </View>
         </View>
 
-        <Card.Content>
-          <Title>{Lang === 'en' ? data.title_en : data.title}</Title>
-          <Paragraph>
-            {Lang === 'en' ? data.content_en : data.content}
-          </Paragraph>
-          <Badge
-            style={[
-              styles.CardBadge,
-              // eslint-disable-next-line react-native/no-inline-styles
-              {
-                backgroundColor:
-                  data.status === 'SOON'
-                    ? Colors.Secondary
-                    : data.status === 'ACTIVE'
-                    ? Colors.Primary
-                    : Colors.Surface,
-                color:
-                  data.status === 'SOON'
-                    ? Colors.OnSecondary
-                    : data.status === 'ACTIVE'
-                    ? Colors.OnPrimary
-                    : Colors.OnSurface,
-                fontWeight: data.status === 'COMPLETED' ? 'bold' : 'normal',
-              },
-            ]}>
-            {Locals.Jobs[data.status]}
-          </Badge>
-        </Card.Content>
+        <Card.Actions style={styles.CardAction}>
+          <View>
+            <Button icon="calendar" mode="text" color={Colors.OnSurface}>
+              {moment(new Date(data.createdAt)).format('YYYY-MM-DD')}
+            </Button>
+          </View>
+
+          <View>
+            <Badge
+              style={[
+                styles.CardBadge,
+                {
+                  backgroundColor:
+                    data.status === 'SOON'
+                      ? Colors.Primary
+                      : data.status === 'ACTIVE'
+                      ? Colors.Secondary
+                      : Colors.Surface,
+                  color:
+                    data.status === 'SOON'
+                      ? Colors.OnPrimary
+                      : data.status === 'ACTIVE'
+                      ? Colors.OnSecondary
+                      : Colors.OnSurface,
+                },
+              ]}>
+              {Locals.Jobs[data.status]}
+            </Badge>
+          </View>
+        </Card.Actions>
       </Card>
     </Animated.View>
   );

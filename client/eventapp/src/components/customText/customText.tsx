@@ -36,7 +36,8 @@ const CustomText: React.FC<{
   fontWeight: fontWeightType;
   Color: ColorType;
   style?: StyleProp<TextStyle>;
-}> = ({text, fontWeight, style, Color}) => {
+  numberOfLines?: number;
+}> = ({text, fontWeight, style, Color, numberOfLines}) => {
   const {isDarkMode, Theme} = useThemeContext() as ThemeContextType;
 
   const progress = useDerivedValue(() => {
@@ -56,6 +57,7 @@ const CustomText: React.FC<{
 
   return (
     <Animated.Text
+      numberOfLines={numberOfLines}
       style={[
         style,
         styles.customeText,

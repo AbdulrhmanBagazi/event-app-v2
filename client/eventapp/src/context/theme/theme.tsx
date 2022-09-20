@@ -1,7 +1,7 @@
 const myTheme = {
   light: {
     //
-    Background: '#FDFDFD',
+    Background: '#FFFFFF',
     OnBackground: '#000000',
     //
     Error: '#B00020',

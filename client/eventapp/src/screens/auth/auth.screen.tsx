@@ -8,7 +8,6 @@ import {
   AuthenticatedTypes,
   I18nContextType,
   RootStackParamList,
-  ThemeContextType,
 } from '../../typs';
 import Signin from './signin/signin.auth';
 import {styles} from './styles.auth';
@@ -16,7 +15,6 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {Platform, View} from 'react-native';
 import MGoogleButton from '../../components/myGoogleButton/MyGoogleButton';
 import MyAppleButton from '../../components/myAppleButton/MyAppleButton';
-import {useThemeContext} from '../../context/theme/themeToggle.context';
 import MySvg from './mySvg';
 import {useI18nContext} from '../../context/I18n/i18n.context';
 import {StackNavigationProp} from '@react-navigation/stack';
@@ -24,7 +22,6 @@ import {useNavigation} from '@react-navigation/native';
 
 const Auth = () => {
   const {authLoading} = useAuth() as AuthenticatedTypes;
-  const {Colors} = useThemeContext() as ThemeContextType;
   const {Locals} = useI18nContext() as I18nContextType;
   const {pop, setOptions} =
     useNavigation<StackNavigationProp<RootStackParamList>>();
@@ -52,9 +49,8 @@ const Auth = () => {
         <NavigationButton
           disabled={authLoading}
           style={[styles.Buttons]}
-          labelStyle={[{color: Colors.Secondary}]}
           to="Signup"
-          Color="Secondary"
+          Color="Primary"
           Mode="text"
         />
 

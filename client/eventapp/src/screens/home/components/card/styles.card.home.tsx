@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
     borderRadius: 2,
   },
   CardAction: {
-    alignSelf: 'flex-end',
+    justifyContent: 'space-between',
   },
   CardPrice: {
     fontWeight: 'bold',
@@ -32,6 +32,7 @@ export const styles = StyleSheet.create({
   TopCardImage: {
     opacity: 0.4,
     borderRadius: 2.5,
+    height: 150,
   },
   TopCardImageLayer: {
     position: 'absolute',
@@ -45,15 +46,26 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  TopCardTextLayer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  CardText: {
+    color: '#ffffff',
+  },
   Image: {
-    width: 50,
+    width: 45,
     height: 50,
   },
   CardBadge: {
-    position: 'absolute',
-    bottom: 10,
-    marginVertical: 5,
-    right: 10,
+    // position: 'absolute',
+    // bottom: 10,
+    // right: 10,
     justifyContent: 'center',
     alignItems: 'center',
     fontSize: 12,

@@ -16,7 +16,7 @@ export const AdminResolvers = {
     ...Events.Mutation,
     ...Section.Mutation,
   },
-  ...Users.Resolver,
+  // ...Users.Resolver,
 };
 
 export const AdminTypeDefs = [Users.typeDef, Companies.typeDef, Events.typeDef, Section.typeDef];

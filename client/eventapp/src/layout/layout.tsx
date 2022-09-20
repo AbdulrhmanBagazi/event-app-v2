@@ -20,6 +20,7 @@ const Layout: React.FC<{
     colors: {
       ...DarkTheme.colors,
       accent: Theme.light.Secondary,
+      primary: Theme.dark.Primary,
     },
   };
 
@@ -29,6 +30,7 @@ const Layout: React.FC<{
     colors: {
       ...DefaultTheme.colors,
       accent: Theme.dark.Secondary,
+      primary: Theme.light.Primary,
     },
   };
 

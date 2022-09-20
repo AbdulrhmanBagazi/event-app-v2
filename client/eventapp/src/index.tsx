@@ -14,6 +14,8 @@ import {SCREEN_HEIGHT} from './layout/screenDimensions';
 import Page from './layout/page';
 import analytics from '@react-native-firebase/analytics';
 import EventsStack from './routes/EventsStack';
+import ProfileStack from './routes/ProfileStack';
+import {Platform} from 'react-native';
 
 const Main = createStackNavigator();
 
@@ -31,8 +33,16 @@ const forFade = ({current}: any) => ({
   },
 });
 
+const AnimationOptions =
+  Platform.OS === 'ios'
+    ? {title: '', cardStyleInterpolator: forFade}
+    : {
+        title: '',
+      };
+
 const Index = () => {
-  const {authLoading, Authenticate} = useAuth() as AuthenticatedTypes;
+  const {authLoading, Authenticate, GraphQlLoading} =
+    useAuth() as AuthenticatedTypes;
   const {Colors} = useThemeContext() as ThemeContextType;
   const {Locals} = useI18nContext() as I18nContextType;
   const routeNameRef = React.useRef<any>();
@@ -74,10 +84,7 @@ const Index = () => {
           }}>
           <Main.Screen name="LoadingStack" component={LoadingStack} />
           <Main.Screen
-            options={{
-              title: '',
-              cardStyleInterpolator: forFade,
-            }}
+            options={AnimationOptions}
             name="Home"
             component={TabStack}
           />
@@ -105,6 +112,13 @@ const Index = () => {
             component={AuthStack}
           />
           <Main.Screen name="Events" component={EventsStack} />
+          <Main.Screen
+            name="Account"
+            component={ProfileStack}
+            options={{
+              gestureEnabled: !GraphQlLoading,
+            }}
+          />
         </Main.Navigator>
       </NavigationContainer>
     </Page>

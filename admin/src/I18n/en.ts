@@ -37,6 +37,7 @@ const customEnglishMessages: TranslationMessages = {
         summary: 'Summary',
         posts: 'Posts',
         edit: 'Edit',
+        profile: 'Profile',
       },
       edittabs: {
         ban: 'Ban',
@@ -54,6 +55,15 @@ const customEnglishMessages: TranslationMessages = {
         createdAt: 'Created At',
         // postsCount: 'Posts',
         Type: 'Type',
+        Profile: {
+          firstName: 'FirstName',
+          lastName: 'Last Name',
+          nationality: 'nationality',
+          nationalID: 'national/iqama ID',
+          dateOfBirth: 'Date Of Birth',
+          createdAt: 'Created At',
+          null: 'User did not add profile informations',
+        },
       },
     },
     Companies: {

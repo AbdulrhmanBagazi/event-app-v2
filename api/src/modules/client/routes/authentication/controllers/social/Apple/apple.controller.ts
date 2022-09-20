@@ -24,6 +24,7 @@ const AppleSignIn = async (req: Request, res: Response) => {
         email: true,
         verfied: true,
         Type: true,
+        Profile: true,
       },
     });
 
@@ -62,6 +63,7 @@ const AppleSignIn = async (req: Request, res: Response) => {
           email: true,
           verfied: true,
           Type: true,
+          Profile: true,
         },
       });
 

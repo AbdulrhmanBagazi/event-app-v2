@@ -12,6 +12,10 @@ export type RootStackParamList = {
       title: string;
     };
   };
+  Account: {
+    screen: 'UserProfile' | 'Earnings';
+  };
+  AuthStack: {};
 };
 
 //routes.tsx
@@ -78,11 +82,24 @@ export type NotificationContextType = {
 };
 
 //api
+interface UserProfileType {
+  id: String;
+  createdAt: DateTime;
+  updatedAt: DateTime;
+  userId: String;
+  firstName: String;
+  lastName: String;
+  nationality: String;
+  nationalID: String;
+  dateOfBirth: Date;
+}
+
 export type UserTypes = {
   id: string;
   email: string;
   verfied: boolean;
   Type: string;
+  Profile: UserProfileType | null | undefined;
 };
 
 interface user {
@@ -106,6 +123,8 @@ export type AuthenticatedTypes = {
   user: UserTypes | null;
   verfied: boolean | null;
   authLoading: boolean;
+  GraphQlLoading: boolean;
+  UpdateLoading: (arg0: boolean) => void;
   SignOut: () => void;
   SignIn: (arg0: SignInTypes) => AuthReturn;
   SignUp: (arg0: SignInTypes) => AuthReturn;
@@ -114,6 +133,7 @@ export type AuthenticatedTypes = {
   Unauthorized: () => void;
   Verified: () => void;
   Authenticate: () => void;
+  AddProfile: (arg0: UserProfileType) => void;
 };
 
 export type AuthContextType = {
@@ -121,6 +141,8 @@ export type AuthContextType = {
   user: UserTypes | null;
   verfied: boolean | null;
   authLoading: boolean;
+  GraphQlLoading: boolean;
+  UpdateLoading: (arg0: boolean) => void;
   SignOut: () => void;
   SignIn: (arg0: SignInTypes) => void;
   SignUp: (arg0: SignInTypes) => void;
@@ -129,6 +151,7 @@ export type AuthContextType = {
   Unauthorized: () => void;
   Verified: () => void;
   Authenticate: () => void;
+  AddProfile: (arg0: UserProfileType) => void;
 };
 
 export type AppleArgs = {

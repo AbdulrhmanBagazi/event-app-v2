@@ -13,6 +13,7 @@ import {
   GoogleArgs,
   SignInTypes,
   SignUpTypes,
+  UserProfileType,
   UserTypes,
 } from '../../typs';
 import RNBootSplash from 'react-native-bootsplash';
@@ -33,6 +34,9 @@ export const AuthContext = createContext<AuthContextType>({
   GoogleSignIn: () => {},
   Authenticate: () => {},
   AppleSignIn: () => {},
+  AddProfile: () => {},
+  GraphQlLoading: false,
+  UpdateLoading: () => {},
 });
 
 export const AuthProvider = ({
@@ -44,6 +48,7 @@ export const AuthProvider = ({
   const [verfied, setVerfied] = useState<boolean | null>(null);
   const [loading, setLoading] = useState(true);
   const [isAuth, setAuth] = useState(false);
+  const [loadingGraphql, setLoadingGraphql] = useState(false);
 
   const Authenticate = async () => {
     setLoading(true);
@@ -229,6 +234,18 @@ export const AuthProvider = ({
     setVerfied(true);
   };
 
+  const UpdateLoading = async (val: boolean) => {
+    setLoadingGraphql(val);
+  };
+
+  const AddProfile = async (val: UserProfileType | null) => {
+    if (user) {
+      const newProfile = {...user, Profile: val};
+
+      setUser(newProfile);
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -244,6 +261,9 @@ export const AuthProvider = ({
         GoogleSignIn,
         Authenticate,
         AppleSignIn,
+        AddProfile,
+        GraphQlLoading: loadingGraphql,
+        UpdateLoading,
       }}>
       {children}
     </AuthContext.Provider>

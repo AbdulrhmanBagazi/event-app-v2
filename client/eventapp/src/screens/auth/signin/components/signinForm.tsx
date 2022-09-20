@@ -116,8 +116,8 @@ const SigninForm = () => {
         onPress={() => HandleLogin({email: isEmail, password: isPassword})}
         mode="contained"
         disabled={authLoading || isError.Email || isError.Password}
-        color={Colors.Primary}
-        labelStyle={{color: Colors.OnPrimary}}
+        color={Colors.Secondary}
+        labelStyle={{color: Colors.OnSecondary}}
         style={styles.SignInButton}
         loading={authLoading}>
         {Locals.Signin.Title}

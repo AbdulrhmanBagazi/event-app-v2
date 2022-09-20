@@ -1,29 +1,40 @@
 import React from 'react';
-import {Button} from 'react-native-paper';
+import {List} from 'react-native-paper';
 import {useThemeContext} from '../../context/theme/themeToggle.context';
 import {
   AuthenticatedTypes,
   I18nContextType,
+  RootStackParamList,
   ThemeContextType,
 } from '../../typs';
 import {useI18nContext} from '../../context/I18n/i18n.context';
 import {useAuth} from '../../context/auth/auth.context';
-import NavigationButton from '../NavigationButton/navigationButton';
 import {Alert} from 'react-native';
-import {styles} from './styles.signOutButton';
+import {useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
 
 const SignOutButton: React.FC = () => {
-  const {Colors} = useThemeContext() as ThemeContextType;
+  const {Colors, isDarkMode, Theme} = useThemeContext() as ThemeContextType;
   const {Locals} = useI18nContext() as I18nContextType;
   const {SignOut, isAuthenticated, authLoading} =
     useAuth() as AuthenticatedTypes;
+  const {navigate} = useNavigation<StackNavigationProp<RootStackParamList>>();
 
   if (!isAuthenticated) {
     return (
-      <NavigationButton
-        to="AuthStack"
-        Color="Secondary"
-        style={styles.button}
+      <List.Item
+        title={Locals.Profile.SignIn}
+        style={[
+          {
+            borderBottomColor: isDarkMode
+              ? Colors.Background
+              : Theme.dark.Surface,
+          },
+        ]}
+        left={props => (
+          <List.Icon {...props} icon="login" color={Colors.Primary} />
+        )}
+        onPress={() => navigate('AuthStack', {})}
       />
     );
   }
@@ -50,15 +61,25 @@ const SignOutButton: React.FC = () => {
   };
 
   return (
-    <Button
-      onPress={() => showConfirmDialog()}
-      mode="contained"
-      style={styles.button}
-      loading={authLoading}
+    <List.Item
+      title={Locals.Profile.SignOut}
+      style={[
+        {
+          borderBottomColor: isDarkMode
+            ? Colors.Background
+            : Theme.dark.Surface,
+        },
+      ]}
+      left={props => (
+        <List.Icon
+          {...props}
+          icon="logout"
+          color={authLoading ? '#dddddd' : Colors.Primary}
+        />
+      )}
       disabled={authLoading}
-      color={Colors.Secondary}>
-      {Locals.SignOutButton.Title}
-    </Button>
+      onPress={() => showConfirmDialog()}
+    />
   );
 };
 

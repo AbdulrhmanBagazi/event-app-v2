@@ -21,7 +21,16 @@ const SignIn = async (req: Request, res: Response) => {
       signed: true,
     });
 
-    return res.status(200).send({ user: user });
+    return res.status(200).send({
+      user: {
+        id: user.id,
+        email: user.email,
+        verfied: user.verfied,
+        Type: user.Type,
+        Profile: user.Profile,
+        verificationEmail: user.verificationEmail,
+      },
+    });
   } catch (e: unknown) {
     return res.sendStatus(500);
   }

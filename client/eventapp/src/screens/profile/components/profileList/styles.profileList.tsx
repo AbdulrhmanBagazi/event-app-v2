@@ -1,7 +1,9 @@
 import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
-  button: {
-    marginVertical: 10,
+  title: {
+    fontSize: 25,
+    marginVertical: 15,
+    marginHorizontal: 10,
   },
 });

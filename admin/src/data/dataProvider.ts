@@ -206,14 +206,14 @@ export const dataProvider = {
           client
             .query({
               query: gql`
-                query ($page: Int, $perPage: Int, $sortField: String, $sortOrder: String, $filter: Filters, $target: String, $id: String) {
-                    ${resource}(page: $page, perPage: $perPage, sortField: $sortField, sortOrder: $sortOrder, filter: $filter, target: $target, id: $id) {
-                      ${Fileds[resource]}
-                  }
-                ${resource}_meta(page: $page, perPage: $perPage, sortField: $sortField, sortOrder: $sortOrder, filter: $filter, target:$target, id: $id) {
-                     count
-              }
-                }`,
+          query ($page: Int, $perPage: Int, $sortField: String, $sortOrder: String, $filter: Filters, $target: String, $id: String) {
+              ${resource}(page: $page, perPage: $perPage, sortField: $sortField, sortOrder: $sortOrder, filter: $filter, target: $target, id: $id) {
+                ${Fileds[resource]}
+            }
+          ${resource}_meta(page: $page, perPage: $perPage, sortField: $sortField, sortOrder: $sortOrder, filter: $filter, target:$target, id: $id) {
+               count
+        }
+          }`,
               variables: {
                 perPage: perPage,
                 page: page - 1,
@@ -254,7 +254,7 @@ export const dataProvider = {
           return reject(401)
         }
 
-        if (error && !data) {
+        if (error) {
           return reject(error)
         }
 
@@ -320,41 +320,8 @@ export const dataProvider = {
         return reject({ message: 'error' })
       }
     })
-
-    // return client
-    //   .mutate({
-    //     mutation: gql`
-    //           mutation ($data: ${resource}_insert_input!) {
-    //               insert_${resource}_one(object: $data) {
-    //                   ${Fileds[resource]}
-    //               }
-    //           }`,
-    //     variables: {
-    //       data: params.data,
-    //     },
-    //   })
-    //   .then((result) => ({
-    //     data: result.data[`insert_${resource}_one`],
-    //   }))
   },
   //not tested or not needed
-  // getMany: (resource: string | number, params: { ids: any }) => {
-  //   return client
-  //     .query({
-  //       query: gql`
-  //             query ($where: ${resource}) {
-  //                 ${resource}(where: $where) {
-  //                     ${Fileds[resource]}
-  //                 }
-  //             }`,
-  //       variables: {
-  //         where: {
-  //           id: { _in: params.ids },
-  //         },
-  //       },
-  //     })
-  //     .then((result) => ({ data: result.data[resource] }))
-  // },
   // updateMany: (resource: any, params: { ids: any; data: any }) => {
   //   return client
   //     .mutate({

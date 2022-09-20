@@ -3,26 +3,48 @@ import {Banner} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useThemeContext} from '../../../../context/theme/themeToggle.context';
 import AnimatedView from '../../../../layout/animatedView';
-import {ThemeContextType} from '../../../../typs';
+import {
+  AuthenticatedTypes,
+  I18nContextType,
+  RootStackParamList,
+  ThemeContextType,
+} from '../../../../typs';
 import {StyleSheet} from 'react-native';
+import {useAuth} from '../../../../context/auth/auth.context';
+import {useI18nContext} from '../../../../context/I18n/i18n.context';
+import {useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
 
 const UpdateProfileBanner = () => {
-  const [visible, setVisible] = React.useState(true);
   const {Colors} = useThemeContext() as ThemeContextType;
+  const {isAuthenticated, user} = useAuth() as AuthenticatedTypes;
+  const [visible, setVisible] = React.useState(user?.Profile ? false : true);
+  const {Locals} = useI18nContext() as I18nContextType;
+  const {navigate} = useNavigation<StackNavigationProp<RootStackParamList>>();
+
+  React.useEffect(() => {
+    if (user?.Profile) {
+      setVisible(false);
+    }
+  }, [user]);
 
   return (
     <AnimatedView Color="Surface" style={styles.View}>
       <Banner
-        visible={visible}
+        visible={!isAuthenticated ? false : visible}
         style={styles.banner}
         actions={[
           {
-            label: 'Fix it',
-            onPress: () => setVisible(false),
+            label: Locals.UserProfile.update,
+            onPress: () => {
+              navigate('Account', {
+                screen: 'UserProfile',
+              });
+            },
             color: Colors.Secondary,
           },
           {
-            label: 'Learn more',
+            label: Locals.UserProfile.later,
             onPress: () => setVisible(false),
             color: Colors.Secondary,
           },
@@ -30,7 +52,7 @@ const UpdateProfileBanner = () => {
         icon={({size}) => (
           <Icon name="account-alert" size={size} color={Colors.Primary} />
         )}>
-        There was a problem processing a transaction on your credit card.
+        {Locals.UserProfile.profilemsg}
       </Banner>
     </AnimatedView>
   );
@@ -52,7 +74,7 @@ export const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-
     elevation: 5,
+    marginHorizontal: 5,
   },
 });

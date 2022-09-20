@@ -1,21 +1,17 @@
 import React from 'react';
-// import {createNativeStackNavigator} from '@react-navigation/native-stack';
-//Routes
-import {AuthScreens} from './routes';
-//Context
-//Bottom Tabs
 import {I18nContextType, RoutesType, ThemeContextType} from '../typs';
 import {useI18nContext} from '../context/I18n/i18n.context';
 import {useThemeContext} from '../context/theme/themeToggle.context';
 import {createStackNavigator} from '@react-navigation/stack';
+import {ProfileScreens} from './routes';
 
-const Auth = createStackNavigator();
-const AuthStack = () => {
+const Profile = createStackNavigator();
+const ProfileStack = () => {
   const {Colors} = useThemeContext() as ThemeContextType;
   const {Locals} = useI18nContext() as I18nContextType;
 
   return (
-    <Auth.Navigator
+    <Profile.Navigator
       detachInactiveScreens={false}
       screenOptions={{
         headerStyle: {
@@ -23,25 +19,23 @@ const AuthStack = () => {
         },
         headerTintColor: Colors.OnBackground,
         headerShadowVisible: false,
-        // headerShown: false, //!!
         headerBackTitleVisible: false,
         cardStyle: {
           backgroundColor: Colors.Background,
         },
       }}>
-      {AuthScreens.map((route: RoutesType, i: number) => (
-        <Auth.Screen
+      {ProfileScreens.map((route: RoutesType, i: number) => (
+        <Profile.Screen
           name={route.name}
           options={() => ({
-            title: '',
-            // title: '',
+            title: Locals[route.name] ? Locals[route.name].Title : '',
           })}
           key={i}>
           {props => <route.component {...props} i18n={Locals} />}
-        </Auth.Screen>
+        </Profile.Screen>
       ))}
-    </Auth.Navigator>
+    </Profile.Navigator>
   );
 };
 
-export default AuthStack;
+export default ProfileStack;

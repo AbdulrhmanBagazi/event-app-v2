@@ -7,6 +7,25 @@ const I18n_ar = {
     Signup: 'إنشاء حساب',
     Events: 'المزيد',
   },
+  UserProfile: {
+    Title: 'الملف الشخصي',
+    firstName: 'الإسم الآول',
+    lastName: 'الإسم الآخير',
+    nationality: 'الجنسية',
+    nationalID: 'رقم الهوية/الإقامة',
+    dateOfBirth: 'تاريخ الميلاد',
+    add: 'إضافة',
+    update: 'تحديث',
+    later: 'ليس الان',
+    profilemsg:
+      'قم بتحديث بيانات ملفك الشخصي لتتمكن من التقديم على الوظائف المتوفرة',
+    save: 'حفظ',
+    date: 'التاريخ',
+    profileCreated: 'تم إنشاء الملف الشخصي',
+  },
+  Earnings: {
+    Title: 'الآرباح',
+  },
   Tabs: {
     Main: 'الرئيسية',
     Profile: 'الملف الشخصي',
@@ -53,6 +72,14 @@ const I18n_ar = {
   },
   Profile: {
     Title: 'الملف الشخصي',
+    Profile: 'الملف الشخصي',
+    Earnings: 'الآرباح',
+    UpdatePassword: 'تحديث كلمة المرور',
+    Share: 'شارك التطبيق',
+    Welcome: 'مرحبا',
+    SignInfirst: 'تسجيل الدخول!',
+    SignIn: 'تسجيل الدخول',
+    SignOut: 'تسجيل الخروج',
   },
   SignOutButton: {
     Title: 'تسجيل الخروج',
@@ -78,6 +105,25 @@ const I18n_en = {
     Signin: 'SignIn',
     Signup: 'SignUp',
     Events: 'More',
+  },
+  UserProfile: {
+    Title: 'Profile',
+    firstName: 'First Name',
+    lastName: 'Last Name',
+    nationality: 'Nationality',
+    nationalID: 'National/Iqama ID',
+    dateOfBirth: 'Date of birth',
+    add: 'Add',
+    update: 'Update',
+    later: 'Not now',
+    profilemsg:
+      'Update your profile information to be able to apply for available jobs',
+    save: 'Save',
+    date: 'Date',
+    profileCreated: 'Profile Created',
+  },
+  Earnings: {
+    Title: 'Earnings',
   },
   Tabs: {
     Main: 'Home',
@@ -125,6 +171,14 @@ const I18n_en = {
   },
   Profile: {
     Title: 'Profile',
+    Profile: 'Profile',
+    Earnings: 'Earnings',
+    UpdatePassword: 'Update Password',
+    Share: 'Share App',
+    Welcome: 'Welcome',
+    SignInfirst: 'SignIn!',
+    SignIn: 'SignIn',
+    SignOut: 'SignOut',
   },
   SignOutButton: {
     Title: 'SignOut',
