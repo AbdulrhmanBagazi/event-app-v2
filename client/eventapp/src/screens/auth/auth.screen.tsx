@@ -1,5 +1,5 @@
 import React from 'react';
-import {IconButton} from 'react-native-paper';
+import {Button, IconButton} from 'react-native-paper';
 import CustomText from '../../components/customText/customText';
 import NavigationButton from '../../components/NavigationButton/navigationButton';
 import {useAuth} from '../../context/auth/auth.context';
@@ -12,17 +12,19 @@ import {
 import Signin from './signin/signin.auth';
 import {styles} from './styles.auth';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {Platform, View} from 'react-native';
+import {Linking, Platform, View} from 'react-native';
 import MGoogleButton from '../../components/myGoogleButton/MyGoogleButton';
 import MyAppleButton from '../../components/myAppleButton/MyAppleButton';
 import MySvg from './mySvg';
 import {useI18nContext} from '../../context/I18n/i18n.context';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {useNavigation} from '@react-navigation/native';
+import {PrivacyURL, TermsURL} from '../../../config/config';
 
 const Auth = () => {
   const {authLoading} = useAuth() as AuthenticatedTypes;
   const {Locals} = useI18nContext() as I18nContextType;
+
   const {pop, setOptions} =
     useNavigation<StackNavigationProp<RootStackParamList>>();
 
@@ -69,6 +71,36 @@ const Auth = () => {
         {Platform.OS === 'ios' ? (
           <MyAppleButton text={Locals.Auth.Apple} />
         ) : null}
+
+        <View style={styles.agree}>
+          <CustomText
+            text={
+              Platform.OS === 'ios'
+                ? Locals.Signup.agreesocial
+                : Locals.Signup.agreeGoole
+            }
+            fontWeight="500"
+            Color={'OnBackground'}
+            style={styles.agreeText}
+          />
+          <Button
+            mode="text"
+            onPress={() => Linking.openURL(TermsURL)}
+            disabled={authLoading}>
+            {Locals.Signup.terms}
+          </Button>
+          <CustomText
+            text={Locals.Signup.and}
+            fontWeight="500"
+            Color={'OnBackground'}
+          />
+          <Button
+            mode="text"
+            onPress={() => Linking.openURL(PrivacyURL)}
+            disabled={authLoading}>
+            {Locals.Signup.privacy}
+          </Button>
+        </View>
       </KeyboardAwareScrollView>
     </Page>
   );

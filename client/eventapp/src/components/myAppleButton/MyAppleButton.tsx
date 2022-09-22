@@ -50,7 +50,6 @@ const MyAppleButton: React.FC<{text: String}> = ({text}) => {
       if (error.code === appleAuth.Error.CANCELED) {
         return;
       } else {
-        ThrowError(Locals.Errors.unknown);
         return;
       }
     }

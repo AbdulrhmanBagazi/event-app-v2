@@ -1,8 +1,8 @@
 const users: { [k: string]: string } = {
   User_list: 'id email verfied suspended createdAt Type',
-  User: 'id email verfied suspended createdAt Type Profile {id createdAt updatedAt userId firstName lastName nationality nationalID dateOfBirth}',
+  User: 'id email verfied suspended createdAt Type Profile {id createdAt updatedAt userId firstName lastName nationality nationalID dateOfBirth, gender}',
   update_User: 'id suspended',
-  Profile: 'id createdAt updatedAt userId firstName lastName nationality nationalID dateOfBirth',
+  Profile: 'id createdAt updatedAt userId firstName lastName nationality nationalID dateOfBirth gender',
 }
 
 const companies: { [k: string]: string } = {

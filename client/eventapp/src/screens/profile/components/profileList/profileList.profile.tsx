@@ -1,8 +1,9 @@
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import * as React from 'react';
-import {View} from 'react-native';
+import {Linking, View} from 'react-native';
 import {List} from 'react-native-paper';
+import {AppURL, PrivacyURL, TermsURL} from '../../../../../config/config';
 import CustomText from '../../../../components/customText/customText';
 import SignOutButton from '../../../../components/signOutButton/signOutButton';
 import {useAuth} from '../../../../context/auth/auth.context';
@@ -16,6 +17,7 @@ import {
   ThemeContextType,
 } from '../../../../typs';
 import {styles} from './styles.profileList';
+import Share from 'react-native-share';
 
 const ProfileList = () => {
   const {isDarkMode, Colors, Theme} = useThemeContext() as ThemeContextType;
@@ -42,9 +44,12 @@ const ProfileList = () => {
         Color="OnSurface"
         style={styles.title}
       />
-      <AnimatedView Color={'Surface'}>
+      <AnimatedView Color={'Surface'} style={styles.Container}>
         <List.Item
           title={Locals.Profile.Profile}
+          titleStyle={{
+            color: !isAuthenticated ? Colors.disabled : Colors.OnBackground,
+          }}
           // description="Item description"
           style={[
             {
@@ -57,7 +62,7 @@ const ProfileList = () => {
             <List.Icon
               {...props}
               icon="account"
-              color={!isAuthenticated ? '#dddddd' : Colors.Primary}
+              color={!isAuthenticated ? '#dddddd' : Colors.Secondary}
             />
           )}
           disabled={!isAuthenticated}
@@ -69,6 +74,9 @@ const ProfileList = () => {
         />
         <List.Item
           title={Locals.Profile.Earnings}
+          titleStyle={{
+            color: !isAuthenticated ? Colors.disabled : Colors.OnBackground,
+          }}
           style={[
             {
               borderBottomColor: isDarkMode
@@ -80,7 +88,7 @@ const ProfileList = () => {
             <List.Icon
               {...props}
               icon="cash"
-              color={!isAuthenticated ? '#dddddd' : Colors.Primary}
+              color={!isAuthenticated ? Colors.disabled : Colors.Secondary}
             />
           )}
           disabled={!isAuthenticated}
@@ -94,6 +102,9 @@ const ProfileList = () => {
         {user?.Type === 'EMAIL' ? (
           <List.Item
             title={Locals.Profile.UpdatePassword}
+            titleStyle={{
+              color: !isAuthenticated ? Colors.disabled : Colors.OnBackground,
+            }}
             style={[
               {
                 borderBottomColor: isDarkMode
@@ -105,13 +116,46 @@ const ProfileList = () => {
               <List.Icon
                 {...props}
                 icon="lastpass"
-                color={!isAuthenticated ? '#dddddd' : Colors.Primary}
+                color={!isAuthenticated ? Colors.disabled : Colors.Secondary}
               />
             )}
             disabled={!isAuthenticated}
             onPress={() => console.log(1)}
           />
         ) : null}
+      </AnimatedView>
+
+      <View style={styles.Divider} />
+
+      <AnimatedView Color={'Surface'} style={styles.Container}>
+        <List.Item
+          title={Locals.Profile.terms}
+          style={[
+            {
+              borderBottomColor: isDarkMode
+                ? Colors.Background
+                : Theme.dark.Surface,
+            },
+          ]}
+          left={props => (
+            <List.Icon {...props} icon="web" color={Colors.Primary} />
+          )}
+          onPress={() => Linking.openURL(TermsURL)}
+        />
+        <List.Item
+          title={Locals.Profile.privacy}
+          style={[
+            {
+              borderBottomColor: isDarkMode
+                ? Colors.Background
+                : Theme.dark.Surface,
+            },
+          ]}
+          left={props => (
+            <List.Icon {...props} icon="web" color={Colors.Primary} />
+          )}
+          onPress={() => Linking.openURL(PrivacyURL)}
+        />
         <List.Item
           title={Locals.Profile.Share}
           style={[
@@ -124,7 +168,15 @@ const ProfileList = () => {
           left={props => (
             <List.Icon {...props} icon="share" color={Colors.Primary} />
           )}
-          onPress={() => console.log(1)}
+          onPress={() =>
+            Share.open({url: AppURL})
+              .then(_res => {
+                return;
+              })
+              .catch(_err => {
+                return;
+              })
+          }
         />
         <SignOutButton />
       </AnimatedView>

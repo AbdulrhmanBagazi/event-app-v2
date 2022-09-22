@@ -18,6 +18,7 @@ const SigninForm = () => {
   const {Colors} = useThemeContext() as ThemeContextType;
   const {ThrowError} = useError() as ErrorContextType;
   const {Locals} = useI18nContext() as I18nContextType;
+  const [secure, setSecure] = useState(true);
   const [isEmail, setEmail] = useState('');
   const [isPassword, setPassword] = useState('');
   const [isError, setError] = useState({
@@ -96,7 +97,7 @@ const SigninForm = () => {
         error={isError.Email}
         activeOutlineColor={Colors.Secondary}
         editable={!authLoading}
-        style={styles.TextInput}
+        style={[styles.TextInput, {backgroundColor: Colors.Background}]}
       />
 
       <TextInput
@@ -108,8 +109,14 @@ const SigninForm = () => {
         error={isError.Password}
         activeOutlineColor={Colors.Secondary}
         editable={!authLoading}
-        style={styles.TextInput}
-        secureTextEntry
+        style={[styles.TextInput, {backgroundColor: Colors.Background}]}
+        secureTextEntry={secure}
+        right={
+          <TextInput.Icon
+            icon={secure ? 'eye-off' : 'eye'}
+            onPress={() => setSecure(!secure)}
+          />
+        }
       />
 
       <Button

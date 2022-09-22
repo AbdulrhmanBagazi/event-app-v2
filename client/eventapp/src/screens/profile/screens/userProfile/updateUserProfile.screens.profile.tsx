@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import {
-  AuthenticatedTypes,
   CountryCode,
   ErrorContextType,
   I18nContextType,
   ThemeContextType,
   UserProfileType,
+  UserUpdateTypes,
 } from '../../../../typs';
 import {Button, RadioButton, TextInput} from 'react-native-paper';
 import {styles} from './styles.userProfile';
@@ -16,9 +16,9 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Page from '../../../../layout/page';
 import {useMutation} from '@apollo/client';
 import {
-  Create_UserProfileDocument,
-  Create_UserProfileMutation,
-  Create_UserProfileMutationVariables,
+  Update_UserProfileDocument,
+  Update_UserProfileMutation,
+  Update_UserProfileMutationVariables,
 } from '../../../../graphql/generated';
 import DatePicker from './components/datePicker.userProfile';
 import moment from 'moment';
@@ -27,30 +27,46 @@ import {Image, View} from 'react-native';
 import ModalCountry from './components/countryPicker.userProfile';
 import countries from 'i18n-iso-countries';
 
-const AddUserProfile = () => {
-  const [open, setOpen] = React.useState(false);
+const UpdateUserProfile = () => {
+  const [open, setOpen] = React.useState<boolean>(false);
   const [visible, setVisible] = useState<boolean>(false);
   const [countryCode, setCountryCode] = useState<CountryCode>('SA');
   const {Colors, isDarkMode} = useThemeContext() as ThemeContextType;
   const {ThrowError} = useError() as ErrorContextType;
   const {Locals, Lang} = useI18nContext() as I18nContextType;
-  const {AddProfile, UpdateLoading} = useAuth() as AuthenticatedTypes;
-  const [firstName, setfirstName] = useState({val: '', error: false});
-  const [lastName, setlastName] = useState({val: '', error: false});
-  const [nationality, setnationality] = useState({val: '', error: false});
-  const [gender, setgender] = useState({val: '', error: false});
-  const [nationalID, setnationalID] = useState({
-    val: '',
+  const {AddProfile, UpdateLoading, user} = useAuth() as UserUpdateTypes;
+  const [firstName, setfirstName] = useState({
+    val: user?.Profile?.firstName,
     error: false,
   });
+  const [lastName, setlastName] = useState({
+    val: user.Profile.lastName,
+    error: false,
+  });
+  const [nationality, setnationality] = useState({
+    val: user.Profile.nationality,
+    error: false,
+  });
+  const [gender, setgender] = useState({
+    val: user.Profile.gender,
+    error: false,
+  });
+  const [nationalID, setnationalID] = useState({
+    val: user.Profile.nationalID,
+    error: false,
+  });
+  const newDate = user.Profile.dateOfBirth
+    ? new Date(user.Profile.dateOfBirth)
+    : undefined;
+
   const [dateOfBirth, setdateOfBirth] = useState({
-    val: undefined,
+    val: newDate,
     error: false,
   });
   const [mutateFunction, {loading}] = useMutation<
-    Create_UserProfileMutation,
-    Create_UserProfileMutationVariables
-  >(Create_UserProfileDocument);
+    Update_UserProfileMutation,
+    Update_UserProfileMutationVariables
+  >(Update_UserProfileDocument);
 
   const convertToArabicNumber = async (string: any) => {
     return string.replace(/[٠١٢٣٤٥٦٧٨٩]/g, (d: string) => {
@@ -66,7 +82,7 @@ const AddUserProfile = () => {
     dateOfBirth: Date | undefined;
     gender: string;
   }) => {
-    if (dateOfBirth.val === '' || dateOfBirth.val === undefined) {
+    if (dateOfBirth.val === undefined) {
       return setdateOfBirth({...dateOfBirth, error: true});
     }
 
@@ -83,23 +99,23 @@ const AddUserProfile = () => {
         variables: {...values, dateOfBirth: date, nationalID: nID},
       });
 
-      if (val.data?.Create_UserProfile) {
+      if (val.data?.Update_UserProfile) {
         const data = {
-          id: val.data?.Create_UserProfile.id,
-          createdAt: val.data?.Create_UserProfile.createdAt,
-          updatedAt: val.data?.Create_UserProfile.updatedAt,
-          userId: val.data?.Create_UserProfile.userId,
-          firstName: val.data?.Create_UserProfile.firstName,
-          lastName: val.data?.Create_UserProfile.lastName,
-          nationality: val.data?.Create_UserProfile.nationality,
-          nationalID: val.data?.Create_UserProfile.nationalID,
-          dateOfBirth: val.data?.Create_UserProfile.dateOfBirth,
-          gender: val.data?.Create_UserProfile.gender,
+          id: val.data?.Update_UserProfile.id,
+          createdAt: val.data?.Update_UserProfile.createdAt,
+          updatedAt: val.data?.Update_UserProfile.updatedAt,
+          userId: val.data?.Update_UserProfile.userId,
+          firstName: val.data?.Update_UserProfile.firstName,
+          lastName: val.data?.Update_UserProfile.lastName,
+          nationality: val.data?.Update_UserProfile.nationality,
+          nationalID: val.data?.Update_UserProfile.nationalID,
+          dateOfBirth: val.data?.Update_UserProfile.dateOfBirth,
+          gender: val.data?.Update_UserProfile.gender,
         } as UserProfileType;
 
         UpdateLoading(false);
         AddProfile(data);
-        return ThrowError(Locals.UserProfile.profileCreated);
+        return ThrowError(Locals.UserProfile.profileUpdated);
       }
     } catch (e) {
       UpdateLoading(false);
@@ -273,10 +289,10 @@ const AddUserProfile = () => {
         color={Colors.Primary}
         labelStyle={{color: Colors.OnPrimary}}
         style={styles.updateProfileButton}>
-        {Locals.UserProfile.add}
+        {Locals.UserProfile.update}
       </Button>
     </Page>
   );
 };
 
-export default AddUserProfile;
+export default UpdateUserProfile;

@@ -27,6 +27,7 @@ const GoogleSignIn = async (req: Request, res: Response) => {
         verfied: true,
         Type: true,
         Profile: true,
+        verificationEmail: true,
       },
     });
 
@@ -48,7 +49,15 @@ const GoogleSignIn = async (req: Request, res: Response) => {
         signed: true,
       });
 
-      return res.status(200).send({ user: user });
+      return res.status(200).send({
+        user: {
+          email: user.email,
+          verfied: user.verfied,
+          Type: user.Type,
+          Profile: user.Profile,
+          verificationEmail: user.verificationEmail,
+        },
+      });
     }
 
     if (!user && GoogleUser?.email) {
@@ -65,6 +74,7 @@ const GoogleSignIn = async (req: Request, res: Response) => {
           email: true,
           verfied: true,
           Type: true,
+          verificationEmail: true,
           Profile: true,
         },
       });
@@ -90,7 +100,15 @@ const GoogleSignIn = async (req: Request, res: Response) => {
         await SendEmail(newUser.id, newUser.email);
       }
 
-      return res.status(200).send({ user: newUser });
+      return res.status(200).send({
+        user: {
+          email: newUser.email,
+          verfied: newUser.verfied,
+          Type: newUser.Type,
+          Profile: newUser.Profile,
+          verificationEmail: newUser.verificationEmail,
+        },
+      });
     }
 
     return res.sendStatus(400);

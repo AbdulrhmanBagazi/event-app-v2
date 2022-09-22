@@ -11,7 +11,7 @@ const SvgComponent = () => {
 
   return (
     <View style={styles.Logo}>
-      <Svg width={SCREEN_WIDTH / 2} height="200" viewBox="0 0 300 300">
+      <Svg width={SCREEN_WIDTH / 2.5} height="150" viewBox="0 0 300 300">
         <Defs />
         <Rect fill={Colors.Background} width="300" height="300" rx="70" />
         <G transform="translate(-597.908 -352.154)">

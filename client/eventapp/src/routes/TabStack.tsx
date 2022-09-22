@@ -18,7 +18,7 @@ const Tab = createBottomTabNavigator();
 const TabStack = () => {
   const {Colors} = useThemeContext() as ThemeContextType;
   const {Locals} = useI18nContext() as I18nContextType;
-  const {isAuthenticated, authLoading} = useAuth() as AuthenticatedTypes;
+  const {isAuthenticated} = useAuth() as AuthenticatedTypes;
 
   return (
     <Portal.Host>
@@ -42,10 +42,8 @@ const TabStack = () => {
             let iconName = 'folder';
             if (route.name === 'Main') {
               iconName = 'home';
-            } else if (route.name === 'Account' && isAuthenticated) {
+            } else if (route.name === 'Profile' && isAuthenticated) {
               iconName = 'account';
-            } else if (route.name === 'Account' && authLoading) {
-              iconName = 'sync';
             } else {
               iconName = 'login';
             }

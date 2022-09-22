@@ -29,16 +29,20 @@ const MGoogleButton: React.FC<{text: String}> = ({text}) => {
     } catch (error: any) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         //user cancelled the login flow
-        console.log('user cancelled the login flow');
+        // console.log('user cancelled the login flow');
+        return;
       } else if (error.code === statusCodes.IN_PROGRESS) {
         // operation (e.g. sign in) is in progress already
-        console.log('operation (e.g. sign in) is in progress already');
+        // console.log('operation (e.g. sign in) is in progress already');
+        return;
       } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
         // play services not available or outdated
-        console.log('play services not available or outdated');
+        // console.log('play services not available or outdated');
+        return;
       } else {
         // some other error happened
-        console.log(error);
+        // console.log(error);
+        return;
       }
     }
   };

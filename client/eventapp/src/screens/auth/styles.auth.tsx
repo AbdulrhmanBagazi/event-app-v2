@@ -33,4 +33,15 @@ export const styles = StyleSheet.create({
     marginHorizontal: 10,
     marginVertical: 5,
   },
+  agree: {
+    marginHorizontal: 15,
+    marginTop: 20,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+  },
+  agreeText: {
+    textAlign: 'center',
+  },
 });

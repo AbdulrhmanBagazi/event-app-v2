@@ -1,4 +1,4 @@
-mutation Create_UserProfile(
+mutation Update_UserProfile(
   $firstName: String
   $lastName: String
   $nationality: String
@@ -6,7 +6,7 @@ mutation Create_UserProfile(
   $dateOfBirth: String
   $gender: String
 ) {
-  Create_UserProfile(
+  Update_UserProfile(
     firstName: $firstName
     lastName: $lastName
     nationality: $nationality

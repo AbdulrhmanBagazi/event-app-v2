@@ -31,7 +31,7 @@ const MyCard: React.FC<{
       style={{
         width: changeWidth ? SCREEN_WIDTH - 20 : SCREEN_WIDTH,
       }}
-      entering={FadeIn.duration(500).delay(100 * index)}>
+      entering={FadeIn.duration(700).delay(100 * index)}>
       <Card
         // eslint-disable-next-line react-native/no-inline-styles
         style={[styles.cardContainer, {borderWidth: isDarkMode ? 0 : 1}]}

@@ -13,6 +13,7 @@ export type userProfileType = {
   nationality: string;
   nationalID: string;
   dateOfBirth: string;
+  gender: string;
 };
 
 export type createUserProfile = {
@@ -21,4 +22,14 @@ export type createUserProfile = {
   nationality: string;
   nationalID: string;
   dateOfBirth: string;
+  gender: string;
+};
+
+export type updateUserProfile = {
+  firstName: string;
+  lastName: string;
+  nationality: string;
+  nationalID: string;
+  dateOfBirth: string;
+  gender: string;
 };

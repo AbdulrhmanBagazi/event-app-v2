@@ -20,6 +20,8 @@ const SignUp = async (req: Request, res: Response) => {
         email: true,
         verfied: true,
         Type: true,
+        Profile: true,
+        verificationEmail: true,
       },
     });
 
@@ -42,7 +44,15 @@ const SignUp = async (req: Request, res: Response) => {
 
     await SendEmail(User.id, User.email);
 
-    return res.status(200).send({ user: User });
+    return res.status(200).send({
+      user: {
+        email: User.email,
+        verfied: User.verfied,
+        Type: User.Type,
+        Profile: User.Profile,
+        verificationEmail: User.verificationEmail,
+      },
+    });
   } catch (e: unknown) {
     if (e instanceof Prisma.PrismaClientKnownRequestError) {
       if (e.code === 'P2002') {

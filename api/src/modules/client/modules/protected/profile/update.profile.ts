@@ -1,13 +1,13 @@
 import { Context } from '../../../../../context';
-import { createUserProfile } from './types';
+import { updateUserProfile } from './types';
 import { gql } from 'apollo-server';
 
-export const Create_Profile_TypeDefs = gql`
+export const Update_Profile_TypeDefs = gql`
   type Query {
     test: String
   }
   type Mutation {
-    Create_UserProfile(
+    Update_UserProfile(
       firstName: String
       lastName: String
       nationality: String
@@ -34,9 +34,12 @@ export const Create_Profile_TypeDefs = gql`
   scalar Date
 `;
 
-export const Create_Profile_Mutation = {
-  Create_UserProfile: async (_parent, args: createUserProfile, context: Context) => {
-    const CreateProfile = await context.prisma.profile.create({
+export const Update_Profile_Mutation = {
+  Update_UserProfile: async (_parent, args: updateUserProfile, context: Context) => {
+    const UpdateProfile = await context.prisma.profile.update({
+      where: {
+        userId: context.req.user.id,
+      },
       data: {
         firstName: args.firstName,
         lastName: args.lastName,
@@ -44,10 +47,9 @@ export const Create_Profile_Mutation = {
         nationalID: args.nationalID,
         dateOfBirth: args.dateOfBirth,
         gender: args.gender,
-        userId: context.req.user.id,
       },
     });
 
-    return CreateProfile;
+    return UpdateProfile;
   },
 };

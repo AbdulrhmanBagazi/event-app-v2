@@ -38,6 +38,7 @@ model Profile {
   nationality String
   nationalID  String
   dateOfBirth String
+  gender      String
 }
 
 model Admin {

@@ -10,11 +10,13 @@ const myTheme = {
     Primary: '#af0029',
     OnPrimary: '#FFFFFF',
     //
-    Surface: '#fdfdfd',
+    Surface: '#FFFFFF',
     OnSurface: '#000000',
     //
     Secondary: '#00af86',
     OnSecondary: '#FFFFFF',
+    //
+    disabled: '#dddddd',
   },
   dark: {
     //
@@ -36,6 +38,8 @@ const myTheme = {
     // OnSecondary: '#000000',
     Secondary: '#7dd1b7',
     OnSecondary: '#000000',
+    //
+    disabled: '#dddddd',
   },
 };
 

@@ -10,13 +10,16 @@ import {
   Loading,
   WithRecord,
   FunctionField,
+  useLocaleState,
 } from 'react-admin'
 import ColoredBooleanField from './components/ColoredBooleanField'
 import SuspendedBooleanField from './components/SuspendedBooleanField'
 import { useParams } from 'react-router-dom'
 import MyError from '../../layout/MyError'
+import moment from 'moment'
 
 const UserShow = () => {
+  const [locale] = useLocaleState()
   const { id } = useParams()
   const { data, isLoading } = useGetOne(
     'User',
@@ -80,9 +83,24 @@ const UserShow = () => {
                   <Labeled label="resources.User.fields.Profile.nationalID">
                     <FunctionField render={(record: any) => record.Profile.nationalID} />
                   </Labeled>
+                  <Labeled label="resources.User.fields.Profile.gender">
+                    {locale === 'en' ? (
+                      <FunctionField render={(record: any) => record.Profile.gender} />
+                    ) : (
+                      <FunctionField
+                        render={(record: any) => (record.Profile.gender === 'male' ? 'ذكر' : 'انثى')}
+                      />
+                    )}
+                  </Labeled>
                   <Labeled label="resources.User.fields.Profile.dateOfBirth">
                     <DateField source="Profile.dateOfBirth" />
                   </Labeled>
+                  <Labeled label="resources.User.fields.Profile.age">
+                    <FunctionField
+                      render={(record: any) => moment().diff(record.Profile.dateOfBirth, 'years')}
+                    />
+                  </Labeled>
+
                   <Labeled label="resources.User.fields.Profile.createdAt">
                     <DateField source="Profile.createdAt" />
                   </Labeled>
