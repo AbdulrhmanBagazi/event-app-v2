@@ -38,18 +38,14 @@ const EventList = () => {
 
   return (
     <List
-      // debounce={3000}
-      filters={EventListFilters}
+      filters={EventListFilters(locale)}
       exporter={false}
-      // perPage={5}
+      perPage={10}
       emptyWhileLoading
       queryOptions={{
         onError: (err) => {
           return null
         },
-        // useErrorBoundary: (err) => {
-        //   return true
-        // },
       }}>
       {isSmall ? (
         <SimpleList
@@ -61,6 +57,11 @@ const EventList = () => {
       ) : (
         <Datagrid isRowSelectable={() => false} bulkActionButtons={false} size="medium">
           <TextField source="id" sortable={false} />
+          <TextField
+            source={locale === 'en' ? 'Section.title_en' : 'Section.title'}
+            sortable={false}
+            label="resources.Event.fields.section_title"
+          />
           <TextField source={locale === 'en' ? 'title_en' : 'title'} />
           <TextField source={locale === 'en' ? 'content_en' : 'content'} />
           <ChipField source="status" />

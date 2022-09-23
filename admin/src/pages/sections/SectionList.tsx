@@ -14,6 +14,7 @@ import {
 import { useMediaQuery, Theme } from '@mui/material'
 import MyError from '../../layout/MyError'
 import SuspendedBooleanField from './components/SuspendedBooleanField'
+import SectionListFliters from './components/SectionListFliters'
 
 const SectionList = () => {
   const { data, isLoading } = useGetList(
@@ -38,6 +39,8 @@ const SectionList = () => {
     <List
       exporter={false}
       emptyWhileLoading
+      filters={SectionListFliters}
+      perPage={10}
       queryOptions={{
         onError: (err) => {
           return null

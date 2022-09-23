@@ -1,12 +1,12 @@
-import { BooleanInput, Edit, TabbedForm, FormTab, Loading, useRefresh, useGetOne } from 'react-admin'
-import UserEditToolbar from './components/UserEditToolbar'
+import { Edit, TabbedForm, FormTab, Loading, useRefresh, useGetOne, SelectInput } from 'react-admin'
+import EventEditToolbar from './components/EventEditToolbar'
 import { useParams } from 'react-router-dom'
 import MyError from '../../layout/MyError'
 
-const UserEdit = () => {
+const EventEdit = () => {
   const { id } = useParams()
   const { data, isLoading } = useGetOne(
-    'User',
+    'Event',
     { id },
     {
       retry: false,
@@ -24,6 +24,7 @@ const UserEdit = () => {
   return (
     <Edit
       mutationMode="pessimistic"
+      redirect="show"
       // redirect={false}
       // actions={false}
       queryOptions={{
@@ -37,13 +38,22 @@ const UserEdit = () => {
         refetchOnMount: true,
         refetchOnWindowFocus: true,
       }}>
-      <TabbedForm toolbar={<UserEditToolbar />}>
-        <FormTab label="resources.User.edittabs.ban">
-          <BooleanInput label="resources.User.fields.suspended" source="suspended" />
+      <TabbedForm toolbar={<EventEditToolbar />}>
+        <FormTab label="resources.Event.edittabs.edit">
+          <SelectInput
+            source="status"
+            label="resources.Event.fields.status"
+            choices={[
+              { id: 'SOON', name: 'resources.Event.status.soon' },
+              { id: 'ACTIVE', name: 'resources.Event.status.active' },
+              { id: 'COMPLETED', name: 'resources.Event.status.completed' },
+            ]}
+            optionText="name"
+          />
         </FormTab>
       </TabbedForm>
     </Edit>
   )
 }
 
-export default UserEdit
+export default EventEdit

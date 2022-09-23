@@ -30,7 +30,6 @@ export const getOne_Users_TypeDefs = gql`
   }
 
   scalar DateTime
-  scalar Date
 `;
 
 export const getOne_Users_Query = {

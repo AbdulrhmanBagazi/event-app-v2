@@ -52,7 +52,7 @@ const CompaniesShow = () => {
       }}
       emptyWhileLoading>
       <TabbedShowLayout>
-        <Tab label="resources.Companies.showtabs.summary">
+        <Tab label="resources.Companies.showtabs.show">
           <Labeled label="resources.Companies.fields.id">
             <TextField source="id" />
           </Labeled>

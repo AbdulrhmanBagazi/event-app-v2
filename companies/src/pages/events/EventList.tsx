@@ -9,16 +9,17 @@ import {
   useGetList,
   Loading,
   useRefresh,
+  useLocaleState,
+  ChipField,
 } from 'react-admin'
 import { useMediaQuery, Theme } from '@mui/material'
-import ColoredBooleanField from './components/ColoredBooleanField'
 import SuspendedBooleanField from './components/SuspendedBooleanField'
-import UserListFilters from './components/UserListFilters'
+import EventListFilters from './components/EventListFilters'
 import MyError from '../../layout/MyError'
 
-const UserList = () => {
+const EventList = () => {
   const { data, isLoading } = useGetList(
-    'User',
+    'Event',
     {},
     {
       retry: false,
@@ -29,6 +30,7 @@ const UserList = () => {
   )
   const isSmall = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'))
   const refresh = useRefresh()
+  const [locale] = useLocaleState()
 
   if (isLoading) return <Loading />
 
@@ -37,7 +39,7 @@ const UserList = () => {
   return (
     <List
       // debounce={3000}
-      filters={UserListFilters}
+      filters={EventListFilters(locale)}
       exporter={false}
       // perPage={5}
       emptyWhileLoading
@@ -50,15 +52,26 @@ const UserList = () => {
         // },
       }}>
       {isSmall ? (
-        <SimpleList primaryText={(record) => record.name} secondaryText={(record) => record.email} />
+        <SimpleList
+          primaryText={(record) => (locale === 'en' ? record.title_en : record.title)}
+          secondaryText={() => <ChipField source="status" />}
+          tertiaryText={() => <SuspendedBooleanField source="published" />}
+          linkType="show"
+        />
       ) : (
         <Datagrid isRowSelectable={() => false} bulkActionButtons={false} size="medium">
           <TextField source="id" sortable={false} />
-          <TextField source="email" />
-          <ColoredBooleanField source="verfied" />
-          <SuspendedBooleanField source="suspended" />
+          <TextField
+            source={locale === 'en' ? 'Section.title_en' : 'Section.title'}
+            sortable={false}
+            label="resources.Event.fields.section_title"
+          />
+          <TextField source={locale === 'en' ? 'title_en' : 'title'} />
+          <TextField source={locale === 'en' ? 'content_en' : 'content'} />
+          <ChipField source="status" />
+          <SuspendedBooleanField source="published" />
           <DateField source="createdAt" />
-          <TextField source="postsCount" />
+          <DateField source="updatedAt" />
           <ShowButton />
           <EditButton />
         </Datagrid>
@@ -67,4 +80,4 @@ const UserList = () => {
   )
 }
 
-export default UserList
+export default EventList

@@ -1,6 +1,7 @@
 export type eventFilterType = {
   published: boolean;
   status: EventStatus;
+  sectionId: string;
 };
 
 export type eventType = {

@@ -159,7 +159,7 @@ export const arabicMessages: TranslationMessages = {
     saved_queries: {
       label: 'Saved queries',
       query_name: 'Query name',
-      new_label: 'Save current query...',
+      new_label: 'حفظ الفلتر الحالي',
       new_dialog_title: 'Save current query as',
       remove_label: 'Remove saved query',
       remove_label_with_name: 'Remove query "%{name}"',

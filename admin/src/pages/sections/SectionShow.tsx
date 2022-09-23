@@ -47,7 +47,7 @@ const SectionShow = () => {
       }}
       emptyWhileLoading>
       <TabbedShowLayout>
-        <Tab label="resources.Section.showtabs.summary">
+        <Tab label="resources.Section.showtabs.show">
           <Labeled label="resources.Section.fields.id">
             <TextField source="id" />
           </Labeled>

@@ -17,16 +17,6 @@ export const Create_Companies_TypeDefs = gql`
     email: String
     password: String
   }
-
-  type Companies {
-    id: String
-    email: String
-    name: String
-    createdAt: DateTime
-    logo_url: String
-  }
-
-  scalar DateTime
 `;
 
 export const Create_Companies_Mutation = {

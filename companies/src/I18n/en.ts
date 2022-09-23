@@ -3,8 +3,7 @@ import englishMessages from 'ra-language-english'
 
 const customEnglishMessages: TranslationMessages = {
   ...englishMessages,
-  Users: 'Users',
-  'User Get': 'User',
+  Events: 'Events',
   Dashboard: 'Dashboard',
   error: 'error!',
   dashboard: {
@@ -29,27 +28,39 @@ const customEnglishMessages: TranslationMessages = {
     },
   },
   resources: {
-    User: {
+    Event: {
       showtabs: {
-        summary: 'Summary',
-        posts: 'Posts',
+        show: 'Details',
+        Events: 'Events',
         edit: 'Edit',
+        company: 'Company',
       },
       edittabs: {
-        ban: 'Ban',
-      },
-      posts: {
-        createdAt: 'Created At',
-        title: 'Title',
+        edit: 'Edit',
       },
       fields: {
         id: 'ID',
-        name: 'Name',
-        email: 'Email',
-        verfied: 'Verfied',
-        suspended: 'Suspended',
-        createdAt: 'Created At',
-        postsCount: 'Posts',
+        published: 'published',
+        createdAt: 'created At',
+        updatedAt: 'updated At',
+        companyId: 'company Id',
+        title: 'title',
+        content: 'content',
+        title_en: 'title_en',
+        content_en: 'content_en',
+        section_title: 'Section ',
+        image_url: 'image_url',
+        location_url: 'location_url',
+        status: 'status',
+        SelectCompany: 'Select Company',
+        section: 'Section',
+        sectionId: 'Section',
+        sectionstatus: 'Section (published)',
+      },
+      status: {
+        soon: 'soon',
+        active: 'active',
+        completed: 'completed',
       },
     },
   },

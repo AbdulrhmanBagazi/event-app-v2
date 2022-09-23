@@ -16,15 +16,6 @@ export const Create_Section_TypeDefs = gql`
     title_en: String
   }
 
-  type Section {
-    id: String!
-    published: Boolean
-    createdAt: DateTime
-    updatedAt: DateTime
-    title: String
-    title_en: String
-  }
-
   scalar DateTime
 `;
 

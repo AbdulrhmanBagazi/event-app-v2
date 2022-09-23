@@ -1,6 +1,6 @@
 import { Toolbar, SaveButton } from 'react-admin'
 
-const UserEditToolbar = (props: object) => (
+const EventEditToolbar = (props: object) => (
   <Toolbar {...props}>
     <SaveButton mutationOptions={{
       onError: () => {
@@ -11,4 +11,4 @@ const UserEditToolbar = (props: object) => (
   </Toolbar>
 )
 
-export default UserEditToolbar
+export default EventEditToolbar

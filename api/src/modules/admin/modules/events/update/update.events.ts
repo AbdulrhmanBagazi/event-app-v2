@@ -8,34 +8,7 @@ export const Update_Events_TypeDefs = gql`
   }
 
   input update_Event {
-    id: String!
     published: Boolean
-    createdAt: DateTime
-    updatedAt: DateTime
-    companyId: String
-    sectionId: String
-    title: String
-    content: String
-    title_en: String
-    content_en: String
-    image_url: String
-    location_url: String
-    status: EventStatus
-  }
-
-  type Event {
-    id: String!
-    published: Boolean
-    createdAt: DateTime
-    updatedAt: DateTime
-    companyId: String
-    sectionId: String
-    title: String
-    content: String
-    title_en: String
-    content_en: String
-    image_url: String
-    location_url: String
     status: EventStatus
   }
 
@@ -51,6 +24,9 @@ export const Update_Events_Mutation = {
       data: {
         published: args.data.published,
         status: args.data.status,
+      },
+      include: {
+        Section: true,
       },
     });
 

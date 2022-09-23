@@ -15,6 +15,7 @@ export const list_Events_TypeDefs = gql`
   input Filters {
     published: Boolean
     status: EventStatus
+    sectionId: String
   }
 
   type Event {
@@ -31,6 +32,13 @@ export const list_Events_TypeDefs = gql`
     image_url: String
     location_url: String
     status: EventStatus
+    Section: Section
+  }
+
+  type Section {
+    title: String
+    title_en: String
+    published: Boolean
   }
 
   enum EventStatus {
@@ -60,6 +68,10 @@ export const list_Events_Query = {
       where: {
         published: args.filter?.published,
         status: args.filter?.status,
+        sectionId: args.filter?.sectionId,
+      },
+      include: {
+        Section: true,
       },
     });
     // throw Error;
@@ -70,6 +82,7 @@ export const list_Events_Query = {
       where: {
         published: args.filter?.published,
         status: args.filter?.status,
+        sectionId: args.filter?.sectionId,
       },
       _count: {
         id: true,

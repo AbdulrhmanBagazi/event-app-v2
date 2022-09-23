@@ -3,10 +3,11 @@ import arabicMessages from './arabic'
 
 const customArabicMessages: TranslationMessages = {
   ...arabicMessages,
-  Users: 'المستخدمين',
+  Events: 'الفعاليات',
   'User Get': 'المستخدم',
   Dashboard: 'لوحة الإحصائيات',
   error: 'حدث خطآ!',
+  'Email exists': 'البريد الإلكتروني مستخدم',
   dashboard: {
     total_users: 'المستخدمين',
   },
@@ -29,28 +30,40 @@ const customArabicMessages: TranslationMessages = {
     },
   },
   resources: {
-    User: {
-      name: 'المستخدمين |||| المستخدم',
+    Event: {
+      name: 'الفعاليات |||| الفعالية',
       showtabs: {
-        summary: 'ملخص',
+        show: 'التفاصيل',
         posts: 'المنشورات',
         edit: 'تعديل',
+        company: 'الشركة',
       },
       edittabs: {
-        ban: 'حظر',
-      },
-      posts: {
-        createdAt: 'تاريخ الإنشاء',
-        title: 'العنوان',
+        edit: 'تعديل',
       },
       fields: {
         id: 'معرف',
-        name: 'الإسم',
-        email: 'البريد الإلكتروني',
-        verfied: 'تم التحقق',
-        suspended: 'محظور',
+        published: 'نشر',
         createdAt: 'تاريخ الإنشاء',
-        postsCount: 'المنشورات',
+        updatedAt: 'تاريخ التحديث',
+        companyId: 'معرف الشركة',
+        title: 'العنوان',
+        content: 'المحتوى',
+        title_en: 'العنوان (إنجليزي)',
+        content_en: 'المحتوى (إنجليزي)',
+        section_title: 'القسم',
+        image_url: 'رابط الصورة',
+        location_url: 'رابط الموقع',
+        status: 'الحالة',
+        SelectCompany: 'قم بإختيار الشركة',
+        section: 'القسم',
+        sectionId: 'القسم',
+        sectionstatus: 'القسم (النشر)',
+      },
+      status: {
+        soon: 'قريبا',
+        active: 'نشط',
+        completed: 'مكتمل',
       },
     },
   },

@@ -8,24 +8,8 @@ export const Update_Section_TypeDefs = gql`
   }
 
   input update_Section {
-    id: String
     published: Boolean
-    title: String
-    title_en: String
-    createdAt: DateTime
-    updatedAt: DateTime
   }
-
-  type Section {
-    id: String
-    published: Boolean
-    title: String
-    title_en: String
-    createdAt: DateTime
-    updatedAt: DateTime
-  }
-
-  scalar DateTime
 `;
 
 export const Update_Section_Mutation = {

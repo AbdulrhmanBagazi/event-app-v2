@@ -36,7 +36,7 @@ const customArabicMessages: TranslationMessages = {
     User: {
       name: 'المستخدمين |||| المستخدم',
       showtabs: {
-        summary: 'ملخص',
+        show: 'التفاصيل',
         posts: 'المنشورات',
         edit: 'تعديل',
         profile: 'الملف الشخصي',
@@ -69,7 +69,7 @@ const customArabicMessages: TranslationMessages = {
     Companies: {
       name: 'الشركات |||| الشركة',
       showtabs: {
-        summary: 'ملخص',
+        show: 'التفاصيل',
         Events: 'الفعاليات',
         edit: 'تعديل',
       },
@@ -78,7 +78,7 @@ const customArabicMessages: TranslationMessages = {
       },
       Events: {
         id: 'معرف',
-        published: 'نشر',
+        published: 'النشر',
         createdAt: 'تاريخ الإنشاء',
         updatedAt: 'تاريخ التحديث',
         companyId: 'معرف الشركة',
@@ -86,6 +86,7 @@ const customArabicMessages: TranslationMessages = {
         content: 'المحتوى',
         title_en: 'العنوان (إنجليزي)',
         content_en: 'المحتوى (إنجليزي)',
+        section_title: 'القسم',
         image_url: 'رابط الصورة',
         location_url: 'رابط الموقع',
         status: 'الحالة',
@@ -107,17 +108,17 @@ const customArabicMessages: TranslationMessages = {
     Event: {
       name: 'الفعاليات |||| الفعالية',
       showtabs: {
-        summary: 'ملخص',
+        show: 'التفاصيل',
         posts: 'المنشورات',
         edit: 'تعديل',
         company: 'الشركة',
       },
       edittabs: {
-        publish: 'نشر',
+        edit: 'تعديل',
       },
       fields: {
         id: 'معرف',
-        published: 'نشر',
+        published: 'النشر',
         createdAt: 'تاريخ الإنشاء',
         updatedAt: 'تاريخ التحديث',
         companyId: 'معرف الشركة',
@@ -125,6 +126,7 @@ const customArabicMessages: TranslationMessages = {
         content: 'المحتوى',
         title_en: 'العنوان (إنجليزي)',
         content_en: 'المحتوى (إنجليزي)',
+        section_title: 'القسم',
         image_url: 'رابط الصورة',
         location_url: 'رابط الموقع',
         status: 'الحالة',
@@ -140,19 +142,19 @@ const customArabicMessages: TranslationMessages = {
     Section: {
       name: 'الآقسام |||| قسم',
       showtabs: {
-        summary: 'ملخص',
+        show: 'التفاصيل',
         edit: 'تعديل',
       },
       fields: {
         id: 'معرف',
-        published: 'نشر',
+        published: 'النشر',
         createdAt: 'تاريخ الإنشاء',
         updatedAt: 'تاريخ التحديث',
         title: 'العنوان',
         title_en: 'العنوان (إنجليزي)',
       },
       edittabs: {
-        publish: 'نشر',
+        edit: 'تعديل',
       },
     },
   },

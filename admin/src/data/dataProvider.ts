@@ -142,6 +142,18 @@ export const dataProvider = {
     })
   },
   update: (resource: string, params: { id: string; data: any }) => {
+    const Data = params.data
+    const Keys = Fileds[`update_${resource}`].split(' ')
+
+    const filtered = Object.keys(Data)
+      .filter((key) => Keys.includes(key))
+      .reduce((obj, key) => {
+        return {
+          ...obj,
+          [key]: Data[key],
+        }
+      }, {})
+
     return new Promise(async (resolve, reject) => {
       try {
         const request = () =>
@@ -150,12 +162,12 @@ export const dataProvider = {
               mutation: gql`
                   mutation ($id: String!, $data: update_${resource}) {
                       update_${resource}(id: $id, data: $data) {
-                          ${Fileds[resource]}
+                          ${Fileds[`${resource}`]}
                       }
                   }`,
               variables: {
                 id: params.id,
-                data: omit(params.data, ['__typename']),
+                data: omit(filtered, ['__typename']),
               },
             })
             .then((result) => {
@@ -316,6 +328,61 @@ export const dataProvider = {
         }
 
         return resolve(data)
+      } catch (error) {
+        return reject({ message: 'error' })
+      }
+    })
+  },
+  getMany: (resource: string, params: { ids: any }) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const request = () =>
+          client
+            .query({
+              query: gql`
+                    query ($ids: [String]) {
+                        ${resource}_getMany(ids: $ids) {
+                            ${Fileds[resource]}
+                        }
+                    }`,
+              variables: {
+                where: {
+                  id: { _in: params.ids },
+                },
+              },
+            })
+            .then((result) => {
+              if (result.data) {
+                return {
+                  error: null,
+                  data: result.data[`${resource}_getMany`],
+                }
+              }
+
+              throw Error
+            })
+            .catch((e) => {
+              if (e.networkError) {
+                return {
+                  error: e?.networkError?.response?.status ? e?.networkError?.response.status : 500,
+                  data: null,
+                }
+              }
+
+              return { error: 400, data: null }
+            })
+
+        const { error, data } = await handleRequestGraphql(request)
+
+        if (error === 401) {
+          return reject(401)
+        }
+
+        if (error && !data) {
+          return reject(error)
+        }
+
+        return resolve({ data })
       } catch (error) {
         return reject({ message: 'error' })
       }

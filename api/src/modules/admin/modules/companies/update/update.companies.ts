@@ -8,24 +8,9 @@ export const Update_Companies_TypeDefs = gql`
   }
 
   input update_Companies {
-    id: String!
-    email: String!
-    name: String!
     suspended: Boolean!
-    createdAt: DateTime
     logo_url: String
   }
-
-  type Companies {
-    id: String!
-    email: String!
-    name: String!
-    suspended: Boolean!
-    createdAt: DateTime
-    logo_url: String
-  }
-
-  scalar DateTime
 `;
 
 export const Update_Companies_Mutation = {

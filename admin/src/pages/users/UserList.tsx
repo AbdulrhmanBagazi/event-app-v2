@@ -39,7 +39,7 @@ const UserList = () => {
       // debounce={3000}
       filters={UserListFilters}
       exporter={false}
-      // perPage={5}
+      perPage={10}
       emptyWhileLoading
       queryOptions={{
         onError: (err) => {

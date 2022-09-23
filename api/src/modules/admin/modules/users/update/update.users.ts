@@ -1,5 +1,5 @@
 import { Context } from '../../../../../context';
-import { userType } from '../types';
+import { update_User } from '../types';
 import { gql } from 'apollo-server';
 
 export const Update_Users_TypeDefs = gql`
@@ -8,28 +8,12 @@ export const Update_Users_TypeDefs = gql`
   }
 
   input update_User {
-    email: String!
-    id: String!
-    verfied: Boolean!
     suspended: Boolean!
-    createdAt: DateTime
-    Type: String!
   }
-
-  type User {
-    email: String!
-    id: String!
-    verfied: Boolean!
-    suspended: Boolean!
-    createdAt: DateTime
-    Type: String!
-  }
-
-  scalar DateTime
 `;
 
 export const Update_Users_Mutation = {
-  update_User: async (_parent, args: { id: string; data: userType }, context: Context) => {
+  update_User: async (_parent, args: { id: string; data: update_User }, context: Context) => {
     const updateUser = await context.prisma.user.update({
       where: {
         id: args.id,

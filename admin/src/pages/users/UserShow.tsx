@@ -17,6 +17,7 @@ import SuspendedBooleanField from './components/SuspendedBooleanField'
 import { useParams } from 'react-router-dom'
 import MyError from '../../layout/MyError'
 import moment from 'moment'
+import countries from 'i18n-iso-countries'
 
 const UserShow = () => {
   const [locale] = useLocaleState()
@@ -45,7 +46,7 @@ const UserShow = () => {
       }}
       emptyWhileLoading>
       <TabbedShowLayout>
-        <Tab label="resources.User.showtabs.summary">
+        <Tab label="resources.User.showtabs.show">
           <Labeled label="resources.User.fields.id">
             <TextField source="id" />
           </Labeled>
@@ -78,7 +79,9 @@ const UserShow = () => {
                     <FunctionField render={(record: any) => record.Profile.lastName} />
                   </Labeled>
                   <Labeled label="resources.User.fields.Profile.nationality">
-                    <FunctionField render={(record: any) => record.Profile.nationality} />
+                    <FunctionField
+                      render={(record: any) => countries.getName(record.Profile.nationality, locale)}
+                    />
                   </Labeled>
                   <Labeled label="resources.User.fields.Profile.nationalID">
                     <FunctionField render={(record: any) => record.Profile.nationalID} />

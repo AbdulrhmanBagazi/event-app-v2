@@ -11,6 +11,6 @@ export type userFilterType = {
   suspended: boolean;
 };
 
-export type postFilterType = {
-  published: boolean;
+export type update_User = {
+  suspended: boolean;
 };

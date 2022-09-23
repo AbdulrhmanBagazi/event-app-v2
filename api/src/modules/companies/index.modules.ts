@@ -1,12 +1,15 @@
-import { Users } from './modules/users/index.modules';
+import { Events } from './modules/events/index.modules';
+import { Section } from './modules/section/index.modules';
 
 export const CompaniesResolvers = {
   Query: {
-    ...Users.Query,
+    ...Events.Query,
+    ...Section.Query,
   },
   Mutation: {
-    ...Users.Mutation,
+    ...Events.Mutation,
   },
-  ...Users.Resolver,
+  // ...Users.Resolver,
 };
-export const CompaniesTypeDefs = [Users.typeDef];
+
+export const CompaniesTypeDefs = [Events.typeDef, Section.typeDef];

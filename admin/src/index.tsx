@@ -4,6 +4,7 @@ import App from './App'
 import reportWebVitals from './reportWebVitals'
 // import * as Sentry from '@sentry/react'
 // import { BrowserTracing } from '@sentry/tracing'
+var countries = require('i18n-iso-countries')
 
 // Sentry.init({
 //   dsn: 'https://fe039a3302ff47369ad57302e5dea4b8@o239152.ingest.sentry.io/6460199',
@@ -25,3 +26,5 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals()
+countries.registerLocale(require('i18n-iso-countries/langs/en.json'))
+countries.registerLocale(require('i18n-iso-countries/langs/ar.json'))

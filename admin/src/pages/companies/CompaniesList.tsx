@@ -39,7 +39,7 @@ const CompaniesList = () => {
       // filters={CompaniesListFilters}
       actions={<CompaniesListActions />}
       exporter={false}
-      // perPage={5}
+      perPage={10}
       emptyWhileLoading
       queryOptions={{
         onError: (err) => {

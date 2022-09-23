@@ -41,4 +41,9 @@ export const styles = StyleSheet.create({
     height: SCREEN_HEIGHT / 6,
     resizeMode: 'contain',
   },
+  loadingView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });

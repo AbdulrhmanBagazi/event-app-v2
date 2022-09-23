@@ -1,12 +1,20 @@
-const users: { [k: string]: string } = {
-  User_list: 'id email verfied suspended postsCount createdAt',
-  User: 'id email verfied suspended postsCount createdAt',
-  update_User: 'id suspended',
-  UserPosts: 'id createdAt updatedAt title content published viewCount authorId',
+const events: { [k: string]: string } = {
+  Event_list:
+    'id published createdAt updatedAt title content title_en content_en image_url location_url status Section {title title_en published}',
+  Event:
+    'id published createdAt updatedAt title content title_en content_en image_url location_url status Section {title title_en published}',
+  update_Event: 'status',
+}
+
+const sections: { [k: string]: string } = {
+  Section_list: 'id published  title  title_en',
+  Section: 'id published  title  title_en',
+  Section_getMany: 'id published title  title_en',
 }
 
 const Fileds: { [k: string]: string } = {
-  ...users,
+  ...events,
+  ...sections,
 }
 
 export default Fileds

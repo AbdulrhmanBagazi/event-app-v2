@@ -6,7 +6,6 @@ import {
   useSidebarState,
   MenuProps,
 } from 'react-admin'
-import DefaultIcon from '@mui/icons-material/ViewList'
 
 const MyMenu = (props: MenuProps | any) => {
   const resources = useResourceDefinitions()
@@ -20,7 +19,7 @@ const MyMenu = (props: MenuProps | any) => {
           key={name}
           to={`/${name}`}
           primaryText={(resources[name].options && resources[name].options.label) || name}
-          leftIcon={<DefaultIcon />}
+          leftIcon={resources[name].icon}
           onClick={props.onMenuClick}
           sidebarIsOpen={open}
         />

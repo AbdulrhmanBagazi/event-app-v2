@@ -48,7 +48,7 @@ const EventEdit = () => {
         refetchOnWindowFocus: true,
       }}>
       <TabbedForm toolbar={<EventEditToolbar />}>
-        <FormTab label="resources.Event.edittabs.publish">
+        <FormTab label="resources.Event.edittabs.edit">
           <BooleanInput label="resources.Event.fields.published" source="published" />
           <SelectInput
             source="status"

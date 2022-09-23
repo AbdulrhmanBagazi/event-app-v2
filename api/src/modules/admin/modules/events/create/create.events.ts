@@ -12,7 +12,6 @@ export const Create_Event_TypeDefs = gql`
   }
 
   input create_Event {
-    id: String
     companyId: String
     sectionId: String
     title: String
@@ -22,24 +21,6 @@ export const Create_Event_TypeDefs = gql`
     image_url: String
     location_url: String
   }
-
-  type Event {
-    id: String!
-    published: Boolean
-    createdAt: DateTime
-    updatedAt: DateTime
-    companyId: String
-    sectionId: String
-    title: String
-    content: String
-    title_en: String
-    content_en: String
-    image_url: String
-    location_url: String
-    status: EventStatus
-  }
-
-  scalar DateTime
 `;
 
 export const Create_Event_Mutation = {
@@ -47,15 +28,14 @@ export const Create_Event_Mutation = {
     _parent,
     args: {
       data: {
-        id: string;
+        sectionId: string;
+        companyId: string;
         title: string;
         content: string;
         title_en: string;
         content_en: string;
         image_url: string;
         location_url: string;
-        sectionId: string;
-        companyId: string;
       };
     },
     context: Context,
@@ -71,6 +51,9 @@ export const Create_Event_Mutation = {
           image_url: args.data.image_url,
           location_url: args.data.location_url,
           sectionId: args.data.sectionId,
+        },
+        include: {
+          Section: true,
         },
       });
 

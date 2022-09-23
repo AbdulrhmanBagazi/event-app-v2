@@ -34,7 +34,7 @@ const customEnglishMessages: TranslationMessages = {
   resources: {
     User: {
       showtabs: {
-        summary: 'Summary',
+        show: 'Details',
         posts: 'Posts',
         edit: 'Edit',
         profile: 'Profile',
@@ -70,7 +70,7 @@ const customEnglishMessages: TranslationMessages = {
     },
     Companies: {
       showtabs: {
-        summary: 'Summary',
+        show: 'Details',
         Events: 'Events',
         edit: 'Edit',
       },
@@ -85,8 +85,9 @@ const customEnglishMessages: TranslationMessages = {
         companyId: 'company Id',
         title: 'title',
         content: 'content',
-        title_en: 'title_en',
-        content_en: 'content_en',
+        title_en: 'title',
+        section_title: 'Section ',
+        content_en: 'content',
         image_url: 'image_url',
         location_url: 'location_url',
         status: 'status',
@@ -107,13 +108,13 @@ const customEnglishMessages: TranslationMessages = {
     },
     Event: {
       showtabs: {
-        summary: 'Summary',
+        show: 'Details',
         Events: 'Events',
         edit: 'Edit',
         company: 'Company',
       },
       edittabs: {
-        publish: 'publish',
+        edit: 'Edit',
       },
       fields: {
         id: 'ID',
@@ -123,8 +124,9 @@ const customEnglishMessages: TranslationMessages = {
         companyId: 'company Id',
         title: 'title',
         content: 'content',
-        title_en: 'title_en',
-        content_en: 'content_en',
+        title_en: 'title',
+        content_en: 'content',
+        section_title: 'Section ',
         image_url: 'image_url',
         location_url: 'location_url',
         status: 'status',
@@ -141,7 +143,7 @@ const customEnglishMessages: TranslationMessages = {
     Section: {
       name: 'Sections |||| Section',
       showtabs: {
-        summary: 'Summary',
+        show: 'Details',
         edit: 'Edit',
       },
       fields: {
@@ -153,7 +155,7 @@ const customEnglishMessages: TranslationMessages = {
         title_en: 'title_en',
       },
       edittabs: {
-        publish: 'publish',
+        edit: 'Edit',
       },
     },
   },

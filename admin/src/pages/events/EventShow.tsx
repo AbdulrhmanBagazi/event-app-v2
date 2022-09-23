@@ -11,6 +11,8 @@ import {
   Link,
   useCreatePath,
   WithRecord,
+  ImageField,
+  UrlField,
 } from 'react-admin'
 import ColoredTextField from './components/ColoredTextField'
 import SuspendedBooleanField from './components/SuspendedBooleanField'
@@ -47,7 +49,7 @@ const EventShow = () => {
       }}
       emptyWhileLoading>
       <TabbedShowLayout>
-        <Tab label="resources.Event.showtabs.summary">
+        <Tab label="resources.Event.showtabs.show">
           <Labeled label="resources.Event.fields.id">
             <TextField source="id" />
           </Labeled>
@@ -94,11 +96,15 @@ const EventShow = () => {
           <Labeled label="resources.Event.fields.content_en">
             <TextField source="content_en" />
           </Labeled>
-          <Labeled label="resources.Event.fields.image_url">
-            <TextField source="image_url" />
-          </Labeled>
           <Labeled label="resources.Event.fields.location_url">
-            <TextField source="location_url" />
+            <UrlField source="location_url" target="_blank" />
+          </Labeled>
+          <Labeled label="resources.Event.fields.image_url">
+            <ImageField
+              source="image_url"
+              title="image_url"
+              sx={{ '& img': { maxWidth: 250, maxHeight: 250, objectFit: 'contain' } }}
+            />
           </Labeled>
         </Tab>
       </TabbedShowLayout>

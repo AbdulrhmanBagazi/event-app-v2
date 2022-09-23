@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { Admin, Resource, Loading, useTranslate, CustomRoutes, Login } from 'react-admin'
 import { Route } from 'react-router'
-import { UserIcon } from './theme/icons'
+import { Festival } from './theme/icons'
 import { MyLayout } from './layout/layout'
-import User from './pages/users'
+import Events from './pages/events'
 import authProvider from './auth/authProvider'
 import i18nProvider from './I18n/i18nProvider'
 import { dataProvider } from './data/dataProvider'
@@ -43,7 +43,7 @@ export default function App() {
       dataProvider={isdataProvider}
       layout={MyLayout}
       requireAuth>
-      <Resource options={{ label: translate('Users') }} name="User" icon={UserIcon} {...User} />
+      <Resource options={{ label: translate('Events') }} name="Event" icon={<Festival />} {...Events} />
       <CustomRoutes>
         <Route path="/configuration" element={<Configuration />} />
         <Route path="/error" element={<MyError />} />

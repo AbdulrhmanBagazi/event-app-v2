@@ -51,6 +51,7 @@ model Admin {
 model Companies {
   id        String   @id @default(uuid()) @db.Uuid
   email     String   @unique
+  // contact   String
   name      String
   logo_url  String?
   password  String

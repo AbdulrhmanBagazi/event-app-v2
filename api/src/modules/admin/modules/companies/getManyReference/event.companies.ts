@@ -12,7 +12,7 @@ export const Companies_Events_TypeDefs = gql`
       filter: Filters
       target: String
       id: String
-    ): [Event]
+    ): [Event!]!
     CompaniesEvents_meta(
       page: Int
       perPage: Int
@@ -31,23 +31,6 @@ export const Companies_Events_TypeDefs = gql`
   input Filters {
     published: Boolean
   }
-
-  type Event {
-    id: String!
-    published: Boolean
-    createdAt: DateTime
-    updatedAt: DateTime
-    companyId: String
-    title: String
-    content: String
-    title_en: String
-    content_en: String
-    image_url: String
-    location_url: String
-    status: EventStatus
-  }
-
-  scalar DateTime
 `;
 
 export const Companies_Events_Query = {

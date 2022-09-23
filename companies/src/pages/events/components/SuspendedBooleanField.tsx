@@ -8,9 +8,9 @@ const SuspendedBooleanField = (props: BooleanFieldProps) => {
   if (!record || !props.source) return null
 
   return record[props.source] ? (
-    <BooleanField {...props} sx={{ color: 'red' }} TrueIcon={CheckBox} />
+    <BooleanField {...props} color="secondary.main" TrueIcon={CheckBox} />
   ) : (
-    <BooleanField {...props} sx={{ color: 'gray' }} FalseIcon={CheckBoxOutlineBlank} />
+    <BooleanField {...props} FalseIcon={CheckBoxOutlineBlank} />
   )
 }
 
