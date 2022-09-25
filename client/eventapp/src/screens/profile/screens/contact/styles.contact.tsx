@@ -3,8 +3,7 @@ import {SCREEN_HEIGHT, SCREEN_WIDTH} from '../../../../layout/screenDimensions';
 
 export const styles = StyleSheet.create({
   updateProfileButton: {
-    bottom: 50,
-    marginHorizontal: 5,
+    marginVertical: 10,
   },
   TextInput: {
     marginVertical: 5,

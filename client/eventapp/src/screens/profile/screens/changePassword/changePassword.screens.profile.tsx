@@ -102,6 +102,7 @@ const ChangePassword = () => {
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}>
         <Text
+          numberOfLines={2}
           style={[
             styles.title,
             {
@@ -153,21 +154,21 @@ const ChangePassword = () => {
             />
           }
         />
-      </KeyboardAwareScrollView>
 
-      <Button
-        onPress={() =>
-          HandleLogin({
-            password: password.val,
-          })
-        }
-        mode="contained"
-        disabled={password.error || repeatpassword.error || loading}
-        color={Colors.Primary}
-        labelStyle={{color: Colors.OnPrimary}}
-        style={styles.ChangePasswordButton}>
-        {Locals.UserProfile.update}
-      </Button>
+        <Button
+          onPress={() =>
+            HandleLogin({
+              password: password.val,
+            })
+          }
+          mode="contained"
+          disabled={password.error || repeatpassword.error || loading}
+          color={Colors.Primary}
+          labelStyle={{color: Colors.OnPrimary}}
+          style={styles.ChangePasswordButton}>
+          {Locals.UserProfile.update}
+        </Button>
+      </KeyboardAwareScrollView>
     </Page>
   );
 };

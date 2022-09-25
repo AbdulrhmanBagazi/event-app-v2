@@ -60,7 +60,7 @@ const Auth = () => {
                 ? Locals.Signup.agreesocial
                 : Locals.Signup.agreeGoole
             }
-            fontWeight="500"
+            fontWeight="normal"
             Color={'OnBackground'}
             style={styles.agreeText}
           />
@@ -72,7 +72,7 @@ const Auth = () => {
           </Button>
           <CustomText
             text={Locals.Signup.and}
-            fontWeight="500"
+            fontWeight="normal"
             Color={'OnBackground'}
           />
           <Button

@@ -42,7 +42,7 @@ const ProfileList: React.FC<{
   return (
     <View style={styles.transparent}>
       <CustomText
-        numberOfLines={1}
+        numberOfLines={2}
         text={`${
           isAuthenticated ? Locals.Profile.Welcome : Locals.Profile.SignInfirst
         }`}
@@ -53,7 +53,7 @@ const ProfileList: React.FC<{
 
       {user?.Profile ? (
         <CustomText
-          numberOfLines={1}
+          numberOfLines={2}
           text={`${user?.Profile?.firstName + ' ' + user?.Profile?.lastName}`}
           fontWeight="normal"
           Color="OnBackground"
@@ -119,8 +119,8 @@ const ProfileList: React.FC<{
                 style={[
                   styles.Badge,
                   {
-                    backgroundColor: Colors.Primary,
-                    color: Colors.OnPrimary,
+                    backgroundColor: Colors.Error,
+                    color: Colors.onError,
                   },
                 ]}>
                 {Locals.Profile.addProfileFirst}

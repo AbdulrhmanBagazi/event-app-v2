@@ -169,7 +169,7 @@ export const AuthProvider = ({
     return [error, data];
   };
 
-  //Google
+  //Apple
   const AppleSignIn = async (values: AppleArgs): Promise<AuthReturn> => {
     setLoading(true);
 

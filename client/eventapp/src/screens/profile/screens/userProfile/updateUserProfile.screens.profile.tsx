@@ -150,6 +150,7 @@ const UpdateUserProfile = () => {
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}>
         <Text
+          numberOfLines={2}
           style={[
             styles.title,
             {
@@ -267,33 +268,33 @@ const UpdateUserProfile = () => {
           onSelect={e => onSelect(e)}
           Lang={Lang === 'en' ? 'en' : 'ar'}
         />
-      </KeyboardAwareScrollView>
 
-      <Button
-        onPress={() =>
-          HandleLogin({
-            firstName: firstName.val,
-            lastName: lastName.val,
-            nationalID: nationalID.val,
-            nationality: nationality.val,
-            dateOfBirth: dateOfBirth?.val,
-            gender: gender.val,
-          })
-        }
-        mode="contained"
-        disabled={
-          firstName.error ||
-          lastName.error ||
-          nationality.error ||
-          nationalID.error ||
-          dateOfBirth.error ||
-          loading
-        }
-        color={Colors.Primary}
-        labelStyle={{color: Colors.OnPrimary}}
-        style={styles.updateProfileButton}>
-        {Locals.UserProfile.update}
-      </Button>
+        <Button
+          onPress={() =>
+            HandleLogin({
+              firstName: firstName.val,
+              lastName: lastName.val,
+              nationalID: nationalID.val,
+              nationality: nationality.val,
+              dateOfBirth: dateOfBirth?.val,
+              gender: gender.val,
+            })
+          }
+          mode="contained"
+          disabled={
+            firstName.error ||
+            lastName.error ||
+            nationality.error ||
+            nationalID.error ||
+            dateOfBirth.error ||
+            loading
+          }
+          color={Colors.Primary}
+          labelStyle={{color: Colors.OnPrimary}}
+          style={styles.updateProfileButton}>
+          {Locals.UserProfile.update}
+        </Button>
+      </KeyboardAwareScrollView>
     </Page>
   );
 };

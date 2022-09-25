@@ -2,8 +2,7 @@ import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
   ChangePasswordButton: {
-    bottom: 50,
-    marginHorizontal: 5,
+    marginVertical: 10,
   },
   TextInput: {
     marginVertical: 5,

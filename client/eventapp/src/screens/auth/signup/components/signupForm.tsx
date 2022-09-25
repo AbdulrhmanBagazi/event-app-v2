@@ -205,7 +205,7 @@ const SignupForm = () => {
       <View style={styles.agree}>
         <CustomText
           text={Locals.Signup.agree}
-          fontWeight="500"
+          fontWeight="normal"
           Color={'OnBackground'}
         />
         <Button
@@ -216,7 +216,7 @@ const SignupForm = () => {
         </Button>
         <CustomText
           text={Locals.Signup.and}
-          fontWeight="500"
+          fontWeight="normal"
           Color={'OnBackground'}
         />
         <Button

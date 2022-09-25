@@ -119,6 +119,7 @@ const Contact = () => {
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}>
         <Text
+          numberOfLines={2}
           style={[
             styles.title,
             {
@@ -171,22 +172,22 @@ const Contact = () => {
           placeholder="05xxxxxxxx"
           keyboardType="number-pad"
         />
-      </KeyboardAwareScrollView>
 
-      <Button
-        onPress={() =>
-          HandleLogin({
-            phone: phone.val,
-            whatsapp: whatsapp.val,
-          })
-        }
-        mode="contained"
-        disabled={phone.error || whatsapp.error || loading}
-        color={Colors.Primary}
-        labelStyle={{color: Colors.OnPrimary}}
-        style={styles.updateProfileButton}>
-        {Locals.UserProfile.update}
-      </Button>
+        <Button
+          onPress={() =>
+            HandleLogin({
+              phone: phone.val,
+              whatsapp: whatsapp.val,
+            })
+          }
+          mode="contained"
+          disabled={phone.error || whatsapp.error || loading}
+          color={Colors.Primary}
+          labelStyle={{color: Colors.OnPrimary}}
+          style={styles.updateProfileButton}>
+          {Locals.UserProfile.update}
+        </Button>
+      </KeyboardAwareScrollView>
     </Page>
   );
 };
