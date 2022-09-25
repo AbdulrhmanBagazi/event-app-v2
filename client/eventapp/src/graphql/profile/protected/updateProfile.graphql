@@ -24,5 +24,7 @@ mutation Update_UserProfile(
     nationalID
     dateOfBirth
     gender
+    whatsapp
+    phone
   }
 }

@@ -6,7 +6,13 @@ import {
 
 const CustomBackdrop = (props: BottomSheetBackdropProps) => {
   return (
-    <BottomSheetBackdrop {...props} disappearsOnIndex={-1} appearsOnIndex={0} />
+    <BottomSheetBackdrop
+      {...props}
+      disappearsOnIndex={-1}
+      appearsOnIndex={0}
+      // enableTouchThrough={false}
+      // pressBehavior="none"
+    />
   );
 };
 

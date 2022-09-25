@@ -44,12 +44,13 @@ const UserShow = () => {
           return null
         },
       }}
+      sx={{ maxWidth: 600 }}
       emptyWhileLoading>
       <TabbedShowLayout>
         <Tab label="resources.User.showtabs.show">
-          <Labeled label="resources.User.fields.id">
+          {/* <Labeled label="resources.User.fields.id">
             <TextField source="id" />
-          </Labeled>
+          </Labeled> */}
           <Labeled label="resources.User.fields.email">
             <TextField source="email" />
           </Labeled>
@@ -103,7 +104,12 @@ const UserShow = () => {
                       render={(record: any) => moment().diff(record.Profile.dateOfBirth, 'years')}
                     />
                   </Labeled>
-
+                  <Labeled label="resources.User.fields.Profile.whatsapp">
+                    <FunctionField render={(record: any) => record.Profile.whatsapp} />
+                  </Labeled>
+                  <Labeled label="resources.User.fields.Profile.phone">
+                    <FunctionField render={(record: any) => record.Profile.phone} />
+                  </Labeled>
                   <Labeled label="resources.User.fields.Profile.createdAt">
                     <DateField source="Profile.createdAt" />
                   </Labeled>

@@ -34,23 +34,22 @@ const CompaniesEdit = () => {
     <Edit
       mutationMode="pessimistic"
       redirect="show"
-      // redirect={false}
-      // actions={false}
+      sx={{ maxWidth: 600 }}
       queryOptions={{
         onError: (err) => {
           return null
         },
-        // useErrorBoundary: (err) => {
-        //   return true
-        // },
         refetchOnReconnect: true,
         refetchOnMount: true,
         refetchOnWindowFocus: true,
       }}>
       <TabbedForm toolbar={<CompaniesEditToolbar />}>
         <FormTab label="resources.Companies.showtabs.edit">
-          <BooleanInput label="resources.Companies.fields.suspended" source="suspended" />
-          <TextInput label="resources.Companies.fields.logo_url" source="logo_url" />
+          <TextInput label="resources.Companies.fields.name" source="name" fullWidth />
+          <TextInput label="resources.Companies.fields.contact" source="contact" fullWidth />
+          <TextInput label="resources.Companies.fields.email" source="email" fullWidth />
+          <TextInput label="resources.Companies.fields.logo_url" source="logo_url" fullWidth />
+          <BooleanInput label="resources.Companies.fields.suspended" source="suspended" fullWidth />
         </FormTab>
       </TabbedForm>
     </Edit>

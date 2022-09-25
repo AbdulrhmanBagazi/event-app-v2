@@ -54,7 +54,7 @@ const SectionList = () => {
         />
       ) : (
         <Datagrid isRowSelectable={() => false} bulkActionButtons={false} size="medium">
-          <TextField source="id" sortable={false} />
+          {/* <TextField source="id" sortable={false} /> */}
           <TextField source="title" />
           <TextField source="title_en" />
           <SuspendedBooleanField source="published" />

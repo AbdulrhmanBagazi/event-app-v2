@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {SCREEN_HEIGHT, SCREEN_WIDTH} from '../../../../layout/screenDimensions';
 
 export const styles = StyleSheet.create({
   updateProfileButton: {
@@ -11,22 +12,15 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  countryPickerButton: {
-    padding: 5,
-    marginVertical: 5,
+  Logo: {
+    width: SCREEN_WIDTH,
+    height: SCREEN_HEIGHT / 5,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  datePickerButton: {
-    padding: 5,
-    marginVertical: 5,
-  },
-  ViewRowInput: {
-    flexDirection: 'row',
-    flex: 1,
-    justifyContent: 'flex-start',
-    marginVertical: 5,
-  },
-  RadioButton: {
-    borderRadius: 2.5,
+  tinyLogo: {
+    height: SCREEN_HEIGHT / 6,
+    resizeMode: 'contain',
   },
   title: {
     fontSize: 36,

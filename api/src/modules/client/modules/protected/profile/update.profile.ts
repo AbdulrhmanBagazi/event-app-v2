@@ -16,22 +16,6 @@ export const Update_Profile_TypeDefs = gql`
       gender: String
     ): Profile
   }
-
-  type Profile {
-    id: String
-    createdAt: DateTime
-    updatedAt: DateTime
-    userId: String
-    firstName: String
-    lastName: String
-    nationality: String
-    nationalID: String
-    dateOfBirth: String
-    gender: String
-  }
-
-  scalar DateTime
-  scalar Date
 `;
 
 export const Update_Profile_Mutation = {

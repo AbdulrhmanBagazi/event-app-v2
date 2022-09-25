@@ -1,3 +1,4 @@
+import {useHeaderHeight} from '@react-navigation/elements';
 import React from 'react';
 import {Image, View} from 'react-native';
 import {useThemeContext} from '../../../../context/theme/themeToggle.context';
@@ -10,6 +11,7 @@ const Earnings = () => {
 
   return (
     <Page paddingHorizontal={0}>
+      <View style={{height: useHeaderHeight()}} />
       <View style={styles.Logo}>
         <Image
           style={styles.tinyLogo}

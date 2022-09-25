@@ -25,6 +25,7 @@ const EventEdit = () => {
     <Edit
       mutationMode="pessimistic"
       redirect="show"
+      sx={{ maxWidth: 600 }}
       // redirect={false}
       // actions={false}
       queryOptions={{
@@ -49,6 +50,7 @@ const EventEdit = () => {
               { id: 'COMPLETED', name: 'resources.Event.status.completed' },
             ]}
             optionText="name"
+            fullWidth
           />
         </FormTab>
       </TabbedForm>

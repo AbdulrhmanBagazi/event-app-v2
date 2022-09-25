@@ -28,10 +28,11 @@ export const Create_Profile_TypeDefs = gql`
     nationalID: String
     dateOfBirth: String
     gender: String
+    whatsapp: String
+    phone: String
   }
 
   scalar DateTime
-  scalar Date
 `;
 
 export const Create_Profile_Mutation = {

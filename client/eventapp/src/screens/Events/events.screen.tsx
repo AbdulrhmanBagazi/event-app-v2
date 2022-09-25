@@ -1,23 +1,27 @@
+import {useHeaderHeight} from '@react-navigation/elements';
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import React from 'react';
+import {View} from 'react-native';
 import Page from '../../layout/page';
 import {ParamList, RootStackParamList} from '../../typs';
 import MoreEvents from './components/moreEvents/moreEvents.home';
 
 const Events = () => {
-  const {setOptions} = useNavigation<StackNavigationProp<RootStackParamList>>();
+  const {setOptions, pop} =
+    useNavigation<StackNavigationProp<RootStackParamList>>();
   const route = useRoute<RouteProp<ParamList, 'Events'>>();
 
   React.useLayoutEffect(() => {
     return setOptions({
-      title: route.params.title,
+      title: route.params.params.title,
     });
-  }, [route.params.title, setOptions]);
+  }, [pop, route.params.params.title, setOptions]);
 
   return (
     <Page paddingHorizontal={0}>
-      <MoreEvents sectionId={route.params.sectionId} />
+      <View style={{height: useHeaderHeight()}} />
+      <MoreEvents sectionId={route.params.params.sectionId} />
     </Page>
   );
 };

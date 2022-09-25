@@ -13,7 +13,6 @@ export const list_Companies_TypeDefs = gql`
   }
 
   input Filters {
-    email: String
     suspended: Boolean
   }
 
@@ -24,6 +23,7 @@ export const list_Companies_TypeDefs = gql`
     suspended: Boolean!
     createdAt: DateTime
     logo_url: String
+    contact: String
   }
 
   scalar DateTime

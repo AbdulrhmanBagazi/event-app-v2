@@ -36,12 +36,11 @@ const MyCard: React.FC<{
         // eslint-disable-next-line react-native/no-inline-styles
         style={[styles.cardContainer, {borderWidth: isDarkMode ? 0 : 1}]}
         mode="outlined">
-        <View style={{backgroundColor: Theme.dark.Surface}}>
+        <View
+          style={[styles.MainCardView, {backgroundColor: Theme.dark.Surface}]}>
           <Card.Cover
             source={{
-              uri: data.image_url
-                ? data.image_url
-                : 'https://i.im.ge/2022/09/17/12udB4.one.png',
+              uri: data.image_url,
             }}
             style={[
               styles.TopCardImage,

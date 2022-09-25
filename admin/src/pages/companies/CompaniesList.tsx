@@ -9,6 +9,7 @@ import {
   useRefresh,
   ShowButton,
   EditButton,
+  ImageField,
 } from 'react-admin'
 import { useMediaQuery, Theme } from '@mui/material'
 import MyError from '../../layout/MyError'
@@ -54,10 +55,15 @@ const CompaniesList = () => {
         />
       ) : (
         <Datagrid isRowSelectable={() => false} bulkActionButtons={false} size="medium">
-          <TextField source="id" sortable={false} />
+          <ImageField
+            source="logo_url"
+            title="logo_url"
+            sx={{ '& img': { maxWidth: 100, maxHeight: 100, objectFit: 'contain' } }}
+          />
+          {/* <TextField source="id" sortable={false} /> */}
           <TextField source="name" />
           <TextField source="email" />
-          <TextField source="logo_url" />
+          <TextField source="contact" />
           <SuspendedBooleanField source="suspended" />
           <DateField source="createdAt" />
           <ShowButton />

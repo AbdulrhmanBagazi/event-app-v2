@@ -32,4 +32,6 @@ export type updateUserProfile = {
   nationalID: string;
   dateOfBirth: string;
   gender: string;
+  phone: string;
+  whatsapp: string;
 };

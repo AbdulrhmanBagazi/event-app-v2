@@ -37,9 +37,7 @@ const UpdateProfileBanner = () => {
           {
             label: Locals.UserProfile.update,
             onPress: () => {
-              navigate('Account', {
-                screen: 'UserProfile',
-              });
+              navigate('UserProfile');
             },
             color: Colors.Secondary,
           },

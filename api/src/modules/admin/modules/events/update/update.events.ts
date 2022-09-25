@@ -10,6 +10,12 @@ export const Update_Events_TypeDefs = gql`
   input update_Event {
     published: Boolean
     status: EventStatus
+    title: String
+    content: String
+    title_en: String
+    content_en: String
+    image_url: String
+    location_url: String
   }
 
   scalar DateTime

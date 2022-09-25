@@ -63,6 +63,8 @@ const customArabicMessages: TranslationMessages = {
           createdAt: 'تاريخ الإنشاء',
           gender: 'الجنس',
           null: 'لم يتم إضافة بيانات الملف الشخصي من قبل المستخدم',
+          whatsapp: 'واتس اب',
+          phone: 'رقم التواصل',
         },
       },
     },
@@ -95,6 +97,7 @@ const customArabicMessages: TranslationMessages = {
         name: 'الإسم',
         email: 'البريد الإلكتروني',
         password: 'كلمة المرور',
+        contact: 'رقم التواصل',
       },
       fields: {
         id: 'معرف',
@@ -102,7 +105,8 @@ const customArabicMessages: TranslationMessages = {
         email: 'البريد الإلكتروني',
         createdAt: 'تاريخ الإنشاء',
         suspended: 'حظر',
-        logo_url: 'رابط الشعار',
+        logo_url: 'الشعار',
+        contact: 'رقم التواصل',
       },
     },
     Event: {

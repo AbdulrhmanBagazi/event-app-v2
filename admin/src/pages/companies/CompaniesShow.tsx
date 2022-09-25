@@ -14,7 +14,7 @@ import {
   useLocaleState,
   ShowButton,
   EditButton,
-  WithRecord,
+  ImageField,
 } from 'react-admin'
 import { useParams } from 'react-router-dom'
 import MyError from '../../layout/MyError'
@@ -53,14 +53,17 @@ const CompaniesShow = () => {
       emptyWhileLoading>
       <TabbedShowLayout>
         <Tab label="resources.Companies.showtabs.show">
-          <Labeled label="resources.Companies.fields.id">
+          {/* <Labeled label="resources.Companies.fields.id">
             <TextField source="id" />
-          </Labeled>
+          </Labeled> */}
           <Labeled label="resources.Companies.fields.suspended">
             <SuspendedBooleanField source="suspended" />
           </Labeled>
           <Labeled label="resources.Companies.fields.name">
             <TextField source="name" />
+          </Labeled>
+          <Labeled label="resources.Companies.fields.contact">
+            <TextField source="contact" />
           </Labeled>
           <Labeled label="resources.Companies.fields.email">
             <TextField source="email" />
@@ -69,13 +72,10 @@ const CompaniesShow = () => {
             <DateField source="createdAt" />
           </Labeled>
           <Labeled label="resources.Companies.fields.logo_url">
-            <WithRecord
-              label="author"
-              render={(record) => (
-                <a href={record.logo_url} target="_blank" rel="noreferrer">
-                  <TextField source="logo_url" />
-                </a>
-              )}
+            <ImageField
+              source="logo_url"
+              title="logo_url"
+              sx={{ '& img': { maxWidth: 250, maxHeight: 250, objectFit: 'contain' } }}
             />
           </Labeled>
         </Tab>
@@ -87,7 +87,7 @@ const CompaniesShow = () => {
             target="companyId"
             perPage={5}>
             <Datagrid isRowSelectable={() => false} bulkActionButtons={false}>
-              <TextField source="id" sortable={false} />
+              {/* <TextField source="id" sortable={false} /> */}
               <TextField
                 source={locale === 'en' ? 'title_en' : 'title'}
                 label="resources.Companies.Events.title"

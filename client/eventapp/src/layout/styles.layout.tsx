@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {SCREEN_WIDTH} from './screenDimensions';
 
 export const styles = StyleSheet.create({
   layoutContainer: {
@@ -19,5 +20,18 @@ export const styles = StyleSheet.create({
   },
   ScrollContainer: {
     flex: 1,
+  },
+  loadingView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  Modal: {
+    width: SCREEN_WIDTH / 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    padding: 50,
+    borderRadius: 5,
   },
 });

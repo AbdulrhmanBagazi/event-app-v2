@@ -1,27 +1,43 @@
 type ParamList = {
-  Events: {sectionId: string; title: string};
-  xxx: {title: string};
+  Events: {
+    params: {sectionId: string; title: string};
+  };
 };
 
 export type RootStackParamList = {
-  Home: {};
-  Events: {
-    screen: 'All Events';
+  Home: undefined;
+  // Events: {
+  //   screen: 'All Events';
+  // params: {
+  //   sectionId: string;
+  //   title: string;
+  // };
+  // };
+  // Account: {
+  //   screen: 'UserProfile' | 'Earnings' | 'ChangePassword' | 'Contact';
+  // };
+  // AuthStack: {};
+  Signin: undefined;
+  Signup: undefined;
+  UserProfile: undefined;
+  Earnings: undefined;
+  ChangePassword: undefined;
+  Contact: undefined;
+  All_Events: {
     params: {
       sectionId: string;
       title: string;
     };
   };
-  Account: {
-    screen: 'UserProfile' | 'Earnings';
-  };
-  AuthStack: {};
 };
 
 //routes.tsx
 export type RoutesType = {
   name: string;
   component: React.Element;
+  initialParams?: {
+    currentTab: string;
+  };
 };
 
 //I18n.context.tsx
@@ -94,6 +110,8 @@ interface UserProfileType {
   nationalID: string;
   dateOfBirth: Date | undefined;
   gender: string;
+  whatsapp: string;
+  phone: string;
 }
 
 export type UserTypes = {

@@ -98,6 +98,7 @@ const SigninForm = () => {
         activeOutlineColor={Colors.Secondary}
         editable={!authLoading}
         style={[styles.TextInput, {backgroundColor: Colors.Background}]}
+        keyboardType="email-address"
       />
 
       <TextInput

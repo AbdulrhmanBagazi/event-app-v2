@@ -1,8 +1,8 @@
-import {useNavigation} from '@react-navigation/native';
+import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import * as React from 'react';
 import {Linking, View} from 'react-native';
-import {List} from 'react-native-paper';
+import {Badge, List} from 'react-native-paper';
 import {AppURL, PrivacyURL, TermsURL} from '../../../../../config/config';
 import CustomText from '../../../../components/customText/customText';
 import SignOutButton from '../../../../components/signOutButton/signOutButton';
@@ -18,32 +18,48 @@ import {
 } from '../../../../typs';
 import {styles} from './styles.profileList';
 import Share from 'react-native-share';
+import RNBottomSheet from '@gorhom/bottom-sheet';
 
-const ProfileList = () => {
-  const {isDarkMode, Colors, Theme} = useThemeContext() as ThemeContextType;
+const ProfileList: React.FC<{
+  onPress: () => void;
+}> = ({onPress}) => {
+  const refBottomSheetPassword = React.useRef<RNBottomSheet>(null);
+  const {isDarkMode, Colors} = useThemeContext() as ThemeContextType;
   const {isAuthenticated, user} = useAuth() as AuthenticatedTypes;
   const {Locals} = useI18nContext() as I18nContextType;
   const {navigate} = useNavigation<StackNavigationProp<RootStackParamList>>();
 
+  useFocusEffect(
+    React.useCallback(() => {
+      return () => {
+        // Useful for cleanup functions
+
+        refBottomSheetPassword.current?.close();
+      };
+    }, []),
+  );
+
   return (
-    <View>
+    <View style={styles.transparent}>
       <CustomText
         numberOfLines={1}
         text={`${
-          isAuthenticated
-            ? user?.Profile
-              ? Locals.Profile.Welcome +
-                ' ' +
-                user?.Profile?.firstName +
-                ' ' +
-                user?.Profile?.lastName
-              : Locals.Profile.Welcome
-            : Locals.Profile.SignInfirst
+          isAuthenticated ? Locals.Profile.Welcome : Locals.Profile.SignInfirst
         }`}
-        fontWeight="normal"
-        Color="OnSurface"
+        fontWeight="bold"
+        Color="OnBackground"
         style={styles.title}
       />
+
+      {user?.Profile ? (
+        <CustomText
+          numberOfLines={1}
+          text={`${user?.Profile?.firstName + ' ' + user?.Profile?.lastName}`}
+          fontWeight="normal"
+          Color="OnBackground"
+          style={styles.name}
+        />
+      ) : null}
       <AnimatedView Color={'Surface'} style={styles.Container}>
         <List.Item
           title={Locals.Profile.Profile}
@@ -55,21 +71,61 @@ const ProfileList = () => {
             {
               borderBottomColor: isDarkMode
                 ? Colors.Background
-                : Theme.dark.Surface,
+                : Colors.disabled,
             },
           ]}
           left={props => (
             <List.Icon
               {...props}
               icon="account"
-              color={!isAuthenticated ? '#dddddd' : Colors.Secondary}
+              color={!isAuthenticated ? Colors.disabled : Colors.Secondary}
             />
           )}
           disabled={!isAuthenticated}
-          onPress={() =>
-            navigate('Account', {
-              screen: 'UserProfile',
-            })
+          onPress={() => navigate('UserProfile')}
+        />
+        <List.Item
+          title={Locals.Profile.contactInfo}
+          titleStyle={{
+            color:
+              isAuthenticated && user?.Profile !== null
+                ? Colors.OnBackground
+                : Colors.disabled,
+          }}
+          // description="Item description"
+          style={[
+            {
+              borderBottomColor: isDarkMode
+                ? Colors.Background
+                : Colors.disabled,
+            },
+          ]}
+          left={props => (
+            <List.Icon
+              {...props}
+              icon="phone"
+              color={
+                isAuthenticated && user?.Profile !== null
+                  ? Colors.Secondary
+                  : Colors.disabled
+              }
+            />
+          )}
+          disabled={isAuthenticated && user?.Profile !== null ? false : true}
+          onPress={() => navigate('Contact')}
+          right={() =>
+            user?.Profile === null && isAuthenticated ? (
+              <Badge
+                style={[
+                  styles.Badge,
+                  {
+                    backgroundColor: Colors.Primary,
+                    color: Colors.OnPrimary,
+                  },
+                ]}>
+                {Locals.Profile.addProfileFirst}
+              </Badge>
+            ) : null
           }
         />
         <List.Item
@@ -81,7 +137,7 @@ const ProfileList = () => {
             {
               borderBottomColor: isDarkMode
                 ? Colors.Background
-                : Theme.dark.Surface,
+                : Colors.disabled,
             },
           ]}
           left={props => (
@@ -92,11 +148,7 @@ const ProfileList = () => {
             />
           )}
           disabled={!isAuthenticated}
-          onPress={() =>
-            navigate('Account', {
-              screen: 'Earnings',
-            })
-          }
+          onPress={() => navigate('Earnings')}
         />
 
         {user?.Type === 'EMAIL' ? (
@@ -109,18 +161,18 @@ const ProfileList = () => {
               {
                 borderBottomColor: isDarkMode
                   ? Colors.Background
-                  : Theme.dark.Surface,
+                  : Colors.disabled,
               },
             ]}
             left={props => (
               <List.Icon
                 {...props}
-                icon="lastpass"
+                icon="key"
                 color={!isAuthenticated ? Colors.disabled : Colors.Secondary}
               />
             )}
             disabled={!isAuthenticated}
-            onPress={() => console.log(1)}
+            onPress={() => navigate('ChangePassword')}
           />
         ) : null}
       </AnimatedView>
@@ -129,12 +181,26 @@ const ProfileList = () => {
 
       <AnimatedView Color={'Surface'} style={styles.Container}>
         <List.Item
+          title={Locals.Profile.appsettings}
+          style={[
+            {
+              borderBottomColor: isDarkMode
+                ? Colors.Background
+                : Colors.Surface,
+            },
+          ]}
+          left={props => (
+            <List.Icon {...props} icon="cog" color={Colors.Primary} />
+          )}
+          onPress={onPress}
+        />
+        <List.Item
           title={Locals.Profile.terms}
           style={[
             {
               borderBottomColor: isDarkMode
                 ? Colors.Background
-                : Theme.dark.Surface,
+                : Colors.Surface,
             },
           ]}
           left={props => (
@@ -148,7 +214,7 @@ const ProfileList = () => {
             {
               borderBottomColor: isDarkMode
                 ? Colors.Background
-                : Theme.dark.Surface,
+                : Colors.Surface,
             },
           ]}
           left={props => (
@@ -162,7 +228,7 @@ const ProfileList = () => {
             {
               borderBottomColor: isDarkMode
                 ? Colors.Background
-                : Theme.dark.Surface,
+                : Colors.Surface,
             },
           ]}
           left={props => (

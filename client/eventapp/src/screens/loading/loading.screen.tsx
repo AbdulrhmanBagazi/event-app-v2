@@ -20,7 +20,7 @@ const Loading = () => {
   useEffect(() => {
     if (!authLoading) {
       setTimeout(() => {
-        return replace('Home', {});
+        return replace('Home');
       }, 1000);
     }
   }, [authLoading, replace]);

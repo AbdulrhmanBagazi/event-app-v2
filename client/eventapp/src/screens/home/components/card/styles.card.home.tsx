@@ -73,4 +73,7 @@ export const styles = StyleSheet.create({
   fixCardBorder: {
     borderRadius: 2,
   },
+  MainCardView: {
+    borderRadius: 1.25,
+  },
 });

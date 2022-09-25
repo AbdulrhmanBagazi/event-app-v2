@@ -24,6 +24,7 @@ const SectionEdit = () => {
   return (
     <Edit
       mutationMode="pessimistic"
+      sx={{ maxWidth: 600 }}
       redirect="show"
       queryOptions={{
         onError: (err) => {
@@ -35,7 +36,7 @@ const SectionEdit = () => {
       }}>
       <TabbedForm toolbar={<SectionEditToolbar />}>
         <FormTab label="resources.Section.showtabs.edit">
-          <BooleanInput label="resources.Section.fields.published" source="published" />
+          <BooleanInput label="resources.Section.fields.published" source="published" fullWidth />
         </FormTab>
       </TabbedForm>
     </Edit>

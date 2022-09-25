@@ -16,13 +16,14 @@ export const Create_Companies_TypeDefs = gql`
     name: String
     email: String
     password: String
+    contact: String
   }
 `;
 
 export const Create_Companies_Mutation = {
   create_Companies: async (
     _parent,
-    args: { data: { name: string; email: string; password: string } },
+    args: { data: { name: string; email: string; password: string; contact: string } },
     context: Context,
   ) => {
     try {
@@ -32,6 +33,7 @@ export const Create_Companies_Mutation = {
         data: {
           email: args.data.email,
           name: args.data.name,
+          contact: args.data.contact,
           password: HashPass,
         },
       });

@@ -26,13 +26,17 @@ const I18n_ar = {
     date: 'التاريخ',
     profileCreated: 'تم إنشاء الملف الشخصي',
     profileUpdated: 'تم تحديث الملف الشخصي',
+    passwordChanged: 'تم تغيير كلمة المرور',
+    contactUpdated: 'تم تحديث معلومات التواصل',
+    Password: 'كلمة المرور الجديدة',
+    PasswordRepeate: 'كرر كلمة المرور الجديدة',
   },
   Earnings: {
     Title: 'الآرباح',
   },
   Tabs: {
     Main: 'الرئيسية',
-    Profile: 'الملف الشخصي',
+    Profile: 'الحساب',
   },
   Home: {
     Title: 'الرئيسية',
@@ -86,7 +90,7 @@ const I18n_ar = {
     Title: 'الملف الشخصي',
     Profile: 'الملف الشخصي',
     Earnings: 'الآرباح',
-    UpdatePassword: 'تحديث كلمة المرور',
+    UpdatePassword: 'تغيير كلمة المرور',
     Share: 'شارك التطبيق',
     Welcome: 'مرحبا',
     SignInfirst: 'تسجيل الدخول!',
@@ -94,6 +98,9 @@ const I18n_ar = {
     SignOut: 'تسجيل الخروج',
     terms: 'شروط الخدمة',
     privacy: 'سياسة الخصوصية',
+    contactInfo: 'معلومات التواصل',
+    addProfileFirst: 'أضف معلومات الملف الشخصي أولاً',
+    appsettings: 'إعدادات التطبيق',
   },
   SignOutButton: {
     Title: 'تسجيل الخروج',
@@ -111,6 +118,14 @@ const I18n_ar = {
     COMPLETED: 'مكتمل',
     ACTIVE: 'نشط',
   },
+  ChangePassword: {
+    Title: 'تغيير كلمة المرور',
+  },
+  Contact: {
+    Title: 'معلومات التواصل',
+    phone: 'رقم الجوال',
+    whatsapp: 'واتساب',
+  },
 };
 
 const I18n_en = {
@@ -121,7 +136,7 @@ const I18n_en = {
     Events: 'More',
   },
   UserProfile: {
-    Title: 'Profile',
+    Title: 'Profile information',
     firstName: 'First Name',
     lastName: 'Last Name',
     nationality: 'Nationality',
@@ -139,13 +154,17 @@ const I18n_en = {
     date: 'Date',
     profileCreated: 'Profile Created',
     profileUpdated: 'Profile Updated',
+    passwordChanged: 'Password has been changed',
+    contactUpdated: 'Contact information updated',
+    Password: 'New password',
+    PasswordRepeate: 'Repeat new password',
   },
   Earnings: {
     Title: 'Earnings',
   },
   Tabs: {
     Main: 'Home',
-    Profile: 'Profile',
+    Profile: 'Account',
   },
   Home: {
     Title: 'Home',
@@ -197,9 +216,9 @@ const I18n_en = {
   },
   Profile: {
     Title: 'Profile',
-    Profile: 'Profile',
+    Profile: 'Profile information',
     Earnings: 'Earnings',
-    UpdatePassword: 'Update Password',
+    UpdatePassword: 'Change your password',
     Share: 'Share App',
     Welcome: 'Welcome',
     SignInfirst: 'SignIn!',
@@ -207,6 +226,9 @@ const I18n_en = {
     SignOut: 'SignOut',
     terms: 'Terms of use',
     privacy: 'Privacy policy',
+    contactInfo: 'Contact information',
+    addProfileFirst: 'Add profile information first',
+    appsettings: 'App Settings',
   },
   SignOutButton: {
     Title: 'SignOut',
@@ -223,6 +245,14 @@ const I18n_en = {
     SOON: 'Soon',
     COMPLETED: 'Completed',
     ACTIVE: 'Active',
+  },
+  ChangePassword: {
+    Title: 'Change Password',
+  },
+  Contact: {
+    Title: 'Contact information',
+    phone: 'Phone number',
+    whatsapp: 'WhatsApp',
   },
 };
 

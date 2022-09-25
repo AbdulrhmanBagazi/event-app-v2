@@ -49,14 +49,19 @@ const SignupForm = () => {
   };
 
   const validatePassword = (password: string) => {
+    const reg = new RegExp(
+      '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})',
+    );
+
     setPassword(password);
 
-    if (password.length >= 2) {
+    if (reg.test(password)) {
       isError.Password = false;
       return setError({
         ...isError,
       });
     }
+
     isError.Password = true;
     return setError({
       ...isError,
@@ -79,11 +84,16 @@ const SignupForm = () => {
   };
 
   const HandleLogin = async (values: {email: string; password: string}) => {
-    if (values.email.length <= 0 && values.password.length <= 0) {
+    const reg = new RegExp(
+      '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})',
+    );
+    const regEmail =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    if (!regEmail.test(values.email)) {
+      isError.Email = true;
       return setError({
-        Email: true,
-        Password: true,
-        PasswordRepeat: true,
+        ...isError,
       });
     }
 
@@ -91,6 +101,14 @@ const SignupForm = () => {
       return setError({
         Email: false,
         Password: false,
+        PasswordRepeat: true,
+      });
+    }
+
+    if (!reg.test(values.password)) {
+      return setError({
+        Email: false,
+        Password: true,
         PasswordRepeat: true,
       });
     }
@@ -128,6 +146,7 @@ const SignupForm = () => {
         activeOutlineColor={Colors.Secondary}
         editable={!authLoading}
         style={[styles.TextInput, {backgroundColor: Colors.Background}]}
+        keyboardType="email-address"
       />
 
       <TextInput
@@ -171,7 +190,12 @@ const SignupForm = () => {
       <Button
         onPress={() => HandleLogin({email: isEmail, password: isPassword})}
         mode="contained"
-        disabled={authLoading || isError.Email || isError.Password}
+        disabled={
+          authLoading ||
+          isError.Email ||
+          isError.Password ||
+          isError.PasswordRepeat
+        }
         color={Colors.Secondary}
         style={styles.SignInButton}
         loading={authLoading}>

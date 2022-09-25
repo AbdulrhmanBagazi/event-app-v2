@@ -1,14 +1,10 @@
 import React from 'react';
-import {Button, IconButton} from 'react-native-paper';
+import {Button} from 'react-native-paper';
 import CustomText from '../../components/customText/customText';
 import NavigationButton from '../../components/NavigationButton/navigationButton';
 import {useAuth} from '../../context/auth/auth.context';
 import Page from '../../layout/page';
-import {
-  AuthenticatedTypes,
-  I18nContextType,
-  RootStackParamList,
-} from '../../typs';
+import {AuthenticatedTypes, I18nContextType} from '../../typs';
 import Signin from './signin/signin.auth';
 import {styles} from './styles.auth';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
@@ -17,35 +13,20 @@ import MGoogleButton from '../../components/myGoogleButton/MyGoogleButton';
 import MyAppleButton from '../../components/myAppleButton/MyAppleButton';
 import MySvg from './mySvg';
 import {useI18nContext} from '../../context/I18n/i18n.context';
-import {StackNavigationProp} from '@react-navigation/stack';
-import {useNavigation} from '@react-navigation/native';
 import {PrivacyURL, TermsURL} from '../../../config/config';
+import {useHeaderHeight} from '@react-navigation/elements';
 
 const Auth = () => {
   const {authLoading} = useAuth() as AuthenticatedTypes;
   const {Locals} = useI18nContext() as I18nContextType;
 
-  const {pop, setOptions} =
-    useNavigation<StackNavigationProp<RootStackParamList>>();
-
-  React.useLayoutEffect(() => {
-    setOptions({
-      headerLeft: () => (
-        <IconButton
-          disabled={authLoading}
-          icon="close"
-          size={24}
-          onPress={() => pop()}
-        />
-      ),
-    });
-  }, [authLoading, setOptions, pop]);
-
   return (
     <Page paddingHorizontal={5}>
+      <View style={{height: useHeaderHeight()}} />
       <KeyboardAwareScrollView
         style={styles.container}
-        keyboardShouldPersistTaps="handled">
+        keyboardShouldPersistTaps="handled"
+        showsVerticalScrollIndicator={false}>
         <MySvg />
         <Signin />
         <NavigationButton

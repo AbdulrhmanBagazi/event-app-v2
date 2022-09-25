@@ -65,6 +65,8 @@ const customEnglishMessages: TranslationMessages = {
           createdAt: 'Created At',
           null: 'User did not add profile informations',
           gender: 'Gender',
+          whatsapp: 'Whatsapp',
+          phone: 'Contact Number',
         },
       },
     },
@@ -96,6 +98,7 @@ const customEnglishMessages: TranslationMessages = {
         name: 'Name',
         email: 'Email',
         password: 'Password',
+        contact: 'Contact Number',
       },
       fields: {
         id: 'ID',
@@ -103,7 +106,8 @@ const customEnglishMessages: TranslationMessages = {
         email: 'Email',
         suspended: 'Suspended',
         createdAt: 'Created At',
-        logo_url: 'Logo URL',
+        logo_url: 'Logo',
+        contact: 'Contact Number',
       },
     },
     Event: {

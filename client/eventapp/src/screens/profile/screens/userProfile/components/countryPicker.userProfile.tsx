@@ -63,11 +63,11 @@ const ModalCountry: React.FC<{
         translation={Lang}
         preferredCountries={[
           'SA',
-          'QA',
           'AE',
           'KW',
           'BH',
           'OM',
+          'QA',
           'EG',
           'YE',
           'JO',

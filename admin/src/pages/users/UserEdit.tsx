@@ -25,6 +25,7 @@ const UserEdit = () => {
     <Edit
       mutationMode="pessimistic"
       redirect="show"
+      sx={{ maxWidth: 600 }}
       // redirect={false}
       // actions={false}
       queryOptions={{
@@ -40,7 +41,7 @@ const UserEdit = () => {
       }}>
       <TabbedForm toolbar={<UserEditToolbar />}>
         <FormTab label="resources.User.showtabs.edit">
-          <BooleanInput label="resources.User.fields.suspended" source="suspended" />
+          <BooleanInput label="resources.User.fields.suspended" source="suspended" fullWidth />
         </FormTab>
       </TabbedForm>
     </Edit>

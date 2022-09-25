@@ -34,7 +34,7 @@ const SignOutButton: React.FC = () => {
         left={props => (
           <List.Icon {...props} icon="login" color={Colors.Primary} />
         )}
-        onPress={() => navigate('AuthStack', {})}
+        onPress={() => navigate('Signin')}
       />
     );
   }
@@ -71,11 +71,7 @@ const SignOutButton: React.FC = () => {
         },
       ]}
       left={props => (
-        <List.Icon
-          {...props}
-          icon="logout"
-          color={authLoading ? '#dddddd' : Colors.Primary}
-        />
+        <List.Icon {...props} icon="logout" color={Colors.Primary} />
       )}
       disabled={authLoading}
       onPress={() => showConfirmDialog()}

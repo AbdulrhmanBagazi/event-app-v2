@@ -60,7 +60,7 @@ const EventList = () => {
         />
       ) : (
         <Datagrid isRowSelectable={() => false} bulkActionButtons={false} size="medium">
-          <TextField source="id" sortable={false} />
+          {/* <TextField source="id" sortable={false} /> */}
           <TextField
             source={locale === 'en' ? 'Section.title_en' : 'Section.title'}
             sortable={false}

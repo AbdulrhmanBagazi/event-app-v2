@@ -7,6 +7,8 @@ import Signup from '../screens/auth/signup/signup.auth';
 import Events from '../screens/Events/events.screen';
 import UserProfile from '../screens/profile/screens/userProfile/userProfile.screens.profile';
 import Earnings from '../screens/profile/screens/earnings/earnings.screen.profile';
+import ChangePassword from '../screens/profile/screens/changePassword/changePassword.screens.profile';
+import Contact from '../screens/profile/screens/contact/contact.screens.profile';
 
 const ProfileScreens: RoutesType[] = [
   {
@@ -17,11 +19,19 @@ const ProfileScreens: RoutesType[] = [
     name: 'Earnings',
     component: Earnings,
   },
+  {
+    name: 'ChangePassword',
+    component: ChangePassword,
+  },
+  {
+    name: 'Contact',
+    component: Contact,
+  },
 ];
 
 const EventsScreens: RoutesType[] = [
   {
-    name: 'All Events',
+    name: 'All_Events',
     component: Events,
   },
 ];
@@ -48,10 +58,16 @@ const TabScreens: RoutesType[] = [
   {
     name: 'Main',
     component: Home,
+    initialParams: {
+      currentTab: 'Main',
+    },
   },
   {
     name: 'Profile',
     component: Profile,
+    initialParams: {
+      currentTab: 'Profile',
+    },
   },
 ];
 

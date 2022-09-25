@@ -43,12 +43,13 @@ const EventShow = () => {
           return null
         },
       }}
+      sx={{ maxWidth: 600 }}
       emptyWhileLoading>
       <TabbedShowLayout>
         <Tab label="resources.Event.showtabs.show">
-          <Labeled label="resources.Event.fields.id">
+          {/* <Labeled label="resources.Event.fields.id">
             <TextField source="id" />
-          </Labeled>
+          </Labeled> */}
           <Labeled label="resources.Event.fields.section">
             <FunctionField
               render={(record: any) => (locale === 'en' ? record.Section.title_en : record.Section.title)}

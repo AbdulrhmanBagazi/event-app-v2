@@ -1,0 +1,16 @@
+mutation Contact_UserProfile($phone: String, $whatsapp: String) {
+  Contact_UserProfile(phone: $phone, whatsapp: $whatsapp) {
+    id
+    createdAt
+    updatedAt
+    userId
+    firstName
+    lastName
+    nationality
+    nationalID
+    dateOfBirth
+    gender
+    whatsapp
+    phone
+  }
+}

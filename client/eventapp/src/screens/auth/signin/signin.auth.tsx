@@ -7,13 +7,16 @@ import {StackNavigationProp} from '@react-navigation/stack';
 
 const Signin = () => {
   const {isAuthenticated} = useAuth() as AuthenticatedTypes;
-  const {navigate} = useNavigation<StackNavigationProp<RootStackParamList>>();
+  const {reset} = useNavigation<StackNavigationProp<RootStackParamList>>();
 
   useEffect(() => {
     if (isAuthenticated) {
-      return navigate('Home', {id: 'sadas'});
+      return reset({
+        index: 0,
+        routes: [{name: 'Home'}],
+      });
     }
-  }, [isAuthenticated, navigate]);
+  }, [isAuthenticated, reset]);
 
   return <SigninForm />;
 };

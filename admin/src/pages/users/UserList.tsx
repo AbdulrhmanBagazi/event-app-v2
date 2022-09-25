@@ -57,7 +57,7 @@ const UserList = () => {
         />
       ) : (
         <Datagrid isRowSelectable={() => false} bulkActionButtons={false} size="medium">
-          <TextField source="id" sortable={false} />
+          {/* <TextField source="id" sortable={false} /> */}
           <TextField source="email" />
           <ColoredBooleanField source="verfied" />
           <SuspendedBooleanField source="suspended" />

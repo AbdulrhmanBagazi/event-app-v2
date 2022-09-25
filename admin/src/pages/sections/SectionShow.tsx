@@ -45,12 +45,13 @@ const SectionShow = () => {
           return null
         },
       }}
+      sx={{ maxWidth: 600 }}
       emptyWhileLoading>
       <TabbedShowLayout>
         <Tab label="resources.Section.showtabs.show">
-          <Labeled label="resources.Section.fields.id">
+          {/* <Labeled label="resources.Section.fields.id">
             <TextField source="id" />
-          </Labeled>
+          </Labeled> */}
           <Labeled label="resources.Section.fields.createdAt">
             <DateField source="createdAt" />
           </Labeled>
@@ -76,7 +77,7 @@ const SectionShow = () => {
             target="sectionId"
             perPage={5}>
             <Datagrid isRowSelectable={() => false} bulkActionButtons={false}>
-              <TextField source="id" sortable={false} />
+              {/* <TextField source="id" sortable={false} /> */}
               <TextField
                 source={locale === 'en' ? 'title_en' : 'title'}
                 label="resources.Companies.Events.title"
@@ -87,8 +88,8 @@ const SectionShow = () => {
               />
               <ColoredTextField source="status" label="resources.Companies.Events.status" />
               <SuspendedBooleanField source="published" label="resources.Companies.Events.published" />
-              <DateField source="createdAt" label="resources.Companies.Events.createdAt" />
-              <DateField source="updatedAt" label="resources.Companies.Events.updatedAt" />
+              {/* <DateField source="createdAt" label="resources.Companies.Events.createdAt" />
+              <DateField source="updatedAt" label="resources.Companies.Events.updatedAt" /> */}
               <ShowButton resource="Event" />
               <EditButton resource="Event" />
             </Datagrid>

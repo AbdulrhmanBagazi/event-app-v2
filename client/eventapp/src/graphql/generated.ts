@@ -17,7 +17,6 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  Date: any;
   DateTime: any;
 };
 
@@ -52,8 +51,19 @@ export type ListMetadata = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  Change_Password?: Maybe<Profile>;
+  Contact_UserProfile?: Maybe<Profile>;
   Create_UserProfile?: Maybe<Profile>;
   Update_UserProfile?: Maybe<Profile>;
+};
+
+export type MutationChange_PasswordArgs = {
+  password?: InputMaybe<Scalars['String']>;
+};
+
+export type MutationContact_UserProfileArgs = {
+  phone?: InputMaybe<Scalars['String']>;
+  whatsapp?: InputMaybe<Scalars['String']>;
 };
 
 export type MutationCreate_UserProfileArgs = {
@@ -89,8 +99,10 @@ export type Profile = {
   lastName?: Maybe<Scalars['String']>;
   nationalID?: Maybe<Scalars['String']>;
   nationality?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   userId?: Maybe<Scalars['String']>;
+  whatsapp?: Maybe<Scalars['String']>;
 };
 
 export type Query = {
@@ -164,6 +176,53 @@ export type Sections_ListQuery = {
   }>;
 };
 
+export type Change_PasswordMutationVariables = Exact<{
+  password?: InputMaybe<Scalars['String']>;
+}>;
+
+export type Change_PasswordMutation = {
+  __typename?: 'Mutation';
+  Change_Password?: {
+    __typename?: 'Profile';
+    id?: string | null;
+    createdAt?: any | null;
+    updatedAt?: any | null;
+    userId?: string | null;
+    firstName?: string | null;
+    lastName?: string | null;
+    nationality?: string | null;
+    nationalID?: string | null;
+    dateOfBirth?: string | null;
+    gender?: string | null;
+    whatsapp?: string | null;
+    phone?: string | null;
+  } | null;
+};
+
+export type Contact_UserProfileMutationVariables = Exact<{
+  phone?: InputMaybe<Scalars['String']>;
+  whatsapp?: InputMaybe<Scalars['String']>;
+}>;
+
+export type Contact_UserProfileMutation = {
+  __typename?: 'Mutation';
+  Contact_UserProfile?: {
+    __typename?: 'Profile';
+    id?: string | null;
+    createdAt?: any | null;
+    updatedAt?: any | null;
+    userId?: string | null;
+    firstName?: string | null;
+    lastName?: string | null;
+    nationality?: string | null;
+    nationalID?: string | null;
+    dateOfBirth?: string | null;
+    gender?: string | null;
+    whatsapp?: string | null;
+    phone?: string | null;
+  } | null;
+};
+
 export type Create_UserProfileMutationVariables = Exact<{
   firstName?: InputMaybe<Scalars['String']>;
   lastName?: InputMaybe<Scalars['String']>;
@@ -187,6 +246,8 @@ export type Create_UserProfileMutation = {
     nationalID?: string | null;
     dateOfBirth?: string | null;
     gender?: string | null;
+    whatsapp?: string | null;
+    phone?: string | null;
   } | null;
 };
 
@@ -213,6 +274,8 @@ export type Update_UserProfileMutation = {
     nationalID?: string | null;
     dateOfBirth?: string | null;
     gender?: string | null;
+    whatsapp?: string | null;
+    phone?: string | null;
   } | null;
 };
 
@@ -362,6 +425,129 @@ export type Sections_ListQueryResult = Apollo.QueryResult<
   Sections_ListQuery,
   Sections_ListQueryVariables
 >;
+export const Change_PasswordDocument = gql`
+  mutation Change_Password($password: String) {
+    Change_Password(password: $password) {
+      id
+      createdAt
+      updatedAt
+      userId
+      firstName
+      lastName
+      nationality
+      nationalID
+      dateOfBirth
+      gender
+      whatsapp
+      phone
+    }
+  }
+`;
+export type Change_PasswordMutationFn = Apollo.MutationFunction<
+  Change_PasswordMutation,
+  Change_PasswordMutationVariables
+>;
+
+/**
+ * __useChange_PasswordMutation__
+ *
+ * To run a mutation, you first call `useChange_PasswordMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useChange_PasswordMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [changePasswordMutation, { data, loading, error }] = useChange_PasswordMutation({
+ *   variables: {
+ *      password: // value for 'password'
+ *   },
+ * });
+ */
+export function useChange_PasswordMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    Change_PasswordMutation,
+    Change_PasswordMutationVariables
+  >,
+) {
+  const options = {...defaultOptions, ...baseOptions};
+  return Apollo.useMutation<
+    Change_PasswordMutation,
+    Change_PasswordMutationVariables
+  >(Change_PasswordDocument, options);
+}
+export type Change_PasswordMutationHookResult = ReturnType<
+  typeof useChange_PasswordMutation
+>;
+export type Change_PasswordMutationResult =
+  Apollo.MutationResult<Change_PasswordMutation>;
+export type Change_PasswordMutationOptions = Apollo.BaseMutationOptions<
+  Change_PasswordMutation,
+  Change_PasswordMutationVariables
+>;
+export const Contact_UserProfileDocument = gql`
+  mutation Contact_UserProfile($phone: String, $whatsapp: String) {
+    Contact_UserProfile(phone: $phone, whatsapp: $whatsapp) {
+      id
+      createdAt
+      updatedAt
+      userId
+      firstName
+      lastName
+      nationality
+      nationalID
+      dateOfBirth
+      gender
+      whatsapp
+      phone
+    }
+  }
+`;
+export type Contact_UserProfileMutationFn = Apollo.MutationFunction<
+  Contact_UserProfileMutation,
+  Contact_UserProfileMutationVariables
+>;
+
+/**
+ * __useContact_UserProfileMutation__
+ *
+ * To run a mutation, you first call `useContact_UserProfileMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useContact_UserProfileMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [contactUserProfileMutation, { data, loading, error }] = useContact_UserProfileMutation({
+ *   variables: {
+ *      phone: // value for 'phone'
+ *      whatsapp: // value for 'whatsapp'
+ *   },
+ * });
+ */
+export function useContact_UserProfileMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    Contact_UserProfileMutation,
+    Contact_UserProfileMutationVariables
+  >,
+) {
+  const options = {...defaultOptions, ...baseOptions};
+  return Apollo.useMutation<
+    Contact_UserProfileMutation,
+    Contact_UserProfileMutationVariables
+  >(Contact_UserProfileDocument, options);
+}
+export type Contact_UserProfileMutationHookResult = ReturnType<
+  typeof useContact_UserProfileMutation
+>;
+export type Contact_UserProfileMutationResult =
+  Apollo.MutationResult<Contact_UserProfileMutation>;
+export type Contact_UserProfileMutationOptions = Apollo.BaseMutationOptions<
+  Contact_UserProfileMutation,
+  Contact_UserProfileMutationVariables
+>;
 export const Create_UserProfileDocument = gql`
   mutation Create_UserProfile(
     $firstName: String
@@ -389,6 +575,8 @@ export const Create_UserProfileDocument = gql`
       nationalID
       dateOfBirth
       gender
+      whatsapp
+      phone
     }
   }
 `;
@@ -467,6 +655,8 @@ export const Update_UserProfileDocument = gql`
       nationalID
       dateOfBirth
       gender
+      whatsapp
+      phone
     }
   }
 `;

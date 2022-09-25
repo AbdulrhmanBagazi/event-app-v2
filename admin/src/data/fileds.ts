@@ -1,16 +1,16 @@
 const users: { [k: string]: string } = {
   User_list: 'id email verfied suspended createdAt Type',
-  User: 'id email verfied suspended createdAt Type Profile {id createdAt updatedAt userId firstName lastName nationality nationalID dateOfBirth, gender}',
+  User: 'id email verfied suspended createdAt Type Profile {id createdAt updatedAt userId firstName lastName nationality nationalID dateOfBirth gender whatsapp phone}',
   update_User: 'suspended',
 }
 
 const companies: { [k: string]: string } = {
-  Companies_list: 'id email name logo_url suspended createdAt',
-  Companies: 'id email name logo_url suspended createdAt',
-  create_Companies: 'id email name',
+  Companies_list: 'id email name contact logo_url suspended createdAt',
+  Companies: 'id email name contact logo_url suspended createdAt',
+  create_Companies: 'id email name contact',
   CompaniesEvents:
     'id published createdAt updatedAt companyId title content title_en content_en image_url location_url status',
-  update_Companies: 'logo_url suspended',
+  update_Companies: 'logo_url suspended contact email name',
 }
 
 const events: { [k: string]: string } = {
@@ -18,7 +18,7 @@ const events: { [k: string]: string } = {
     'id published createdAt updatedAt companyId sectionId title content title_en content_en image_url location_url status Section {title title_en published}',
   Event:
     'id published createdAt updatedAt companyId sectionId title content title_en content_en image_url location_url status Section {title title_en published}',
-  update_Event: 'published status',
+  update_Event: 'published status title content title_en content_en image_url location_url',
 }
 
 const sections: { [k: string]: string } = {

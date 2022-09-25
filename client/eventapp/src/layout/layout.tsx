@@ -7,7 +7,7 @@ import {
   DefaultTheme,
   Provider as PaperProvider,
 } from 'react-native-paper';
-import AnimatedView from './animatedView';
+import {View} from 'react-native';
 
 const Layout: React.FC<{
   children: React.ReactNode;
@@ -36,9 +36,7 @@ const Layout: React.FC<{
 
   return (
     <PaperProvider theme={isDarkMode ? Dark : Ligh}>
-      <AnimatedView style={styles.layoutContainer} Color="Background">
-        {children}
-      </AnimatedView>
+      <View style={[styles.layoutContainer]}>{children}</View>
     </PaperProvider>
   );
 };

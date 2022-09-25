@@ -12,6 +12,7 @@ import Client from './src/api/apollo';
 import OneSignal from 'react-native-onesignal';
 import {oneSignal} from './src/context/notifications/config';
 import {NotificationProvider} from './src/context/notifications/notification.context';
+
 var countries = require('i18n-iso-countries');
 
 const name = Platform.OS === 'ios' ? 'eventapp' : 'events';

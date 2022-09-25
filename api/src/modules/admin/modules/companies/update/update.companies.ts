@@ -10,6 +10,9 @@ export const Update_Companies_TypeDefs = gql`
   input update_Companies {
     suspended: Boolean!
     logo_url: String
+    contact: String
+    email: String
+    name: String
   }
 `;
 

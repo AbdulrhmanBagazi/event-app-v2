@@ -7,7 +7,7 @@ import {
   ThemeContextType,
   UserProfileType,
 } from '../../../../typs';
-import {Button, RadioButton, TextInput} from 'react-native-paper';
+import {Button, RadioButton, Text, TextInput} from 'react-native-paper';
 import {styles} from './styles.userProfile';
 import {useThemeContext} from '../../../../context/theme/themeToggle.context';
 import {useError} from '../../../../context/error/error.context';
@@ -23,15 +23,16 @@ import {
 import DatePicker from './components/datePicker.userProfile';
 import moment from 'moment';
 import {useAuth} from '../../../../context/auth/auth.context';
-import {Image, View} from 'react-native';
+import {View} from 'react-native';
 import ModalCountry from './components/countryPicker.userProfile';
 import countries from 'i18n-iso-countries';
+import {useHeaderHeight} from '@react-navigation/elements';
 
 const AddUserProfile = () => {
   const [open, setOpen] = React.useState(false);
   const [visible, setVisible] = useState<boolean>(false);
   const [countryCode, setCountryCode] = useState<CountryCode>('SA');
-  const {Colors, isDarkMode} = useThemeContext() as ThemeContextType;
+  const {Colors} = useThemeContext() as ThemeContextType;
   const {ThrowError} = useError() as ErrorContextType;
   const {Locals, Lang} = useI18nContext() as I18nContextType;
   const {AddProfile, UpdateLoading} = useAuth() as AuthenticatedTypes;
@@ -126,20 +127,21 @@ const AddUserProfile = () => {
   };
 
   return (
-    <Page paddingHorizontal={5}>
+    <Page paddingHorizontal={20}>
+      <View style={{height: useHeaderHeight()}} />
       <KeyboardAwareScrollView
         style={styles.container}
-        keyboardShouldPersistTaps="handled">
-        <View style={styles.Logo}>
-          <Image
-            style={styles.tinyLogo}
-            source={
-              isDarkMode
-                ? require('../../../../assets/profiledark.png')
-                : require('../../../../assets/profilelight.png')
-            }
-          />
-        </View>
+        keyboardShouldPersistTaps="handled"
+        showsVerticalScrollIndicator={false}>
+        <Text
+          style={[
+            styles.title,
+            {
+              color: Colors.OnBackground,
+            },
+          ]}>
+          {Locals.UserProfile.Title}
+        </Text>
         <TextInput
           mode="outlined"
           label={Locals.UserProfile.firstName}
@@ -180,34 +182,35 @@ const AddUserProfile = () => {
           activeOutlineColor={Colors.Secondary}
           editable={!loading}
           style={[styles.TextInput, {backgroundColor: Colors.Background}]}
+          keyboardType="number-pad"
         />
 
-        <View>
-          <RadioButton.Group
-            onValueChange={val => setgender({val, error: false})}
-            value={gender.val}>
-            <View style={styles.ViewRowInput}>
-              <RadioButton.Item
-                style={[styles.RadioButton]}
-                label={Locals.UserProfile.male}
-                labelStyle={{
-                  color: gender.error ? Colors.Error : Colors.OnBackground,
-                }}
-                value="male"
-                // position="leading"
-              />
-              <RadioButton.Item
-                style={styles.RadioButton}
-                label={Locals.UserProfile.female}
-                labelStyle={{
-                  color: gender.error ? Colors.Error : Colors.OnBackground,
-                }}
-                value="female"
-                // position="leading"
-              />
-            </View>
-          </RadioButton.Group>
-        </View>
+        <RadioButton.Group
+          onValueChange={val => setgender({val, error: false})}
+          value={gender.val}>
+          <View style={styles.ViewRowInput}>
+            <RadioButton.Item
+              style={[styles.RadioButton]}
+              label={Locals.UserProfile.male}
+              labelStyle={{
+                color: gender.error ? Colors.Error : Colors.OnBackground,
+              }}
+              value="male"
+              mode="android"
+              position="leading"
+            />
+            <RadioButton.Item
+              style={styles.RadioButton}
+              label={Locals.UserProfile.female}
+              labelStyle={{
+                color: gender.error ? Colors.Error : Colors.OnBackground,
+              }}
+              value="female"
+              mode="android"
+              position="leading"
+            />
+          </View>
+        </RadioButton.Group>
 
         <Button
           onPress={() => setVisible(true)}

@@ -12,6 +12,8 @@ import {FlatList} from 'react-native-gesture-handler';
 import {useI18nContext} from '../../context/I18n/i18n.context';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
+import {useHeaderHeight} from '@react-navigation/elements';
+import {View} from 'react-native';
 
 const Home = () => {
   const {Lang} = useI18nContext() as I18nContextType;
@@ -25,6 +27,7 @@ const Home = () => {
 
   return (
     <Page paddingHorizontal={0}>
+      <View style={{height: useHeaderHeight()}} />
       <FlatList
         // ListHeaderComponent={<BannerLoading />}
         renderItem={({item, index}) => {
@@ -33,8 +36,7 @@ const Home = () => {
               data={item}
               index={index}
               navigate={() =>
-                navigate('Events', {
-                  screen: 'All Events',
+                navigate('All_Events', {
                   params: {
                     sectionId: item.id,
                     title: Lang === 'en' ? item.title_en : item.title,

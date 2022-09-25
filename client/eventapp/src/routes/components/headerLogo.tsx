@@ -9,7 +9,7 @@ const HeaderLogo = () => {
   return (
     <Svg width="50" height="40" viewBox="0 0 300 300">
       <Defs />
-      <Rect fill={Colors.Background} width="300" height="300" rx="70" />
+      <Rect fill="transparent" width="300" height="300" rx="70" />
       <G transform="translate(-597.908 -352.154)">
         <Path
           fill={isDarkMode ? Colors.OnBackground : Colors.Primary}

@@ -16,7 +16,7 @@ const myTheme = {
     Secondary: '#00af86',
     OnSecondary: '#FFFFFF',
     //
-    disabled: '#dddddd',
+    disabled: 'rgba(0,0,0,0.26)',
   },
   dark: {
     //
@@ -39,7 +39,7 @@ const myTheme = {
     Secondary: '#7dd1b7',
     OnSecondary: '#000000',
     //
-    disabled: '#dddddd',
+    disabled: 'rgba(255,255,255,0.3)',
   },
 };
 

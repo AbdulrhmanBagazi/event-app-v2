@@ -27,6 +27,8 @@ export const getOne_Users_TypeDefs = gql`
     nationalID: String
     dateOfBirth: String
     gender: String
+    whatsapp: String
+    phone: String
   }
 
   scalar DateTime

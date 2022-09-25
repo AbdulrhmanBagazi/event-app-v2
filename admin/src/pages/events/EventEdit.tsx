@@ -7,6 +7,7 @@ import {
   useRefresh,
   useGetOne,
   SelectInput,
+  TextInput,
 } from 'react-admin'
 import EventEditToolbar from './components/EventEditToolbar'
 import { useParams } from 'react-router-dom'
@@ -34,6 +35,7 @@ const EventEdit = () => {
     <Edit
       mutationMode="pessimistic"
       redirect="show"
+      sx={{ maxWidth: 600 }}
       // redirect={false}
       // actions={false}
       queryOptions={{
@@ -49,7 +51,12 @@ const EventEdit = () => {
       }}>
       <TabbedForm toolbar={<EventEditToolbar />}>
         <FormTab label="resources.Event.edittabs.edit">
-          <BooleanInput label="resources.Event.fields.published" source="published" />
+          <TextInput label="resources.Event.fields.title" source="title" fullWidth />
+          <TextInput label="resources.Event.fields.content" source="content" fullWidth />
+          <TextInput label="resources.Event.fields.title_en" source="title_en" fullWidth />
+          <TextInput label="resources.Event.fields.content_en" source="content_en" fullWidth />
+          <TextInput label="resources.Event.fields.image_url" source="image_url" fullWidth />
+          <TextInput label="resources.Event.fields.location_url" source="location_url" fullWidth />
           <SelectInput
             source="status"
             label="resources.Event.fields.status"
@@ -59,7 +66,9 @@ const EventEdit = () => {
               { id: 'COMPLETED', name: 'resources.Event.status.completed' },
             ]}
             optionText="name"
+            fullWidth
           />
+          <BooleanInput label="resources.Event.fields.published" source="published" fullWidth />
         </FormTab>
       </TabbedForm>
     </Edit>
