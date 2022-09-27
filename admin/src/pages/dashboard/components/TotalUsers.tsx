@@ -1,15 +1,16 @@
-import PersonIcon from '@mui/icons-material/Person'
 import { useTranslate } from 'react-admin'
 import CardWithIcon from './CardWithIcon'
 
 interface Props {
-  value?: string
+  value: number
+  title: string
+  icon: React.FC<any>
 }
 
 const TotalUsers = (props: Props) => {
-  const { value } = props
+  const { value, title, icon } = props
   const translate = useTranslate()
-  return <CardWithIcon icon={PersonIcon} title={translate('dashboard.total_users')} subtitle={value} />
+  return <CardWithIcon icon={icon} title={translate(`${title}`)} subtitle={value.toString()} />
 }
 
 export default TotalUsers

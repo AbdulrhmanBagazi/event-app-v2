@@ -32,7 +32,7 @@ export const Update_Events_Mutation = {
         status: args.data.status,
       },
       include: {
-        Section: true,
+        Location: true,
       },
     });
 

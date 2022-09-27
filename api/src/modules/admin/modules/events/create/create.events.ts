@@ -13,7 +13,7 @@ export const Create_Event_TypeDefs = gql`
 
   input create_Event {
     companyId: String
-    sectionId: String
+    locationId: String
     title: String
     content: String
     title_en: String
@@ -28,7 +28,7 @@ export const Create_Event_Mutation = {
     _parent,
     args: {
       data: {
-        sectionId: string;
+        locationId: string;
         companyId: string;
         title: string;
         content: string;
@@ -50,10 +50,10 @@ export const Create_Event_Mutation = {
           content_en: args.data.content_en,
           image_url: args.data.image_url,
           location_url: args.data.location_url,
-          sectionId: args.data.sectionId,
+          locationId: args.data.locationId,
         },
         include: {
-          Section: true,
+          Location: true,
         },
       });
 
@@ -68,5 +68,3 @@ export const Create_Event_Mutation = {
     }
   },
 };
-
-///$argon2id$v=19$m=4096,t=3,p=1$RfeKJNQue0vJxotiXA3b6w$OTi77qIgHAbbF4wNRZxXVw4l0D7rFLR37vNwa0RvuGI

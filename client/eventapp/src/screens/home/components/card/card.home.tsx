@@ -9,7 +9,11 @@ import {
 } from 'react-native-paper';
 import moment from 'moment';
 import {useThemeContext} from '../../../../context/theme/themeToggle.context';
-import {I18nContextType, ThemeContextType} from '../../../../typs';
+import {
+  I18nContextType,
+  RootStackParamList,
+  ThemeContextType,
+} from '../../../../typs';
 import {styles} from './styles.card.home';
 import Animated, {FadeIn} from 'react-native-reanimated';
 import {SCREEN_WIDTH} from '../../../../layout/screenDimensions';
@@ -17,6 +21,8 @@ import {Image, View} from 'react-native';
 import {useI18nContext} from '../../../../context/I18n/i18n.context';
 import {Events} from '../../../../graphql/generated';
 import Logo from './logo';
+import {useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
 
 const MyCard: React.FC<{
   changeWidth: boolean;
@@ -25,6 +31,7 @@ const MyCard: React.FC<{
 }> = ({changeWidth, data, index}) => {
   const {Colors, Theme, isDarkMode} = useThemeContext() as ThemeContextType;
   const {Lang, Locals} = useI18nContext() as I18nContextType;
+  const {navigate} = useNavigation<StackNavigationProp<RootStackParamList>>();
 
   return (
     <Animated.View
@@ -35,7 +42,17 @@ const MyCard: React.FC<{
       <Card
         // eslint-disable-next-line react-native/no-inline-styles
         style={[styles.cardContainer, {borderWidth: isDarkMode ? 0 : 1}]}
-        mode="outlined">
+        mode="outlined"
+        onPress={() =>
+          navigate('Event', {
+            params: {
+              id: data.id,
+              title: Lang === 'en' ? data.title_en : data.title,
+              image: data.image_url,
+              companyLogo: data.companyLogo,
+            },
+          })
+        }>
         <View
           style={[styles.MainCardView, {backgroundColor: Theme.dark.Surface}]}>
           <Card.Cover
@@ -68,7 +85,7 @@ const MyCard: React.FC<{
                     style={styles.Image}
                   />
                 ) : (
-                  <Logo />
+                  <Logo width={45} height={45} />
                 )
               }
             />

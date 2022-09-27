@@ -4,6 +4,7 @@ export const styles = StyleSheet.create({
   cardContainer: {
     marginHorizontal: 5,
     marginVertical: 5,
+    borderRadius: 2.5,
   },
   cardImage: {
     height: 195,
@@ -74,6 +75,6 @@ export const styles = StyleSheet.create({
     borderRadius: 2,
   },
   MainCardView: {
-    borderRadius: 1.25,
+    borderRadius: 2.5,
   },
 });

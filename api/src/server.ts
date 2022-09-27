@@ -143,6 +143,7 @@ const startApolloServer = async () => {
       origin: [CompaniesURL],
     },
   });
+
   Clientserver.applyMiddleware({
     app,
     // By default, apollo-server hosts its GraphQL endpoint at the

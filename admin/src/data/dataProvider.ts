@@ -388,6 +388,56 @@ export const dataProvider = {
       }
     })
   },
+  //custom
+  getData: (resource: string) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const request = () =>
+          client
+            .query({
+              query: gql`
+                  query {
+                      ${resource} {
+                          ${Fileds[resource]}
+                      }
+                  }`,
+            })
+            .then((result) => {
+              if (result.data) {
+                return {
+                  error: null,
+                  data: { data: result.data[`${resource}`] },
+                }
+              }
+              throw Error
+            })
+            .catch((e) => {
+              if (e.networkError) {
+                return {
+                  error: e?.networkError?.response?.status ? e?.networkError?.response.status : 500,
+                  data: null,
+                }
+              }
+
+              return { error: 400, data: null }
+            })
+
+        const { error, data } = await handleRequestGraphql(request)
+
+        if (error === 401) {
+          return reject(401)
+        }
+
+        if (error && !data) {
+          return reject(error)
+        }
+
+        return resolve(data)
+      } catch (error) {
+        return reject({ message: 'error' })
+      }
+    })
+  },
   //not tested or not needed
   // updateMany: (resource: any, params: { ids: any; data: any }) => {
   //   return client

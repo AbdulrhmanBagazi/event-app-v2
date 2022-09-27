@@ -1,0 +1,47 @@
+import React from 'react';
+import {useHeaderHeight} from '@react-navigation/elements';
+import {
+  NavigationProp,
+  RouteProp,
+  useNavigation,
+  useRoute,
+} from '@react-navigation/native';
+import {View} from 'react-native';
+import {Text} from 'react-native-paper';
+import {useThemeContext} from '../../context/theme/themeToggle.context';
+import Page from '../../layout/page';
+import {ParamList, RootStackParamList, ThemeContextType} from '../../typs';
+import {styles} from './styles.singleEvent';
+import {ScrollView} from 'react-native-gesture-handler';
+
+const SingleEvent = () => {
+  const {Colors} = useThemeContext() as ThemeContextType;
+  const {setOptions} = useNavigation<NavigationProp<RootStackParamList>>();
+  const route = useRoute<RouteProp<ParamList, 'Event'>>();
+  const getHeaderHeight = useHeaderHeight();
+
+  React.useEffect(() => {
+    return setOptions({
+      title: route.params.params.title,
+      headerTintColor: '#fff',
+      // headerBlurEffect: 'dark',
+    });
+  }, [route.params.params.companyLogo, route.params.params.title, setOptions]);
+
+  return (
+    <Page paddingHorizontal={0}>
+      <View style={{height: getHeaderHeight}} />
+      <ScrollView
+        stickyHeaderIndices={[0]}
+        style={[styles.Scroll, {backgroundColor: Colors.Background}]}>
+        <View style={styles.MainView}>
+          <View style={styles.TitleView}>
+            <Text>Title</Text>
+          </View>
+        </View>
+      </ScrollView>
+    </Page>
+  );
+};
+
+export default SingleEvent;

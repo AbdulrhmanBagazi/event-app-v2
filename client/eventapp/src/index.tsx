@@ -1,4 +1,4 @@
-import 'react-native-gesture-handler';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import * as React from 'react';
 import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
 import {navigationRef} from './App.RootNavigation';
@@ -24,7 +24,6 @@ import {
 } from './routes/routes';
 import HeaderLogo from './routes/components/headerLogo';
 import {Portal} from 'react-native-paper';
-import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
 const Main = createNativeStackNavigator();
 

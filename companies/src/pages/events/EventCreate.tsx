@@ -14,7 +14,7 @@ const EventCreate = () => {
   return (
     <Create redirect="show" sx={{ maxWidth: 600 }}>
       <SimpleForm>
-        <ReferenceInput source="sectionId" reference="Section" perPage={100}>
+        <ReferenceInput source="locationId" reference="Location" perPage={100}>
           <SelectInput validate={required()} optionText={locale === 'en' ? 'title_en' : 'title'} fullWidth />
         </ReferenceInput>
         <TextInput label="resources.Event.fields.title" source="title" validate={[required()]} fullWidth />

@@ -50,13 +50,10 @@ const EventShow = () => {
           {/* <Labeled label="resources.Event.fields.id">
             <TextField source="id" />
           </Labeled> */}
-          <Labeled label="resources.Event.fields.section">
+          <Labeled label="resources.Event.fields.location">
             <FunctionField
-              render={(record: any) => (locale === 'en' ? record.Section.title_en : record.Section.title)}
+              render={(record: any) => (locale === 'en' ? record.Location.title_en : record.Location.title)}
             />
-          </Labeled>
-          <Labeled label="resources.Event.fields.sectionstatus">
-            <SuspendedBooleanField source="Section.published" />
           </Labeled>
           <Labeled label="resources.Event.fields.createdAt">
             <DateField source="createdAt" />

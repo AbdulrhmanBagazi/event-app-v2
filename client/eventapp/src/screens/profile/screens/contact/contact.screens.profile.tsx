@@ -49,15 +49,33 @@ const Contact = () => {
   >(Contact_UserProfileDocument);
 
   const convertToArabicNumber = async (string: any) => {
-    return string.replace(/[٠١٢٣٤٥٦٧٨٩]/g, (d: string) => {
-      return d.charCodeAt(0) - 1632;
-    });
+    if (string) {
+      return string.replace(/[٠١٢٣٤٥٦٧٨٩]/g, (d: string) => {
+        return d.charCodeAt(0) - 1632;
+      });
+    }
+
+    return null;
   };
 
   const HandleLogin = async (values: {
     phone: string | undefined;
     whatsapp: string | undefined;
   }) => {
+    if (phone.val === null) {
+      return setphone({
+        ...phone,
+        error: true,
+      });
+    }
+
+    if (whatsapp.val === null) {
+      return setwhatsapp({
+        ...whatsapp,
+        error: true,
+      });
+    }
+
     UpdateLoading(true);
     const p = await convertToArabicNumber(values.phone);
     const w = await convertToArabicNumber(values.whatsapp);
@@ -136,12 +154,21 @@ const Contact = () => {
           onChangeText={val =>
             setphone({val, error: val.length < 10 || val.length > 10})
           }
+          onBlur={() =>
+            setphone({
+              ...phone,
+              error: phone.val
+                ? phone.val.length < 10 || phone.val.length > 10
+                : true,
+            })
+          }
           error={phone.error}
           activeOutlineColor={Colors.Secondary}
           editable={!loading}
           style={[styles.TextInput, {backgroundColor: Colors.Background}]}
           placeholder="05xxxxxxxx"
           keyboardType="number-pad"
+          // autoFocus
         />
 
         <TextInput
@@ -150,6 +177,14 @@ const Contact = () => {
           value={whatsapp.val}
           onChangeText={val =>
             setwhatsapp({val, error: val.length < 10 || val.length > 10})
+          }
+          onBlur={() =>
+            setwhatsapp({
+              ...whatsapp,
+              error: whatsapp.val
+                ? whatsapp.val.length < 10 || whatsapp.val.length > 10
+                : true,
+            })
           }
           error={whatsapp.error}
           activeOutlineColor={Colors.Secondary}

@@ -21,7 +21,7 @@ const Events = () => {
   return (
     <Page paddingHorizontal={0}>
       <View style={{height: useHeaderHeight()}} />
-      <MoreEvents sectionId={route.params.params.sectionId} />
+      <MoreEvents />
     </Page>
   );
 };

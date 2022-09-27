@@ -6,6 +6,6 @@ export const userDefInput = gql`
     verfied: Boolean
     suspended: Boolean
     published: Boolean
-    sectionId: String
+    locationId: String
   }
 `

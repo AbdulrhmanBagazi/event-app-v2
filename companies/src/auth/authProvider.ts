@@ -49,7 +49,7 @@ const authProvider: AuthProvider = {
   checkError: async (err) => {
     if (err === 401 || err === 403) {
       localStorage.removeItem('auth')
-      return Promise.reject()
+      return Promise.reject({ message: 'login.required' })
     }
     // other error code (404, 500, etc): no need to log out
     return Promise.resolve()

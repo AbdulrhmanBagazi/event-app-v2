@@ -64,11 +64,11 @@ const EventShow = () => {
               )}
             />
           </Labeled>
-          <Labeled label="resources.Event.fields.sectionId">
+          <Labeled label="resources.Event.fields.locationId">
             <WithRecord
               render={(record) => (
-                <Link to={createPath({ resource: 'section', type: 'show', id: record.sectionId })}>
-                  <TextField source="sectionId" />
+                <Link to={createPath({ resource: 'location', type: 'show', id: record.locationId })}>
+                  <TextField source="locationId" />
                 </Link>
               )}
             />

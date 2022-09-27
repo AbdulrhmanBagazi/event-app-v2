@@ -15,25 +15,30 @@ const companies: { [k: string]: string } = {
 
 const events: { [k: string]: string } = {
   Event_list:
-    'id published createdAt updatedAt companyId sectionId title content title_en content_en image_url location_url status Section {title title_en published}',
+    'id published createdAt updatedAt companyId locationId title content title_en content_en image_url location_url status Location {title title_en}',
   Event:
-    'id published createdAt updatedAt companyId sectionId title content title_en content_en image_url location_url status Section {title title_en published}',
+    'id published createdAt updatedAt companyId locationId title content title_en content_en image_url location_url status Location {title title_en}',
   update_Event: 'published status title content title_en content_en image_url location_url',
 }
 
-const sections: { [k: string]: string } = {
-  Section_list: 'id published  title  title_en createdAt updatedAt',
-  Section: 'id published  title  title_en createdAt updatedAt',
-  update_Section: 'published',
-  SectionEvents:
-    'id published createdAt updatedAt companyId title content title_en content_en image_url location_url status',
+const location: { [k: string]: string } = {
+  Location_list: 'id title title_en createdAt updatedAt',
+  Location: 'id title title_en createdAt updatedAt',
+  update_Location: 'title title_en',
+  LocationEvents:
+    'id createdAt updatedAt companyId title content title_en content_en image_url location_url status',
+}
+
+const dashboard: { [k: string]: string } = {
+  DashboardData: 'Users_count Companies_count Events_count Locations_count',
 }
 
 const Fileds: { [k: string]: string } = {
   ...users,
   ...companies,
   ...events,
-  ...sections,
+  ...location,
+  ...dashboard,
 }
 
 export default Fileds

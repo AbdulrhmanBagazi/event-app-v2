@@ -9,20 +9,24 @@ import {
 import MyCard from '../../../home/components/card/card.home';
 import {FlatList} from 'react-native-gesture-handler';
 import {styles} from './styles.moreEvents';
+import Loading from '../../../../layout/loading';
 
-const MoreEvents: React.FC<{sectionId: string}> = ({sectionId}) => {
-  const {data} = useQuery<Events_ListQuery, Events_ListQueryVariables>(
+const MoreEvents: React.FC<{}> = ({}) => {
+  const {data, loading} = useQuery<Events_ListQuery, Events_ListQueryVariables>(
     Events_ListDocument,
     {
       variables: {
         page: 0,
         perPage: 50,
         sortOrder: Order.Desc,
-        sectionId: sectionId,
       },
       context: {clientName: 'public_client'},
     },
   );
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <FlatList

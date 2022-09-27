@@ -43,6 +43,8 @@ export const ErrorProvider = ({
         visible={visible}
         onDismiss={onDismissSnackBar}
         duration={1500}
+        // eslint-disable-next-line react-native/no-inline-styles
+        style={{marginBottom: 20}}
         // action={{
         //   label: 'X',
         //   onPress: () => setVisible(false),

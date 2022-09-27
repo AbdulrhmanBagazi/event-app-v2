@@ -25,10 +25,10 @@ const CardWithIcon = (props: Props) => {
         <Box width="3em" className="icon">
           {createElement(icon, { fontSize: 'large' })}
         </Box>
-        <Box textAlign="right">
+        <Box textAlign="left">
           <Typography color="textSecondary">{title}</Typography>
-          <Typography variant="h5" component="h2">
-            {subtitle || ' '}
+          <Typography variant="h5" component="h1">
+            {subtitle || ''}
           </Typography>
         </Box>
       </Box>

@@ -1,5 +1,6 @@
-import {en, registerTranslation} from 'react-native-paper-dates';
+import 'react-native-gesture-handler';
 import * as React from 'react';
+import {en, registerTranslation} from 'react-native-paper-dates';
 import {AppRegistry, Platform} from 'react-native';
 import Index from './src';
 import {ThemeProvider} from './src/context/theme/themeToggle.context';
@@ -12,7 +13,9 @@ import Client from './src/api/apollo';
 import OneSignal from 'react-native-onesignal';
 import {oneSignal} from './src/context/notifications/config';
 import {NotificationProvider} from './src/context/notifications/notification.context';
-var countries = require('i18n-iso-countries');
+import countries from 'i18n-iso-countries';
+// import { firebase } from '@react-native-firebase/analytics';
+// await firebase.analytics().setAnalyticsCollectionEnabled(true);
 
 const name = Platform.OS === 'ios' ? 'eventapp' : 'events';
 

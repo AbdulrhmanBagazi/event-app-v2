@@ -6,7 +6,7 @@ const customEnglishMessages: TranslationMessages = {
   Users: 'Users',
   Companies: 'Companies',
   Events: 'Events',
-  Section: 'Sections',
+  Location: 'Locations',
   'User Get': 'User',
   Dashboard: 'Dashboard',
   error: 'error!',
@@ -88,7 +88,7 @@ const customEnglishMessages: TranslationMessages = {
         title: 'title',
         content: 'content',
         title_en: 'title',
-        section_title: 'Section ',
+        location_title: 'Location',
         content_en: 'content',
         image_url: 'image_url',
         location_url: 'location_url',
@@ -130,12 +130,12 @@ const customEnglishMessages: TranslationMessages = {
         content: 'content',
         title_en: 'title',
         content_en: 'content',
-        section_title: 'Section ',
+        location_title: 'Location',
         image_url: 'image_url',
         location_url: 'location_url',
         status: 'status',
         SelectCompany: 'Select Company',
-        sectionId: 'section Id',
+        locationId: 'Location Id',
       },
       status: {
         soon: 'soon',
@@ -144,8 +144,8 @@ const customEnglishMessages: TranslationMessages = {
       },
     },
 
-    Section: {
-      name: 'Sections |||| Section',
+    Location: {
+      name: 'Locations |||| Location',
       showtabs: {
         show: 'Details',
         edit: 'Edit',

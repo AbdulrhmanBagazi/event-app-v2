@@ -2,21 +2,13 @@ type ParamList = {
   Events: {
     params: {sectionId: string; title: string};
   };
+  Event: {
+    params: {id: string; title: string; image: string; companyLogo: string};
+  };
 };
 
 export type RootStackParamList = {
   Home: undefined;
-  // Events: {
-  //   screen: 'All Events';
-  // params: {
-  //   sectionId: string;
-  //   title: string;
-  // };
-  // };
-  // Account: {
-  //   screen: 'UserProfile' | 'Earnings' | 'ChangePassword' | 'Contact';
-  // };
-  // AuthStack: {};
   Signin: undefined;
   Signup: undefined;
   UserProfile: undefined;
@@ -27,6 +19,14 @@ export type RootStackParamList = {
     params: {
       sectionId: string;
       title: string;
+    };
+  };
+  Event: {
+    params: {
+      id: string;
+      title: string;
+      image: string;
+      companyLogo: string;
     };
   };
 };

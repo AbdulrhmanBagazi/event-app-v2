@@ -9,6 +9,7 @@ import UserProfile from '../screens/profile/screens/userProfile/userProfile.scre
 import Earnings from '../screens/profile/screens/earnings/earnings.screen.profile';
 import ChangePassword from '../screens/profile/screens/changePassword/changePassword.screens.profile';
 import Contact from '../screens/profile/screens/contact/contact.screens.profile';
+import SingleEvent from '../screens/singleEvent/singleEvent.screens';
 
 const ProfileScreens: RoutesType[] = [
   {
@@ -33,6 +34,10 @@ const EventsScreens: RoutesType[] = [
   {
     name: 'All_Events',
     component: Events,
+  },
+  {
+    name: 'Event',
+    component: SingleEvent,
   },
 ];
 

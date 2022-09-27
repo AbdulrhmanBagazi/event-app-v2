@@ -1,7 +1,7 @@
 export type eventFilterType = {
   published: boolean;
   status: EventStatus;
-  sectionId: string;
+  locationId: string;
 };
 
 export type eventType = {
@@ -10,7 +10,7 @@ export type eventType = {
   createdAt: DateTime;
   updatedAt: DateTime;
   companyId: string;
-  sectionId: string;
+  locationId: string;
   title: string;
   content: string;
   title_en: string;

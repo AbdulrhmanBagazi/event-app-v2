@@ -6,7 +6,7 @@ export type eventType = {
   createdAt: DateTime;
   updatedAt: DateTime;
   companyId: string;
-  sectionId: string;
+  locationId: string;
   title: string;
   content: string;
   title_en: string;

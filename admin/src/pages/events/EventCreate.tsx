@@ -17,7 +17,7 @@ const EventCreate = () => {
         <ReferenceInput source="companyId" reference="Companies">
           <SelectInput validate={required()} fullWidth />
         </ReferenceInput>
-        <ReferenceInput source="sectionId" reference="Section">
+        <ReferenceInput source="locationId" reference="Location">
           <SelectInput validate={required()} optionText={locale === 'en' ? 'title_en' : 'title'} fullWidth />
         </ReferenceInput>
         <TextInput label="resources.Event.fields.title" source="title" validate={[required()]} fullWidth />

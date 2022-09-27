@@ -11,10 +11,10 @@ const EventListFilters = (val: string) => [
     ]}
     optionText="name"
   />,
-  <ReferenceInput source="sectionId" reference="Section" label="resources.Event.fields.section_title">
+  <ReferenceInput source="locationId" reference="Location" label="resources.Event.fields.location_title">
     <SelectInput
       optionText={val === 'en' ? 'title_en' : 'title'}
-      label="resources.Event.fields.section_title"
+      label="resources.Event.fields.location_title"
       fullWidth
     />
   </ReferenceInput>,

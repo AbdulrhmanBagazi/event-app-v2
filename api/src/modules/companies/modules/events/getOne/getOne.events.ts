@@ -15,7 +15,7 @@ export const getOne_Events_Query = {
         companyId: context.req.user.id,
       },
       include: {
-        Section: true,
+        Location: true,
       },
     });
   },

@@ -6,7 +6,7 @@ import { MyLayout } from './layout/layout'
 import User from './pages/users'
 import Comapnies from './pages/companies'
 import Events from './pages/events'
-import Section from './pages/sections'
+import Location from './pages/locations'
 import authProvider from './auth/authProvider'
 import i18nProvider from './I18n/i18nProvider'
 import { dataProvider } from './data/dataProvider'
@@ -54,7 +54,12 @@ export default function App() {
         {...Comapnies}
       />
       <Resource options={{ label: translate('Events') }} name="Event" icon={<Festival />} {...Events} />
-      <Resource options={{ label: translate('Section') }} name="Section" icon={<LocationOn />} {...Section} />
+      <Resource
+        options={{ label: translate('Location') }}
+        name="Location"
+        icon={<LocationOn />}
+        {...Location}
+      />
       <CustomRoutes>
         <Route path="/configuration" element={<Configuration />} />
         <Route path="/error" element={<MyError />} />

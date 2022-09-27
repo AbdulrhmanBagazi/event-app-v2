@@ -6,7 +6,7 @@ const customArabicMessages: TranslationMessages = {
   Users: 'المستخدمين',
   Companies: 'الشركات',
   Events: 'الفعاليات',
-  Section: 'الآقسام',
+  Location: 'المواقع',
   'User Get': 'المستخدم',
   Dashboard: 'لوحة الإحصائيات',
   error: 'حدث خطآ!',
@@ -88,7 +88,7 @@ const customArabicMessages: TranslationMessages = {
         content: 'المحتوى',
         title_en: 'العنوان (إنجليزي)',
         content_en: 'المحتوى (إنجليزي)',
-        section_title: 'القسم',
+        location_title: 'الموقع',
         image_url: 'رابط الصورة',
         location_url: 'رابط الموقع',
         status: 'الحالة',
@@ -130,12 +130,12 @@ const customArabicMessages: TranslationMessages = {
         content: 'المحتوى',
         title_en: 'العنوان (إنجليزي)',
         content_en: 'المحتوى (إنجليزي)',
-        section_title: 'القسم',
+        location_title: 'الموقع',
         image_url: 'رابط الصورة',
         location_url: 'رابط الموقع',
         status: 'الحالة',
         SelectCompany: 'قم بإختيار الشركة',
-        sectionId: 'معرف القسم',
+        locationId: 'معرف القسم',
       },
       status: {
         soon: 'قريبا',
@@ -143,8 +143,8 @@ const customArabicMessages: TranslationMessages = {
         completed: 'مكتمل',
       },
     },
-    Section: {
-      name: 'الآقسام |||| قسم',
+    Location: {
+      name: 'المواقع |||| الموقع',
       showtabs: {
         show: 'التفاصيل',
         edit: 'تعديل',

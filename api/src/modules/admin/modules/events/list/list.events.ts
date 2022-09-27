@@ -15,7 +15,7 @@ export const list_Events_TypeDefs = gql`
   input Filters {
     published: Boolean
     status: EventStatus
-    sectionId: String
+    locationId: String
   }
 
   type Event {
@@ -24,7 +24,7 @@ export const list_Events_TypeDefs = gql`
     createdAt: DateTime
     updatedAt: DateTime
     companyId: String
-    sectionId: String
+    locationId: String
     title: String
     content: String
     title_en: String
@@ -32,10 +32,10 @@ export const list_Events_TypeDefs = gql`
     image_url: String
     location_url: String
     status: EventStatus
-    Section: Section
+    Location: Location
   }
 
-  type Section {
+  type Location {
     title: String
     title_en: String
     published: Boolean
@@ -68,10 +68,10 @@ export const list_Events_Query = {
       where: {
         published: args.filter?.published,
         status: args.filter?.status,
-        sectionId: args.filter?.sectionId,
+        locationId: args.filter?.locationId,
       },
       include: {
-        Section: true,
+        Location: true,
       },
     });
     // throw Error;
@@ -82,7 +82,7 @@ export const list_Events_Query = {
       where: {
         published: args.filter?.published,
         status: args.filter?.status,
-        sectionId: args.filter?.sectionId,
+        locationId: args.filter?.locationId,
       },
       _count: {
         id: true,

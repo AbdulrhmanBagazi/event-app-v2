@@ -14,7 +14,7 @@ export const getOne_Events_Query = {
         id: args.id,
       },
       include: {
-        Section: true,
+        Location: true,
       },
     });
   },
