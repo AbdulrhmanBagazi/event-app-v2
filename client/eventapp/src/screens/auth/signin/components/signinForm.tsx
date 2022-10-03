@@ -6,18 +6,18 @@ import {
   ThemeContextType,
 } from '../../../../typs';
 import {Button, TextInput} from 'react-native-paper';
-import {useAuth} from '../../../../context/auth/auth.context';
+import {UseAuth} from '../../../../context/auth/auth.context';
 import {styles} from './styles.signinForm';
-import {useThemeContext} from '../../../../context/theme/themeToggle.context';
+import {UseThemeContext} from '../../../../context/theme/themeToggle.context';
 import {View} from 'react-native';
-import {useError} from '../../../../context/error/error.context';
-import {useI18nContext} from '../../../../context/I18n/i18n.context';
+import {UseError} from '../../../../context/error/error.context';
+import {UseI18nContext} from '../../../../context/I18n/i18n.context';
 
 const SigninForm = () => {
-  const {authLoading, SignIn} = useAuth() as AuthenticatedTypes;
-  const {Colors} = useThemeContext() as ThemeContextType;
-  const {ThrowError} = useError() as ErrorContextType;
-  const {Locals} = useI18nContext() as I18nContextType;
+  const {authLoading, SignIn} = UseAuth() as AuthenticatedTypes;
+  const {Colors} = UseThemeContext() as ThemeContextType;
+  const {ThrowError} = UseError() as ErrorContextType;
+  const {Locals} = UseI18nContext() as I18nContextType;
   const [secure, setSecure] = useState(true);
   const [isEmail, setEmail] = useState('');
   const [isPassword, setPassword] = useState('');

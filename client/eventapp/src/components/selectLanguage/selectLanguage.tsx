@@ -1,15 +1,15 @@
 import React from 'react';
 import {styles} from './styles.selectLanguage';
-import {useThemeContext} from '../../context/theme/themeToggle.context';
+import {UseThemeContext} from '../../context/theme/themeToggle.context';
 import {I18nContextType, ThemeContextType} from '../../typs';
 import {View} from 'react-native';
 import CustomText from '../customText/customText';
 import {Checkbox} from 'react-native-paper';
-import {useI18nContext} from '../../context/I18n/i18n.context';
+import {UseI18nContext} from '../../context/I18n/i18n.context';
 
 const SelectLanguage: React.FC = () => {
-  const {Colors} = useThemeContext() as ThemeContextType;
-  const {ToggleI18n, Lang} = useI18nContext() as I18nContextType;
+  const {Colors} = UseThemeContext() as ThemeContextType;
+  const {ToggleI18n, Lang} = UseI18nContext() as I18nContextType;
 
   return (
     <View style={styles.container}>
@@ -19,7 +19,7 @@ const SelectLanguage: React.FC = () => {
           status={Lang === 'en' ? 'checked' : 'unchecked'}
           uncheckedColor="gray"
           color={Colors.Secondary}
-          onPress={() => ToggleI18n('en')}
+          onPress={() => ToggleI18n('en', false)}
         />
       </View>
 
@@ -29,7 +29,7 @@ const SelectLanguage: React.FC = () => {
           status={Lang === 'ar' ? 'checked' : 'unchecked'}
           uncheckedColor="gray"
           color={Colors.Secondary}
-          onPress={() => ToggleI18n('ar')}
+          onPress={() => ToggleI18n('ar', false)}
         />
       </View>
     </View>

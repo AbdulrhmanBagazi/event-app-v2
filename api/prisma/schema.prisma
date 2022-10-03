@@ -51,39 +51,38 @@ model Admin {
 }
 
 model Companies {
-  id        String   @id @default(uuid()) @db.Uuid
-  email     String   @unique
-  contact   String
-  name      String
-  logo_url  String?
-  password  String
-  suspended Boolean  @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  Post      Events[]
+  id         String       @id @default(uuid()) @db.Uuid
+  email      String       @unique
+  contact    String
+  name       String
+  logo_url   String?
+  password   String
+  suspended  Boolean      @default(false)
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  Post       Events[]
+  Event_Jobs Event_Jobs[]
 }
 
 model Events {
-  id           String       @id @default(uuid()) @db.Uuid
-  published    Boolean      @default(false)
-  createdAt    DateTime     @default(now())
-  updatedAt    DateTime     @updatedAt
-  company      Companies    @relation(fields: [companyId], references: [id])
-  companyId    String       @db.Uuid
-  //ar
-  title        String
-  content      String
-  //en
-  title_en     String
-  content_en   String
-  //
-  image_url    String
-  location_url String
-  status       EventStatus  @default(SOON)
-  Event_Jobs   Event_Jobs[]
-  //
-  Location     Location     @relation(fields: [locationId], references: [id])
-  locationId   String       @db.Uuid
+  id            String       @id @default(uuid()) @db.Uuid
+  published     Boolean      @default(false)
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  company       Companies    @relation(fields: [companyId], references: [id])
+  companyId     String       @db.Uuid
+  title         String
+  content       String
+  title_en      String
+  content_en    String
+  image_url     String?
+  location_url  String
+  status        EventStatus  @default(SOON)
+  Event_Jobs    Event_Jobs[]
+  Location      Location     @relation(fields: [locationId], references: [id])
+  locationId    String       @db.Uuid
+  App_section   App_section? @relation(fields: [app_sectionId], references: [id])
+  app_sectionId String?      @db.Uuid
 }
 
 enum EventStatus {
@@ -96,16 +95,15 @@ model Event_Jobs {
   id        String           @id @default(uuid()) @db.Uuid
   createdAt DateTime         @default(now())
   updatedAt DateTime         @updatedAt
-  Event     Events           @relation(fields: [EventId], references: [id])
-  EventId   String           @db.Uuid
-  //ar
   title     String
-  //en
   title_en  String
-  //
-  Status    Event_JobsStatus
+  status    Event_JobsStatus
   rate      Int
   rate_type Rate_type        @default(DAY)
+  Event     Events           @relation(fields: [eventId], references: [id])
+  eventId   String           @db.Uuid
+  company   Companies        @relation(fields: [companyId], references: [id])
+  companyId String           @db.Uuid
 }
 
 enum Event_JobsStatus {
@@ -114,7 +112,7 @@ enum Event_JobsStatus {
 }
 
 enum Rate_type {
-  HOURLY
+  MONTHLY
   DAY
 }
 
@@ -124,6 +122,16 @@ model Location {
   updatedAt DateTime @updatedAt
   title     String
   title_en  String
+  Events    Events[]
+}
+
+model App_section {
+  id        String   @id @default(uuid()) @db.Uuid
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  title     String
+  title_en  String
+  published Boolean  @default(false)
   Events    Events[]
 }
 

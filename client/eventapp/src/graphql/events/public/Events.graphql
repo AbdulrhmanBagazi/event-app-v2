@@ -1,5 +1,15 @@
-query Events_list($page: Int, $sortOrder: Order, $perPage: Int) {
-  Events_list(page: $page, sortOrder: $sortOrder, perPage: $perPage) {
+query Events_list(
+  $page: Int
+  $sortOrder: Order
+  $perPage: Int
+  $app_sectionId: String!
+) {
+  Events_list(
+    page: $page
+    sortOrder: $sortOrder
+    perPage: $perPage
+    app_sectionId: $app_sectionId
+  ) {
     id
     published
     createdAt
@@ -14,8 +24,34 @@ query Events_list($page: Int, $sortOrder: Order, $perPage: Int) {
     status
     companyLogo
     locationId
+    app_sectionId
+    Location {
+      title
+      title_en
+    }
+    Event_Jobs {
+      id
+      title
+      title_en
+      status
+      rate
+      rate_type
+      eventId
+    }
   }
   Events_list_meta {
     total
+  }
+}
+
+query app_section_list {
+  app_section_list {
+    id
+    title
+    title_en
+    createdAt
+    updatedAt
+    published
+    count
   }
 }

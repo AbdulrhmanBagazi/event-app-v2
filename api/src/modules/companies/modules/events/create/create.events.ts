@@ -17,7 +17,6 @@ export const Create_Event_TypeDefs = gql`
     content: String
     title_en: String
     content_en: String
-    image_url: String
     location_url: String
   }
 `;
@@ -31,7 +30,6 @@ export const Create_Event_Mutation = {
         content: string;
         title_en: string;
         content_en: string;
-        image_url: string;
         location_url: string;
         locationId: string;
       };
@@ -46,7 +44,6 @@ export const Create_Event_Mutation = {
           content: args.data.content,
           title_en: args.data.title_en,
           content_en: args.data.content_en,
-          image_url: args.data.image_url,
           location_url: args.data.location_url,
           locationId: args.data.locationId,
         },

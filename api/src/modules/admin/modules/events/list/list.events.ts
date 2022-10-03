@@ -14,8 +14,16 @@ export const list_Events_TypeDefs = gql`
 
   input Filters {
     published: Boolean
-    status: EventStatus
+    status: status
     locationId: String
+  }
+
+  enum status {
+    SOON
+    ACTIVE
+    COMPLETED
+    OPEN
+    CLOSED
   }
 
   type Event {
@@ -25,6 +33,7 @@ export const list_Events_TypeDefs = gql`
     updatedAt: DateTime
     companyId: String
     locationId: String
+    app_sectionId: String
     title: String
     content: String
     title_en: String
@@ -33,12 +42,17 @@ export const list_Events_TypeDefs = gql`
     location_url: String
     status: EventStatus
     Location: Location
+    App_section: App_section
   }
 
   type Location {
     title: String
     title_en: String
-    published: Boolean
+  }
+
+  type App_section {
+    title: String
+    title_en: String
   }
 
   enum EventStatus {
@@ -72,6 +86,7 @@ export const list_Events_Query = {
       },
       include: {
         Location: true,
+        App_section: true,
       },
     });
     // throw Error;

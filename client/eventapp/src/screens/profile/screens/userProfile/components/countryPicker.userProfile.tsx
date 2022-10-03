@@ -6,7 +6,7 @@ import {
   TranslationLanguageCode,
 } from '../../../../../typs';
 import CountryPicker, {DARK_THEME} from 'react-native-country-picker-modal';
-import {useThemeContext} from '../../../../../context/theme/themeToggle.context';
+import {UseThemeContext} from '../../../../../context/theme/themeToggle.context';
 
 const styles = StyleSheet.create({
   container: {
@@ -43,7 +43,7 @@ const ModalCountry: React.FC<{
   countryCode: CountryCode;
   Lang: TranslationLanguageCode;
 }> = ({open, countryCode, onSelect, onClose, Lang}) => {
-  const {Colors, isDarkMode} = useThemeContext() as ThemeContextType;
+  const {Colors, isDarkMode} = UseThemeContext() as ThemeContextType;
 
   const DarkMode = {
     ...DARK_THEME,

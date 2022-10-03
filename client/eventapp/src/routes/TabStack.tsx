@@ -1,28 +1,21 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {TabScreens} from './routes';
-import {
-  AuthenticatedTypes,
-  I18nContextType,
-  RoutesType,
-  ThemeContextType,
-} from '../typs';
-import {useI18nContext} from '../context/I18n/i18n.context';
-import {useThemeContext} from '../context/theme/themeToggle.context';
+import {AuthenticatedTypes, RoutesType, ThemeContextType} from '../typs';
+import {UseThemeContext} from '../context/theme/themeToggle.context';
 import {IconButton} from 'react-native-paper';
-import {useAuth} from '../context/auth/auth.context';
+import {UseAuth} from '../context/auth/auth.context';
 
 const Tab = createBottomTabNavigator();
 const TabStack = () => {
-  const {Colors} = useThemeContext() as ThemeContextType;
-  const {Locals} = useI18nContext() as I18nContextType;
-  const {isAuthenticated} = useAuth() as AuthenticatedTypes;
+  const {Colors, isDarkMode} = UseThemeContext() as ThemeContextType;
+  const {isAuthenticated} = UseAuth() as AuthenticatedTypes;
 
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
         tabBarStyle: {
-          backgroundColor: Colors.Surface,
+          backgroundColor: isDarkMode ? Colors.Surface : Colors.Background,
           width: '100%',
           borderTopWidth: 0,
         },
@@ -30,8 +23,8 @@ const TabStack = () => {
         tabBarActiveTintColor: Colors.Primary,
         tabBarShowLabel: false,
         tabBarIcon: ({color, size}) => {
-          let iconName = 'folder';
-          if (route.name === 'Main') {
+          let iconName = '';
+          if (route.name === 'Home') {
             iconName = 'home';
           } else if (route.name === 'Profile' && isAuthenticated) {
             iconName = 'account';
@@ -45,9 +38,7 @@ const TabStack = () => {
         },
       })}>
       {TabScreens.map((route: RoutesType, i: number) => (
-        <Tab.Screen name={route.name} key={i}>
-          {props => <route.component {...props} i18n={Locals} />}
-        </Tab.Screen>
+        <Tab.Screen name={route.name} key={i} component={route.component} />
       ))}
     </Tab.Navigator>
   );

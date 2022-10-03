@@ -1,14 +1,17 @@
+import {Component} from 'react';
+import {Events} from './graphql/generated';
+
 type ParamList = {
   Events: {
-    params: {sectionId: string; title: string};
+    params: {app_sectionId: string; title: string};
   };
   Event: {
-    params: {id: string; title: string; image: string; companyLogo: string};
+    params: Events;
   };
 };
 
 export type RootStackParamList = {
-  Home: undefined;
+  Main: undefined;
   Signin: undefined;
   Signup: undefined;
   UserProfile: undefined;
@@ -17,34 +20,27 @@ export type RootStackParamList = {
   Contact: undefined;
   All_Events: {
     params: {
-      sectionId: string;
+      app_sectionId: string;
       title: string;
     };
   };
   Event: {
-    params: {
-      id: string;
-      title: string;
-      image: string;
-      companyLogo: string;
-    };
+    params: Events;
   };
+  Language: undefined;
 };
 
 //routes.tsx
 export type RoutesType = {
   name: string;
-  component: React.Element;
-  initialParams?: {
-    currentTab: string;
-  };
+  component: React.Element<Component>;
 };
 
 //I18n.context.tsx
 type Languges = 'ar' | 'en';
 
 export type I18nContextType = {
-  ToggleI18n: (lang: Languges) => void;
+  ToggleI18n: (lang: Languges, firstTime: boolean) => void;
   Locals: array;
   Lang: string;
 };

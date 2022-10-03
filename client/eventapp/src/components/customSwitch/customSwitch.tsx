@@ -1,7 +1,7 @@
 import React from 'react';
 import {ActivityIndicator, Switch, View} from 'react-native';
 import CustomText from '../customText/customText';
-import {useThemeContext} from '../../context/theme/themeToggle.context';
+import {UseThemeContext} from '../../context/theme/themeToggle.context';
 import {ThemeContextType} from '../../typs';
 import {styles} from './styles.customSwitch';
 
@@ -11,7 +11,7 @@ const CustomSwitch: React.FC<{
   text: string;
   Loading?: boolean;
 }> = ({value, onPress, text, Loading}) => {
-  const {Colors} = useThemeContext() as ThemeContextType;
+  const {Colors} = UseThemeContext() as ThemeContextType;
   return (
     <View style={styles.switchContainer}>
       <CustomText text={text} fontWeight="normal" Color="OnSurface" />

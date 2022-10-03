@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button} from 'react-native-paper';
-import {useThemeContext} from '../../context/theme/themeToggle.context';
+import {UseThemeContext} from '../../context/theme/themeToggle.context';
 import {ThemeContextType} from '../../typs';
 import {styles} from './styles.customButton';
 
@@ -9,7 +9,7 @@ const CustomButton: React.FC<{
   onPress: () => void;
   disabled?: boolean;
 }> = ({text, onPress, disabled}) => {
-  const {Colors} = useThemeContext() as ThemeContextType;
+  const {Colors} = UseThemeContext() as ThemeContextType;
 
   return (
     <Button

@@ -11,7 +11,7 @@ import {SCREEN_WIDTH} from '../../../../layout/screenDimensions';
 import {FlatList} from 'react-native-gesture-handler';
 import {styles} from './styles.FlatlistData';
 
-const FlatListData: React.FC<{sectionId: string}> = ({sectionId}) => {
+const FlatListData: React.FC<{app_sectionId: string}> = ({app_sectionId}) => {
   const {data} = useQuery<Events_ListQuery, Events_ListQueryVariables>(
     Events_ListDocument,
     {
@@ -19,7 +19,7 @@ const FlatListData: React.FC<{sectionId: string}> = ({sectionId}) => {
         page: 0,
         perPage: 2,
         sortOrder: Order.Desc,
-        sectionId: sectionId,
+        app_sectionId,
       },
       context: {clientName: 'public_client'},
     },

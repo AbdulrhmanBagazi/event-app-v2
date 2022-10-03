@@ -4,6 +4,8 @@ const events: { [k: string]: string } = {
   Event:
     'id published createdAt updatedAt title content title_en content_en image_url location_url status Location {title title_en}',
   update_Event: 'status',
+  eventjobEvents:
+    'id createdAt updatedAt title title_en status rate rate_type eventId Event {id title title_en}',
 }
 
 const Location: { [k: string]: string } = {
@@ -16,10 +18,19 @@ const dashboard: { [k: string]: string } = {
   DashboardData: 'Events_count',
 }
 
+const eventjob: { [k: string]: string } = {
+  eventjob_list:
+    'id createdAt updatedAt title title_en status rate rate_type eventId Event {id title title_en}',
+  eventjob: 'id createdAt updatedAt title title_en status rate rate_type eventId Event {id title title_en}',
+  update_eventjob: 'title title_en status rate rate_type',
+  create_eventjob: 'title title_en status rate rate_type eventId',
+}
+
 const Fileds: { [k: string]: string } = {
   ...events,
   ...Location,
   ...dashboard,
+  ...eventjob,
 }
 
 export default Fileds

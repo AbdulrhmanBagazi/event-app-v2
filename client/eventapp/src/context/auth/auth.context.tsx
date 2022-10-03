@@ -16,7 +16,6 @@ import {
   UserProfileType,
   UserTypes,
 } from '../../typs';
-import RNBootSplash from 'react-native-bootsplash';
 import OneSignal from 'react-native-onesignal';
 import {Platform} from 'react-native';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
@@ -54,8 +53,6 @@ export const AuthProvider = ({
     setLoading(true);
     const [error, data] = await fetcher('/authentication');
 
-    RNBootSplash.hide({fade: true});
-
     if (error && !data) {
       // addError(error)
       setAuth(false);
@@ -80,17 +77,15 @@ export const AuthProvider = ({
     setAuth(true);
     setLoading(false);
 
-    setTimeout(() => {
-      // promptForPushNotificationsWithUserResponse will show the native iOS or Android notification permission prompt.
-      // We recommend removing the following code and instead using an In-App Message to prompt for notification permission (See step 7)
-      if (Platform.OS === 'ios') {
-        OneSignal.promptForPushNotificationsWithUserResponse(response => {
-          if (!response) {
-            OneSignal.disablePush(true);
-          }
-        });
-      }
-    }, 1000);
+    // promptForPushNotificationsWithUserResponse will show the native iOS or Android notification permission prompt.
+    // We recommend removing the following code and instead using an In-App Message to prompt for notification permission (See step 7)
+    if (Platform.OS === 'ios') {
+      OneSignal.promptForPushNotificationsWithUserResponse(response => {
+        if (!response) {
+          OneSignal.disablePush(true);
+        }
+      });
+    }
 
     return;
   };
@@ -270,4 +265,4 @@ export const AuthProvider = ({
   );
 };
 
-export const useAuth = () => useContext<AuthContextType>(AuthContext);
+export const UseAuth = () => useContext<AuthContextType>(AuthContext);

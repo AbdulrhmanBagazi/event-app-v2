@@ -7,7 +7,7 @@ import {Button, Text} from 'react-native-paper';
 import {Image} from 'react-native';
 import {styles} from './styles.MyGoogleButton';
 import {AuthenticatedTypes} from '../../typs';
-import {useAuth} from '../../context/auth/auth.context';
+import {UseAuth} from '../../context/auth/auth.context';
 
 GoogleSignin.configure({
   webClientId:
@@ -18,7 +18,7 @@ GoogleSignin.configure({
 });
 
 const MGoogleButton: React.FC<{text: String}> = ({text}) => {
-  const {authLoading, GoogleSignIn} = useAuth() as AuthenticatedTypes;
+  const {authLoading, GoogleSignIn} = UseAuth() as AuthenticatedTypes;
 
   const Sign = async () => {
     try {

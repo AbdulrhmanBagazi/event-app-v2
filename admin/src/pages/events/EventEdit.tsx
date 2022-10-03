@@ -8,12 +8,16 @@ import {
   useGetOne,
   SelectInput,
   TextInput,
+  ReferenceInput,
+  useLocaleState,
+  required,
 } from 'react-admin'
 import EventEditToolbar from './components/EventEditToolbar'
 import { useParams } from 'react-router-dom'
 import MyError from '../../layout/MyError'
 
 const EventEdit = () => {
+  const [locale] = useLocaleState()
   const { id } = useParams()
   const { data, isLoading } = useGetOne(
     'Event',
@@ -36,21 +40,30 @@ const EventEdit = () => {
       mutationMode="pessimistic"
       redirect="show"
       sx={{ maxWidth: 600 }}
-      // redirect={false}
-      // actions={false}
       queryOptions={{
         onError: (err) => {
           return null
         },
-        // useErrorBoundary: (err) => {
-        //   return true
-        // },
         refetchOnReconnect: true,
         refetchOnMount: true,
         refetchOnWindowFocus: true,
       }}>
       <TabbedForm toolbar={<EventEditToolbar />}>
         <FormTab label="resources.Event.edittabs.edit">
+          <ReferenceInput source="app_sectionId" reference="app_section">
+            <SelectInput
+              validate={required()}
+              optionText={locale === 'en' ? 'title_en' : 'title'}
+              fullWidth
+            />
+          </ReferenceInput>
+          <ReferenceInput source="locationId" reference="Location">
+            <SelectInput
+              validate={required()}
+              optionText={locale === 'en' ? 'title_en' : 'title'}
+              fullWidth
+            />
+          </ReferenceInput>
           <TextInput label="resources.Event.fields.title" source="title" fullWidth />
           <TextInput label="resources.Event.fields.content" source="content" fullWidth />
           <TextInput label="resources.Event.fields.title_en" source="title_en" fullWidth />

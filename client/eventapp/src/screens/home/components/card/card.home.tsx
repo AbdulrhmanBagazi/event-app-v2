@@ -5,10 +5,11 @@ import {
   Avatar,
   Badge,
   Title,
-  Button,
+  Text,
+  IconButton,
 } from 'react-native-paper';
 import moment from 'moment';
-import {useThemeContext} from '../../../../context/theme/themeToggle.context';
+import {UseThemeContext} from '../../../../context/theme/themeToggle.context';
 import {
   I18nContextType,
   RootStackParamList,
@@ -18,7 +19,7 @@ import {styles} from './styles.card.home';
 import Animated, {FadeIn} from 'react-native-reanimated';
 import {SCREEN_WIDTH} from '../../../../layout/screenDimensions';
 import {Image, View} from 'react-native';
-import {useI18nContext} from '../../../../context/I18n/i18n.context';
+import {UseI18nContext} from '../../../../context/I18n/i18n.context';
 import {Events} from '../../../../graphql/generated';
 import Logo from './logo';
 import {useNavigation} from '@react-navigation/native';
@@ -29,8 +30,8 @@ const MyCard: React.FC<{
   data: Events;
   index: number;
 }> = ({changeWidth, data, index}) => {
-  const {Colors, Theme, isDarkMode} = useThemeContext() as ThemeContextType;
-  const {Lang, Locals} = useI18nContext() as I18nContextType;
+  const {Colors, Theme} = UseThemeContext() as ThemeContextType;
+  const {Lang, Locals} = UseI18nContext() as I18nContextType;
   const {navigate} = useNavigation<StackNavigationProp<RootStackParamList>>();
 
   return (
@@ -40,17 +41,11 @@ const MyCard: React.FC<{
       }}
       entering={FadeIn.duration(700).delay(100 * index)}>
       <Card
-        // eslint-disable-next-line react-native/no-inline-styles
-        style={[styles.cardContainer, {borderWidth: isDarkMode ? 0 : 1}]}
+        style={[styles.cardContainer, {backgroundColor: Colors.Surface}]}
         mode="outlined"
         onPress={() =>
           navigate('Event', {
-            params: {
-              id: data.id,
-              title: Lang === 'en' ? data.title_en : data.title,
-              image: data.image_url,
-              companyLogo: data.companyLogo,
-            },
+            params: data,
           })
         }>
         <View
@@ -59,12 +54,7 @@ const MyCard: React.FC<{
             source={{
               uri: data.image_url,
             }}
-            style={[
-              styles.TopCardImage,
-              {
-                backgroundColor: Colors.Surface,
-              },
-            ]}
+            style={styles.TopCardImage}
           />
           <View style={styles.TopCardImageLayer}>
             <Avatar.Image
@@ -101,16 +91,26 @@ const MyCard: React.FC<{
         </View>
 
         <Card.Actions style={styles.CardAction}>
-          <View>
-            <Button icon="calendar" mode="text" color={Colors.OnSurface}>
-              {moment(new Date(data.createdAt)).format('YYYY-MM-DD')}
-            </Button>
+          <View style={styles.dataView}>
+            <View style={styles.Item}>
+              <IconButton icon="map" color={Colors.Secondary} size={14} />
+              <Text>
+                {Lang === 'en' ? data.Location?.title_en : data.Location?.title}{' '}
+              </Text>
+            </View>
+            <View style={styles.Item}>
+              <IconButton icon="calendar" color={Colors.Secondary} size={14} />
+              <Text>
+                {moment(new Date(data.createdAt)).format('YYYY-MM-DD')}
+              </Text>
+            </View>
           </View>
 
-          <View>
+          <View style={styles.dataView}>
             <Badge
               style={[
                 styles.CardBadge,
+                styles.Font,
                 {
                   backgroundColor:
                     data.status === 'SOON'

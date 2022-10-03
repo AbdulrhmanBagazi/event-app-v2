@@ -4,8 +4,6 @@ import {
   SimpleList,
   DateField,
   List,
-  ShowButton,
-  EditButton,
   useGetList,
   Loading,
   useRefresh,
@@ -13,7 +11,6 @@ import {
 } from 'react-admin'
 import { useMediaQuery, Theme } from '@mui/material'
 import MyError from '../../layout/MyError'
-import LocationListFliters from './components/LocationListFliters'
 
 const LocationList = () => {
   const { data, isLoading } = useGetList(
@@ -38,7 +35,6 @@ const LocationList = () => {
     <List
       exporter={false}
       emptyWhileLoading
-      filters={LocationListFliters}
       perPage={10}
       queryOptions={{
         onError: (err) => {
@@ -51,13 +47,11 @@ const LocationList = () => {
           linkType="show"
         />
       ) : (
-        <Datagrid isRowSelectable={() => false} bulkActionButtons={false} size="medium">
+        <Datagrid isRowSelectable={() => false} bulkActionButtons={false} rowClick="show">
           {/* <TextField source="id" sortable={false} /> */}
           <TextField source="title" />
           <TextField source="title_en" />
           <DateField source="createdAt" />
-          <ShowButton />
-          <EditButton />
         </Datagrid>
       )}
     </List>

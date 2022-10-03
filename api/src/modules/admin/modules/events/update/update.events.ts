@@ -16,6 +16,8 @@ export const Update_Events_TypeDefs = gql`
     content_en: String
     image_url: String
     location_url: String
+    app_sectionId: String
+    locationId: String
   }
 
   scalar DateTime
@@ -30,9 +32,18 @@ export const Update_Events_Mutation = {
       data: {
         published: args.data.published,
         status: args.data.status,
+        title: args.data.title,
+        content: args.data.content,
+        title_en: args.data.title_en,
+        content_en: args.data.content_en,
+        image_url: args.data.image_url,
+        location_url: args.data.location_url,
+        app_sectionId: args.data.app_sectionId,
+        locationId: args.data.locationId,
       },
       include: {
         Location: true,
+        App_section: true,
       },
     });
 

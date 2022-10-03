@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import * as React from 'react';
 import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
@@ -8,10 +9,10 @@ import {
   RoutesType,
   ThemeContextType,
 } from './typs';
-import {useAuth} from './context/auth/auth.context';
+import {UseAuth} from './context/auth/auth.context';
 import TabStack from './routes/TabStack';
-import {useThemeContext} from './context/theme/themeToggle.context';
-import {useI18nContext} from './context/I18n/i18n.context';
+import {UseThemeContext} from './context/theme/themeToggle.context';
+import {UseI18nContext} from './context/I18n/i18n.context';
 import Page from './layout/page';
 import analytics from '@react-native-firebase/analytics';
 import {Platform} from 'react-native';
@@ -31,22 +32,22 @@ const MyTheme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    background: 'transparent',
+    background: 'rgba(255, 255, 255 ,0.0)',
   },
 };
 
 const Index = () => {
   const {authLoading, Authenticate, GraphQlLoading} =
-    useAuth() as AuthenticatedTypes;
-  const {Colors} = useThemeContext() as ThemeContextType;
-  const {Locals} = useI18nContext() as I18nContextType;
+    UseAuth() as AuthenticatedTypes;
+  const {Colors} = UseThemeContext() as ThemeContextType;
+  const {Locals} = UseI18nContext() as I18nContextType;
   const routeNameRef = React.useRef<any>();
 
   return (
     // eslint-disable-next-line react-native/no-inline-styles
     <GestureHandlerRootView style={{flex: 1}}>
       <Portal.Host>
-        <Page paddingHorizontal={0}>
+        <Page paddingHorizontal={0} loadingLayer={true}>
           <NavigationContainer
             ref={navigationRef}
             theme={MyTheme}
@@ -83,7 +84,7 @@ const Index = () => {
                     headerShown: false,
                   }}
                   key={i}>
-                  {props => <route.component {...props} i18n={Locals} />}
+                  {props => <route.component {...props} />}
                 </Main.Screen>
               ))}
               <Main.Screen
@@ -91,7 +92,7 @@ const Index = () => {
                   animation: Platform.OS === 'ios' ? 'fade' : 'default',
                   headerTitle: () => <HeaderLogo />,
                 })}
-                name="Home"
+                name="Main"
                 component={TabStack}
               />
               {ProfileScreens.map((route: RoutesType, i: number) => (
@@ -102,7 +103,7 @@ const Index = () => {
                     gestureEnabled: !GraphQlLoading,
                   })}
                   key={i}>
-                  {props => <route.component {...props} i18n={Locals} />}
+                  {props => <route.component {...props} />}
                 </Main.Screen>
               ))}
               {AuthScreens.map((route: RoutesType, i: number) => (
@@ -113,12 +114,12 @@ const Index = () => {
                     gestureEnabled: !authLoading,
                   }}
                   key={i}>
-                  {props => <route.component {...props} i18n={Locals} />}
+                  {props => <route.component {...props} />}
                 </Main.Screen>
               ))}
               {EventsScreens.map((R: RoutesType, i: number) => (
                 <Main.Screen name={R.name} key={i}>
-                  {props => <R.component {...props} i18n={Locals} />}
+                  {props => <R.component {...props} />}
                 </Main.Screen>
               ))}
             </Main.Navigator>

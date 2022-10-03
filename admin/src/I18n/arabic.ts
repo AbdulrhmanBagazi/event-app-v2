@@ -54,7 +54,7 @@ export const arabicMessages: TranslationMessages = {
       loading: 'جار التحميل',
       not_found: 'غير موجود',
       show: '%{name} #%{id}',
-      empty: 'لا يوجد %{name} حتى الان',
+      empty: '%{name}',
       invite: 'هل ترغب فى اضافة واحد؟',
     },
     input: {

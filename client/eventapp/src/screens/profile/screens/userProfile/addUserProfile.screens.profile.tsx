@@ -9,9 +9,9 @@ import {
 } from '../../../../typs';
 import {Button, RadioButton, Text, TextInput} from 'react-native-paper';
 import {styles} from './styles.userProfile';
-import {useThemeContext} from '../../../../context/theme/themeToggle.context';
-import {useError} from '../../../../context/error/error.context';
-import {useI18nContext} from '../../../../context/I18n/i18n.context';
+import {UseThemeContext} from '../../../../context/theme/themeToggle.context';
+import {UseError} from '../../../../context/error/error.context';
+import {UseI18nContext} from '../../../../context/I18n/i18n.context';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Page from '../../../../layout/page';
 import {useMutation} from '@apollo/client';
@@ -22,7 +22,7 @@ import {
 } from '../../../../graphql/generated';
 import DatePicker from './components/datePicker.userProfile';
 import moment from 'moment';
-import {useAuth} from '../../../../context/auth/auth.context';
+import {UseAuth} from '../../../../context/auth/auth.context';
 import {View} from 'react-native';
 import ModalCountry from './components/countryPicker.userProfile';
 import countries from 'i18n-iso-countries';
@@ -32,10 +32,10 @@ const AddUserProfile = () => {
   const [open, setOpen] = React.useState(false);
   const [visible, setVisible] = useState<boolean>(false);
   const [countryCode, setCountryCode] = useState<CountryCode>('SA');
-  const {Colors} = useThemeContext() as ThemeContextType;
-  const {ThrowError} = useError() as ErrorContextType;
-  const {Locals, Lang} = useI18nContext() as I18nContextType;
-  const {AddProfile, UpdateLoading} = useAuth() as AuthenticatedTypes;
+  const {Colors} = UseThemeContext() as ThemeContextType;
+  const {ThrowError} = UseError() as ErrorContextType;
+  const {Locals, Lang} = UseI18nContext() as I18nContextType;
+  const {AddProfile, UpdateLoading} = UseAuth() as AuthenticatedTypes;
   const [firstName, setfirstName] = useState({val: '', error: false});
   const [lastName, setlastName] = useState({val: '', error: false});
   const [nationality, setnationality] = useState({val: '', error: false});

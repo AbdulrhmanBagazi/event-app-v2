@@ -4,8 +4,6 @@ import {
   SimpleList,
   DateField,
   List,
-  ShowButton,
-  EditButton,
   useGetList,
   Loading,
   useRefresh,
@@ -54,12 +52,12 @@ const EventList = () => {
       {isSmall ? (
         <SimpleList
           primaryText={(record) => (locale === 'en' ? record.title_en : record.title)}
-          secondaryText={() => <ChipField source="status" />}
+          secondaryText={() => <ChipField source="status" size="small" />}
           tertiaryText={() => <SuspendedBooleanField source="published" />}
           linkType="show"
         />
       ) : (
-        <Datagrid isRowSelectable={() => false} bulkActionButtons={false} size="medium">
+        <Datagrid isRowSelectable={() => false} bulkActionButtons={false} rowClick="show">
           {/* <TextField source="id" sortable={false} /> */}
           <TextField
             source={locale === 'en' ? 'Location.title_en' : 'Location.title'}
@@ -68,12 +66,10 @@ const EventList = () => {
           />
           <TextField source={locale === 'en' ? 'title_en' : 'title'} />
           <TextField source={locale === 'en' ? 'content_en' : 'content'} />
-          <ChipField source="status" />
+          <ChipField source="status" size="small" />
           <SuspendedBooleanField source="published" />
           <DateField source="createdAt" />
           <DateField source="updatedAt" />
-          <ShowButton />
-          <EditButton />
         </Datagrid>
       )}
     </List>

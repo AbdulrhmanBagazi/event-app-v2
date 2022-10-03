@@ -10,6 +10,7 @@ import Earnings from '../screens/profile/screens/earnings/earnings.screen.profil
 import ChangePassword from '../screens/profile/screens/changePassword/changePassword.screens.profile';
 import Contact from '../screens/profile/screens/contact/contact.screens.profile';
 import SingleEvent from '../screens/singleEvent/singleEvent.screens';
+import Language from '../screens/language/language.screen';
 
 const ProfileScreens: RoutesType[] = [
   {
@@ -57,22 +58,20 @@ const LoadingScreen: RoutesType[] = [
     name: 'Loading',
     component: Loading,
   },
+  {
+    name: 'Language',
+    component: Language,
+  },
 ];
 
 const TabScreens: RoutesType[] = [
   {
-    name: 'Main',
+    name: 'Home',
     component: Home,
-    initialParams: {
-      currentTab: 'Main',
-    },
   },
   {
     name: 'Profile',
     component: Profile,
-    initialParams: {
-      currentTab: 'Profile',
-    },
   },
 ];
 

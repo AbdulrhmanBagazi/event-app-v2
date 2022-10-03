@@ -2,7 +2,7 @@ import React, {useMemo, useRef} from 'react';
 import {View} from 'react-native';
 import {styles} from './styles.profile';
 import Page from '../../layout/page';
-import {useThemeContext} from '../../context/theme/themeToggle.context';
+import {UseThemeContext} from '../../context/theme/themeToggle.context';
 import {ThemeContextType} from '../../typs';
 import RNBottomSheet from '@gorhom/bottom-sheet';
 import BottomSheet from '../../components/bottomSheet/bottomSheet';
@@ -17,7 +17,7 @@ const Profile = () => {
   const refBottomSheet = useRef<RNBottomSheet>(null);
   const snapPoints = useMemo(() => ['25%', '50%'], []);
   const handleOpenPress = () => refBottomSheet.current?.expand();
-  const {Colors} = useThemeContext() as ThemeContextType;
+  const {Colors, isDarkMode} = UseThemeContext() as ThemeContextType;
 
   return (
     <Page paddingHorizontal={0}>
@@ -33,7 +33,7 @@ const Profile = () => {
         index={-1}
         snapPoints={snapPoints}
         handleIndicatorStyle={{
-          backgroundColor: Colors.OnSurface,
+          backgroundColor: isDarkMode ? Colors.Surface : Colors.Background,
         }}
         backgroundComponent={CustomBackground}
         enablePanDownToClose

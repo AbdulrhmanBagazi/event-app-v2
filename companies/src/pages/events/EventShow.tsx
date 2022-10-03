@@ -13,10 +13,14 @@ import {
   ChipField,
   ImageField,
   UrlField,
+  ReferenceManyField,
+  Pagination,
+  Datagrid,
 } from 'react-admin'
 import SuspendedBooleanField from './components/SuspendedBooleanField'
 import { useParams } from 'react-router-dom'
 import MyError from '../../layout/MyError'
+import EventShowToolBar from './components/EventShowToolBar'
 
 const EventShow = () => {
   const [locale] = useLocaleState()
@@ -43,7 +47,7 @@ const EventShow = () => {
           return null
         },
       }}
-      sx={{ maxWidth: 600 }}
+      actions={<EventShowToolBar data={data} />}
       emptyWhileLoading>
       <TabbedShowLayout>
         <Tab label="resources.Event.showtabs.show">
@@ -62,7 +66,7 @@ const EventShow = () => {
             <DateField source="updatedAt" />
           </Labeled>
           <Labeled label="resources.Event.fields.status">
-            <ChipField source="status" />
+            <ChipField source="status" size="small" />
           </Labeled>
           <Labeled label="resources.Event.fields.published">
             <SuspendedBooleanField source="published" />
@@ -89,6 +93,28 @@ const EventShow = () => {
               sx={{ '& img': { maxWidth: 250, maxHeight: 250, objectFit: 'contain' } }}
             />
           </Labeled>
+        </Tab>
+        <Tab label="resources.Event.showtabs.eventjob">
+          <ReferenceManyField
+            pagination={<Pagination />}
+            label=""
+            reference="eventjobEvents"
+            target="eventjob"
+            perPage={5}>
+            <Datagrid
+              isRowSelectable={() => false}
+              bulkActionButtons={false}
+              rowClick="show"
+              resource="eventjob">
+              {/* <TextField source="id" sortable={false} /> */}
+              <TextField source="title" />
+              <TextField source="title_en" />
+              <ChipField source="status" size="small" />
+              <TextField source="rate" />
+              <ChipField source="rate_type" size="small" />
+              <DateField source="createdAt" />
+            </Datagrid>
+          </ReferenceManyField>
         </Tab>
       </TabbedShowLayout>
     </Show>

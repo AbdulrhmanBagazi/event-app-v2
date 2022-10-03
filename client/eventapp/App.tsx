@@ -1,4 +1,3 @@
-import 'react-native-gesture-handler';
 import * as React from 'react';
 import {en, registerTranslation} from 'react-native-paper-dates';
 import {AppRegistry, Platform} from 'react-native';
@@ -11,16 +10,14 @@ import {ErrorProvider} from './src/context/error/error.context';
 import {ApolloProvider} from '@apollo/client';
 import Client from './src/api/apollo';
 import OneSignal from 'react-native-onesignal';
-import {oneSignal} from './src/context/notifications/config';
+import {OneSignalKey} from './config/config';
 import {NotificationProvider} from './src/context/notifications/notification.context';
 import countries from 'i18n-iso-countries';
 // import { firebase } from '@react-native-firebase/analytics';
 // await firebase.analytics().setAnalyticsCollectionEnabled(true);
 
-const name = Platform.OS === 'ios' ? 'eventapp' : 'events';
-
 // OneSignal Initialization
-OneSignal.setAppId(oneSignal);
+OneSignal.setAppId(OneSignalKey);
 
 //Method for handling notifications received while app in foreground
 OneSignal.setNotificationWillShowInForegroundHandler(
@@ -67,4 +64,7 @@ registerTranslation('en', en);
 countries.registerLocale(require('i18n-iso-countries/langs/en.json'));
 countries.registerLocale(require('i18n-iso-countries/langs/ar.json'));
 
-export default AppRegistry.registerComponent(name, () => App);
+export default AppRegistry.registerComponent(
+  Platform.OS === 'ios' ? 'eventapp' : 'events',
+  () => App,
+);

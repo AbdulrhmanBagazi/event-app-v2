@@ -1,20 +1,20 @@
 import * as React from 'react';
 import {View} from 'react-native';
 import {Modal, Portal, ActivityIndicator} from 'react-native-paper';
-import {useAuth} from '../context/auth/auth.context';
-import {useThemeContext} from '../context/theme/themeToggle.context';
+import {UseAuth} from '../context/auth/auth.context';
+import {UseThemeContext} from '../context/theme/themeToggle.context';
 import {AuthenticatedTypes, ThemeContextType} from '../typs';
 import {styles} from './styles.layout';
 
 const LoadingLayer = () => {
-  const {GraphQlLoading} = useAuth() as AuthenticatedTypes;
-  const {Colors} = useThemeContext() as ThemeContextType;
+  const {GraphQlLoading, authLoading} = UseAuth() as AuthenticatedTypes;
+  const {Colors} = UseThemeContext() as ThemeContextType;
 
   return (
     <Portal>
       <Modal
         dismissable={false}
-        visible={GraphQlLoading}
+        visible={GraphQlLoading || authLoading}
         theme={{
           colors: {
             backdrop: 'rgba(0,0,0,0.25)',

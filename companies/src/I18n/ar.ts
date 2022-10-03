@@ -7,7 +7,10 @@ const customArabicMessages: TranslationMessages = {
   'User Get': 'المستخدم',
   Dashboard: 'لوحة الإحصائيات',
   error: 'حدث خطآ!',
+  evenjob: 'وظائف الفعاليات',
   'Email exists': 'البريد الإلكتروني مستخدم',
+  create: 'إنشاء',
+  create_job: 'إنشاء وظيفة',
   dashboard: {
     total_users: 'المستخدمين',
   },
@@ -37,6 +40,7 @@ const customArabicMessages: TranslationMessages = {
         posts: 'المنشورات',
         edit: 'تعديل',
         company: 'الشركة',
+        eventjob: 'الوظائف',
       },
       edittabs: {
         edit: 'تعديل',
@@ -63,6 +67,39 @@ const customArabicMessages: TranslationMessages = {
         soon: 'قريبا',
         active: 'نشط',
         completed: 'مكتمل',
+      },
+    },
+    eventjob: {
+      name: 'وظائف الفعاليات |||| وظيفة',
+      showtabs: {
+        show: 'التفاصيل',
+        edit: 'تعديل',
+      },
+      fields: {
+        id: 'معرف',
+        createdAt: 'تاريخ الإنشاء',
+        updatedAt: 'تاريخ التحديث',
+        title: 'الإسم',
+        title_en: 'الإسم (إنجليزي)',
+        rate: 'الراتب/ريال سعودي',
+        rate_type: 'نوع الراتب',
+        status: 'الحالة',
+        eventId: 'الفعالية',
+        Event: {
+          title: 'الفعالية',
+          title_en: 'الفعالية',
+        },
+      },
+      edittabs: {
+        edit: 'تعديل',
+      },
+      status: {
+        OPEN: 'مفتوح',
+        CLOSED: 'مغلق',
+      },
+      rate_type: {
+        MONTHLY: 'شهري',
+        DAY: 'يومي',
       },
     },
   },

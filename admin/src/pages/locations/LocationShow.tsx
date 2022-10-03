@@ -11,8 +11,6 @@ import {
   ReferenceManyField,
   Pagination,
   Datagrid,
-  ShowButton,
-  EditButton,
   useLocaleState,
   ChipField,
 } from 'react-admin'
@@ -44,7 +42,6 @@ const LocationShow = () => {
           return null
         },
       }}
-      sx={{ maxWidth: 600 }}
       emptyWhileLoading>
       <TabbedShowLayout>
         <Tab label="resources.Location.showtabs.show">
@@ -73,7 +70,11 @@ const LocationShow = () => {
             reference="LocationEvents"
             target="locationId"
             perPage={5}>
-            <Datagrid isRowSelectable={() => false} bulkActionButtons={false}>
+            <Datagrid
+              isRowSelectable={() => false}
+              bulkActionButtons={false}
+              rowClick="show"
+              resource="Event">
               {/* <TextField source="id" sortable={false} /> */}
               <TextField
                 source={locale === 'en' ? 'title_en' : 'title'}
@@ -83,11 +84,10 @@ const LocationShow = () => {
                 source={locale === 'en' ? 'content_en' : 'content'}
                 label="resources.Companies.Events.content"
               />
-              <ChipField source="status" label="resources.Companies.Events.status" />
+              <ChipField source="status" label="resources.Companies.Events.status" size="small" />
+              <DateField source="createdAt" label="resources.Companies.Events.createdAt" />
               {/* <DateField source="createdAt" label="resources.Companies.Events.createdAt" />
               <DateField source="updatedAt" label="resources.Companies.Events.updatedAt" /> */}
-              <ShowButton resource="Event" />
-              <EditButton resource="Event" />
             </Datagrid>
           </ReferenceManyField>
         </Tab>

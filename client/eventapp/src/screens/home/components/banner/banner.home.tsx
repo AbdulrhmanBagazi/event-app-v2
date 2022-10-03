@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {View} from 'react-native';
-import {useThemeContext} from '../../../../context/theme/themeToggle.context';
+import {UseThemeContext} from '../../../../context/theme/themeToggle.context';
 import Loading from '../../../../layout/loading';
 import {ThemeContextType} from '../../../../typs';
 
 ///"https://source.unsplash.com/random/1600x900/daily"
 const Banner: React.FC<{}> = ({}) => {
-  const {Colors} = useThemeContext() as ThemeContextType;
+  const {Colors} = UseThemeContext() as ThemeContextType;
 
   return (
     <View

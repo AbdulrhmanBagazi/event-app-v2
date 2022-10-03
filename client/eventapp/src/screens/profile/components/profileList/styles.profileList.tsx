@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
   },
   Divider: {
     height: 20,
-    backgroundColor: 'transparent',
+    backgroundColor: 'rgba(255, 255, 255 ,0.0)',
     // borderRadius: 5,/
   },
   Container: {
@@ -24,6 +24,6 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   transparent: {
-    backgroundColor: 'transparent',
+    backgroundColor: 'rgba(255, 255, 255 ,0.0)',
   },
 });

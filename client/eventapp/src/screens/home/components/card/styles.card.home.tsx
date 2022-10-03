@@ -4,35 +4,24 @@ export const styles = StyleSheet.create({
   cardContainer: {
     marginHorizontal: 5,
     marginVertical: 5,
-    borderRadius: 2.5,
+    borderWidth: 0,
   },
   cardImage: {
     height: 195,
   },
-  cardTextContainer: {
-    flexDirection: 'column',
-    marginVertical: 10,
-  },
-  cardTextTitle: {
-    width: 300,
-    height: 20,
-    borderRadius: 2,
-  },
-  cardTextSub: {
-    marginVertical: 10,
-    width: 80,
-    height: 20,
-    borderRadius: 2,
-  },
   CardAction: {
     justifyContent: 'space-between',
+    flexWrap: 'nowrap',
+  },
+  dataView: {
+    flexDirection: 'row',
+    flexWrap: 'nowrap',
   },
   CardPrice: {
     fontWeight: 'bold',
   },
   TopCardImage: {
     opacity: 0.4,
-    borderRadius: 2.5,
     height: 150,
   },
   TopCardImageLayer: {
@@ -76,5 +65,13 @@ export const styles = StyleSheet.create({
   },
   MainCardView: {
     borderRadius: 2.5,
+  },
+  Font: {
+    fontSize: 12,
+  },
+  Item: {
+    // flex: 2,
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 });

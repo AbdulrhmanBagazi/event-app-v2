@@ -6,6 +6,9 @@ const customEnglishMessages: TranslationMessages = {
   Events: 'Events',
   Dashboard: 'Dashboard',
   error: 'error!',
+  evenjob: 'Events Jobs',
+  create: 'Create',
+  create_job: 'Create Job',
   dashboard: {
     total_users: 'Users',
   },
@@ -34,6 +37,7 @@ const customEnglishMessages: TranslationMessages = {
         Events: 'Events',
         edit: 'Edit',
         company: 'Company',
+        eventjob: 'Jobs',
       },
       edittabs: {
         edit: 'Edit',
@@ -60,6 +64,39 @@ const customEnglishMessages: TranslationMessages = {
         soon: 'soon',
         active: 'active',
         completed: 'completed',
+      },
+    },
+    evenjob: {
+      name: 'Events Jobs |||| Job',
+      showtabs: {
+        show: 'Details',
+        edit: 'Edit',
+      },
+      fields: {
+        id: 'id',
+        createdAt: 'created At',
+        updatedAt: 'updated At',
+        title: 'title',
+        title_en: 'title (en)',
+        rate: 'salary/SAR',
+        rate_type: 'salary type',
+        status: 'status',
+        eventId: 'event',
+        Event: {
+          title: 'Event',
+          title_en: 'Event',
+        },
+      },
+      edittabs: {
+        edit: 'Edit',
+      },
+      status: {
+        OPEN: 'Open',
+        CLOSED: 'Closed',
+      },
+      rate_type: {
+        MONTHLY: 'MONTHLY',
+        DAY: 'Day',
       },
     },
   },

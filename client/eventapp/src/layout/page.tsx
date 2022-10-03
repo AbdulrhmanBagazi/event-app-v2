@@ -1,21 +1,21 @@
 import React from 'react';
 import {StatusBar, View} from 'react-native';
 import {styles} from './styles.layout';
-import {useThemeContext} from '../context/theme/themeToggle.context';
+import {UseThemeContext} from '../context/theme/themeToggle.context';
 import {ThemeContextType} from '../typs';
 import LoadingLayer from './loadingLayer';
 import AnimatedView from './animatedView';
-// import {SafeAreaView} from 'react-native-safe-area-context';
 
 const Page: React.FC<{
   children: React.ReactNode;
   paddingHorizontal: number;
-}> = ({children, paddingHorizontal}) => {
-  const {isDarkMode, Colors} = useThemeContext() as ThemeContextType;
+  loadingLayer?: boolean;
+}> = ({children, paddingHorizontal, loadingLayer}) => {
+  const {isDarkMode, Colors} = UseThemeContext() as ThemeContextType;
 
   return (
     <View style={styles.pageContainer}>
-      <LoadingLayer />
+      {loadingLayer ? null : <LoadingLayer />}
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={Colors.Background}

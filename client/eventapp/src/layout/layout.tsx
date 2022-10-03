@@ -1,5 +1,5 @@
 import React from 'react';
-import {useThemeContext} from '../context/theme/themeToggle.context';
+import {UseThemeContext} from '../context/theme/themeToggle.context';
 import {ThemeContextType} from '../typs';
 import {styles} from './styles.layout';
 import {
@@ -12,7 +12,7 @@ import {View} from 'react-native';
 const Layout: React.FC<{
   children: React.ReactNode;
 }> = ({children}) => {
-  const {isDarkMode, Theme} = useThemeContext() as ThemeContextType;
+  const {isDarkMode, Theme} = UseThemeContext() as ThemeContextType;
 
   const Dark = {
     ...DarkTheme,

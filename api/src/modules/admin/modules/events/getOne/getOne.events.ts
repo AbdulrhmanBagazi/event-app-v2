@@ -15,6 +15,7 @@ export const getOne_Events_Query = {
       },
       include: {
         Location: true,
+        App_section: true,
       },
     });
   },

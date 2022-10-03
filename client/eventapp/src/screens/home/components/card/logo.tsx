@@ -1,18 +1,18 @@
 import * as React from 'react';
 import Svg, {Defs, Rect, G, Path} from 'react-native-svg';
-import {useThemeContext} from '../../../../context/theme/themeToggle.context';
+import {UseThemeContext} from '../../../../context/theme/themeToggle.context';
 import {ThemeContextType} from '../../../../typs';
 
 const Logo: React.FC<{
   width: number;
   height: number;
 }> = ({width, height}) => {
-  const {Colors, isDarkMode} = useThemeContext() as ThemeContextType;
+  const {Colors, isDarkMode} = UseThemeContext() as ThemeContextType;
 
   return (
     <Svg width={width} height={height} viewBox="0 0 300 300">
       <Defs />
-      <Rect fill="transparent" width="300" height="300" rx="70" />
+      <Rect fill="rgba(255, 255, 255 ,0.0)" width="300" height="300" rx="70" />
       <G transform="translate(-597.908 -352.154)">
         <Path
           fill={isDarkMode ? Colors.OnBackground : Colors.Primary}

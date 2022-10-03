@@ -26,10 +26,18 @@ export enum EventStatus {
   Soon = 'SOON',
 }
 
+export enum Event_JobsStatus {
+  Closed = 'CLOSED',
+  Open = 'OPEN',
+}
+
 export type Events = {
   __typename?: 'Events';
+  Event_Jobs: Array<Eventjob>;
+  Location?: Maybe<Location>;
+  app_sectionId?: Maybe<Scalars['String']>;
   companyId: Scalars['String'];
-  companyLogo: Scalars['String'];
+  companyLogo?: Maybe<Scalars['String']>;
   content: Scalars['String'];
   content_en: Scalars['String'];
   createdAt: Scalars['DateTime'];
@@ -44,9 +52,20 @@ export type Events = {
   updatedAt: Scalars['DateTime'];
 };
 
+export type Filters = {
+  published: Scalars['Boolean'];
+};
+
 export type ListMetadata = {
   __typename?: 'ListMetadata';
+  count: Scalars['Int'];
   total: Scalars['Int'];
+};
+
+export type Location = {
+  __typename?: 'Location';
+  title: Scalars['String'];
+  title_en: Scalars['String'];
 };
 
 export type Mutation = {
@@ -109,19 +128,53 @@ export type Query = {
   __typename?: 'Query';
   Events_list: Array<Events>;
   Events_list_meta?: Maybe<ListMetadata>;
+  app_section_list: Array<App_Section>;
   test?: Maybe<Scalars['String']>;
 };
 
 export type QueryEvents_ListArgs = {
+  app_sectionId: Scalars['String'];
   page?: InputMaybe<Scalars['Int']>;
   perPage?: InputMaybe<Scalars['Int']>;
   sortOrder?: InputMaybe<Order>;
+};
+
+export type QueryEvents_List_MetaArgs = {
+  app_sectionId?: InputMaybe<Scalars['String']>;
+};
+
+export enum Rate_Type {
+  Day = 'DAY',
+  Monthly = 'MONTHLY',
+}
+
+export type App_Section = {
+  __typename?: 'app_section';
+  count: Scalars['Int'];
+  createdAt: Scalars['DateTime'];
+  id: Scalars['String'];
+  published: Scalars['Boolean'];
+  title: Scalars['String'];
+  title_en: Scalars['String'];
+  updatedAt: Scalars['DateTime'];
+};
+
+export type Eventjob = {
+  __typename?: 'eventjob';
+  eventId?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  rate?: Maybe<Scalars['Int']>;
+  rate_type?: Maybe<Rate_Type>;
+  status?: Maybe<Event_JobsStatus>;
+  title?: Maybe<Scalars['String']>;
+  title_en?: Maybe<Scalars['String']>;
 };
 
 export type Events_ListQueryVariables = Exact<{
   page?: InputMaybe<Scalars['Int']>;
   sortOrder?: InputMaybe<Order>;
   perPage?: InputMaybe<Scalars['Int']>;
+  app_sectionId: Scalars['String'];
 }>;
 
 export type Events_ListQuery = {
@@ -140,10 +193,42 @@ export type Events_ListQuery = {
     image_url: string;
     location_url: string;
     status: EventStatus;
-    companyLogo: string;
+    companyLogo?: string | null;
     locationId: string;
+    app_sectionId?: string | null;
+    Location?: {
+      __typename?: 'Location';
+      title: string;
+      title_en: string;
+    } | null;
+    Event_Jobs: Array<{
+      __typename?: 'eventjob';
+      id?: string | null;
+      title?: string | null;
+      title_en?: string | null;
+      status?: Event_JobsStatus | null;
+      rate?: number | null;
+      rate_type?: Rate_Type | null;
+      eventId?: string | null;
+    }>;
   }>;
   Events_list_meta?: {__typename?: 'ListMetadata'; total: number} | null;
+};
+
+export type App_Section_ListQueryVariables = Exact<{[key: string]: never}>;
+
+export type App_Section_ListQuery = {
+  __typename?: 'Query';
+  app_section_list: Array<{
+    __typename?: 'app_section';
+    id: string;
+    title: string;
+    title_en: string;
+    createdAt: any;
+    updatedAt: any;
+    published: boolean;
+    count: number;
+  }>;
 };
 
 export type Change_PasswordMutationVariables = Exact<{
@@ -250,8 +335,18 @@ export type Update_UserProfileMutation = {
 };
 
 export const Events_ListDocument = gql`
-  query Events_list($page: Int, $sortOrder: Order, $perPage: Int) {
-    Events_list(page: $page, sortOrder: $sortOrder, perPage: $perPage) {
+  query Events_list(
+    $page: Int
+    $sortOrder: Order
+    $perPage: Int
+    $app_sectionId: String!
+  ) {
+    Events_list(
+      page: $page
+      sortOrder: $sortOrder
+      perPage: $perPage
+      app_sectionId: $app_sectionId
+    ) {
       id
       published
       createdAt
@@ -266,6 +361,20 @@ export const Events_ListDocument = gql`
       status
       companyLogo
       locationId
+      app_sectionId
+      Location {
+        title
+        title_en
+      }
+      Event_Jobs {
+        id
+        title
+        title_en
+        status
+        rate
+        rate_type
+        eventId
+      }
     }
     Events_list_meta {
       total
@@ -288,11 +397,12 @@ export const Events_ListDocument = gql`
  *      page: // value for 'page'
  *      sortOrder: // value for 'sortOrder'
  *      perPage: // value for 'perPage'
+ *      app_sectionId: // value for 'app_sectionId'
  *   },
  * });
  */
 export function useEvents_ListQuery(
-  baseOptions?: Apollo.QueryHookOptions<
+  baseOptions: Apollo.QueryHookOptions<
     Events_ListQuery,
     Events_ListQueryVariables
   >,
@@ -322,6 +432,69 @@ export type Events_ListLazyQueryHookResult = ReturnType<
 export type Events_ListQueryResult = Apollo.QueryResult<
   Events_ListQuery,
   Events_ListQueryVariables
+>;
+export const App_Section_ListDocument = gql`
+  query app_section_list {
+    app_section_list {
+      id
+      title
+      title_en
+      createdAt
+      updatedAt
+      published
+      count
+    }
+  }
+`;
+
+/**
+ * __useApp_Section_ListQuery__
+ *
+ * To run a query within a React component, call `useApp_Section_ListQuery` and pass it any options that fit your needs.
+ * When your component renders, `useApp_Section_ListQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useApp_Section_ListQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useApp_Section_ListQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    App_Section_ListQuery,
+    App_Section_ListQueryVariables
+  >,
+) {
+  const options = {...defaultOptions, ...baseOptions};
+  return Apollo.useQuery<App_Section_ListQuery, App_Section_ListQueryVariables>(
+    App_Section_ListDocument,
+    options,
+  );
+}
+export function useApp_Section_ListLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    App_Section_ListQuery,
+    App_Section_ListQueryVariables
+  >,
+) {
+  const options = {...defaultOptions, ...baseOptions};
+  return Apollo.useLazyQuery<
+    App_Section_ListQuery,
+    App_Section_ListQueryVariables
+  >(App_Section_ListDocument, options);
+}
+export type App_Section_ListQueryHookResult = ReturnType<
+  typeof useApp_Section_ListQuery
+>;
+export type App_Section_ListLazyQueryHookResult = ReturnType<
+  typeof useApp_Section_ListLazyQuery
+>;
+export type App_Section_ListQueryResult = Apollo.QueryResult<
+  App_Section_ListQuery,
+  App_Section_ListQueryVariables
 >;
 export const Change_PasswordDocument = gql`
   mutation Change_Password($password: String) {

@@ -2,20 +2,20 @@ import React from 'react';
 import {View} from 'react-native';
 import {Button, Text} from 'react-native-paper';
 import Animated, {FadeIn} from 'react-native-reanimated';
-import {useI18nContext} from '../../../../context/I18n/i18n.context';
-import {useThemeContext} from '../../../../context/theme/themeToggle.context';
-import {Sections} from '../../../../graphql/generated';
+import {UseI18nContext} from '../../../../context/I18n/i18n.context';
+import {UseThemeContext} from '../../../../context/theme/themeToggle.context';
+import {App_Section} from '../../../../graphql/generated';
 import {I18nContextType, ThemeContextType} from '../../../../typs';
 import FlatListData from '../flatlistData/flatlistData.home';
 import {styles} from './styles.sections';
 
 const SectionsHeader: React.FC<{
-  data: Sections;
+  data: App_Section;
   index: number;
   navigate: () => void;
 }> = ({data, index, navigate}) => {
-  const {Colors} = useThemeContext() as ThemeContextType;
-  const {Lang, Locals} = useI18nContext() as I18nContextType;
+  const {Colors} = UseThemeContext() as ThemeContextType;
+  const {Lang, Locals} = UseI18nContext() as I18nContextType;
 
   return (
     <Animated.View entering={FadeIn.duration(500).delay(100 * index)}>
@@ -23,9 +23,9 @@ const SectionsHeader: React.FC<{
         <View style={styles.TitleView}>
           <Text style={[styles.SectionTitle, {color: Colors.OnBackground}]}>
             {Lang === 'en' ? data.title_en : data.title}
-          </Text>
-          <Text style={[styles.SectionSub, {color: Colors.OnBackground}]}>
-            {Locals.Home.Jobs + ' ' + data.eventCount}
+            <Text style={[styles.SectionSub, {color: Colors.OnBackground}]}>
+              {' (' + data.count + ')'}
+            </Text>
           </Text>
         </View>
 
@@ -37,7 +37,7 @@ const SectionsHeader: React.FC<{
           {Locals.NavigationButton.Events}
         </Button>
       </View>
-      <FlatListData sectionId={data.id} />
+      <FlatListData app_sectionId={data.id} />
     </Animated.View>
   );
 };

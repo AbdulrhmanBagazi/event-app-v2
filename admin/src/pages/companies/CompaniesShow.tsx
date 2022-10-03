@@ -12,13 +12,11 @@ import {
   Pagination,
   Datagrid,
   useLocaleState,
-  ShowButton,
-  EditButton,
   ImageField,
+  ChipField,
 } from 'react-admin'
 import { useParams } from 'react-router-dom'
 import MyError from '../../layout/MyError'
-import ColoredTextField from './components/ColoredTextField'
 import SuspendedBooleanField from './components/SuspendedBooleanField'
 import SuspendedBooleanFieldEvents from './components/SuspendedBooleanFieldEvents'
 
@@ -56,8 +54,12 @@ const CompaniesShow = () => {
           {/* <Labeled label="resources.Companies.fields.id">
             <TextField source="id" />
           </Labeled> */}
-          <Labeled label="resources.Companies.fields.suspended">
-            <SuspendedBooleanField source="suspended" />
+          <Labeled label="resources.Companies.fields.logo_url">
+            <ImageField
+              source="logo_url"
+              title="logo_url"
+              sx={{ '& img': { maxWidth: 150, maxHeight: 150, objectFit: 'contain' } }}
+            />
           </Labeled>
           <Labeled label="resources.Companies.fields.name">
             <TextField source="name" />
@@ -71,12 +73,8 @@ const CompaniesShow = () => {
           <Labeled label="resources.Companies.fields.createdAt">
             <DateField source="createdAt" />
           </Labeled>
-          <Labeled label="resources.Companies.fields.logo_url">
-            <ImageField
-              source="logo_url"
-              title="logo_url"
-              sx={{ '& img': { maxWidth: 250, maxHeight: 250, objectFit: 'contain' } }}
-            />
+          <Labeled label="resources.Companies.fields.suspended">
+            <SuspendedBooleanField source="suspended" />
           </Labeled>
         </Tab>
         <Tab label="resources.Companies.showtabs.Events">
@@ -86,7 +84,11 @@ const CompaniesShow = () => {
             reference="CompaniesEvents"
             target="companyId"
             perPage={5}>
-            <Datagrid isRowSelectable={() => false} bulkActionButtons={false}>
+            <Datagrid
+              isRowSelectable={() => false}
+              bulkActionButtons={false}
+              rowClick="show"
+              resource="Event">
               {/* <TextField source="id" sortable={false} /> */}
               <TextField
                 source={locale === 'en' ? 'title_en' : 'title'}
@@ -96,12 +98,10 @@ const CompaniesShow = () => {
                 source={locale === 'en' ? 'content_en' : 'content'}
                 label="resources.Companies.Events.content"
               />
-              <ColoredTextField source="status" label="resources.Companies.Events.status" />
+              <ChipField source="status" size="small" />
               <SuspendedBooleanFieldEvents source="published" label="resources.Companies.Events.published" />
               <DateField source="createdAt" label="resources.Companies.Events.createdAt" />
               <DateField source="updatedAt" label="resources.Companies.Events.updatedAt" />
-              <ShowButton resource="Event" />
-              <EditButton resource="Event" />
             </Datagrid>
           </ReferenceManyField>
         </Tab>

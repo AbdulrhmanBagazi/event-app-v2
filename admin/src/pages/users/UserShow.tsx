@@ -44,7 +44,6 @@ const UserShow = () => {
           return null
         },
       }}
-      sx={{ maxWidth: 600 }}
       emptyWhileLoading>
       <TabbedShowLayout>
         <Tab label="resources.User.showtabs.show">

@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 import {Snackbar} from 'react-native-paper';
 import {AuthenticatedTypes, ErrorContextType} from '../../typs';
-import {useAuth} from '../auth/auth.context';
+import {UseAuth} from '../auth/auth.context';
 
 export const ErrorContext = createContext<ErrorContextType>({
   ThrowError: () => {},
@@ -18,10 +18,10 @@ export const ErrorProvider = ({
 }: {
   children: ReactElement;
 }): JSX.Element => {
-  const {authLoading} = useAuth() as AuthenticatedTypes;
+  const {authLoading} = UseAuth() as AuthenticatedTypes;
   const [visible, setVisible] = useState(false);
   const [msg, setMsg] = useState('');
-  const onDismissSnackBar = () => setVisible(false);
+  const OnDismissSnackBar = () => setVisible(false);
   const ThrowError = async (arg0: string) => {
     setMsg(arg0);
     setVisible(true);
@@ -41,7 +41,7 @@ export const ErrorProvider = ({
       {children}
       <Snackbar
         visible={visible}
-        onDismiss={onDismissSnackBar}
+        onDismiss={OnDismissSnackBar}
         duration={1500}
         // eslint-disable-next-line react-native/no-inline-styles
         style={{marginBottom: 20}}
@@ -56,4 +56,4 @@ export const ErrorProvider = ({
   );
 };
 
-export const useError = () => useContext<ErrorContextType>(ErrorContext);
+export const UseError = () => useContext<ErrorContextType>(ErrorContext);

@@ -6,9 +6,9 @@ import {
   UserUpdateTypes,
 } from '../../../../typs';
 import {Button, Text, TextInput} from 'react-native-paper';
-import {useThemeContext} from '../../../../context/theme/themeToggle.context';
-import {useError} from '../../../../context/error/error.context';
-import {useI18nContext} from '../../../../context/I18n/i18n.context';
+import {UseThemeContext} from '../../../../context/theme/themeToggle.context';
+import {UseError} from '../../../../context/error/error.context';
+import {UseI18nContext} from '../../../../context/I18n/i18n.context';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Page from '../../../../layout/page';
 import {useMutation} from '@apollo/client';
@@ -17,16 +17,16 @@ import {
   Change_PasswordMutation,
   Change_PasswordMutationVariables,
 } from '../../../../graphql/generated';
-import {useAuth} from '../../../../context/auth/auth.context';
+import {UseAuth} from '../../../../context/auth/auth.context';
 import {styles} from './styles.changePassword';
 import {useHeaderHeight} from '@react-navigation/elements';
 import {View} from 'react-native';
 
 const ChangePassword = () => {
-  const {Colors} = useThemeContext() as ThemeContextType;
-  const {ThrowError} = useError() as ErrorContextType;
-  const {Locals} = useI18nContext() as I18nContextType;
-  const {UpdateLoading} = useAuth() as UserUpdateTypes;
+  const {Colors} = UseThemeContext() as ThemeContextType;
+  const {ThrowError} = UseError() as ErrorContextType;
+  const {Locals} = UseI18nContext() as I18nContextType;
+  const {UpdateLoading} = UseAuth() as UserUpdateTypes;
   const [password, setpassword] = useState({
     val: '',
     error: false,

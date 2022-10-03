@@ -6,9 +6,9 @@ import {Badge, List} from 'react-native-paper';
 import {AppURL, PrivacyURL, TermsURL} from '../../../../../config/config';
 import CustomText from '../../../../components/customText/customText';
 import SignOutButton from '../../../../components/signOutButton/signOutButton';
-import {useAuth} from '../../../../context/auth/auth.context';
-import {useI18nContext} from '../../../../context/I18n/i18n.context';
-import {useThemeContext} from '../../../../context/theme/themeToggle.context';
+import {UseAuth} from '../../../../context/auth/auth.context';
+import {UseI18nContext} from '../../../../context/I18n/i18n.context';
+import {UseThemeContext} from '../../../../context/theme/themeToggle.context';
 import AnimatedView from '../../../../layout/animatedView';
 import {
   AuthenticatedTypes,
@@ -24,9 +24,9 @@ const ProfileList: React.FC<{
   onPress: () => void;
 }> = ({onPress}) => {
   const refBottomSheetPassword = React.useRef<RNBottomSheet>(null);
-  const {isDarkMode, Colors} = useThemeContext() as ThemeContextType;
-  const {isAuthenticated, user} = useAuth() as AuthenticatedTypes;
-  const {Locals} = useI18nContext() as I18nContextType;
+  const {isDarkMode, Colors} = UseThemeContext() as ThemeContextType;
+  const {isAuthenticated, user} = UseAuth() as AuthenticatedTypes;
+  const {Locals} = UseI18nContext() as I18nContextType;
   const {navigate} = useNavigation<StackNavigationProp<RootStackParamList>>();
 
   useFocusEffect(

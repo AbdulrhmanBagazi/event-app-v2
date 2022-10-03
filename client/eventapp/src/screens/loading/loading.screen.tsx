@@ -7,23 +7,34 @@ import {
 import {StatusBar, View} from 'react-native';
 import {styles} from './styles.loading';
 import {ActivityIndicator} from 'react-native-paper';
-import {useThemeContext} from '../../context/theme/themeToggle.context';
-import {useAuth} from '../../context/auth/auth.context';
+import {UseThemeContext} from '../../context/theme/themeToggle.context';
+import {UseAuth} from '../../context/auth/auth.context';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
+import {MMKVLoader} from 'react-native-mmkv-storage';
 
 const Loading = () => {
-  const {isDarkMode, Colors} = useThemeContext() as ThemeContextType;
-  const {authLoading} = useAuth() as AuthenticatedTypes;
+  const {isDarkMode, Colors} = UseThemeContext() as ThemeContextType;
+  const {authLoading} = UseAuth() as AuthenticatedTypes;
+  const MMKV = new MMKVLoader().initialize();
   const {replace} = useNavigation<StackNavigationProp<RootStackParamList>>();
 
   useEffect(() => {
-    if (!authLoading) {
-      setTimeout(() => {
-        return replace('Home');
-      }, 1000);
-    }
-  }, [authLoading, replace]);
+    const update = async () => {
+      const Lang = await MMKV.getStringAsync('Lang');
+
+      if (!Lang) {
+        return replace('Language');
+      }
+
+      if (!authLoading) {
+        setTimeout(() => {
+          return replace('Main');
+        }, 1000);
+      }
+    };
+    update();
+  }, [MMKV, authLoading, replace]);
 
   return (
     <View

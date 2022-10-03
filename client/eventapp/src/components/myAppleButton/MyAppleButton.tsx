@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {useThemeContext} from '../../context/theme/themeToggle.context';
+import {UseThemeContext} from '../../context/theme/themeToggle.context';
 import {
   AuthenticatedTypes,
   ErrorContextType,
@@ -10,15 +10,15 @@ import {
 import {styles} from './styles.MyAppleButton';
 import {Button, Text} from 'react-native-paper';
 import {appleAuth} from '@invertase/react-native-apple-authentication';
-import {useAuth} from '../../context/auth/auth.context';
-import {useError} from '../../context/error/error.context';
-import {useI18nContext} from '../../context/I18n/i18n.context';
+import {UseAuth} from '../../context/auth/auth.context';
+import {UseError} from '../../context/error/error.context';
+import {UseI18nContext} from '../../context/I18n/i18n.context';
 
 const MyAppleButton: React.FC<{text: String}> = ({text}) => {
-  const {isDarkMode} = useThemeContext() as ThemeContextType;
-  const {authLoading, AppleSignIn} = useAuth() as AuthenticatedTypes;
-  const {ThrowError} = useError() as ErrorContextType;
-  const {Locals} = useI18nContext() as I18nContextType;
+  const {isDarkMode} = UseThemeContext() as ThemeContextType;
+  const {authLoading, AppleSignIn} = UseAuth() as AuthenticatedTypes;
+  const {ThrowError} = UseError() as ErrorContextType;
+  const {Locals} = UseI18nContext() as I18nContextType;
 
   async function onAppleButtonPress() {
     try {

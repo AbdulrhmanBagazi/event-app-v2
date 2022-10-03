@@ -46,6 +46,10 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
   bridge.surfacePresenter = _bridgeAdapter.surfacePresenter;
 #endif
 
+#if !TARGET_OS_TV
+  [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+#endif // !TARGET_OS_TV
+
   NSDictionary *initProps = [self prepareInitialProps];
   UIView *rootView = RCTAppSetupDefaultRootView(bridge, @"eventapp", initProps);
 
@@ -62,10 +66,18 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
   [self.window makeKeyAndVisible];
     //splash screen/RTL react-native
   [[RCTI18nUtil sharedInstance] allowRTL:YES];
-  [[RCTI18nUtil sharedInstance] forceRTL:YES];
+  // [[RCTI18nUtil sharedInstance] forceRTL:YES];
   [RNBootSplash initWithStoryboard:@"BootSplash" rootView:rootView];
   return YES;
 }
+
+- (void)applicationWillTerminate:(UIApplication *)application
+{
+#if !TARGET_OS_TV
+    [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
+#endif // !TARGET_OS_TV
+}
+
 
 /// This method controls whether the `concurrentRoot`feature of React18 is turned on or off.
 ///

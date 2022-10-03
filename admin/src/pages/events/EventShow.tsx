@@ -8,18 +8,26 @@ import {
   useGetOne,
   useRefresh,
   Loading,
-  Link,
   useCreatePath,
   WithRecord,
   ImageField,
   UrlField,
+  FunctionField,
+  useLocaleState,
+  ReferenceManyField,
+  Pagination,
+  Datagrid,
+  ChipField,
 } from 'react-admin'
-import ColoredTextField from './components/ColoredTextField'
 import SuspendedBooleanField from './components/SuspendedBooleanField'
 import { useParams } from 'react-router-dom'
 import MyError from '../../layout/MyError'
+import { Link } from 'react-router-dom'
+import { OpenInNew } from '../../theme/icons'
+import EventShowToolBar from './components/EventShowToolBar'
 
 const EventShow = () => {
+  const [locale] = useLocaleState()
   const { id } = useParams()
   const { data, isLoading } = useGetOne(
     'Event',
@@ -47,7 +55,7 @@ const EventShow = () => {
         //   return true
         // },
       }}
-      sx={{ maxWidth: 600 }}
+      actions={<EventShowToolBar data={data} />}
       emptyWhileLoading>
       <TabbedShowLayout>
         <Tab label="resources.Event.showtabs.show">
@@ -59,7 +67,7 @@ const EventShow = () => {
               label="author"
               render={(record) => (
                 <Link to={createPath({ resource: 'companies', type: 'show', id: record.companyId })}>
-                  <TextField source="companyId" />
+                  <OpenInNew />
                 </Link>
               )}
             />
@@ -68,11 +76,24 @@ const EventShow = () => {
             <WithRecord
               render={(record) => (
                 <Link to={createPath({ resource: 'location', type: 'show', id: record.locationId })}>
-                  <TextField source="locationId" />
+                  <OpenInNew />
                 </Link>
               )}
             />
           </Labeled>
+          <Labeled label="resources.Event.fields.location">
+            <FunctionField
+              render={(record: any) => (locale === 'en' ? record.Location.title_en : record.Location.title)}
+            />
+          </Labeled>
+          <Labeled label="resources.Event.fields.app_sectionId">
+            <FunctionField
+              render={(record: any) =>
+                locale === 'en' ? record.App_section?.title_en : record.App_section?.title
+              }
+            />
+          </Labeled>
+
           <Labeled label="resources.Event.fields.createdAt">
             <DateField source="createdAt" />
           </Labeled>
@@ -80,7 +101,7 @@ const EventShow = () => {
             <DateField source="updatedAt" />
           </Labeled>
           <Labeled label="resources.Event.fields.status">
-            <ColoredTextField source="status" />
+            <ChipField source="status" size="small" />
           </Labeled>
           <Labeled label="resources.Event.fields.published">
             <SuspendedBooleanField source="published" />
@@ -107,6 +128,28 @@ const EventShow = () => {
               sx={{ '& img': { maxWidth: 250, maxHeight: 250, objectFit: 'contain' } }}
             />
           </Labeled>
+        </Tab>
+        <Tab label="resources.Event.showtabs.eventjob">
+          <ReferenceManyField
+            pagination={<Pagination />}
+            label=""
+            reference="eventjobEvents"
+            target="eventjob"
+            perPage={5}>
+            <Datagrid
+              isRowSelectable={() => false}
+              bulkActionButtons={false}
+              rowClick="show"
+              resource="eventjob">
+              {/* <TextField source="id" sortable={false} /> */}
+              <TextField source="title" />
+              <TextField source="title_en" />
+              <ChipField source="status" size="small" />
+              <TextField source="rate" />
+              <ChipField source="rate_type" size="small" />
+              <DateField source="createdAt" />
+            </Datagrid>
+          </ReferenceManyField>
         </Tab>
       </TabbedShowLayout>
     </Show>

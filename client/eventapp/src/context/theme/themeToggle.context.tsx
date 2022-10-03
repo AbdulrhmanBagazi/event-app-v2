@@ -3,6 +3,7 @@ import {useColorScheme} from 'react-native';
 import {ThemeContextType} from '../../typs';
 import {myTheme} from './theme';
 import {MMKVLoader} from 'react-native-mmkv-storage';
+import RNBootSplash from 'react-native-bootsplash';
 
 const ThemeContext = createContext<ThemeContextType | null>(null);
 
@@ -10,7 +11,6 @@ export const ThemeProvider: React.FC<{
   children: React.ReactNode;
 }> = ({children}) => {
   const DarkMode = useColorScheme() === 'dark';
-
   const [isdark, setDark] = useState(DarkMode);
   const MMKV = new MMKVLoader().initialize();
 
@@ -28,16 +28,20 @@ export const ThemeProvider: React.FC<{
   useEffect(() => {
     const getDark = async () => {
       const DarkMMKV = await MMKV.getStringAsync('darkMode');
+      if (DarkMMKV) {
+        if (DarkMMKV === 'false') {
+          setDark(false);
 
-      if (DarkMMKV === 'false') {
-        setDark(false);
-        return;
-      } else if (DarkMMKV === 'true') {
-        setDark(true);
-        return;
-      } else if (DarkMode) {
-        setDark(true);
-        return;
+          return RNBootSplash.hide({fade: true});
+        } else if (DarkMMKV === 'true') {
+          setDark(true);
+
+          return RNBootSplash.hide({fade: true});
+        }
+      } else {
+        setDark(DarkMode);
+
+        return RNBootSplash.hide({fade: true});
       }
     };
 
@@ -58,4 +62,4 @@ export const ThemeProvider: React.FC<{
   );
 };
 
-export const useThemeContext = () => useContext(ThemeContext);
+export const UseThemeContext = () => useContext(ThemeContext);

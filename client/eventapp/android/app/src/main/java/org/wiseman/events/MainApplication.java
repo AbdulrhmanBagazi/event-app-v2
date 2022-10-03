@@ -56,7 +56,7 @@ public class MainApplication extends Application implements ReactApplication {
     // FORCE RTL
     I18nUtil sharedI18nUtilInstance = I18nUtil.getInstance();
     sharedI18nUtilInstance.allowRTL(this, true);
-    sharedI18nUtilInstance.forceRTL(this,true);
+    // sharedI18nUtilInstance.forceRTL(this,true);
     // If you opted-in for the New Architecture, we enable the TurboModule system
     ReactFeatureFlags.useTurboModules = BuildConfig.IS_NEW_ARCHITECTURE_ENABLED;
     SoLoader.init(this, /* native exopackage */ false);

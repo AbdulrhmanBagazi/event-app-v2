@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import Page from '../../../layout/page';
 import {AuthenticatedTypes, RootStackParamList} from '../../../typs';
-import {useAuth} from '../../../context/auth/auth.context';
+import {UseAuth} from '../../../context/auth/auth.context';
 import SignupForm from './components/signupForm';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {styles} from './styles.signup';
@@ -12,14 +12,14 @@ import {View} from 'react-native';
 import {useHeaderHeight} from '@react-navigation/elements';
 
 const Signup = () => {
-  const {isAuthenticated} = useAuth() as AuthenticatedTypes;
+  const {isAuthenticated} = UseAuth() as AuthenticatedTypes;
   const {reset} = useNavigation<StackNavigationProp<RootStackParamList>>();
 
   useEffect(() => {
     if (isAuthenticated) {
       return reset({
         index: 0,
-        routes: [{name: 'Home'}],
+        routes: [{name: 'Main'}],
       });
     }
   }, [isAuthenticated, reset]);

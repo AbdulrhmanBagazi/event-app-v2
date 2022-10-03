@@ -16,7 +16,25 @@ export const I18nProvider: React.FC<{
   const MMKV = new MMKVLoader().initialize();
   I18nManager.allowRTL(true);
 
-  const ToggleI18n = async (languges: Languges) => {
+  const ToggleI18n = async (languges: Languges, firstTime: Boolean) => {
+    if (firstTime) {
+      if (languges === 'en') {
+        await MMKV.setStringAsync('Lang', 'en');
+        OneSignal.setLanguage('en');
+        I18nManager.forceRTL(false);
+        I18nManager.allowRTL(false);
+
+        return RNRestart.Restart();
+      }
+
+      await MMKV.setStringAsync('Lang', 'ar');
+      OneSignal.setLanguage('ar');
+      I18nManager.forceRTL(true);
+      I18nManager.allowRTL(true);
+
+      return RNRestart.Restart();
+    }
+
     if (languges === isLang) {
       return;
     }
@@ -24,6 +42,7 @@ export const I18nProvider: React.FC<{
       await MMKV.setStringAsync('Lang', 'ar');
       OneSignal.setLanguage('ar');
       I18nManager.forceRTL(true);
+      I18nManager.allowRTL(true);
 
       return RNRestart.Restart();
     }
@@ -31,6 +50,7 @@ export const I18nProvider: React.FC<{
     await MMKV.setStringAsync('Lang', 'en');
     OneSignal.setLanguage('en');
     I18nManager.forceRTL(false);
+    I18nManager.allowRTL(false);
 
     return RNRestart.Restart();
   };
@@ -38,7 +58,8 @@ export const I18nProvider: React.FC<{
   useEffect(() => {
     const getLang = async () => {
       const Lang = await MMKV.getStringAsync('Lang');
-      if (Lang === 'en' && !I18nManager.isRTL) {
+
+      if (Lang === 'en') {
         setLang('en');
         OneSignal.setLanguage('en');
         return setLocals(I18n_en);
@@ -60,4 +81,4 @@ export const I18nProvider: React.FC<{
   );
 };
 
-export const useI18nContext = () => useContext(I18nContext);
+export const UseI18nContext = () => useContext(I18nContext);

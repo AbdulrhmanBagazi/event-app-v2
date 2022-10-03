@@ -4,11 +4,10 @@ import {
   SimpleList,
   DateField,
   List,
-  ShowButton,
-  EditButton,
   useGetList,
   Loading,
   useRefresh,
+  ChipField,
 } from 'react-admin'
 import { useMediaQuery, Theme } from '@mui/material'
 import ColoredBooleanField from './components/ColoredBooleanField'
@@ -56,15 +55,13 @@ const UserList = () => {
           linkType="show"
         />
       ) : (
-        <Datagrid isRowSelectable={() => false} bulkActionButtons={false} size="medium">
+        <Datagrid isRowSelectable={() => false} bulkActionButtons={false} rowClick="show">
           {/* <TextField source="id" sortable={false} /> */}
           <TextField source="email" />
           <ColoredBooleanField source="verfied" />
           <SuspendedBooleanField source="suspended" />
+          <ChipField source="Type" size="small" />
           <DateField source="createdAt" />
-          <TextField source="Type" />
-          <ShowButton />
-          <EditButton />
         </Datagrid>
       )}
     </List>

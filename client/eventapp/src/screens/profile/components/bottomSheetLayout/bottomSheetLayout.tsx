@@ -7,17 +7,17 @@ import {
   NotificationContextType,
   ThemeContextType,
 } from '../../../../typs';
-import {useThemeContext} from '../../../../context/theme/themeToggle.context';
+import {UseThemeContext} from '../../../../context/theme/themeToggle.context';
 import CustomText from '../../../../components/customText/customText';
 import CustomSwitch from '../../../../components/customSwitch/customSwitch';
-import {useNotificationContext} from '../../../../context/notifications/notification.context';
-import {useI18nContext} from '../../../../context/I18n/i18n.context';
+import {UseNotificationContext} from '../../../../context/notifications/notification.context';
+import {UseI18nContext} from '../../../../context/I18n/i18n.context';
 
 const BottomSheetLayout = () => {
-  const {Locals} = useI18nContext() as I18nContextType;
-  const {ToggleTheme, isDarkMode} = useThemeContext() as ThemeContextType;
+  const {Locals} = UseI18nContext() as I18nContextType;
+  const {ToggleTheme, isDarkMode} = UseThemeContext() as ThemeContextType;
   const {ToggleNotification, Notification, notificationLoading} =
-    useNotificationContext() as NotificationContextType;
+    UseNotificationContext() as NotificationContextType;
 
   return (
     <View style={styles.bottomSheetContainer}>

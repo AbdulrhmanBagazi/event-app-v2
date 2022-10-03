@@ -7,10 +7,16 @@ const customArabicMessages: TranslationMessages = {
   Companies: 'الشركات',
   Events: 'الفعاليات',
   Location: 'المواقع',
+  app_section: 'آقسام التطبيق',
+  evenjob: 'وظائف الفعاليات',
   'User Get': 'المستخدم',
   Dashboard: 'لوحة الإحصائيات',
   error: 'حدث خطآ!',
   'Email exists': 'البريد الإلكتروني مستخدم',
+  create_job: 'إنشاء وظيفة',
+  eventId: 'الفعالية',
+  Event: 'الفعالية',
+  show: 'عرض',
   dashboard: {
     total_users: 'المستخدمين',
   },
@@ -116,6 +122,7 @@ const customArabicMessages: TranslationMessages = {
         posts: 'المنشورات',
         edit: 'تعديل',
         company: 'الشركة',
+        eventjob: 'الوظائف',
       },
       edittabs: {
         edit: 'تعديل',
@@ -135,7 +142,9 @@ const customArabicMessages: TranslationMessages = {
         location_url: 'رابط الموقع',
         status: 'الحالة',
         SelectCompany: 'قم بإختيار الشركة',
-        locationId: 'معرف القسم',
+        locationId: 'معرف الموقع',
+        location: 'الموقع',
+        app_sectionId: 'القسم في التطبيق',
       },
       status: {
         soon: 'قريبا',
@@ -159,6 +168,58 @@ const customArabicMessages: TranslationMessages = {
       },
       edittabs: {
         edit: 'تعديل',
+      },
+    },
+    app_section: {
+      name: 'آقسام التطبيق |||| قسم التطبيق',
+      showtabs: {
+        show: 'التفاصيل',
+        edit: 'تعديل',
+      },
+      fields: {
+        id: 'معرف',
+        published: 'النشر',
+        createdAt: 'تاريخ الإنشاء',
+        updatedAt: 'تاريخ التحديث',
+        title: 'العنوان',
+        title_en: 'العنوان (إنجليزي)',
+      },
+      edittabs: {
+        edit: 'تعديل',
+      },
+    },
+    eventjob: {
+      name: 'وظائف الفعاليات |||| وظيفة',
+      showtabs: {
+        show: 'التفاصيل',
+        edit: 'تعديل',
+      },
+      fields: {
+        id: 'معرف',
+        createdAt: 'تاريخ الإنشاء',
+        updatedAt: 'تاريخ التحديث',
+        title: 'الإسم',
+        title_en: 'الإسم (إنجليزي)',
+        rate: 'الراتب/ريال سعودي',
+        rate_type: 'نوع الراتب',
+        status: 'الحالة',
+        eventId: 'الفعالية',
+        companyId: 'الشركة',
+        Event: {
+          title: 'الفعالية',
+          title_en: 'الفعالية',
+        },
+      },
+      edittabs: {
+        edit: 'تعديل',
+      },
+      status: {
+        OPEN: 'مفتوح',
+        CLOSED: 'مغلق',
+      },
+      rate_type: {
+        MONTHLY: 'شهري',
+        DAY: 'يومي',
       },
     },
   },

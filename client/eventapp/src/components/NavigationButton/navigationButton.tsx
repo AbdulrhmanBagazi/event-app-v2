@@ -1,9 +1,9 @@
 import React from 'react';
 import {Button} from 'react-native-paper';
-import {useThemeContext} from '../../context/theme/themeToggle.context';
+import {UseThemeContext} from '../../context/theme/themeToggle.context';
 import * as RootNavigation from '../../App.RootNavigation';
 import {I18nContextType, ThemeContextType} from '../../typs';
-import {useI18nContext} from '../../context/I18n/i18n.context';
+import {UseI18nContext} from '../../context/I18n/i18n.context';
 import {StyleProp, TextStyle, ViewStyle} from 'react-native';
 
 type Routes = 'AuthStack' | 'Signin' | 'Signup' | 'Events';
@@ -19,8 +19,8 @@ const NavigationButton: React.FC<{
   Mode?: ButtonMode;
   disabled?: boolean;
 }> = ({to, style, Color, Mode, disabled, labelStyle}) => {
-  const {Colors} = useThemeContext() as ThemeContextType;
-  const {Locals} = useI18nContext() as I18nContextType;
+  const {Colors} = UseThemeContext() as ThemeContextType;
+  const {Locals} = UseI18nContext() as I18nContextType;
 
   return (
     <Button

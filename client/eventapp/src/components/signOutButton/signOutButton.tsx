@@ -1,23 +1,23 @@
 import React from 'react';
 import {List} from 'react-native-paper';
-import {useThemeContext} from '../../context/theme/themeToggle.context';
+import {UseThemeContext} from '../../context/theme/themeToggle.context';
 import {
   AuthenticatedTypes,
   I18nContextType,
   RootStackParamList,
   ThemeContextType,
 } from '../../typs';
-import {useI18nContext} from '../../context/I18n/i18n.context';
-import {useAuth} from '../../context/auth/auth.context';
+import {UseI18nContext} from '../../context/I18n/i18n.context';
+import {UseAuth} from '../../context/auth/auth.context';
 import {Alert} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 
 const SignOutButton: React.FC = () => {
-  const {Colors, isDarkMode, Theme} = useThemeContext() as ThemeContextType;
-  const {Locals} = useI18nContext() as I18nContextType;
+  const {Colors, isDarkMode, Theme} = UseThemeContext() as ThemeContextType;
+  const {Locals} = UseI18nContext() as I18nContextType;
   const {SignOut, isAuthenticated, authLoading} =
-    useAuth() as AuthenticatedTypes;
+    UseAuth() as AuthenticatedTypes;
   const {navigate} = useNavigation<StackNavigationProp<RootStackParamList>>();
 
   if (!isAuthenticated) {

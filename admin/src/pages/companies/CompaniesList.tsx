@@ -7,8 +7,6 @@ import {
   useGetList,
   Loading,
   useRefresh,
-  ShowButton,
-  EditButton,
   ImageField,
 } from 'react-admin'
 import { useMediaQuery, Theme } from '@mui/material'
@@ -54,11 +52,11 @@ const CompaniesList = () => {
           linkType="show"
         />
       ) : (
-        <Datagrid isRowSelectable={() => false} bulkActionButtons={false} size="medium">
+        <Datagrid isRowSelectable={() => false} bulkActionButtons={false} rowClick="show">
           <ImageField
             source="logo_url"
             title="logo_url"
-            sx={{ '& img': { maxWidth: 100, maxHeight: 100, objectFit: 'contain' } }}
+            sx={{ '& img': { maxWidth: 50, maxHeight: 50, objectFit: 'contain' } }}
           />
           {/* <TextField source="id" sortable={false} /> */}
           <TextField source="name" />
@@ -66,8 +64,6 @@ const CompaniesList = () => {
           <TextField source="contact" />
           <SuspendedBooleanField source="suspended" />
           <DateField source="createdAt" />
-          <ShowButton />
-          <EditButton />
         </Datagrid>
       )}
     </List>
@@ -75,8 +71,3 @@ const CompaniesList = () => {
 }
 
 export default CompaniesList
-
-// id       String @id @default(uuid()) @db.Uuid
-// email    String @unique
-// name     String
-// password String

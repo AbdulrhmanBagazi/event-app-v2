@@ -6,83 +6,140 @@ import {
   useNavigation,
   useRoute,
 } from '@react-navigation/native';
-import {Image, ImageBackground, View} from 'react-native';
-import {Avatar, Text} from 'react-native-paper';
-import {useThemeContext} from '../../context/theme/themeToggle.context';
+import {Platform, View} from 'react-native';
 import Page from '../../layout/page';
-import {ParamList, RootStackParamList, ThemeContextType} from '../../typs';
-import Logo from '../home/components/card/logo';
+import {
+  I18nContextType,
+  ParamList,
+  RootStackParamList,
+  ThemeContextType,
+} from '../../typs';
 import {styles} from './styles.singleEvent';
-import {ScrollView} from 'react-native-gesture-handler';
+import DataSingleEvent from './components/DataSingleEvent/data.singleEvent';
 import {SCREEN_HEIGHT} from '../../layout/screenDimensions';
+import HeaderSingleEvent from './components/HeaderSingleEvent/header.singleEvent';
+import DescriptionSingleEvent from './components/DescriptionSingleEvent/description.singleEvent';
+import Animated, {
+  interpolate,
+  interpolateColor,
+  useAnimatedScrollHandler,
+  useAnimatedStyle,
+  useSharedValue,
+} from 'react-native-reanimated';
+import {UseThemeContext} from '../../context/theme/themeToggle.context';
+import {Button} from 'react-native-paper';
+import {UseI18nContext} from '../../context/I18n/i18n.context';
 
 const SingleEvent = () => {
-  const {Colors, isDarkMode} = useThemeContext() as ThemeContextType;
+  const {Colors, isDarkMode} = UseThemeContext() as ThemeContextType;
   const {setOptions} = useNavigation<NavigationProp<RootStackParamList>>();
   const route = useRoute<RouteProp<ParamList, 'Event'>>();
+  const {Locals} = UseI18nContext() as I18nContextType;
+  const data = route.params.params;
+
   const getHeaderHeight = useHeaderHeight();
+  const scrollY = useSharedValue(0);
+
+  const onScroll = useAnimatedScrollHandler(event => {
+    scrollY.value = event.contentOffset.y;
+  });
+
+  const spaceColor = useAnimatedStyle(() => {
+    return {
+      backgroundColor: interpolateColor(
+        scrollY.value,
+        [
+          0,
+          Platform.OS === 'ios' ? getHeaderHeight * 1.5 : getHeaderHeight * 2.5,
+        ],
+        ['transparent', isDarkMode ? Colors.Surface : Colors.Background],
+      ),
+    };
+  });
+
+  const borderRadius = useAnimatedStyle(() => {
+    const borderTopRightRadius = interpolate(
+      scrollY.value,
+      [-1, 0, 1],
+      [5, 5, 0],
+    );
+    const borderTopLeftRadius = interpolate(
+      scrollY.value,
+      [-1, 0, 1],
+      [5, 5, 0],
+    );
+    return {
+      borderTopRightRadius,
+      borderTopLeftRadius,
+    };
+  });
 
   React.useEffect(() => {
     return setOptions({
-      title: route.params.params.title,
-      headerTintColor: '#fff',
-      // headerBlurEffect: 'dark',
+      title: '',
     });
-  }, [route.params.params.companyLogo, route.params.params.title, setOptions]);
+  }, [setOptions]);
 
   return (
     <Page paddingHorizontal={0}>
-      <ImageBackground
-        source={{uri: route.params.params.image}}
+      <View
         style={[
-          styles.Image,
-          // eslint-disable-next-line react-native/no-inline-styles
-          {
-            backgroundColor: isDarkMode
-              ? 'rgba(232,149,159,0.5)'
-              : 'rgba(175,0,41, 0.5)',
-            height: getHeaderHeight + 300,
-          },
-        ]}
-        resizeMode="cover"
-        blurRadius={15}>
-        <View style={{height: getHeaderHeight}} />
-        <Avatar.Image
-          size={100}
-          style={styles.TopCardAvatart}
-          source={() =>
-            route.params.params.companyLogo ? (
-              <Image
-                source={{
-                  uri: route.params.params.companyLogo,
-                }}
-                resizeMode="contain"
-                style={styles.CompanyLogo}
-              />
-            ) : (
-              <Logo width={110} height={110} />
-            )
-          }
-        />
-      </ImageBackground>
-      <View style={[styles.Scroll, {top: getHeaderHeight}]}>
-        <ScrollView
-          stickyHeaderIndices={[1]}
-          showsVerticalScrollIndicator={false}>
-          <View style={{height: getHeaderHeight + 20}} />
+          styles.Container,
+          {backgroundColor: isDarkMode ? Colors.Surface : Colors.Background},
+        ]}>
+        <HeaderSingleEvent data={route.params.params} style={spaceColor} />
+        <View style={[styles.Scroll, {top: getHeaderHeight}]}>
           <View
             style={[
               styles.MainView,
               {
                 height: SCREEN_HEIGHT - getHeaderHeight,
-                backgroundColor: Colors.Background,
               },
             ]}>
-            <View style={styles.TitleView}>
-              <Text>Title</Text>
-            </View>
+            <Animated.ScrollView
+              onScroll={onScroll}
+              contentContainerStyle={styles.contentContainerStyle}
+              stickyHeaderIndices={[1]}
+              showsVerticalScrollIndicator={false}>
+              <View
+                style={{
+                  height:
+                    Platform.OS === 'ios'
+                      ? getHeaderHeight * 1.5
+                      : getHeaderHeight * 2.5,
+                }}
+              />
+              <DataSingleEvent
+                data={route.params.params}
+                borderRadius={borderRadius}
+              />
+              <DescriptionSingleEvent data={route.params.params} />
+              <DescriptionSingleEvent data={route.params.params} />
+              <DescriptionSingleEvent data={route.params.params} />
+              <DescriptionSingleEvent data={route.params.params} />
+              <DescriptionSingleEvent data={route.params.params} />
+              <DescriptionSingleEvent data={route.params.params} />
+              <DescriptionSingleEvent data={route.params.params} />
+            </Animated.ScrollView>
           </View>
-        </ScrollView>
+        </View>
+        <Button
+          // onPress={() => HandleLogin({email: isEmail, password: isPassword})}
+          mode="contained"
+          // disabled={authLoading || isError.Email || isError.Password}
+          color={Colors.Primary}
+          labelStyle={{color: Colors.OnSecondary}}
+          style={styles.Button}
+          disabled={
+            route.params.params.Event_Jobs.length <= 0 ||
+            data.status !== 'ACTIVE'
+              ? true
+              : false
+          }
+          // loading={authLoading}
+        >
+          {Locals.SingleEvent.Apply}
+        </Button>
       </View>
     </Page>
   );

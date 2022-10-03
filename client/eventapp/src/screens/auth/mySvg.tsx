@@ -1,13 +1,13 @@
 import * as React from 'react';
 import {View} from 'react-native';
 import Svg, {Defs, Rect, G, Path} from 'react-native-svg';
-import {useThemeContext} from '../../context/theme/themeToggle.context';
+import {UseThemeContext} from '../../context/theme/themeToggle.context';
 import {SCREEN_WIDTH} from '../../layout/screenDimensions';
 import {ThemeContextType} from '../../typs';
 import {styles} from './styles.auth';
 
 const SvgComponent = () => {
-  const {Colors, isDarkMode} = useThemeContext() as ThemeContextType;
+  const {Colors, isDarkMode} = UseThemeContext() as ThemeContextType;
 
   return (
     <View style={styles.Logo}>

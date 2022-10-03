@@ -1,5 +1,5 @@
 import React, {useMemo} from 'react';
-import {useThemeContext} from '../context/theme/themeToggle.context';
+import {UseThemeContext} from '../context/theme/themeToggle.context';
 import {ThemeContextType} from '../typs';
 import Animated, {
   useAnimatedStyle,
@@ -25,7 +25,7 @@ const AnimatedView: React.FC<{
   style?: StyleProp<ViewStyle>;
   Color: ColorType;
 }> = ({children, Color, style}) => {
-  const {isDarkMode, Theme} = useThemeContext() as ThemeContextType;
+  const {isDarkMode, Theme} = UseThemeContext() as ThemeContextType;
 
   const progress = useDerivedValue(() => {
     return isDarkMode ? withTiming(1) : withTiming(0);

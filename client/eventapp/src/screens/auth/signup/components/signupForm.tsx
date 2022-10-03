@@ -6,20 +6,20 @@ import {
   ThemeContextType,
 } from '../../../../typs';
 import {Button, TextInput} from 'react-native-paper';
-import {useAuth} from '../../../../context/auth/auth.context';
+import {UseAuth} from '../../../../context/auth/auth.context';
 import {styles} from './styles.signupForm';
-import {useThemeContext} from '../../../../context/theme/themeToggle.context';
+import {UseThemeContext} from '../../../../context/theme/themeToggle.context';
 import {Linking, View} from 'react-native';
-import {useError} from '../../../../context/error/error.context';
-import {useI18nContext} from '../../../../context/I18n/i18n.context';
+import {UseError} from '../../../../context/error/error.context';
+import {UseI18nContext} from '../../../../context/I18n/i18n.context';
 import CustomText from '../../../../components/customText/customText';
 import {PrivacyURL, TermsURL} from '../../../../../config/config';
 
 const SignupForm = () => {
-  const {Locals} = useI18nContext() as I18nContextType;
-  const {authLoading, SignUp} = useAuth() as AuthenticatedTypes;
-  const {Colors} = useThemeContext() as ThemeContextType;
-  const {ThrowError} = useError() as ErrorContextType;
+  const {Locals} = UseI18nContext() as I18nContextType;
+  const {authLoading, SignUp} = UseAuth() as AuthenticatedTypes;
+  const {Colors} = UseThemeContext() as ThemeContextType;
+  const {ThrowError} = UseError() as ErrorContextType;
   const [secure, setSecure] = useState(true);
   const [secureRepeat, setSecureRepeat] = useState(true);
   const [isPasswordRepeat, setPasswordRepeat] = useState('');

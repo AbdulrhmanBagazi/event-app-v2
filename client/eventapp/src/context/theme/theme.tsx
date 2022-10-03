@@ -10,7 +10,7 @@ const myTheme = {
     Primary: '#af0029',
     OnPrimary: '#FFFFFF',
     //
-    Surface: '#FFFFFF',
+    Surface: '#F8F8F8',
     OnSurface: '#000000',
     //
     Secondary: '#00af86',

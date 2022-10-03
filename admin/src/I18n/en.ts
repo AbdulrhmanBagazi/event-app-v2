@@ -7,9 +7,13 @@ const customEnglishMessages: TranslationMessages = {
   Companies: 'Companies',
   Events: 'Events',
   Location: 'Locations',
+  app_section: 'App Sections',
+  evenjob: 'Events Jobs',
   'User Get': 'User',
   Dashboard: 'Dashboard',
   error: 'error!',
+  create_job: 'Create Job',
+  eventId: 'Event',
   dashboard: {
     total_users: 'Users',
   },
@@ -116,6 +120,7 @@ const customEnglishMessages: TranslationMessages = {
         Events: 'Events',
         edit: 'Edit',
         company: 'Company',
+        eventjob: 'Jobs',
       },
       edittabs: {
         edit: 'Edit',
@@ -136,6 +141,8 @@ const customEnglishMessages: TranslationMessages = {
         status: 'status',
         SelectCompany: 'Select Company',
         locationId: 'Location Id',
+        location: 'Location',
+        app_sectionId: 'App section',
       },
       status: {
         soon: 'soon',
@@ -156,10 +163,61 @@ const customEnglishMessages: TranslationMessages = {
         createdAt: 'created At',
         updatedAt: 'updated At',
         title: 'title',
+        title_en: 'title (en)',
+      },
+      edittabs: {
+        edit: 'Edit',
+      },
+    },
+    app_section: {
+      name: 'App Sections |||| App Section',
+      showtabs: {
+        show: 'Details',
+        edit: 'Edit',
+      },
+      fields: {
+        id: 'id',
+        published: 'published',
+        createdAt: 'created At',
+        updatedAt: 'updated At',
+        title: 'title',
         title_en: 'title_en',
       },
       edittabs: {
         edit: 'Edit',
+      },
+    },
+    evenjob: {
+      name: 'Events Jobs |||| Job',
+      showtabs: {
+        show: 'Details',
+        edit: 'Edit',
+      },
+      fields: {
+        id: 'id',
+        createdAt: 'created At',
+        updatedAt: 'updated At',
+        title: 'title',
+        title_en: 'title (en)',
+        rate: 'salary/SAR',
+        rate_type: 'salary type',
+        status: 'status',
+        eventId: 'event',
+        Event: {
+          title: 'Event',
+          title_en: 'Event',
+        },
+      },
+      edittabs: {
+        edit: 'Edit',
+      },
+      status: {
+        OPEN: 'Open',
+        CLOSED: 'Closed',
+      },
+      rate_type: {
+        MONTHLY: 'MONTHLY',
+        DAY: 'Day',
       },
     },
   },

@@ -2,28 +2,11 @@ import {StyleSheet} from 'react-native';
 import {SCREEN_WIDTH} from '../../layout/screenDimensions';
 
 export const styles = StyleSheet.create({
-  Image: {
-    width: SCREEN_WIDTH,
-    alignItems: 'center',
+  Container: {
+    flex: 1,
   },
   MainView: {
     flex: 1,
-    backgroundColor: 'red',
-  },
-  TitleView: {
-    padding: 5,
-    borderRadius: 2.5,
-  },
-  TopCardAvatart: {
-    padding: 5,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'transparent',
-    marginVertical: 5,
-  },
-  CompanyLogo: {
-    width: 110,
-    height: 110,
   },
   Scroll: {
     width: SCREEN_WIDTH,
@@ -32,6 +15,15 @@ export const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     position: 'absolute',
-    backgroundColor: 'transparent',
+  },
+  Button: {
+    left: 0,
+    right: 0,
+    bottom: 40,
+    position: 'absolute',
+    marginHorizontal: 15,
+  },
+  contentContainerStyle: {
+    paddingBottom: 100,
   },
 });

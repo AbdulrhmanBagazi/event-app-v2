@@ -126,6 +126,16 @@ const I18n_ar = {
     phone: 'رقم الجوال',
     whatsapp: 'واتساب',
   },
+  SingleEvent: {
+    Details: 'التفاصيل',
+    Apply: 'تقديم',
+    SAR: 'ريال سعودي',
+    SARday: 'ريال سعودي/اليوم',
+    SARmonth: 'ريال سعودي/شهر',
+  },
+  Language: {
+    Title: 'اللغة',
+  },
 };
 
 const I18n_en = {
@@ -253,6 +263,16 @@ const I18n_en = {
     Title: 'Contact information',
     phone: 'Phone number',
     whatsapp: 'WhatsApp',
+  },
+  SingleEvent: {
+    Details: 'Details',
+    Apply: 'Apply',
+    SAR: 'SAR',
+    SARday: 'SAR/day',
+    SARmonth: 'SAR/month',
+  },
+  Language: {
+    Title: 'Language',
   },
 };
 

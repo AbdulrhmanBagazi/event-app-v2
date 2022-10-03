@@ -39,12 +39,6 @@ const EventCreate = () => {
         />
 
         <TextInput
-          label="resources.Event.fields.image_url"
-          source="image_url"
-          validate={[required()]}
-          fullWidth
-        />
-        <TextInput
           label="resources.Event.fields.location_url"
           source="location_url"
           validate={[required()]}

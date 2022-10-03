@@ -18,4 +18,5 @@ export type eventType = {
   image_url: string;
   location_url: string;
   status: EventStatus;
+  app_sectionId: string;
 };

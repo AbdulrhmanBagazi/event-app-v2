@@ -1,6 +1,6 @@
 import React, {useMemo} from 'react';
 import {StyleProp, TextStyle} from 'react-native';
-import {useThemeContext} from '../../context/theme/themeToggle.context';
+import {UseThemeContext} from '../../context/theme/themeToggle.context';
 import {ThemeContextType} from '../../typs';
 import {styles} from './styles.customText';
 import Animated, {
@@ -38,7 +38,7 @@ const CustomText: React.FC<{
   style?: StyleProp<TextStyle>;
   numberOfLines?: number;
 }> = ({text, fontWeight, style, Color, numberOfLines}) => {
-  const {isDarkMode, Theme} = useThemeContext() as ThemeContextType;
+  const {isDarkMode, Theme} = UseThemeContext() as ThemeContextType;
 
   const progress = useDerivedValue(() => {
     return isDarkMode ? withTiming(1) : withTiming(0);

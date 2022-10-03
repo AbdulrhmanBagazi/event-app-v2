@@ -11,7 +11,7 @@ import {FlatList} from 'react-native-gesture-handler';
 import {styles} from './styles.moreEvents';
 import Loading from '../../../../layout/loading';
 
-const MoreEvents: React.FC<{}> = ({}) => {
+const MoreEvents: React.FC<{app_sectionId: string}> = ({app_sectionId}) => {
   const {data, loading} = useQuery<Events_ListQuery, Events_ListQueryVariables>(
     Events_ListDocument,
     {
@@ -19,6 +19,7 @@ const MoreEvents: React.FC<{}> = ({}) => {
         page: 0,
         perPage: 50,
         sortOrder: Order.Desc,
+        app_sectionId,
       },
       context: {clientName: 'public_client'},
     },

@@ -2,7 +2,7 @@ import React from 'react';
 import {Button} from 'react-native-paper';
 import CustomText from '../../components/customText/customText';
 import NavigationButton from '../../components/NavigationButton/navigationButton';
-import {useAuth} from '../../context/auth/auth.context';
+import {UseAuth} from '../../context/auth/auth.context';
 import Page from '../../layout/page';
 import {AuthenticatedTypes, I18nContextType} from '../../typs';
 import Signin from './signin/signin.auth';
@@ -12,13 +12,13 @@ import {Linking, Platform, View} from 'react-native';
 import MGoogleButton from '../../components/myGoogleButton/MyGoogleButton';
 import MyAppleButton from '../../components/myAppleButton/MyAppleButton';
 import MySvg from './mySvg';
-import {useI18nContext} from '../../context/I18n/i18n.context';
+import {UseI18nContext} from '../../context/I18n/i18n.context';
 import {PrivacyURL, TermsURL} from '../../../config/config';
 import {useHeaderHeight} from '@react-navigation/elements';
 
 const Auth = () => {
-  const {authLoading} = useAuth() as AuthenticatedTypes;
-  const {Locals} = useI18nContext() as I18nContextType;
+  const {authLoading} = UseAuth() as AuthenticatedTypes;
+  const {Locals} = UseI18nContext() as I18nContextType;
 
   return (
     <Page paddingHorizontal={5}>
