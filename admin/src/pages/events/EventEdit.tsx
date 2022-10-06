@@ -11,10 +11,19 @@ import {
   ReferenceInput,
   useLocaleState,
   required,
+  ArrayInput,
+  SimpleFormIterator,
 } from 'react-admin'
 import EventEditToolbar from './components/EventEditToolbar'
 import { useParams } from 'react-router-dom'
 import MyError from '../../layout/MyError'
+import {
+  RichTextInput,
+  RichTextInputToolbar,
+  ListButtons,
+  LevelSelect,
+  FormatButtons,
+} from 'ra-input-rich-text'
 
 const EventEdit = () => {
   const [locale] = useLocaleState()
@@ -39,7 +48,7 @@ const EventEdit = () => {
     <Edit
       mutationMode="pessimistic"
       redirect="show"
-      sx={{ maxWidth: 600 }}
+      // sx={{ maxWidth: 600 }}
       queryOptions={{
         onError: (err) => {
           return null
@@ -49,7 +58,7 @@ const EventEdit = () => {
         refetchOnWindowFocus: true,
       }}>
       <TabbedForm toolbar={<EventEditToolbar />}>
-        <FormTab label="resources.Event.edittabs.edit">
+        <FormTab label="resources.Event.edittabs.editinfo">
           <ReferenceInput source="app_sectionId" reference="app_section">
             <SelectInput
               validate={required()}
@@ -64,12 +73,37 @@ const EventEdit = () => {
               fullWidth
             />
           </ReferenceInput>
-          <TextInput label="resources.Event.fields.title" source="title" fullWidth />
-          <TextInput label="resources.Event.fields.content" source="content" fullWidth />
-          <TextInput label="resources.Event.fields.title_en" source="title_en" fullWidth />
-          <TextInput label="resources.Event.fields.content_en" source="content_en" fullWidth />
-          <TextInput label="resources.Event.fields.image_url" source="image_url" fullWidth />
-          <TextInput label="resources.Event.fields.location_url" source="location_url" fullWidth />
+          <TextInput label="resources.Event.fields.title" source="title" fullWidth validate={required()} />
+          <TextInput
+            label="resources.Event.fields.content"
+            source="content"
+            fullWidth
+            validate={required()}
+          />
+          <TextInput
+            label="resources.Event.fields.title_en"
+            source="title_en"
+            fullWidth
+            validate={required()}
+          />
+          <TextInput
+            label="resources.Event.fields.content_en"
+            source="content_en"
+            fullWidth
+            validate={required()}
+          />
+          <TextInput
+            label="resources.Event.fields.image_url"
+            source="image_url"
+            fullWidth
+            validate={required()}
+          />
+          <TextInput
+            label="resources.Event.fields.location_url"
+            source="location_url"
+            fullWidth
+            validate={required()}
+          />
           <SelectInput
             source="status"
             label="resources.Event.fields.status"
@@ -80,8 +114,50 @@ const EventEdit = () => {
             ]}
             optionText="name"
             fullWidth
+            validate={required()}
           />
-          <BooleanInput label="resources.Event.fields.published" source="published" fullWidth />
+          <BooleanInput
+            label="resources.Event.fields.published"
+            source="published"
+            fullWidth
+            validate={required()}
+          />
+        </FormTab>
+        <FormTab label="resources.Event.edittabs.editdetails">
+          <ArrayInput source="details">
+            <SimpleFormIterator>
+              <TextInput source="title" helperText={false} label="resources.Event.fields.title" fullWidth />
+              <RichTextInput
+                fullWidth
+                toolbar={
+                  <RichTextInputToolbar size="large">
+                    <LevelSelect />
+                    <FormatButtons />
+                    <ListButtons />
+                  </RichTextInputToolbar>
+                }
+                source="content"
+                label="resources.Event.fields.content"
+              />
+            </SimpleFormIterator>
+          </ArrayInput>
+          <ArrayInput source="details_en">
+            <SimpleFormIterator>
+              <TextInput source="title" helperText={false} label="resources.Event.fields.title" fullWidth />
+              <RichTextInput
+                fullWidth
+                toolbar={
+                  <RichTextInputToolbar size="large">
+                    <LevelSelect />
+                    <FormatButtons />
+                    <ListButtons />
+                  </RichTextInputToolbar>
+                }
+                source="content"
+                label="resources.Event.fields.content"
+              />
+            </SimpleFormIterator>
+          </ArrayInput>
         </FormTab>
       </TabbedForm>
     </Edit>

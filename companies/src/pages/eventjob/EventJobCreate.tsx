@@ -13,8 +13,8 @@ const EventJobCreate = () => {
   const [locale] = useLocaleState()
 
   return (
-    <Create redirect="show" sx={{ maxWidth: 600 }}>
-      <SimpleForm>
+    <Create redirect="show">
+      <SimpleForm sx={{ maxWidth: 600 }}>
         <ReferenceInput source="eventId" reference="Event" label="resources.eventjob.fields.eventId">
           <SelectInput validate={required()} optionText={locale === 'en' ? 'title_en' : 'title'} fullWidth />
         </ReferenceInput>

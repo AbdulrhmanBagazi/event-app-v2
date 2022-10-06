@@ -118,6 +118,7 @@ const customArabicMessages: TranslationMessages = {
     Event: {
       name: 'الفعاليات |||| الفعالية',
       showtabs: {
+        details: 'تفاصيل الفعالية',
         show: 'التفاصيل',
         posts: 'المنشورات',
         edit: 'تعديل',
@@ -125,7 +126,8 @@ const customArabicMessages: TranslationMessages = {
         eventjob: 'الوظائف',
       },
       edittabs: {
-        edit: 'تعديل',
+        editinfo: 'تعديل المعلومات',
+        editdetails: 'تعديل التفاصيل',
       },
       fields: {
         id: 'معرف',
@@ -145,6 +147,10 @@ const customArabicMessages: TranslationMessages = {
         locationId: 'معرف الموقع',
         location: 'الموقع',
         app_sectionId: 'القسم في التطبيق',
+        details: 'تفاصيل الفعالية',
+        details_en: 'تفاصيل الفعالية (إنجليزي)',
+        detailstitle: 'العنوان',
+        detailscontent: 'المحتوى',
       },
       status: {
         soon: 'قريبا',

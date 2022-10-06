@@ -27,7 +27,7 @@ const HeaderSingleEvent: React.FC<{data: Events; style: any}> = ({
           backgroundColor: isDarkMode
             ? 'rgba(232,149,159,0.5)'
             : 'rgba(175,0,41, 0.5)',
-          height: getHeaderHeight + 400,
+          height: getHeaderHeight + 200,
         },
       ]}
       resizeMode="cover"
@@ -57,7 +57,7 @@ const HeaderSingleEvent: React.FC<{data: Events; style: any}> = ({
                 style={styles.CompanyLogo}
               />
             ) : (
-              <Logo width={110} height={110} />
+              <Logo width={80} height={90} />
             )
           }
         />

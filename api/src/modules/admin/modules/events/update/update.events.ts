@@ -1,6 +1,7 @@
 import { Context } from '../../../../../context';
 import { eventType } from '../types';
 import { gql } from 'apollo-server';
+import { Prisma } from '@prisma/client';
 
 export const Update_Events_TypeDefs = gql`
   type Mutation {
@@ -18,6 +19,13 @@ export const Update_Events_TypeDefs = gql`
     location_url: String
     app_sectionId: String
     locationId: String
+    details: [detail!]!
+    details_en: [detail!]!
+  }
+
+  input detail {
+    title: String
+    content: String
   }
 
   scalar DateTime
@@ -25,6 +33,9 @@ export const Update_Events_TypeDefs = gql`
 
 export const Update_Events_Mutation = {
   update_Event: async (_parent, args: { id: string; data: eventType }, context: Context) => {
+    const json = args.data.details as Prisma.JsonArray;
+    const json_en = args.data.details_en as Prisma.JsonArray;
+
     const updateEvents = await context.prisma.events.update({
       where: {
         id: args.id,
@@ -40,6 +51,8 @@ export const Update_Events_Mutation = {
         location_url: args.data.location_url,
         app_sectionId: args.data.app_sectionId,
         locationId: args.data.locationId,
+        details: json,
+        details_en: json_en,
       },
       include: {
         Location: true,

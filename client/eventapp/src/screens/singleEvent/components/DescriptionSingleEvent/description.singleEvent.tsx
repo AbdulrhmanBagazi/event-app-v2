@@ -5,31 +5,38 @@ import {UseThemeContext} from '../../../../context/theme/themeToggle.context';
 import {Events} from '../../../../graphql/generated';
 import {I18nContextType, ThemeContextType} from '../../../../typs';
 import {styles} from './styles.description.singleEvent';
-import CustomText from '../../../../components/customText/customText';
+import RenderHtml from 'react-native-render-html';
+import {SCREEN_WIDTH} from '../../../../layout/screenDimensions';
+import {Headline} from 'react-native-paper';
 
-const DescriptionSingleEvent: React.FC<{data: Events}> = ({}) => {
+const DescriptionSingleEvent: React.FC<{data: Events}> = ({data}) => {
   const {Colors, isDarkMode} = UseThemeContext() as ThemeContextType;
-  const {Locals} = UseI18nContext() as I18nContextType;
+  const {Lang} = UseI18nContext() as I18nContextType;
+  const DataLocal = Lang === 'en' ? data.details_en : data.details;
 
   return (
     <View
       style={{
         backgroundColor: isDarkMode ? Colors.Surface : Colors.Background,
       }}>
-      <View style={styles.container}>
-        <CustomText
-          style={styles.title}
-          text={Locals.SingleEvent.Details}
-          fontWeight="normal"
-          Color={'OnSurface'}
-        />
-        <CustomText
-          style={styles.text}
-          text="Tattooed cliche wayfarers jianbing letterpress jean shorts. Vice tumeric enamel pin lumbersexual lomo. Before they sold out pour-over affogato kogi vice, sustainable man bun aesthetic bushwick chicharrones selfies health goth williamsburg."
-          fontWeight="300"
-          Color={'OnSurface'}
-        />
-      </View>
+      {DataLocal.map((val: {title: string; content: string}, i: number) => {
+        return (
+          <View style={styles.container} key={i}>
+            <Headline>{val.title}</Headline>
+            <View style={styles.content}>
+              <RenderHtml
+                // eslint-disable-next-line react-native/no-inline-styles
+                baseStyle={{color: Colors.OnBackground, textAlign: 'left'}}
+                source={{html: val.content}}
+                contentWidth={SCREEN_WIDTH}
+                tagsStyles={{
+                  p: {margin: 0, padding: 0},
+                }}
+              />
+            </View>
+          </View>
+        );
+      })}
     </View>
   );
 };

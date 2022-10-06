@@ -43,6 +43,8 @@ export const list_Events_TypeDefs = gql`
     status: EventStatus
     Location: Location
     App_section: App_section
+    details: [JSON!]!
+    details_en: [JSON!]!
   }
 
   type Location {
@@ -62,6 +64,7 @@ export const list_Events_TypeDefs = gql`
   }
 
   scalar DateTime
+  scalar JSON
 `;
 
 export const list_Events_Query = {

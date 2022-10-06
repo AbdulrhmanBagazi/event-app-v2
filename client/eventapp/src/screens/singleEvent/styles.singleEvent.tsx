@@ -23,7 +23,4 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     marginHorizontal: 15,
   },
-  contentContainerStyle: {
-    paddingBottom: 100,
-  },
 });

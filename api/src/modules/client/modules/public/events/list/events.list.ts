@@ -27,9 +27,11 @@ export const list_Events_TypeDefs = gql`
     location_url: String!
     status: EventStatus!
     companyLogo: String
-    app_sectionId: String
-    Location: Location
+    app_sectionId: String!
+    Location: Location!
     Event_Jobs: [eventjob!]!
+    details: [JSON!]!
+    details_en: [JSON!]!
   }
 
   type Location {
@@ -69,6 +71,7 @@ export const list_Events_TypeDefs = gql`
   }
 
   scalar DateTime
+  scalar JSON
 `;
 
 export const list_Events_Query = {

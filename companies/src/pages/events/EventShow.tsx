@@ -16,11 +16,14 @@ import {
   ReferenceManyField,
   Pagination,
   Datagrid,
+  ArrayField,
+  RichTextField,
 } from 'react-admin'
 import SuspendedBooleanField from './components/SuspendedBooleanField'
 import { useParams } from 'react-router-dom'
 import MyError from '../../layout/MyError'
 import EventShowToolBar from './components/EventShowToolBar'
+import Grid from '@mui/material/Grid'
 
 const EventShow = () => {
   const [locale] = useLocaleState()
@@ -54,35 +57,66 @@ const EventShow = () => {
           {/* <Labeled label="resources.Event.fields.id">
             <TextField source="id" />
           </Labeled> */}
-          <Labeled label="resources.Event.fields.location">
-            <FunctionField
-              render={(record: any) => (locale === 'en' ? record.Location.title_en : record.Location.title)}
-            />
-          </Labeled>
-          <Labeled label="resources.Event.fields.createdAt">
-            <DateField source="createdAt" />
-          </Labeled>
-          <Labeled label="resources.Event.fields.updatedAt">
-            <DateField source="updatedAt" />
-          </Labeled>
-          <Labeled label="resources.Event.fields.status">
-            <ChipField source="status" size="small" />
-          </Labeled>
-          <Labeled label="resources.Event.fields.published">
-            <SuspendedBooleanField source="published" />
-          </Labeled>
-          <Labeled label="resources.Event.fields.title">
-            <TextField source="title" />
-          </Labeled>
-          <Labeled label="resources.Event.fields.content">
-            <TextField source="content" />
-          </Labeled>
-          <Labeled label="resources.Event.fields.title_en">
-            <TextField source="title_en" />
-          </Labeled>
-          <Labeled label="resources.Event.fields.content_en">
-            <TextField source="content_en" />
-          </Labeled>
+
+          <Grid container spacing={2}>
+            <Grid item xs>
+              <Labeled label="resources.Event.fields.title">
+                <TextField source="title" />
+              </Labeled>
+            </Grid>
+            <Grid item xs>
+              <Labeled label="resources.Event.fields.title_en">
+                <TextField source="title_en" />
+              </Labeled>
+            </Grid>
+            <Grid item xs>
+              <Labeled label="resources.Event.fields.content">
+                <TextField source="content" />
+              </Labeled>
+            </Grid>
+            <Grid item xs>
+              <Labeled label="resources.Event.fields.content_en">
+                <TextField source="content_en" />
+              </Labeled>
+            </Grid>
+          </Grid>
+
+          <Grid container spacing={2}>
+            <Grid item xs>
+              <Labeled label="resources.Event.fields.status">
+                <ChipField source="status" size="small" />
+              </Labeled>
+            </Grid>
+            <Grid item xs>
+              <Labeled label="resources.Event.fields.published">
+                <SuspendedBooleanField source="published" />
+              </Labeled>
+            </Grid>
+
+            <Grid item xs>
+              <Labeled label="resources.Event.fields.createdAt">
+                <DateField source="createdAt" />
+              </Labeled>
+            </Grid>
+            <Grid item xs>
+              <Labeled label="resources.Event.fields.updatedAt">
+                <DateField source="updatedAt" />
+              </Labeled>
+            </Grid>
+          </Grid>
+
+          <Grid container spacing={2}>
+            <Grid item xs>
+              <Labeled label="resources.Event.fields.location">
+                <FunctionField
+                  render={(record: any) =>
+                    locale === 'en' ? record.Location.title_en : record.Location.title
+                  }
+                />
+              </Labeled>
+            </Grid>
+          </Grid>
+
           <Labeled label="resources.Event.fields.location_url">
             <UrlField source="location_url" target="_blank" />
           </Labeled>
@@ -94,6 +128,22 @@ const EventShow = () => {
             />
           </Labeled>
         </Tab>
+
+        <Tab label="resources.Event.showtabs.details">
+          <ArrayField source="details">
+            <Datagrid isRowSelectable={() => false} bulkActionButtons={false}>
+              <TextField source="title" />
+              <RichTextField source="content" />
+            </Datagrid>
+          </ArrayField>
+          <ArrayField source="details_en">
+            <Datagrid isRowSelectable={() => false} bulkActionButtons={false}>
+              <TextField source="title" />
+              <RichTextField source="content" />
+            </Datagrid>
+          </ArrayField>
+        </Tab>
+
         <Tab label="resources.Event.showtabs.eventjob">
           <ReferenceManyField
             pagination={<Pagination />}

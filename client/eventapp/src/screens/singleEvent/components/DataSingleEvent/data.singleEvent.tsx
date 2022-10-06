@@ -58,7 +58,9 @@ const DataSingleEvent: React.FC<{
             ]}>
             {Locals.Jobs[data.status]}
           </Badge>
-          <Headline>{Lang === 'en' ? data.title_en : data.title}</Headline>
+          <Headline style={{color: Colors.OnBackground}}>
+            {Lang === 'en' ? data.title_en : data.title}
+          </Headline>
           <Subheading style={styles.Subheading}>
             {Lang === 'en' ? data.content_en : data.content}
           </Subheading>

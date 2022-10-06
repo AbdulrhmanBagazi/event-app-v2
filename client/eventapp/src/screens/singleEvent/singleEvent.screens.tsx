@@ -97,8 +97,14 @@ const SingleEvent = () => {
               },
             ]}>
             <Animated.ScrollView
+              bounces={false}
               onScroll={onScroll}
-              contentContainerStyle={styles.contentContainerStyle}
+              contentContainerStyle={{
+                height:
+                  Platform.OS === 'ios'
+                    ? SCREEN_HEIGHT - getHeaderHeight + getHeaderHeight * 1.5
+                    : SCREEN_HEIGHT - getHeaderHeight + getHeaderHeight * 2.5,
+              }}
               stickyHeaderIndices={[1]}
               showsVerticalScrollIndicator={false}>
               <View
@@ -113,12 +119,6 @@ const SingleEvent = () => {
                 data={route.params.params}
                 borderRadius={borderRadius}
               />
-              <DescriptionSingleEvent data={route.params.params} />
-              <DescriptionSingleEvent data={route.params.params} />
-              <DescriptionSingleEvent data={route.params.params} />
-              <DescriptionSingleEvent data={route.params.params} />
-              <DescriptionSingleEvent data={route.params.params} />
-              <DescriptionSingleEvent data={route.params.params} />
               <DescriptionSingleEvent data={route.params.params} />
             </Animated.ScrollView>
           </View>

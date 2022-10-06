@@ -1,10 +1,32 @@
-import { Edit, TabbedForm, FormTab, Loading, useRefresh, useGetOne, SelectInput } from 'react-admin'
+import {
+  Edit,
+  TabbedForm,
+  FormTab,
+  Loading,
+  useRefresh,
+  useGetOne,
+  SelectInput,
+  ArrayInput,
+  SimpleFormIterator,
+  TextInput,
+  ReferenceInput,
+  useLocaleState,
+  required,
+} from 'react-admin'
 import EventEditToolbar from './components/EventEditToolbar'
 import { useParams } from 'react-router-dom'
 import MyError from '../../layout/MyError'
+import {
+  RichTextInput,
+  RichTextInputToolbar,
+  ListButtons,
+  LevelSelect,
+  FormatButtons,
+} from 'ra-input-rich-text'
 
 const EventEdit = () => {
   const { id } = useParams()
+  const [locale] = useLocaleState()
   const { data, isLoading } = useGetOne(
     'Event',
     { id },
@@ -25,7 +47,7 @@ const EventEdit = () => {
     <Edit
       mutationMode="pessimistic"
       redirect="show"
-      sx={{ maxWidth: 600 }}
+      // sx={{ maxWidth: 600 }}
       // redirect={false}
       // actions={false}
       queryOptions={{
@@ -40,7 +62,41 @@ const EventEdit = () => {
         refetchOnWindowFocus: true,
       }}>
       <TabbedForm toolbar={<EventEditToolbar />}>
-        <FormTab label="resources.Event.edittabs.edit">
+        <FormTab label="resources.Event.edittabs.editinfo" sx={{ maxWidth: 600 }}>
+          <ReferenceInput source="locationId" reference="Location" perPage={100}>
+            <SelectInput
+              optionText={locale === 'en' ? 'title_en' : 'title'}
+              fullWidth
+              validate={[required()]}
+            />
+          </ReferenceInput>
+          <TextInput label="resources.Event.fields.title" source="title" validate={[required()]} fullWidth />
+          <TextInput
+            label="resources.Event.fields.content"
+            source="content"
+            validate={[required()]}
+            fullWidth
+          />
+
+          <TextInput
+            label="resources.Event.fields.title_en"
+            source="title_en"
+            validate={[required()]}
+            fullWidth
+          />
+          <TextInput
+            label="resources.Event.fields.content_en"
+            source="content_en"
+            validate={[required()]}
+            fullWidth
+          />
+
+          <TextInput
+            label="resources.Event.fields.location_url"
+            source="location_url"
+            validate={[required()]}
+            fullWidth
+          />
           <SelectInput
             source="status"
             label="resources.Event.fields.status"
@@ -50,8 +106,59 @@ const EventEdit = () => {
               { id: 'COMPLETED', name: 'resources.Event.status.completed' },
             ]}
             optionText="name"
+            validate={[required()]}
             fullWidth
           />
+        </FormTab>
+        <FormTab label="resources.Event.edittabs.editdetails">
+          <ArrayInput source="details">
+            <SimpleFormIterator>
+              <TextInput
+                source="title"
+                helperText={false}
+                label="resources.Event.fields.title"
+                fullWidth
+                validate={required()}
+              />
+              <RichTextInput
+                fullWidth
+                toolbar={
+                  <RichTextInputToolbar>
+                    <LevelSelect />
+                    <FormatButtons />
+                    <ListButtons />
+                  </RichTextInputToolbar>
+                }
+                source="content"
+                label="resources.Event.fields.content"
+                validate={required()}
+              />
+            </SimpleFormIterator>
+          </ArrayInput>
+          <ArrayInput source="details_en">
+            <SimpleFormIterator>
+              <TextInput
+                source="title"
+                helperText={false}
+                label="resources.Event.fields.title"
+                fullWidth
+                validate={required()}
+              />
+              <RichTextInput
+                fullWidth
+                toolbar={
+                  <RichTextInputToolbar>
+                    <LevelSelect />
+                    <FormatButtons />
+                    <ListButtons />
+                  </RichTextInputToolbar>
+                }
+                source="content"
+                label="resources.Event.fields.content"
+                validate={required()}
+              />
+            </SimpleFormIterator>
+          </ArrayInput>
         </FormTab>
       </TabbedForm>
     </Edit>

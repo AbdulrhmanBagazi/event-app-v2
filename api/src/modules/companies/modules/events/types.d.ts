@@ -18,8 +18,18 @@ export type eventType = {
   image_url: string;
   location_url: string;
   status: EventStatus;
+  details: [{ title: string; content: string }];
+  details_en: [{ title: string; content: string }];
 };
 
 export type update_Event = {
+  locationId: string;
+  title: string;
+  content: string;
+  title_en: string;
+  content_en: string;
+  location_url: string;
   status: EventStatus;
+  details: [{ title: string; content: string }];
+  details_en: [{ title: string; content: string }];
 };

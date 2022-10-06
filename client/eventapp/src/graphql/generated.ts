@@ -18,6 +18,7 @@ export type Scalars = {
   Int: number;
   Float: number;
   DateTime: any;
+  JSON: any;
 };
 
 export enum EventStatus {
@@ -34,13 +35,15 @@ export enum Event_JobsStatus {
 export type Events = {
   __typename?: 'Events';
   Event_Jobs: Array<Eventjob>;
-  Location?: Maybe<Location>;
-  app_sectionId?: Maybe<Scalars['String']>;
+  Location: Location;
+  app_sectionId: Scalars['String'];
   companyId: Scalars['String'];
   companyLogo?: Maybe<Scalars['String']>;
   content: Scalars['String'];
   content_en: Scalars['String'];
   createdAt: Scalars['DateTime'];
+  details: Array<Scalars['JSON']>;
+  details_en: Array<Scalars['JSON']>;
   id: Scalars['String'];
   image_url: Scalars['String'];
   locationId: Scalars['String'];
@@ -195,12 +198,10 @@ export type Events_ListQuery = {
     status: EventStatus;
     companyLogo?: string | null;
     locationId: string;
-    app_sectionId?: string | null;
-    Location?: {
-      __typename?: 'Location';
-      title: string;
-      title_en: string;
-    } | null;
+    app_sectionId: string;
+    details: Array<any>;
+    details_en: Array<any>;
+    Location: {__typename?: 'Location'; title: string; title_en: string};
     Event_Jobs: Array<{
       __typename?: 'eventjob';
       id?: string | null;
@@ -362,6 +363,8 @@ export const Events_ListDocument = gql`
       companyLogo
       locationId
       app_sectionId
+      details
+      details_en
       Location {
         title
         title_en

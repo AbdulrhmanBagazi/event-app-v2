@@ -8,9 +8,9 @@ import {
   Loading,
   useRefresh,
   ChipField,
+  BooleanField,
 } from 'react-admin'
 import { useMediaQuery, Theme } from '@mui/material'
-import ColoredBooleanField from './components/ColoredBooleanField'
 import SuspendedBooleanField from './components/SuspendedBooleanField'
 import UserListFilters from './components/UserListFilters'
 import MyError from '../../layout/MyError'
@@ -58,7 +58,7 @@ const UserList = () => {
         <Datagrid isRowSelectable={() => false} bulkActionButtons={false} rowClick="show">
           {/* <TextField source="id" sortable={false} /> */}
           <TextField source="email" />
-          <ColoredBooleanField source="verfied" />
+          <BooleanField source="verfied" />
           <SuspendedBooleanField source="suspended" />
           <ChipField source="Type" size="small" />
           <DateField source="createdAt" />

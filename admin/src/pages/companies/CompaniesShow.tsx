@@ -19,6 +19,7 @@ import { useParams } from 'react-router-dom'
 import MyError from '../../layout/MyError'
 import SuspendedBooleanField from './components/SuspendedBooleanField'
 import SuspendedBooleanFieldEvents from './components/SuspendedBooleanFieldEvents'
+import Grid from '@mui/material/Grid'
 
 const CompaniesShow = () => {
   const { id } = useParams()
@@ -54,27 +55,40 @@ const CompaniesShow = () => {
           {/* <Labeled label="resources.Companies.fields.id">
             <TextField source="id" />
           </Labeled> */}
+
+          <Grid container spacing={2}>
+            <Grid item xs>
+              <Labeled label="resources.Companies.fields.name">
+                <TextField source="name" />
+              </Labeled>
+            </Grid>
+            <Grid item xs>
+              <Labeled label="resources.Companies.fields.contact">
+                <TextField source="contact" />
+              </Labeled>
+            </Grid>
+            <Grid item xs>
+              <Labeled label="resources.Companies.fields.email">
+                <TextField source="email" />
+              </Labeled>
+            </Grid>
+            <Grid item xs>
+              <Labeled label="resources.Companies.fields.createdAt">
+                <DateField source="createdAt" />
+              </Labeled>
+            </Grid>
+            <Grid item xs>
+              <Labeled label="resources.Companies.fields.suspended">
+                <SuspendedBooleanField source="suspended" />
+              </Labeled>
+            </Grid>
+          </Grid>
           <Labeled label="resources.Companies.fields.logo_url">
             <ImageField
               source="logo_url"
               title="logo_url"
               sx={{ '& img': { maxWidth: 150, maxHeight: 150, objectFit: 'contain' } }}
             />
-          </Labeled>
-          <Labeled label="resources.Companies.fields.name">
-            <TextField source="name" />
-          </Labeled>
-          <Labeled label="resources.Companies.fields.contact">
-            <TextField source="contact" />
-          </Labeled>
-          <Labeled label="resources.Companies.fields.email">
-            <TextField source="email" />
-          </Labeled>
-          <Labeled label="resources.Companies.fields.createdAt">
-            <DateField source="createdAt" />
-          </Labeled>
-          <Labeled label="resources.Companies.fields.suspended">
-            <SuspendedBooleanField source="suspended" />
           </Labeled>
         </Tab>
         <Tab label="resources.Companies.showtabs.Events">

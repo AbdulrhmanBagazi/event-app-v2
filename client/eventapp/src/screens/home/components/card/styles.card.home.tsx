@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   TopCardImage: {
-    opacity: 0.4,
+    opacity: 0.25,
     height: 150,
   },
   TopCardImageLayer: {

@@ -25,6 +25,8 @@ query Events_list(
     companyLogo
     locationId
     app_sectionId
+    details
+    details_en
     Location {
       title
       title_en

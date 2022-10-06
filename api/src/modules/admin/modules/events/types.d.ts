@@ -19,4 +19,6 @@ export type eventType = {
   location_url: string;
   status: EventStatus;
   app_sectionId: string;
+  details: [{ title: string; content: string }];
+  details_en: [{ title: string; content: string }];
 };

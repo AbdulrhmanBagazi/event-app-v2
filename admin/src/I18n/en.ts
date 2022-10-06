@@ -121,9 +121,11 @@ const customEnglishMessages: TranslationMessages = {
         edit: 'Edit',
         company: 'Company',
         eventjob: 'Jobs',
+        details: 'Event Details',
       },
       edittabs: {
-        edit: 'Edit',
+        editinfo: 'Edit informations',
+        editdetails: 'Edit details',
       },
       fields: {
         id: 'ID',
@@ -143,6 +145,10 @@ const customEnglishMessages: TranslationMessages = {
         locationId: 'Location Id',
         location: 'Location',
         app_sectionId: 'App section',
+        details: 'Event Details',
+        details_en: 'Event Details (English)',
+        detailstitle: 'Title',
+        detailscontent: 'Content',
       },
       status: {
         soon: 'soon',

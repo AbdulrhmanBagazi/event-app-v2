@@ -83,6 +83,8 @@ model Events {
   locationId    String       @db.Uuid
   App_section   App_section? @relation(fields: [app_sectionId], references: [id])
   app_sectionId String?      @db.Uuid
+  details       Json[]
+  details_en    Json[]
 }
 
 enum EventStatus {

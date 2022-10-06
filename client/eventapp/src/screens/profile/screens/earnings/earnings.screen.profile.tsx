@@ -10,7 +10,7 @@ const Earnings = () => {
   const {isDarkMode} = UseThemeContext() as ThemeContextType;
 
   return (
-    <Page paddingHorizontal={0}>
+    <Page paddingHorizontal={20}>
       <View style={{height: useHeaderHeight()}} />
       <View style={styles.Logo}>
         <Image

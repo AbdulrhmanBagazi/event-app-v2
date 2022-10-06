@@ -12,6 +12,7 @@ import {
 } from 'react-admin'
 import { useParams } from 'react-router-dom'
 import MyError from '../../layout/MyError'
+import Grid from '@mui/material/Grid'
 
 const EventJobShow = () => {
   const { id } = useParams()
@@ -43,32 +44,43 @@ const EventJobShow = () => {
           {/* <Labeled label="resources.app_section.fields.id">
             <TextField source="id" />
           </Labeled> */}
-          <Labeled label="resources.eventjob.fields.createdAt">
-            <DateField source="createdAt" />
-          </Labeled>
-          <Labeled label="resources.eventjob.fields.updatedAt">
-            <DateField source="updatedAt" />
-          </Labeled>
-
-          <Labeled label="resources.eventjob.fields.title">
-            <TextField source="title" />
-          </Labeled>
-
-          <Labeled label="resources.eventjob.fields.title_en">
-            <TextField source="title_en" />
-          </Labeled>
-
-          <Labeled label="resources.eventjob.fields.status">
-            <ChipField source="status" size="small" />
-          </Labeled>
-
-          <Labeled label="resources.eventjob.fields.rate">
-            <TextField source="rate" />
-          </Labeled>
-
-          <Labeled label="resources.eventjob.fields.rate_type">
-            <ChipField source="rate_type" size="small" />
-          </Labeled>
+          <Grid container spacing={2}>
+            <Grid item xs={4}>
+              <Labeled label="resources.eventjob.fields.title">
+                <TextField source="title" />
+              </Labeled>
+            </Grid>
+            <Grid item xs={4}>
+              <Labeled label="resources.eventjob.fields.title_en">
+                <TextField source="title_en" />
+              </Labeled>
+            </Grid>
+            <Grid item xs={4}>
+              <Labeled label="resources.eventjob.fields.status">
+                <ChipField source="status" size="small" />
+              </Labeled>
+            </Grid>
+            <Grid item xs={4}>
+              <Labeled label="resources.eventjob.fields.rate">
+                <TextField source="rate" />
+              </Labeled>
+            </Grid>
+            <Grid item xs={4}>
+              <Labeled label="resources.eventjob.fields.rate_type">
+                <ChipField source="rate_type" size="small" />
+              </Labeled>
+            </Grid>
+            <Grid item xs={4}>
+              <Labeled label="resources.eventjob.fields.createdAt">
+                <DateField source="createdAt" />
+              </Labeled>
+            </Grid>
+            <Grid item xs={4}>
+              <Labeled label="resources.eventjob.fields.updatedAt">
+                <DateField source="updatedAt" />
+              </Labeled>
+            </Grid>
+          </Grid>
         </Tab>
       </TabbedShowLayout>
     </Show>

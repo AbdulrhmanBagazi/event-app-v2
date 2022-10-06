@@ -8,9 +8,10 @@ export const styles = StyleSheet.create({
   },
   title: {
     fontSize: 25,
-    // marginVertical: 5,
+    marginBottom: 5,
   },
-  text: {
-    marginVertical: 5,
+  content: {
+    // marginHorizontal: 10,s
+    padding: 5,
   },
 });

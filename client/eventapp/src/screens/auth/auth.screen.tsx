@@ -1,10 +1,14 @@
 import React from 'react';
 import {Button} from 'react-native-paper';
 import CustomText from '../../components/customText/customText';
-import NavigationButton from '../../components/NavigationButton/navigationButton';
 import {UseAuth} from '../../context/auth/auth.context';
 import Page from '../../layout/page';
-import {AuthenticatedTypes, I18nContextType} from '../../typs';
+import {
+  AuthenticatedTypes,
+  I18nContextType,
+  RootStackParamList,
+  ThemeContextType,
+} from '../../typs';
 import Signin from './signin/signin.auth';
 import {styles} from './styles.auth';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
@@ -15,10 +19,15 @@ import MySvg from './mySvg';
 import {UseI18nContext} from '../../context/I18n/i18n.context';
 import {PrivacyURL, TermsURL} from '../../../config/config';
 import {useHeaderHeight} from '@react-navigation/elements';
+import {useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {UseThemeContext} from '../../context/theme/themeToggle.context';
 
 const Auth = () => {
   const {authLoading} = UseAuth() as AuthenticatedTypes;
   const {Locals} = UseI18nContext() as I18nContextType;
+  const {navigate} = useNavigation<StackNavigationProp<RootStackParamList>>();
+  const {Colors} = UseThemeContext() as ThemeContextType;
 
   return (
     <Page paddingHorizontal={5}>
@@ -29,13 +38,14 @@ const Auth = () => {
         showsVerticalScrollIndicator={false}>
         <MySvg />
         <Signin />
-        <NavigationButton
-          disabled={authLoading}
-          style={[styles.Buttons]}
-          to="Signup"
-          Color="Primary"
-          Mode="text"
-        />
+
+        <Button
+          style={styles.Buttons}
+          mode="text"
+          color={Colors.Primary}
+          onPress={() => navigate('Signup')}>
+          {Locals.NavigationButton.Signup}
+        </Button>
 
         <View style={styles.ConnectView}>
           <View style={styles.Divider} />

@@ -6,13 +6,10 @@ export const styles = StyleSheet.create({
   },
   Row: {
     flexDirection: 'row',
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    // backgroundColor: 'blue',
     marginHorizontal: 2.5,
   },
   TextView: {
-    marginVertical: 10,
+    marginBottom: 10,
     marginHorizontal: 10,
     padding: 5,
     flexDirection: 'row',
@@ -31,8 +28,6 @@ export const styles = StyleSheet.create({
   },
   Subheading: {
     marginHorizontal: 5,
-    fontWeight: '400',
-    fontSize: 14,
   },
   CardBadge: {
     alignSelf: 'center',
