@@ -24,6 +24,7 @@ import { useParams } from 'react-router-dom'
 import MyError from '../../layout/MyError'
 import EventShowToolBar from './components/EventShowToolBar'
 import Grid from '@mui/material/Grid'
+import I18nTime from '../../components/I18nTime.apply'
 
 const EventShow = () => {
   const [locale] = useLocaleState()
@@ -136,6 +137,9 @@ const EventShow = () => {
               <RichTextField source="content" />
             </Datagrid>
           </ArrayField>
+        </Tab>
+
+        <Tab label="resources.Event.showtabs.details_en">
           <ArrayField source="details_en">
             <Datagrid isRowSelectable={() => false} bulkActionButtons={false}>
               <TextField source="title" />
@@ -162,6 +166,35 @@ const EventShow = () => {
               <ChipField source="status" size="small" />
               <TextField source="rate" />
               <ChipField source="rate_type" size="small" />
+              <DateField source="createdAt" />
+            </Datagrid>
+          </ReferenceManyField>
+        </Tab>
+
+        <Tab label="resources.Event.showtabs.eventshift">
+          <ReferenceManyField
+            pagination={<Pagination />}
+            label=""
+            reference="eventshiftEvents"
+            target="eventshift"
+            perPage={5}>
+            <Datagrid
+              isRowSelectable={() => false}
+              bulkActionButtons={false}
+              rowClick="show"
+              resource="eventshift">
+              {/* <TextField source="id" sortable={false} /> */}
+
+              <FunctionField
+                source="start_time"
+                render={(record: any) => <I18nTime time={record.start_time} Language={locale} />}
+              />
+
+              <FunctionField
+                source="end_time"
+                render={(record: any) => <I18nTime time={record.end_time} Language={locale} />}
+              />
+              <ChipField source="status" size="small" />
               <DateField source="createdAt" />
             </Datagrid>
           </ReferenceManyField>

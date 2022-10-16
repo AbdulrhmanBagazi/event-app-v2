@@ -46,7 +46,7 @@ const EventEdit = () => {
   return (
     <Edit
       mutationMode="pessimistic"
-      redirect="show"
+      // redirect={false}
       // sx={{ maxWidth: 600 }}
       // redirect={false}
       // actions={false}
@@ -62,7 +62,7 @@ const EventEdit = () => {
         refetchOnWindowFocus: true,
       }}>
       <TabbedForm toolbar={<EventEditToolbar />}>
-        <FormTab label="resources.Event.edittabs.editinfo" sx={{ maxWidth: 600 }}>
+        <FormTab label="resources.Event.edittabs.editinfo">
           <ReferenceInput source="locationId" reference="Location" perPage={100}>
             <SelectInput
               optionText={locale === 'en' ? 'title_en' : 'title'}
@@ -112,7 +112,7 @@ const EventEdit = () => {
         </FormTab>
         <FormTab label="resources.Event.edittabs.editdetails">
           <ArrayInput source="details">
-            <SimpleFormIterator>
+            <SimpleFormIterator fullWidth>
               <TextInput
                 source="title"
                 helperText={false}
@@ -135,8 +135,10 @@ const EventEdit = () => {
               />
             </SimpleFormIterator>
           </ArrayInput>
+        </FormTab>
+        <FormTab label="resources.Event.edittabs.editdetails_en">
           <ArrayInput source="details_en">
-            <SimpleFormIterator>
+            <SimpleFormIterator fullWidth>
               <TextInput
                 source="title"
                 helperText={false}

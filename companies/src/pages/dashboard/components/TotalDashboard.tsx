@@ -7,10 +7,10 @@ interface Props {
   icon: React.FC<any>
 }
 
-const TotalUsers = (props: Props) => {
+const TotalDashboard = (props: Props) => {
   const { value, title, icon } = props
   const translate = useTranslate()
   return <CardWithIcon icon={icon} title={translate(`${title}`)} subtitle={value.toString()} />
 }
 
-export default TotalUsers
+export default TotalDashboard

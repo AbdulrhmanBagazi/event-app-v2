@@ -62,6 +62,7 @@ export const list_eventjobs_Query = {
         status: args.filter?.status,
         rate_type: args.filter?.rate_type,
         eventId: args.filter?.eventId,
+        companyId: context.req.user.id,
       },
       include: {
         Event: true,
@@ -76,6 +77,7 @@ export const list_eventjobs_Query = {
         status: args.filter?.status,
         rate_type: args.filter.rate_type,
         eventId: args.filter?.eventId,
+        companyId: context.req.user.id,
       },
       _count: {
         id: true,

@@ -15,6 +15,7 @@ export const getOne_eventjobs_Query = {
       },
       include: {
         Event: true,
+        company: true,
       },
     });
   },

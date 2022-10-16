@@ -7,6 +7,8 @@ export const styles = StyleSheet.create({
   Row: {
     flexDirection: 'row',
     marginHorizontal: 2.5,
+    flexWrap: 'wrap',
+    paddingRight: 8,
   },
   TextView: {
     marginBottom: 10,
@@ -16,13 +18,7 @@ export const styles = StyleSheet.create({
     alignItems: 'flex-end',
     flexWrap: 'wrap',
   },
-  ItemSmall: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
   Item: {
-    flex: 2,
     flexDirection: 'row',
     alignItems: 'center',
   },

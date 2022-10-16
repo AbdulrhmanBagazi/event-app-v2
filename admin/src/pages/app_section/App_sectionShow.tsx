@@ -86,8 +86,7 @@ const App_sectionShow = () => {
               />
               <ChipField source="status" label="resources.Companies.Events.status" size="small" />
               <DateField source="createdAt" label="resources.Companies.Events.createdAt" />
-              {/*x
-              <DateField source="updatedAt" label="resources.Companies.Events.updatedAt" /> */}
+              <DateField source="updatedAt" label="resources.Companies.Events.updatedAt" />
             </Datagrid>
           </ReferenceManyField>
         </Tab>

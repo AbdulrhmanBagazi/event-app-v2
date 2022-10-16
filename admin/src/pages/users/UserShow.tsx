@@ -148,7 +148,7 @@ const UserShow = () => {
                   </Grid>
 
                   <Grid container spacing={1}>
-                    <Grid item xs>
+                    <Grid item xs={3}>
                       <Labeled label="resources.User.fields.Profile.whatsapp">
                         <FunctionField render={(record: any) => record.Profile.whatsapp} />
                       </Labeled>

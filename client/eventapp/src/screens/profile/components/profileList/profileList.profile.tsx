@@ -78,7 +78,7 @@ const ProfileList: React.FC<{
             <List.Icon
               {...props}
               icon="account"
-              color={!isAuthenticated ? Colors.disabled : Colors.Secondary}
+              color={!isAuthenticated ? Colors.disabled : Colors.Primary}
             />
           )}
           disabled={!isAuthenticated}
@@ -106,7 +106,7 @@ const ProfileList: React.FC<{
               icon="phone"
               color={
                 isAuthenticated && user?.Profile !== null
-                  ? Colors.Secondary
+                  ? Colors.Primary
                   : Colors.disabled
               }
             />
@@ -144,7 +144,7 @@ const ProfileList: React.FC<{
             <List.Icon
               {...props}
               icon="cash"
-              color={!isAuthenticated ? Colors.disabled : Colors.Secondary}
+              color={!isAuthenticated ? Colors.disabled : Colors.Primary}
             />
           )}
           disabled={!isAuthenticated}
@@ -168,7 +168,7 @@ const ProfileList: React.FC<{
               <List.Icon
                 {...props}
                 icon="key"
-                color={!isAuthenticated ? Colors.disabled : Colors.Secondary}
+                color={!isAuthenticated ? Colors.disabled : Colors.Primary}
               />
             )}
             disabled={!isAuthenticated}
@@ -190,7 +190,7 @@ const ProfileList: React.FC<{
             },
           ]}
           left={props => (
-            <List.Icon {...props} icon="cog" color={Colors.Primary} />
+            <List.Icon {...props} icon="cog" color={Colors.Secondary} />
           )}
           onPress={onPress}
         />
@@ -204,7 +204,7 @@ const ProfileList: React.FC<{
             },
           ]}
           left={props => (
-            <List.Icon {...props} icon="web" color={Colors.Primary} />
+            <List.Icon {...props} icon="web" color={Colors.Secondary} />
           )}
           onPress={() => Linking.openURL(TermsURL)}
         />
@@ -218,7 +218,7 @@ const ProfileList: React.FC<{
             },
           ]}
           left={props => (
-            <List.Icon {...props} icon="web" color={Colors.Primary} />
+            <List.Icon {...props} icon="web" color={Colors.Secondary} />
           )}
           onPress={() => Linking.openURL(PrivacyURL)}
         />
@@ -232,7 +232,7 @@ const ProfileList: React.FC<{
             },
           ]}
           left={props => (
-            <List.Icon {...props} icon="share" color={Colors.Primary} />
+            <List.Icon {...props} icon="share" color={Colors.Secondary} />
           )}
           onPress={() =>
             Share.open({url: AppURL})

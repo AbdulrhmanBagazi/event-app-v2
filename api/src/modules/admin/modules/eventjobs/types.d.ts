@@ -4,6 +4,7 @@ export type eventjobsFilterType = {
   status: Event_JobsStatus;
   rate_type: Rate_type;
   eventId: string;
+  companyId: string;
 };
 
 export type eventjob = {

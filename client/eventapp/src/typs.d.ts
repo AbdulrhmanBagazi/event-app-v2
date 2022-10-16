@@ -1,11 +1,15 @@
 import {Component} from 'react';
 import {Events} from './graphql/generated';
+import {I18n_en} from './context/I18n/locals.i18n';
 
 type ParamList = {
   Events: {
     params: {app_sectionId: string; title: string};
   };
   Event: {
+    params: Events;
+  };
+  Apply: {
     params: Events;
   };
 };
@@ -28,6 +32,9 @@ export type RootStackParamList = {
     params: Events;
   };
   Language: undefined;
+  Apply: {
+    params: Events;
+  };
 };
 
 //routes.tsx
@@ -41,7 +48,7 @@ type Languges = 'ar' | 'en';
 
 export type I18nContextType = {
   ToggleI18n: (lang: Languges, firstTime: boolean) => void;
-  Locals: array;
+  Locals: typeof I18n_en;
   Lang: string;
 };
 
@@ -163,6 +170,7 @@ export type UserUpdateTypes = {
   GraphQlLoading: boolean;
   UpdateLoading: (arg0: boolean) => void;
   AddProfile: (arg0: UserProfileType) => void;
+  isAuthenticated: boolean;
 };
 
 export type AuthContextType = {

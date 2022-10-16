@@ -127,7 +127,8 @@ const SigninForm = () => {
         color={Colors.Secondary}
         labelStyle={{color: Colors.OnSecondary}}
         style={styles.SignInButton}
-        loading={authLoading}>
+        // loading={authLoading}
+      >
         {Locals.Signin.Title}
       </Button>
     </View>

@@ -5,6 +5,8 @@ import { Location } from './modules/location/index.modules';
 import { Dashboard } from './modules/dashboard/index.modules';
 import { AppSection } from './modules/app_section/index.modules';
 import { eventjobs } from './modules/eventjobs/index.modules';
+import { eventshifts } from './modules/eventshifts/index.modules';
+import { Applicants } from './modules/applicants/index.modules';
 
 export const AdminResolvers = {
   Query: {
@@ -15,6 +17,8 @@ export const AdminResolvers = {
     ...Dashboard.Query,
     ...AppSection.Query,
     ...eventjobs.Query,
+    ...eventshifts.Query,
+    ...Applicants.Query,
   },
   Mutation: {
     ...Users.Mutation,
@@ -23,9 +27,11 @@ export const AdminResolvers = {
     ...Location.Mutation,
     ...AppSection.Mutation,
     ...eventjobs.Mutation,
+    ...eventshifts.Mutation,
   },
   // ...Users.Resolver,
   ...Dashboard.Resolver,
+  ...Applicants.Resolver,
 };
 
 export const AdminTypeDefs = [
@@ -36,4 +42,6 @@ export const AdminTypeDefs = [
   Dashboard.typeDef,
   AppSection.typeDef,
   eventjobs.typeDef,
+  eventshifts.typeDef,
+  Applicants.typeDef,
 ];

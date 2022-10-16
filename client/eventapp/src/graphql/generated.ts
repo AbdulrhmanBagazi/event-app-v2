@@ -21,6 +21,49 @@ export type Scalars = {
   JSON: any;
 };
 
+export type Applicants = {
+  __typename?: 'Applicants';
+  companyId?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  dateOfBirth?: Maybe<Scalars['String']>;
+  eventId?: Maybe<Scalars['String']>;
+  gender?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  jobId?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  nationalID?: Maybe<Scalars['String']>;
+  nationality?: Maybe<Scalars['String']>;
+  shiftId?: Maybe<Scalars['String']>;
+  status?: Maybe<Applicants_Status>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  userId?: Maybe<Scalars['String']>;
+};
+
+export enum Applicants_Status {
+  Approved = 'APPROVED',
+  Canceled = 'CANCELED',
+  Completed = 'COMPLETED',
+  Declined = 'DECLINED',
+  Interview = 'INTERVIEW',
+  Pending = 'PENDING',
+  Waitlist = 'WAITLIST',
+}
+
+export type CreateApplicantsExsist = {
+  __typename?: 'CreateApplicantsExsist';
+  message: Scalars['String'];
+};
+
+export type CreateApplicantsUnknown = {
+  __typename?: 'CreateApplicantsUnknown';
+  message: Scalars['String'];
+};
+
+export type Create_ApplicantsResult =
+  | Applicants
+  | CreateApplicantsExsist
+  | CreateApplicantsUnknown;
+
 export enum EventStatus {
   Active = 'ACTIVE',
   Completed = 'COMPLETED',
@@ -35,6 +78,7 @@ export enum Event_JobsStatus {
 export type Events = {
   __typename?: 'Events';
   Event_Jobs: Array<Eventjob>;
+  Event_Shifts: Array<Eventshift>;
   Location: Location;
   app_sectionId: Scalars['String'];
   companyId: Scalars['String'];
@@ -75,6 +119,7 @@ export type Mutation = {
   __typename?: 'Mutation';
   Change_Password?: Maybe<Profile>;
   Contact_UserProfile?: Maybe<Profile>;
+  Create_Applicants?: Maybe<Create_ApplicantsResult>;
   Create_UserProfile?: Maybe<Profile>;
   Update_UserProfile?: Maybe<Profile>;
 };
@@ -86,6 +131,18 @@ export type MutationChange_PasswordArgs = {
 export type MutationContact_UserProfileArgs = {
   phone?: InputMaybe<Scalars['String']>;
   whatsapp?: InputMaybe<Scalars['String']>;
+};
+
+export type MutationCreate_ApplicantsArgs = {
+  companyId: Scalars['String'];
+  dateOfBirth: Scalars['String'];
+  eventId: Scalars['String'];
+  gender: Scalars['String'];
+  jobId: Scalars['String'];
+  name: Scalars['String'];
+  nationalID: Scalars['String'];
+  nationality: Scalars['String'];
+  shiftId: Scalars['String'];
 };
 
 export type MutationCreate_UserProfileArgs = {
@@ -129,10 +186,15 @@ export type Profile = {
 
 export type Query = {
   __typename?: 'Query';
+  Event?: Maybe<Events>;
   Events_list: Array<Events>;
   Events_list_meta?: Maybe<ListMetadata>;
   app_section_list: Array<App_Section>;
   test?: Maybe<Scalars['String']>;
+};
+
+export type QueryEventArgs = {
+  id: Scalars['String'];
 };
 
 export type QueryEvents_ListArgs = {
@@ -164,13 +226,59 @@ export type App_Section = {
 
 export type Eventjob = {
   __typename?: 'eventjob';
-  eventId?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['String']>;
-  rate?: Maybe<Scalars['Int']>;
-  rate_type?: Maybe<Rate_Type>;
-  status?: Maybe<Event_JobsStatus>;
-  title?: Maybe<Scalars['String']>;
-  title_en?: Maybe<Scalars['String']>;
+  eventId: Scalars['String'];
+  id: Scalars['String'];
+  rate: Scalars['Int'];
+  rate_type: Rate_Type;
+  status: Event_JobsStatus;
+  title: Scalars['String'];
+  title_en: Scalars['String'];
+};
+
+export type Eventshift = {
+  __typename?: 'eventshift';
+  end_time: Scalars['String'];
+  eventId: Scalars['String'];
+  id: Scalars['String'];
+  start_time: Scalars['String'];
+  status: Event_JobsStatus;
+};
+
+export type Create_ApplicantsMutationVariables = Exact<{
+  eventId: Scalars['String'];
+  companyId: Scalars['String'];
+  shiftId: Scalars['String'];
+  jobId: Scalars['String'];
+  name: Scalars['String'];
+  nationality: Scalars['String'];
+  nationalID: Scalars['String'];
+  dateOfBirth: Scalars['String'];
+  gender: Scalars['String'];
+}>;
+
+export type Create_ApplicantsMutation = {
+  __typename?: 'Mutation';
+  Create_Applicants?:
+    | {
+        __typename?: 'Applicants';
+        id?: string | null;
+        createdAt?: any | null;
+        updatedAt?: any | null;
+        eventId?: string | null;
+        companyId?: string | null;
+        userId?: string | null;
+        shiftId?: string | null;
+        jobId?: string | null;
+        name?: string | null;
+        nationality?: string | null;
+        nationalID?: string | null;
+        dateOfBirth?: string | null;
+        gender?: string | null;
+        status?: Applicants_Status | null;
+      }
+    | {__typename?: 'CreateApplicantsExsist'; message: string}
+    | {__typename?: 'CreateApplicantsUnknown'; message: string}
+    | null;
 };
 
 export type Events_ListQueryVariables = Exact<{
@@ -204,13 +312,21 @@ export type Events_ListQuery = {
     Location: {__typename?: 'Location'; title: string; title_en: string};
     Event_Jobs: Array<{
       __typename?: 'eventjob';
-      id?: string | null;
-      title?: string | null;
-      title_en?: string | null;
-      status?: Event_JobsStatus | null;
-      rate?: number | null;
-      rate_type?: Rate_Type | null;
-      eventId?: string | null;
+      id: string;
+      title: string;
+      title_en: string;
+      status: Event_JobsStatus;
+      rate: number;
+      rate_type: Rate_Type;
+      eventId: string;
+    }>;
+    Event_Shifts: Array<{
+      __typename?: 'eventshift';
+      id: string;
+      start_time: string;
+      end_time: string;
+      status: Event_JobsStatus;
+      eventId: string;
     }>;
   }>;
   Events_list_meta?: {__typename?: 'ListMetadata'; total: number} | null;
@@ -230,6 +346,53 @@ export type App_Section_ListQuery = {
     published: boolean;
     count: number;
   }>;
+};
+
+export type EventQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+export type EventQuery = {
+  __typename?: 'Query';
+  Event?: {
+    __typename?: 'Events';
+    id: string;
+    published: boolean;
+    createdAt: any;
+    updatedAt: any;
+    companyId: string;
+    title: string;
+    content: string;
+    title_en: string;
+    content_en: string;
+    image_url: string;
+    location_url: string;
+    status: EventStatus;
+    companyLogo?: string | null;
+    locationId: string;
+    app_sectionId: string;
+    details: Array<any>;
+    details_en: Array<any>;
+    Location: {__typename?: 'Location'; title: string; title_en: string};
+    Event_Jobs: Array<{
+      __typename?: 'eventjob';
+      id: string;
+      title: string;
+      title_en: string;
+      status: Event_JobsStatus;
+      rate: number;
+      rate_type: Rate_Type;
+      eventId: string;
+    }>;
+    Event_Shifts: Array<{
+      __typename?: 'eventshift';
+      id: string;
+      start_time: string;
+      end_time: string;
+      status: Event_JobsStatus;
+      eventId: string;
+    }>;
+  } | null;
 };
 
 export type Change_PasswordMutationVariables = Exact<{
@@ -335,6 +498,105 @@ export type Update_UserProfileMutation = {
   } | null;
 };
 
+export const Create_ApplicantsDocument = gql`
+  mutation Create_Applicants(
+    $eventId: String!
+    $companyId: String!
+    $shiftId: String!
+    $jobId: String!
+    $name: String!
+    $nationality: String!
+    $nationalID: String!
+    $dateOfBirth: String!
+    $gender: String!
+  ) {
+    Create_Applicants(
+      eventId: $eventId
+      companyId: $companyId
+      shiftId: $shiftId
+      jobId: $jobId
+      name: $name
+      nationality: $nationality
+      nationalID: $nationalID
+      dateOfBirth: $dateOfBirth
+      gender: $gender
+    ) {
+      ... on CreateApplicantsExsist {
+        message
+      }
+      ... on CreateApplicantsUnknown {
+        message
+      }
+      ... on Applicants {
+        id
+        createdAt
+        updatedAt
+        eventId
+        companyId
+        userId
+        shiftId
+        jobId
+        name
+        nationality
+        nationalID
+        dateOfBirth
+        gender
+        status
+      }
+    }
+  }
+`;
+export type Create_ApplicantsMutationFn = Apollo.MutationFunction<
+  Create_ApplicantsMutation,
+  Create_ApplicantsMutationVariables
+>;
+
+/**
+ * __useCreate_ApplicantsMutation__
+ *
+ * To run a mutation, you first call `useCreate_ApplicantsMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreate_ApplicantsMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createApplicantsMutation, { data, loading, error }] = useCreate_ApplicantsMutation({
+ *   variables: {
+ *      eventId: // value for 'eventId'
+ *      companyId: // value for 'companyId'
+ *      shiftId: // value for 'shiftId'
+ *      jobId: // value for 'jobId'
+ *      name: // value for 'name'
+ *      nationality: // value for 'nationality'
+ *      nationalID: // value for 'nationalID'
+ *      dateOfBirth: // value for 'dateOfBirth'
+ *      gender: // value for 'gender'
+ *   },
+ * });
+ */
+export function useCreate_ApplicantsMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    Create_ApplicantsMutation,
+    Create_ApplicantsMutationVariables
+  >,
+) {
+  const options = {...defaultOptions, ...baseOptions};
+  return Apollo.useMutation<
+    Create_ApplicantsMutation,
+    Create_ApplicantsMutationVariables
+  >(Create_ApplicantsDocument, options);
+}
+export type Create_ApplicantsMutationHookResult = ReturnType<
+  typeof useCreate_ApplicantsMutation
+>;
+export type Create_ApplicantsMutationResult =
+  Apollo.MutationResult<Create_ApplicantsMutation>;
+export type Create_ApplicantsMutationOptions = Apollo.BaseMutationOptions<
+  Create_ApplicantsMutation,
+  Create_ApplicantsMutationVariables
+>;
 export const Events_ListDocument = gql`
   query Events_list(
     $page: Int
@@ -376,6 +638,13 @@ export const Events_ListDocument = gql`
         status
         rate
         rate_type
+        eventId
+      }
+      Event_Shifts {
+        id
+        start_time
+        end_time
+        status
         eventId
       }
     }
@@ -498,6 +767,90 @@ export type App_Section_ListLazyQueryHookResult = ReturnType<
 export type App_Section_ListQueryResult = Apollo.QueryResult<
   App_Section_ListQuery,
   App_Section_ListQueryVariables
+>;
+export const EventDocument = gql`
+  query Event($id: String!) {
+    Event(id: $id) {
+      id
+      published
+      createdAt
+      updatedAt
+      companyId
+      title
+      content
+      title_en
+      content_en
+      image_url
+      location_url
+      status
+      companyLogo
+      locationId
+      app_sectionId
+      details
+      details_en
+      Location {
+        title
+        title_en
+      }
+      Event_Jobs {
+        id
+        title
+        title_en
+        status
+        rate
+        rate_type
+        eventId
+      }
+      Event_Shifts {
+        id
+        start_time
+        end_time
+        status
+        eventId
+      }
+    }
+  }
+`;
+
+/**
+ * __useEventQuery__
+ *
+ * To run a query within a React component, call `useEventQuery` and pass it any options that fit your needs.
+ * When your component renders, `useEventQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useEventQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useEventQuery(
+  baseOptions: Apollo.QueryHookOptions<EventQuery, EventQueryVariables>,
+) {
+  const options = {...defaultOptions, ...baseOptions};
+  return Apollo.useQuery<EventQuery, EventQueryVariables>(
+    EventDocument,
+    options,
+  );
+}
+export function useEventLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<EventQuery, EventQueryVariables>,
+) {
+  const options = {...defaultOptions, ...baseOptions};
+  return Apollo.useLazyQuery<EventQuery, EventQueryVariables>(
+    EventDocument,
+    options,
+  );
+}
+export type EventQueryHookResult = ReturnType<typeof useEventQuery>;
+export type EventLazyQueryHookResult = ReturnType<typeof useEventLazyQuery>;
+export type EventQueryResult = Apollo.QueryResult<
+  EventQuery,
+  EventQueryVariables
 >;
 export const Change_PasswordDocument = gql`
   mutation Change_Password($password: String) {

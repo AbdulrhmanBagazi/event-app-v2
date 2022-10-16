@@ -11,6 +11,7 @@ import ChangePassword from '../screens/profile/screens/changePassword/changePass
 import Contact from '../screens/profile/screens/contact/contact.screens.profile';
 import SingleEvent from '../screens/singleEvent/singleEvent.screens';
 import Language from '../screens/language/language.screen';
+import Apply from '../screens/apply/apply.screens';
 
 const ProfileScreens: RoutesType[] = [
   {
@@ -39,6 +40,10 @@ const EventsScreens: RoutesType[] = [
   {
     name: 'Event',
     component: SingleEvent,
+  },
+  {
+    name: 'Apply',
+    component: Apply,
   },
 ];
 

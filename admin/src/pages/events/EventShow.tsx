@@ -20,14 +20,16 @@ import {
   ChipField,
   ArrayField,
   RichTextField,
+  Button,
 } from 'react-admin'
 import SuspendedBooleanField from './components/SuspendedBooleanField'
 import { useParams } from 'react-router-dom'
 import MyError from '../../layout/MyError'
 import { Link } from 'react-router-dom'
-import { OpenInNew } from '../../theme/icons'
+import Divider from '@mui/material/Divider'
 import EventShowToolBar from './components/EventShowToolBar'
 import Grid from '@mui/material/Grid'
+import I18nTime from '../../components/I18nTime.apply'
 
 const EventShow = () => {
   const [locale] = useLocaleState()
@@ -113,13 +115,33 @@ const EventShow = () => {
             </Grid>
           </Grid>
 
+          <Divider />
+
           <Grid container spacing={2}>
             <Grid item xs>
-              <Labeled label="resources.Event.fields.location">
-                <FunctionField
-                  render={(record: any) =>
-                    locale === 'en' ? record.Location.title_en : record.Location.title
-                  }
+              <Labeled label="resources.Event.fields.companyId">
+                <WithRecord
+                  label="author"
+                  render={(record) => (
+                    <Link to={createPath({ resource: 'companies', type: 'show', id: record.companyId })}>
+                      <Button color="secondary">
+                        <TextField source="company.name" />
+                      </Button>
+                    </Link>
+                  )}
+                />
+              </Labeled>
+            </Grid>
+            <Grid item xs>
+              <Labeled label="resources.Event.fields.locationId">
+                <WithRecord
+                  render={(record) => (
+                    <Link to={createPath({ resource: 'location', type: 'show', id: record.locationId })}>
+                      <Button color="secondary">
+                        <TextField source={locale === 'en' ? 'Location.title_en' : 'Location.title'} />
+                      </Button>
+                    </Link>
+                  )}
                 />
               </Labeled>
             </Grid>
@@ -132,34 +154,12 @@ const EventShow = () => {
                 />
               </Labeled>
             </Grid>
-
-            <Grid item xs>
-              <Labeled label="resources.Event.fields.companyId">
-                <WithRecord
-                  label="author"
-                  render={(record) => (
-                    <Link to={createPath({ resource: 'companies', type: 'show', id: record.companyId })}>
-                      <OpenInNew />
-                    </Link>
-                  )}
-                />
-              </Labeled>
-            </Grid>
-            <Grid item xs>
-              <Labeled label="resources.Event.fields.locationId">
-                <WithRecord
-                  render={(record) => (
-                    <Link to={createPath({ resource: 'location', type: 'show', id: record.locationId })}>
-                      <OpenInNew />
-                    </Link>
-                  )}
-                />
-              </Labeled>
-            </Grid>
           </Grid>
+
           <Labeled label="resources.Event.fields.location_url">
             <UrlField source="location_url" target="_blank" />
           </Labeled>
+
           <Labeled label="resources.Event.fields.image_url">
             <ImageField
               source="image_url"
@@ -176,6 +176,9 @@ const EventShow = () => {
               <RichTextField source="content" />
             </Datagrid>
           </ArrayField>
+        </Tab>
+
+        <Tab label="resources.Event.showtabs.details_en">
           <ArrayField source="details_en">
             <Datagrid isRowSelectable={() => false} bulkActionButtons={false}>
               <TextField source="title" />
@@ -202,6 +205,33 @@ const EventShow = () => {
               <ChipField source="status" size="small" />
               <TextField source="rate" />
               <ChipField source="rate_type" size="small" />
+              <DateField source="createdAt" />
+            </Datagrid>
+          </ReferenceManyField>
+        </Tab>
+
+        <Tab label="resources.Event.showtabs.eventshift">
+          <ReferenceManyField
+            pagination={<Pagination />}
+            label=""
+            reference="eventshiftEvents"
+            target="eventshift"
+            perPage={5}>
+            <Datagrid
+              isRowSelectable={() => false}
+              bulkActionButtons={false}
+              rowClick="show"
+              resource="eventshift">
+              {/* <TextField source="id" sortable={false} /> */}
+              <FunctionField
+                source="start_time"
+                render={(record: any) => <I18nTime time={record.start_time} Language={locale} />}
+              />
+              <FunctionField
+                source="end_time"
+                render={(record: any) => <I18nTime time={record.end_time} Language={locale} />}
+              />
+              <ChipField source="status" size="small" />
               <DateField source="createdAt" />
             </Datagrid>
           </ReferenceManyField>

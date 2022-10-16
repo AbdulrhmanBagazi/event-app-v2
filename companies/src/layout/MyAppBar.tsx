@@ -1,7 +1,7 @@
 import {
   AppBarProps,
   SidebarToggleButton,
-  LoadingIndicator,
+  // LoadingIndicator,
   Logout,
   UserMenu,
   LogoutProps,
@@ -11,7 +11,7 @@ import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import AppBar from '@mui/material/AppBar'
 import ExitToAppIcon from '@mui/icons-material/ExitToApp'
-// import ThemeToggler from './ThemeToggler'
+import ThemeToggler from './ThemeToggler'
 import MenuItem from '@mui/material/MenuItem'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
@@ -81,8 +81,8 @@ const MyAppBar = (props: AppBarProps | any) => {
             justifyContent: 'flex-end',
             alignItems: 'center',
           }}>
-          <LoadingIndicator />
-          {/* <ThemeToggler /> */}
+          {/* <LoadingIndicator /> */}
+          <ThemeToggler />
           <MyUserMenu />
         </div>
       </div>

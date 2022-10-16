@@ -40,6 +40,13 @@ query Events_list(
       rate_type
       eventId
     }
+    Event_Shifts {
+      id
+      start_time
+      end_time
+      status
+      eventId
+    }
   }
   Events_list_meta {
     total
@@ -55,5 +62,47 @@ query app_section_list {
     updatedAt
     published
     count
+  }
+}
+
+query Event($id: String!) {
+  Event(id: $id) {
+    id
+    published
+    createdAt
+    updatedAt
+    companyId
+    title
+    content
+    title_en
+    content_en
+    image_url
+    location_url
+    status
+    companyLogo
+    locationId
+    app_sectionId
+    details
+    details_en
+    Location {
+      title
+      title_en
+    }
+    Event_Jobs {
+      id
+      title
+      title_en
+      status
+      rate
+      rate_type
+      eventId
+    }
+    Event_Shifts {
+      id
+      start_time
+      end_time
+      status
+      eventId
+    }
   }
 }

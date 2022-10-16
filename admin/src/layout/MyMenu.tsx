@@ -24,7 +24,6 @@ const MyMenu = (props: MenuProps | any) => {
           leftIcon={resources[name].icon}
         />
       ))}
-      {/* add your custom menus here */}
     </Menu>
   )
 }

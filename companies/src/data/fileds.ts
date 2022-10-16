@@ -6,6 +6,7 @@ const events: { [k: string]: string } = {
   update_Event: 'status details details_en',
   eventjobEvents:
     'id createdAt updatedAt title title_en status rate rate_type eventId Event {id title title_en}',
+  eventshiftEvents: 'id createdAt updatedAt start_time end_time status eventId Event {id title title_en}',
 }
 
 const Location: { [k: string]: string } = {
@@ -15,7 +16,7 @@ const Location: { [k: string]: string } = {
 }
 
 const dashboard: { [k: string]: string } = {
-  DashboardData: 'Events_count',
+  DashboardData: 'Events_count Jobs_count Shifts_count',
 }
 
 const eventjob: { [k: string]: string } = {
@@ -26,11 +27,28 @@ const eventjob: { [k: string]: string } = {
   create_eventjob: 'title title_en status rate rate_type eventId',
 }
 
+const eventshift: { [k: string]: string } = {
+  eventshift_list:
+    'id createdAt updatedAt start_time end_time status companyId eventId Event {id title title_en}',
+  eventshift: 'id createdAt updatedAt start_time end_time status companyId eventId Event {id title title_en}',
+  update_eventshift: 'start_time end_time status',
+  create_eventshift: 'start_time end_time status eventId',
+}
+
+const applicants: { [k: string]: string } = {
+  applicants_list:
+    'id createdAt updatedAt eventId companyId userId shiftId jobId name nationality nationalID dateOfBirth gender status contact {phone whatsapp} event {id title title_en}',
+  applicants:
+    'id createdAt updatedAt eventId companyId userId shiftId jobId name nationality nationalID dateOfBirth gender status contact {phone whatsapp} event {id title title_en}',
+}
+
 const Fileds: { [k: string]: string } = {
   ...events,
   ...Location,
   ...dashboard,
   ...eventjob,
+  ...eventshift,
+  ...applicants,
 }
 
 export default Fileds

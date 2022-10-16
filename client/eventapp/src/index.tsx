@@ -3,16 +3,10 @@ import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import * as React from 'react';
 import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
 import {navigationRef} from './App.RootNavigation';
-import {
-  AuthenticatedTypes,
-  I18nContextType,
-  RoutesType,
-  ThemeContextType,
-} from './typs';
+import {AuthenticatedTypes, RoutesType, ThemeContextType} from './typs';
 import {UseAuth} from './context/auth/auth.context';
 import TabStack from './routes/TabStack';
 import {UseThemeContext} from './context/theme/themeToggle.context';
-import {UseI18nContext} from './context/I18n/i18n.context';
 import Page from './layout/page';
 import analytics from '@react-native-firebase/analytics';
 import {Platform} from 'react-native';
@@ -40,7 +34,6 @@ const Index = () => {
   const {authLoading, Authenticate, GraphQlLoading} =
     UseAuth() as AuthenticatedTypes;
   const {Colors} = UseThemeContext() as ThemeContextType;
-  const {Locals} = UseI18nContext() as I18nContextType;
   const routeNameRef = React.useRef<any>();
 
   return (
@@ -95,6 +88,7 @@ const Index = () => {
                 name="Main"
                 component={TabStack}
               />
+
               {ProfileScreens.map((route: RoutesType, i: number) => (
                 <Main.Screen
                   name={route.name}
@@ -106,20 +100,21 @@ const Index = () => {
                   {props => <route.component {...props} />}
                 </Main.Screen>
               ))}
+
               {AuthScreens.map((route: RoutesType, i: number) => (
                 <Main.Screen
                   name={route.name}
                   options={{
-                    title: Locals[route.name] ? Locals[route.name].Title : '',
+                    title: '',
                     gestureEnabled: !authLoading,
                   }}
                   key={i}>
                   {props => <route.component {...props} />}
                 </Main.Screen>
               ))}
-              {EventsScreens.map((R: RoutesType, i: number) => (
-                <Main.Screen name={R.name} key={i}>
-                  {props => <R.component {...props} />}
+              {EventsScreens.map((route: RoutesType, i: number) => (
+                <Main.Screen name={route.name} key={i}>
+                  {props => <route.component {...props} />}
                 </Main.Screen>
               ))}
             </Main.Navigator>

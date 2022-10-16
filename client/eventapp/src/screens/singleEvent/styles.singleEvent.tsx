@@ -19,7 +19,6 @@ export const styles = StyleSheet.create({
   Button: {
     left: 0,
     right: 0,
-    bottom: 40,
     position: 'absolute',
     marginHorizontal: 15,
   },

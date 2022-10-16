@@ -30,6 +30,7 @@ export const list_Events_TypeDefs = gql`
     app_sectionId: String!
     Location: Location!
     Event_Jobs: [eventjob!]!
+    Event_Shifts: [eventshift!]!
     details: [JSON!]!
     details_en: [JSON!]!
   }
@@ -51,13 +52,21 @@ export const list_Events_TypeDefs = gql`
   }
 
   type eventjob {
-    id: String
-    title: String
-    title_en: String
-    status: Event_JobsStatus
-    rate: Int
-    rate_type: Rate_type
-    eventId: String
+    id: String!
+    title: String!
+    title_en: String!
+    status: Event_JobsStatus!
+    rate: Int!
+    rate_type: Rate_type!
+    eventId: String!
+  }
+
+  type eventshift {
+    id: String!
+    start_time: String!
+    end_time: String!
+    status: Event_JobsStatus!
+    eventId: String!
   }
 
   enum Event_JobsStatus {
@@ -91,13 +100,16 @@ export const list_Events_Query = {
       where: {
         published: true,
         app_sectionId: args.app_sectionId,
+        details: {
+          isEmpty: false,
+        },
+        details_en: {
+          isEmpty: false,
+        },
       },
       include: {
-        Event_Jobs: {
-          where: {
-            status: 'OPEN',
-          },
-        },
+        Event_Jobs: true,
+        Event_Shifts: true,
       },
     });
     return data;
@@ -111,6 +123,12 @@ export const list_Events_Query = {
       where: {
         published: true,
         app_sectionId: args.app_sectionId,
+        details: {
+          isEmpty: false,
+        },
+        details_en: {
+          isEmpty: false,
+        },
       },
     });
 

@@ -38,6 +38,7 @@ const EventJobEdit = () => {
   return (
     <Edit
       mutationMode="pessimistic"
+      sx={{ maxWidth: 600 }}
       redirect="show"
       queryOptions={{
         onError: (err) => {
@@ -48,7 +49,7 @@ const EventJobEdit = () => {
         refetchOnWindowFocus: true,
       }}>
       <TabbedForm toolbar={<EventJobEditToolbar />}>
-        <FormTab label="resources.eventjob.showtabs.edit" sx={{ maxWidth: 600 }}>
+        <FormTab label="resources.eventjob.showtabs.edit">
           <ReferenceInput source="eventId" reference="Event" label="resources.eventjob.fields.eventId">
             <SelectInput
               validate={required()}

@@ -46,7 +46,7 @@ const HeaderSingleEvent: React.FC<{data: Events; style: any}> = ({
         <View style={styles.RowItems} />
         <Avatar.Image
           size={100}
-          style={[styles.TopCardAvatart, {backgroundColor: Colors.Surface}]}
+          style={[styles.TopCardAvatart, {backgroundColor: Colors.Background}]}
           source={() =>
             data.companyLogo ? (
               <Image

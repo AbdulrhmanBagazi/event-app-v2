@@ -8,17 +8,18 @@ datasource db {
 }
 
 model User {
-  id                String      @id @default(uuid()) @db.Uuid
-  email             String      @unique
+  id                String       @id @default(uuid()) @db.Uuid
+  email             String       @unique
   password          String?
-  verfied           Boolean     @default(false)
+  verfied           Boolean      @default(false)
   verificationEmail DateTime?
-  suspended         Boolean     @default(false)
-  Type              AccountType @default(EMAIL)
+  suspended         Boolean      @default(false)
+  Type              AccountType  @default(EMAIL)
   AccountId         String?
-  createdAt         DateTime    @default(now())
-  updatedAt         DateTime    @updatedAt
+  createdAt         DateTime     @default(now())
+  updatedAt         DateTime     @updatedAt
   Profile           Profile?
+  Applicants        Applicants[]
 }
 
 enum AccountType {
@@ -51,40 +52,44 @@ model Admin {
 }
 
 model Companies {
-  id         String       @id @default(uuid()) @db.Uuid
-  email      String       @unique
-  contact    String
-  name       String
-  logo_url   String?
-  password   String
-  suspended  Boolean      @default(false)
-  createdAt  DateTime     @default(now())
-  updatedAt  DateTime     @updatedAt
-  Post       Events[]
-  Event_Jobs Event_Jobs[]
+  id           String         @id @default(uuid()) @db.Uuid
+  email        String         @unique
+  contact      String
+  name         String
+  logo_url     String?
+  password     String
+  suspended    Boolean        @default(false)
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  Post         Events[]
+  Event_Jobs   Event_Jobs[]
+  Event_Shifts Event_Shifts[]
+  Applicants   Applicants[]
 }
 
 model Events {
-  id            String       @id @default(uuid()) @db.Uuid
-  published     Boolean      @default(false)
-  createdAt     DateTime     @default(now())
-  updatedAt     DateTime     @updatedAt
-  company       Companies    @relation(fields: [companyId], references: [id])
-  companyId     String       @db.Uuid
+  id            String         @id @default(uuid()) @db.Uuid
+  published     Boolean        @default(false)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  company       Companies      @relation(fields: [companyId], references: [id])
+  companyId     String         @db.Uuid
   title         String
   content       String
   title_en      String
   content_en    String
   image_url     String?
   location_url  String
-  status        EventStatus  @default(SOON)
+  status        EventStatus    @default(SOON)
   Event_Jobs    Event_Jobs[]
-  Location      Location     @relation(fields: [locationId], references: [id])
-  locationId    String       @db.Uuid
-  App_section   App_section? @relation(fields: [app_sectionId], references: [id])
-  app_sectionId String?      @db.Uuid
+  Location      Location       @relation(fields: [locationId], references: [id])
+  locationId    String         @db.Uuid
+  App_section   App_section?   @relation(fields: [app_sectionId], references: [id])
+  app_sectionId String?        @db.Uuid
   details       Json[]
   details_en    Json[]
+  Event_Shifts  Event_Shifts[]
+  Applicants    Applicants[]
 }
 
 enum EventStatus {
@@ -94,18 +99,19 @@ enum EventStatus {
 }
 
 model Event_Jobs {
-  id        String           @id @default(uuid()) @db.Uuid
-  createdAt DateTime         @default(now())
-  updatedAt DateTime         @updatedAt
-  title     String
-  title_en  String
-  status    Event_JobsStatus
-  rate      Int
-  rate_type Rate_type        @default(DAY)
-  Event     Events           @relation(fields: [eventId], references: [id])
-  eventId   String           @db.Uuid
-  company   Companies        @relation(fields: [companyId], references: [id])
-  companyId String           @db.Uuid
+  id         String           @id @default(uuid()) @db.Uuid
+  createdAt  DateTime         @default(now())
+  updatedAt  DateTime         @updatedAt
+  title      String
+  title_en   String
+  status     Event_JobsStatus
+  rate       Int
+  rate_type  Rate_type        @default(DAY)
+  Event      Events           @relation(fields: [eventId], references: [id])
+  eventId    String           @db.Uuid
+  company    Companies        @relation(fields: [companyId], references: [id])
+  companyId  String           @db.Uuid
+  Applicants Applicants[]
 }
 
 enum Event_JobsStatus {
@@ -116,6 +122,25 @@ enum Event_JobsStatus {
 enum Rate_type {
   MONTHLY
   DAY
+}
+
+model Event_Shifts {
+  id         String             @id @default(uuid()) @db.Uuid
+  createdAt  DateTime           @default(now())
+  updatedAt  DateTime           @updatedAt
+  start_time String
+  end_time   String
+  status     Event_ShiftsStatus
+  Event      Events             @relation(fields: [eventId], references: [id])
+  eventId    String             @db.Uuid
+  company    Companies          @relation(fields: [companyId], references: [id])
+  companyId  String             @db.Uuid
+  Applicants Applicants[]
+}
+
+enum Event_ShiftsStatus {
+  CLOSED
+  OPEN
 }
 
 model Location {
@@ -135,6 +160,47 @@ model App_section {
   title_en  String
   published Boolean  @default(false)
   Events    Events[]
+}
+
+model Event_Days {
+  id        String   @id @default(uuid()) @db.Uuid
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  date      DateTime @db.Date
+}
+
+model Applicants {
+  id          String            @id @default(uuid()) @db.Uuid
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+  Event       Events            @relation(fields: [eventId], references: [id])
+  eventId     String            @db.Uuid
+  company     Companies         @relation(fields: [companyId], references: [id])
+  companyId   String            @db.Uuid
+  user        User              @relation(fields: [userId], references: [id])
+  userId      String            @db.Uuid
+  shift       Event_Shifts      @relation(fields: [shiftId], references: [id])
+  shiftId     String            @db.Uuid
+  job         Event_Jobs        @relation(fields: [jobId], references: [id])
+  jobId       String            @db.Uuid
+  //
+  name        String
+  nationality String
+  nationalID  String
+  dateOfBirth String
+  gender      String
+  //
+  status      Applicants_Status @default(PENDING)
+}
+
+enum Applicants_Status {
+  CANCELED // user can cancele (if status still "PENDING") and apply again 
+  DECLINED // user cant apply 
+  WAITLIST // user can cancele (if status still "WAITLIST") and apply again 
+  PENDING // will be showen in dashboard+
+  INTERVIEW // if status pending or waitlist // will be showen in dashboard+
+  APPROVED // will be showen in dashboard+
+  COMPLETED // will be showen in dashboard+
 }
 
 //$argon2id$v=19$m=4096,t=3,p=1$Org39QC+ENPL8d5yajfoug$XjvNjYvDYIlXh/zj2tjdRgWgYbqWikuzTOKQjo8pNas

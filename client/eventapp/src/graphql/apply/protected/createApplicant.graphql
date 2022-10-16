@@ -1,0 +1,46 @@
+mutation Create_Applicants(
+  $eventId: String!
+  $companyId: String!
+  $shiftId: String!
+  $jobId: String!
+  $name: String!
+  $nationality: String!
+  $nationalID: String!
+  $dateOfBirth: String!
+  $gender: String!
+) {
+  Create_Applicants(
+    eventId: $eventId
+    companyId: $companyId
+    shiftId: $shiftId
+    jobId: $jobId
+    name: $name
+    nationality: $nationality
+    nationalID: $nationalID
+    dateOfBirth: $dateOfBirth
+    gender: $gender
+  ) {
+    ... on CreateApplicantsExsist {
+      message
+    }
+    ... on CreateApplicantsUnknown {
+      message
+    }
+    ... on Applicants {
+      id
+      createdAt
+      updatedAt
+      eventId
+      companyId
+      userId
+      shiftId
+      jobId
+      name
+      nationality
+      nationalID
+      dateOfBirth
+      gender
+      status
+    }
+  }
+}

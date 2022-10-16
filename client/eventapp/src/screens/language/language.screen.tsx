@@ -14,7 +14,7 @@ const Language = () => {
   const {ToggleI18n} = UseI18nContext() as I18nContextType;
 
   return (
-    <Page paddingHorizontal={20}>
+    <Page paddingHorizontal={20} loadingLayer={true}>
       <View style={{height: useHeaderHeight()}} />
       <View
         style={[{backgroundColor: Colors.Background}, styles.loadingContainer]}>

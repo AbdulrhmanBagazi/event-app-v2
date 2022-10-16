@@ -14,6 +14,7 @@ import {
 } from 'react-admin'
 import { useParams } from 'react-router-dom'
 import MyError from '../../layout/MyError'
+import EventJobEditToolbar from './components/EventJobEditToolbar'
 
 const EventJobEdit = () => {
   const { id } = useParams()
@@ -47,7 +48,7 @@ const EventJobEdit = () => {
         refetchOnMount: true,
         refetchOnWindowFocus: true,
       }}>
-      <TabbedForm>
+      <TabbedForm toolbar={<EventJobEditToolbar />}>
         <FormTab label="resources.app_section.showtabs.edit">
           <ReferenceInput source="companyId" reference="Companies">
             <SelectInput validate={required()} fullWidth disabled />

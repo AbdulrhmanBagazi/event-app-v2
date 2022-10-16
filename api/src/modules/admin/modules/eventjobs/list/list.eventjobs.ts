@@ -15,6 +15,7 @@ export const list_eventjobs_TypeDefs = gql`
   input Filters {
     rate_type: String
     eventId: String
+    companyId: String
   }
 
   type eventjob {
@@ -28,6 +29,7 @@ export const list_eventjobs_TypeDefs = gql`
     rate_type: Rate_type
     eventId: String
     Event: Event
+    company: Companies
     companyId: String
   }
 
@@ -63,9 +65,11 @@ export const list_eventjobs_Query = {
         status: args.filter?.status,
         rate_type: args.filter?.rate_type,
         eventId: args.filter?.eventId,
+        companyId: args.filter?.companyId,
       },
       include: {
         Event: true,
+        company: true,
       },
     });
     // throw Error;
@@ -77,6 +81,7 @@ export const list_eventjobs_Query = {
         status: args.filter?.status,
         rate_type: args.filter.rate_type,
         eventId: args.filter?.eventId,
+        companyId: args.filter?.companyId,
       },
       _count: {
         id: true,

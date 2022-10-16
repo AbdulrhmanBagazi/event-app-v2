@@ -9,7 +9,7 @@ const ThemeToggler = () => {
 
   return (
     <Button onClick={() => setTheme(theme?.palette?.mode === 'dark' ? lightTheme : darkTheme)}>
-      {theme?.palette?.mode === 'light' ? <LightModeIcon /> : <DarkModeIcon />}
+      {theme?.palette?.mode === 'light' ? <DarkModeIcon color="action" /> : <LightModeIcon />}
     </Button>
   )
 }

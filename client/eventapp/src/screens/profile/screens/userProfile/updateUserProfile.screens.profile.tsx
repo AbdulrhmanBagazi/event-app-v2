@@ -112,6 +112,8 @@ const UpdateUserProfile = () => {
           nationalID: val.data?.Update_UserProfile.nationalID,
           dateOfBirth: val.data?.Update_UserProfile.dateOfBirth,
           gender: val.data?.Update_UserProfile.gender,
+          whatsapp: val.data?.Update_UserProfile.whatsapp,
+          phone: val.data?.Update_UserProfile.phone,
         } as UserProfileType;
 
         UpdateLoading(false);
@@ -214,7 +216,7 @@ const UpdateUserProfile = () => {
               }}
               value="male"
               mode="android"
-              position="leading"
+              // position="leading"
             />
             <RadioButton.Item
               style={styles.RadioButton}
@@ -224,7 +226,7 @@ const UpdateUserProfile = () => {
               }}
               value="female"
               mode="android"
-              position="leading"
+              // position="leading"
             />
           </View>
         </RadioButton.Group>

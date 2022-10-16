@@ -6,6 +6,7 @@ export const darkTheme = {
     secondary: {
       main: '#7dd1b7',
     },
+
     mode: 'dark' as 'dark', // Switching the dark mode on is a single property value change.
   },
   sidebar: {

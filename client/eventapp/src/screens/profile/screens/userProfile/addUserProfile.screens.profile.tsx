@@ -96,6 +96,8 @@ const AddUserProfile = () => {
           nationalID: val.data?.Create_UserProfile.nationalID,
           dateOfBirth: val.data?.Create_UserProfile.dateOfBirth,
           gender: val.data?.Create_UserProfile.gender,
+          whatsapp: val.data?.Create_UserProfile.whatsapp,
+          phone: val.data?.Create_UserProfile.phone,
         } as UserProfileType;
 
         UpdateLoading(false);
@@ -198,7 +200,7 @@ const AddUserProfile = () => {
               }}
               value="male"
               mode="android"
-              position="leading"
+              // position="leading"
             />
             <RadioButton.Item
               style={styles.RadioButton}
@@ -208,7 +210,7 @@ const AddUserProfile = () => {
               }}
               value="female"
               mode="android"
-              position="leading"
+              // position="leading"
             />
           </View>
         </RadioButton.Group>

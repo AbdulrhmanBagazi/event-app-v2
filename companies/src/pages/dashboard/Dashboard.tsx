@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { Loading, Title, useDataProvider, useTranslate } from 'react-admin'
-import TotalUsers from './components/TotalUsers'
+import TotalDashboard from './components/TotalDashboard'
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
-import { Festival } from '../../theme/icons'
+import { Festival, Work, AvTimer } from '../../theme/icons'
 import MyError from '../../layout/MyError'
 
 type Data = {
@@ -12,6 +12,8 @@ type Data = {
 
 type gqlresponse = {
   Events_count: number
+  Jobs_count: number
+  Shifts_count: number
 }
 
 const Dashboard = () => {
@@ -54,8 +56,14 @@ const Dashboard = () => {
     <Box sx={{ paddingTop: 1 }}>
       <Title title={translate('Dashboard')} />
       <Grid container spacing={0.5}>
+        <Grid item xs={12}>
+          <TotalDashboard value={data.Events_count} title="Events" icon={Festival} />
+        </Grid>
         <Grid item xs={12} sm={6} md={6} lg={6}>
-          <TotalUsers value={data.Events_count} title="Events" icon={Festival} />
+          <TotalDashboard value={data.Jobs_count} title="eventjob" icon={Work} />
+        </Grid>
+        <Grid item xs={12} sm={6} md={6} lg={6}>
+          <TotalDashboard value={data.Shifts_count} title="eventshift" icon={AvTimer} />
         </Grid>
       </Grid>
     </Box>

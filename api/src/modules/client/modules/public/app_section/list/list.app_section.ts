@@ -46,7 +46,16 @@ export const list_app_section_Resolver = {
   app_section: {
     count: async (parent: SectionType, _args, context: Context) => {
       return context.prisma.events.count({
-        where: { published: true, app_sectionId: parent.id },
+        where: {
+          published: true,
+          app_sectionId: parent.id,
+          details: {
+            isEmpty: false,
+          },
+          details_en: {
+            isEmpty: false,
+          },
+        },
       });
     },
   },

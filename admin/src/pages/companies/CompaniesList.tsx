@@ -54,6 +54,7 @@ const CompaniesList = () => {
       ) : (
         <Datagrid isRowSelectable={() => false} bulkActionButtons={false} rowClick="show">
           <ImageField
+            sortable={false}
             source="logo_url"
             title="logo_url"
             sx={{ '& img': { maxWidth: 50, maxHeight: 50, objectFit: 'contain' } }}

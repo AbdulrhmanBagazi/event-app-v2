@@ -10,14 +10,14 @@ import {SCREEN_WIDTH} from '../../../../layout/screenDimensions';
 import {Headline} from 'react-native-paper';
 
 const DescriptionSingleEvent: React.FC<{data: Events}> = ({data}) => {
-  const {Colors, isDarkMode} = UseThemeContext() as ThemeContextType;
+  const {Colors} = UseThemeContext() as ThemeContextType;
   const {Lang} = UseI18nContext() as I18nContextType;
   const DataLocal = Lang === 'en' ? data.details_en : data.details;
 
   return (
     <View
       style={{
-        backgroundColor: isDarkMode ? Colors.Surface : Colors.Background,
+        backgroundColor: Colors.Background,
       }}>
       {DataLocal.map((val: {title: string; content: string}, i: number) => {
         return (

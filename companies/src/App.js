@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
 import { Admin, Resource, Loading, useTranslate, CustomRoutes, Login } from 'react-admin'
 import { Route } from 'react-router'
-import { Festival, Work } from './theme/icons'
+import { Festival, Work, AvTimer, Article } from './theme/icons'
 import { MyLayout } from './layout/layout'
 import Events from './pages/events'
 import EventJob from './pages/eventjob'
+import EventShift from './pages/eventshift'
+import Applicants from './pages/applicants'
 import authProvider from './auth/authProvider'
 import i18nProvider from './I18n/i18nProvider'
 import { dataProvider } from './data/dataProvider'
@@ -45,7 +47,19 @@ export default function App() {
       layout={MyLayout}
       requireAuth>
       <Resource options={{ label: translate('Events') }} name="Event" icon={<Festival />} {...Events} />
-      <Resource options={{ label: translate('evenjob') }} name="eventjob" icon={<Work />} {...EventJob} />
+      <Resource options={{ label: translate('eventjob') }} name="eventjob" icon={<Work />} {...EventJob} />
+      <Resource
+        options={{ label: translate('eventshift') }}
+        name="eventshift"
+        icon={<AvTimer />}
+        {...EventShift}
+      />
+      <Resource
+        options={{ label: translate('applicants') }}
+        name="applicants"
+        icon={<Article />}
+        {...Applicants}
+      />
       <CustomRoutes>
         <Route path="/configuration" element={<Configuration />} />
         <Route path="/error" element={<MyError />} />

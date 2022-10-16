@@ -9,9 +9,10 @@ export const getOne_eventjobs_TypeDefs = gql`
 
 export const getOne_eventjobs_Query = {
   eventjob: (_parent, args: { id: string }, context: Context) => {
-    return context.prisma.event_Jobs.findUnique({
+    return context.prisma.event_Jobs.findFirst({
       where: {
         id: args.id,
+        companyId: context.req.user.id,
       },
       include: {
         Event: true,

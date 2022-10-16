@@ -12,8 +12,8 @@ import {
 } from 'react-admin'
 import { useMediaQuery, Theme } from '@mui/material'
 import SuspendedBooleanField from './components/SuspendedBooleanField'
-import EventListFilters from './components/EventListFilters'
 import MyError from '../../layout/MyError'
+import EventListAside from './components/EventListAside'
 
 const EventList = () => {
   const { data, isLoading } = useGetList(
@@ -37,17 +37,14 @@ const EventList = () => {
   return (
     <List
       // debounce={3000}
-      filters={EventListFilters(locale)}
       exporter={false}
-      // perPage={5}
+      perPage={25}
+      aside={<EventListAside />}
       emptyWhileLoading
       queryOptions={{
         onError: (err) => {
           return null
         },
-        // useErrorBoundary: (err) => {
-        //   return true
-        // },
       }}>
       {isSmall ? (
         <SimpleList

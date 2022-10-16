@@ -6,9 +6,23 @@ const customEnglishMessages: TranslationMessages = {
   Events: 'Events',
   Dashboard: 'Dashboard',
   error: 'error!',
-  evenjob: 'Events Jobs',
+  eventjob: 'Events Jobs',
+  eventshift: 'Events Shifts',
   create: 'Create',
   create_job: 'Create Job',
+  create_shift: 'Create Shift',
+  show_event: 'Show Event',
+  yes: 'yes',
+  no: 'no',
+  PENDING: 'Pending',
+  APPROVED: 'Approved',
+  DECLINED: 'Declinde',
+  CANCELED: 'Canceled',
+  COMPLETED: 'Completed',
+  WAITLIST: 'Wait-List',
+  INTERVIEW: 'Interview-List',
+  eventId: 'Event',
+  applicants: 'Applicants',
   dashboard: {
     total_users: 'Users',
   },
@@ -38,11 +52,14 @@ const customEnglishMessages: TranslationMessages = {
         edit: 'Edit',
         company: 'Company',
         eventjob: 'Jobs',
+        eventshift: 'Shifts',
         details: 'Event Details',
+        details_en: 'Event Details (English)',
       },
       edittabs: {
         editinfo: 'Edit informations',
         editdetails: 'Edit details',
+        editdetails_en: 'Edit details (English)',
       },
       fields: {
         id: 'ID',
@@ -73,8 +90,8 @@ const customEnglishMessages: TranslationMessages = {
         completed: 'completed',
       },
     },
-    evenjob: {
-      name: 'Events Jobs |||| Job',
+    eventjob: {
+      name: 'Job|||| Events Jobs',
       showtabs: {
         show: 'Details',
         edit: 'Edit',
@@ -104,6 +121,88 @@ const customEnglishMessages: TranslationMessages = {
       rate_type: {
         MONTHLY: 'MONTHLY',
         DAY: 'Day',
+      },
+    },
+    eventshift: {
+      name: 'Shift |||| Events Shifts ',
+      showtabs: {
+        show: 'Details',
+        edit: 'Edit',
+      },
+      fields: {
+        id: 'id',
+        createdAt: 'created At',
+        updatedAt: 'updated At',
+        start_time: 'Work Starts',
+        end_time: 'Work Ends',
+        rate: 'salary/SAR',
+        rate_type: 'salary type',
+        status: 'status',
+        eventId: 'event',
+        Event: {
+          title: 'Event',
+          title_en: 'Event',
+        },
+        company: {
+          name: 'Company',
+        },
+      },
+      edittabs: {
+        edit: 'Edit',
+      },
+      status: {
+        OPEN: 'Open',
+        CLOSED: 'Closed',
+      },
+      rate_type: {
+        MONTHLY: 'MONTHLY',
+        DAY: 'Day',
+      },
+      filters: {
+        events: 'Events',
+      },
+    },
+    applicants: {
+      name: 'Events Applicants |||| Applicant',
+      showtabs: {
+        show: 'Details',
+        edit: 'Edit',
+      },
+      fields: {
+        id: 'id',
+        createdAt: 'created At',
+        updatedAt: 'updated At',
+        //
+        name: 'Name',
+        nationality: 'nationality',
+        nationalID: 'national/iqama ID',
+        dateOfBirth: 'Date Of Birth',
+        age: 'Age',
+        null: 'User did not add profile informations',
+        gender: 'Gender',
+        whatsapp: 'Whatsapp',
+        phone: 'Contact Number',
+        //
+        shift: 'Shift',
+        job: 'Job',
+        //
+        status: 'Status',
+        eventId: 'Event',
+        companyId: 'Company',
+        event: {
+          title: 'Event',
+          title_en: 'Event',
+        },
+        company: {
+          name: 'Company',
+        },
+        contact: {
+          whatsapp: 'Whatsapp',
+          phone: 'Contact Number',
+        },
+      },
+      edittabs: {
+        edit: 'Edit',
       },
     },
   },

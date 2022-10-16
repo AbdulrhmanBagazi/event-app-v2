@@ -9,14 +9,26 @@ const customArabicMessages: TranslationMessages = {
   Location: 'المواقع',
   app_section: 'آقسام التطبيق',
   evenjob: 'وظائف الفعاليات',
+  eventshift: 'ورديات الفعاليات',
   'User Get': 'المستخدم',
   Dashboard: 'لوحة الإحصائيات',
+  Dashboarddata: 'الإحصائيات',
   error: 'حدث خطآ!',
   'Email exists': 'البريد الإلكتروني مستخدم',
   create_job: 'إنشاء وظيفة',
+  create_shift: 'إنشاء وردية',
+  show_event: 'عرض الفعالية',
   eventId: 'الفعالية',
   Event: 'الفعالية',
   show: 'عرض',
+  PENDING: 'معلق',
+  APPROVED: 'مقبول',
+  DECLINED: 'مرفوض',
+  CANCELED: 'ملغي',
+  COMPLETED: 'مكتمل',
+  WAITLIST: 'قائمة الإنتظار',
+  INTERVIEW: 'قائمة المقابلة الشخصية',
+  applicants: 'طلبات العمل',
   dashboard: {
     total_users: 'المستخدمين',
   },
@@ -119,15 +131,18 @@ const customArabicMessages: TranslationMessages = {
       name: 'الفعاليات |||| الفعالية',
       showtabs: {
         details: 'تفاصيل الفعالية',
-        show: 'التفاصيل',
+        details_en: 'تفاصيل الفعالية (إنجليزي)',
+        show: 'المعلومات',
         posts: 'المنشورات',
         edit: 'تعديل',
         company: 'الشركة',
         eventjob: 'الوظائف',
+        eventshift: 'الورديات',
       },
       edittabs: {
         editinfo: 'تعديل المعلومات',
         editdetails: 'تعديل التفاصيل',
+        editdetails_en: 'تعديل التفاصيل (إنجليزي)',
       },
       fields: {
         id: 'معرف',
@@ -151,6 +166,9 @@ const customArabicMessages: TranslationMessages = {
         details_en: 'تفاصيل الفعالية (إنجليزي)',
         detailstitle: 'العنوان',
         detailscontent: 'المحتوى',
+        company: {
+          name: 'الشركة',
+        },
       },
       status: {
         soon: 'قريبا',
@@ -215,6 +233,9 @@ const customArabicMessages: TranslationMessages = {
           title: 'الفعالية',
           title_en: 'الفعالية',
         },
+        company: {
+          name: 'الشركة',
+        },
       },
       edittabs: {
         edit: 'تعديل',
@@ -226,6 +247,83 @@ const customArabicMessages: TranslationMessages = {
       rate_type: {
         MONTHLY: 'شهري',
         DAY: 'يومي',
+      },
+    },
+    eventshift: {
+      name: 'ورديات الفعاليات |||| وردية',
+      showtabs: {
+        show: 'التفاصيل',
+        edit: 'تعديل',
+      },
+      fields: {
+        id: 'معرف',
+        createdAt: 'تاريخ الإنشاء',
+        updatedAt: 'تاريخ التحديث',
+        start_time: 'بدء العمل',
+        end_time: 'إنتهاء العمل',
+        status: 'الحالة',
+        eventId: 'الفعالية',
+        companyId: 'الشركة',
+        Event: {
+          title: 'الفعالية',
+          title_en: 'الفعالية',
+        },
+        company: {
+          name: 'الشركة',
+        },
+      },
+      edittabs: {
+        edit: 'تعديل',
+      },
+      status: {
+        OPEN: 'مفتوح',
+        CLOSED: 'مغلق',
+      },
+      rate_type: {
+        MONTHLY: 'شهري',
+        DAY: 'يومي',
+      },
+    },
+    applicants: {
+      name: 'طلبات العمل |||| تفاصيل الطلب',
+      showtabs: {
+        show: 'التفاصيل',
+        edit: 'تعديل',
+      },
+      fields: {
+        id: 'معرف',
+        createdAt: 'تاريخ الإنشاء',
+        updatedAt: 'تاريخ التحديث',
+        //
+        name: 'الإسم',
+        nationality: 'الجنسية',
+        nationalID: 'رقم الهوية',
+        dateOfBirth: 'تاريخ الميلاد',
+        age: 'العمر',
+        gender: 'الجنس',
+        whatsapp: 'واتس اب',
+        phone: 'رقم التواصل',
+        //
+        shift: 'الوردية',
+        job: 'الوظيفة',
+        //
+        status: 'الحالة',
+        eventId: 'الفعالية',
+        companyId: 'الشركة',
+        event: {
+          title: 'الفعالية',
+          title_en: 'الفعالية',
+        },
+        company: {
+          name: 'الشركة',
+        },
+        contact: {
+          phone: 'رقم الجوال',
+          whatsapp: 'واتساب',
+        },
+      },
+      edittabs: {
+        edit: 'تعديل',
       },
     },
   },

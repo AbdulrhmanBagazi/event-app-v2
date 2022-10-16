@@ -47,7 +47,8 @@ const EventEdit = () => {
   return (
     <Edit
       mutationMode="pessimistic"
-      redirect="show"
+      // redirect="show"
+      // redirect={false}
       // sx={{ maxWidth: 600 }}
       queryOptions={{
         onError: (err) => {
@@ -124,10 +125,17 @@ const EventEdit = () => {
           />
         </FormTab>
         <FormTab label="resources.Event.edittabs.editdetails">
-          <ArrayInput source="details">
-            <SimpleFormIterator>
-              <TextInput source="title" helperText={false} label="resources.Event.fields.title" fullWidth />
+          <ArrayInput source="details" fullWidth>
+            <SimpleFormIterator fullWidth>
+              <TextInput
+                source="title"
+                helperText={false}
+                label="resources.Event.fields.title"
+                fullWidth
+                validate={required()}
+              />
               <RichTextInput
+                validate={required()}
                 fullWidth
                 toolbar={
                   <RichTextInputToolbar size="large">
@@ -141,10 +149,19 @@ const EventEdit = () => {
               />
             </SimpleFormIterator>
           </ArrayInput>
-          <ArrayInput source="details_en">
-            <SimpleFormIterator>
-              <TextInput source="title" helperText={false} label="resources.Event.fields.title" fullWidth />
+        </FormTab>
+        <FormTab label="resources.Event.edittabs.editdetails_en">
+          <ArrayInput source="details_en" fullWidth>
+            <SimpleFormIterator fullWidth>
+              <TextInput
+                source="title"
+                helperText={false}
+                label="resources.Event.fields.title"
+                fullWidth
+                validate={required()}
+              />
               <RichTextInput
+                validate={required()}
                 fullWidth
                 toolbar={
                   <RichTextInputToolbar size="large">

@@ -19,7 +19,7 @@ const DataSingleEvent: React.FC<{
   data: Events;
   borderRadius: StyleProps;
 }> = ({data, borderRadius}) => {
-  const {Colors, isDarkMode} = UseThemeContext() as ThemeContextType;
+  const {Colors} = UseThemeContext() as ThemeContextType;
   const {Lang, Locals} = UseI18nContext() as I18nContextType;
   const jobs = data.Event_Jobs;
   const min = Math.min(...jobs.map(item => Number(item.rate)));
@@ -33,7 +33,7 @@ const DataSingleEvent: React.FC<{
       style={[
         borderRadius,
         {
-          backgroundColor: isDarkMode ? Colors.Surface : Colors.Background,
+          backgroundColor: Colors.Background,
         },
       ]}>
       <View style={styles.container}>
@@ -67,30 +67,28 @@ const DataSingleEvent: React.FC<{
         </View>
 
         <View style={styles.Row}>
-          <View style={styles.ItemSmall}>
-            <IconButton icon="map" color={Colors.Secondary} size={20} />
+          <View style={styles.Item}>
+            <IconButton icon="map" color={Colors.Primary} size={20} />
             <Text>
               {Lang === 'en' ? data.Location?.title_en : data.Location?.title}
             </Text>
           </View>
 
           <View style={styles.Item}>
-            <IconButton icon="calendar" color={Colors.Secondary} size={20} />
+            <IconButton icon="calendar" color={Colors.Primary} size={20} />
             <Text>{moment(new Date(data.createdAt)).format('YYYY-MM-DD')}</Text>
           </View>
-        </View>
+          <View style={styles.Item}>
+            <IconButton icon="calendar" color={Colors.Primary} size={20} />
+            <Text>{moment(new Date(data.updatedAt)).format('YYYY-MM-DD')}</Text>
+          </View>
 
-        <View style={styles.Row}>
-          <View style={styles.ItemSmall}>
-            <IconButton icon="briefcase" color={Colors.Secondary} size={20} />
-            <Text>{data.Event_Jobs?.length}</Text>
+          <View style={styles.Item}>
+            <IconButton icon="briefcase" color={Colors.Primary} size={20} />
+            <Text>{data.Event_Jobs?.length} </Text>
           </View>
           <View style={styles.Item}>
-            <IconButton
-              icon="cash-multiple"
-              color={Colors.Secondary}
-              size={20}
-            />
+            <IconButton icon="cash-multiple" color={Colors.Primary} size={20} />
             <Text>
               {data.Event_Jobs.length === 1
                 ? min + ' '

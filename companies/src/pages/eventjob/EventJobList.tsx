@@ -12,7 +12,7 @@ import {
 } from 'react-admin'
 import { useMediaQuery, Theme } from '@mui/material'
 import MyError from '../../layout/MyError'
-import { EventJobListFliters, EventJobListFlitersEn } from './components/EventJobListFliters'
+import EventJobListAside from './components/EventJobListAside'
 
 const EventJobList = () => {
   const { data, isLoading } = useGetList(
@@ -36,9 +36,10 @@ const EventJobList = () => {
   return (
     <List
       exporter={false}
+      hasCreate={false}
+      aside={<EventJobListAside />}
       emptyWhileLoading
-      filters={locale === 'en' ? EventJobListFlitersEn : EventJobListFliters}
-      perPage={10}
+      perPage={25}
       queryOptions={{
         onError: (err) => {
           return null
@@ -52,7 +53,7 @@ const EventJobList = () => {
       ) : (
         <Datagrid isRowSelectable={() => false} bulkActionButtons={false} rowClick="show">
           {/* <TextField source="id" sortable={false} /> */}
-          <TextField source={locale === 'en' ? 'Event.title_en' : 'Event.title'} />
+          <TextField source={locale === 'en' ? 'Event.title_en' : 'Event.title'} sortable={false} />
           <TextField source="title" />
           <TextField source="title_en" />
           <ChipField source="status" size="small" />

@@ -24,6 +24,12 @@ export const list_Events_TypeDefs = gql`
     COMPLETED
     OPEN
     CLOSED
+    CANCELED
+    DECLINED
+    WAITLIST
+    PENDING
+    INTERVIEW
+    APPROVED
   }
 
   type Event {
@@ -45,6 +51,7 @@ export const list_Events_TypeDefs = gql`
     App_section: App_section
     details: [JSON!]!
     details_en: [JSON!]!
+    company: Companies
   }
 
   type Location {
@@ -86,10 +93,12 @@ export const list_Events_Query = {
         published: args.filter?.published,
         status: args.filter?.status,
         locationId: args.filter?.locationId,
+        companyId: args.filter?.companyId,
       },
       include: {
         Location: true,
         App_section: true,
+        company: true,
       },
     });
     // throw Error;
@@ -101,6 +110,7 @@ export const list_Events_Query = {
         published: args.filter?.published,
         status: args.filter?.status,
         locationId: args.filter?.locationId,
+        companyId: args.filter?.companyId,
       },
       _count: {
         id: true,

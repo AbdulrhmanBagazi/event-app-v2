@@ -93,13 +93,13 @@ const MyCard: React.FC<{
         <Card.Actions style={styles.CardAction}>
           <View style={styles.dataView}>
             <View style={styles.Item}>
-              <IconButton icon="map" color={Colors.Secondary} size={14} />
+              <IconButton icon="map" color={Colors.Primary} size={14} />
               <Text>
                 {Lang === 'en' ? data.Location?.title_en : data.Location?.title}{' '}
               </Text>
             </View>
             <View style={styles.Item}>
-              <IconButton icon="calendar" color={Colors.Secondary} size={14} />
+              <IconButton icon="calendar" color={Colors.Primary} size={14} />
               <Text>
                 {moment(new Date(data.createdAt)).format('YYYY-MM-DD')}
               </Text>

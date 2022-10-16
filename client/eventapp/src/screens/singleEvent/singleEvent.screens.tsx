@@ -1,11 +1,6 @@
 import React from 'react';
 import {useHeaderHeight} from '@react-navigation/elements';
-import {
-  NavigationProp,
-  RouteProp,
-  useNavigation,
-  useRoute,
-} from '@react-navigation/native';
+import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {Platform, View} from 'react-native';
 import Page from '../../layout/page';
 import {
@@ -29,10 +24,12 @@ import Animated, {
 import {UseThemeContext} from '../../context/theme/themeToggle.context';
 import {Button} from 'react-native-paper';
 import {UseI18nContext} from '../../context/I18n/i18n.context';
+import {StackNavigationProp} from '@react-navigation/stack';
 
 const SingleEvent = () => {
-  const {Colors, isDarkMode} = UseThemeContext() as ThemeContextType;
-  const {setOptions} = useNavigation<NavigationProp<RootStackParamList>>();
+  const {Colors} = UseThemeContext() as ThemeContextType;
+  const {setOptions, navigate} =
+    useNavigation<StackNavigationProp<RootStackParamList>>();
   const route = useRoute<RouteProp<ParamList, 'Event'>>();
   const {Locals} = UseI18nContext() as I18nContextType;
   const data = route.params.params;
@@ -52,7 +49,7 @@ const SingleEvent = () => {
           0,
           Platform.OS === 'ios' ? getHeaderHeight * 1.5 : getHeaderHeight * 2.5,
         ],
-        ['transparent', isDarkMode ? Colors.Surface : Colors.Background],
+        ['transparent', Colors.Background],
       ),
     };
   });
@@ -82,11 +79,7 @@ const SingleEvent = () => {
 
   return (
     <Page paddingHorizontal={0}>
-      <View
-        style={[
-          styles.Container,
-          {backgroundColor: isDarkMode ? Colors.Surface : Colors.Background},
-        ]}>
+      <View style={[styles.Container, {backgroundColor: Colors.Background}]}>
         <HeaderSingleEvent data={route.params.params} style={spaceColor} />
         <View style={[styles.Scroll, {top: getHeaderHeight}]}>
           <View
@@ -124,20 +117,22 @@ const SingleEvent = () => {
           </View>
         </View>
         <Button
-          // onPress={() => HandleLogin({email: isEmail, password: isPassword})}
+          onPress={() =>
+            navigate('Apply', {
+              params: data,
+            })
+          }
           mode="contained"
-          // disabled={authLoading || isError.Email || isError.Password}
           color={Colors.Primary}
           labelStyle={{color: Colors.OnSecondary}}
-          style={styles.Button}
+          // eslint-disable-next-line react-native/no-inline-styles
+          style={[styles.Button, {bottom: Platform.OS === 'ios' ? 40 : 20}]}
           disabled={
             route.params.params.Event_Jobs.length <= 0 ||
             data.status !== 'ACTIVE'
               ? true
               : false
-          }
-          // loading={authLoading}
-        >
+          }>
           {Locals.SingleEvent.Apply}
         </Button>
       </View>

@@ -198,7 +198,8 @@ const SignupForm = () => {
         }
         color={Colors.Secondary}
         style={styles.SignInButton}
-        loading={authLoading}>
+        // loading={authLoading}
+      >
         {Locals.Signup.Title}
       </Button>
 

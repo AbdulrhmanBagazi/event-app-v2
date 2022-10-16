@@ -63,7 +63,7 @@ const authProvider: AuthProvider = {
 
     return localStorage.getItem('auth') ? Promise.resolve() : Promise.reject({ message: 'login.required' })
   },
-  getPermissions: () => Promise.reject('Unknown method'),
+  getPermissions: () => Promise.resolve('admin'),
 }
 
 export default authProvider

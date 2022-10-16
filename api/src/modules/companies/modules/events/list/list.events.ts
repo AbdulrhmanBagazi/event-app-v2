@@ -45,6 +45,14 @@ export const list_Events_TypeDefs = gql`
     SOON
     ACTIVE
     COMPLETED
+    OPEN
+    CLOSED
+    CANCELED
+    DECLINED
+    WAITLIST
+    PENDING
+    INTERVIEW
+    APPROVED
   }
 
   scalar DateTime

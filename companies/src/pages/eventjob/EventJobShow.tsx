@@ -9,12 +9,15 @@ import {
   useRefresh,
   Loading,
   ChipField,
+  useLocaleState,
 } from 'react-admin'
 import { useParams } from 'react-router-dom'
 import MyError from '../../layout/MyError'
 import Grid from '@mui/material/Grid'
+import EventJobShowToolBar from './components/EventJobShowToolBar'
 
 const EventJobShow = () => {
+  const [locale] = useLocaleState()
   const { id } = useParams()
   const { data, isLoading } = useGetOne(
     'eventjob',
@@ -38,13 +41,20 @@ const EventJobShow = () => {
           return null
         },
       }}
+      actions={<EventJobShowToolBar data={data} />}
       emptyWhileLoading>
       <TabbedShowLayout>
         <Tab label="resources.eventjob.showtabs.show">
           {/* <Labeled label="resources.app_section.fields.id">
             <TextField source="id" />
           </Labeled> */}
+
           <Grid container spacing={2}>
+            <Grid item xs={4}>
+              <Labeled label="resources.eventjob.fields.Event.title">
+                <TextField source={locale === 'en' ? 'Event.title_en' : 'Event.title'} />
+              </Labeled>
+            </Grid>
             <Grid item xs={4}>
               <Labeled label="resources.eventjob.fields.title">
                 <TextField source="title" />

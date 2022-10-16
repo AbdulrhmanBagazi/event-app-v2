@@ -111,6 +111,7 @@ const I18n_ar = {
     SignIn: 'البريد الإلكتروني أو كلمة مرور غير صحيحة.',
     EmailUsed: 'البريد الإلكتروني مستخدم',
     unknown: 'حدث خطأ',
+    moment: 'فضلا انتظر لحظة',
   },
   Jobs: {
     Currency: 'ريال',
@@ -136,7 +137,38 @@ const I18n_ar = {
   Language: {
     Title: 'اللغة',
   },
-};
+  Apply: {
+    Title: '',
+    Header: 'التقديم',
+    Select_Job: 'حدد الوظيفة',
+    Select_Shift: 'حدد الوردية',
+    back: 'عودة',
+    Confirm_Information: 'معلومات مقدم الطلب',
+    Caption:
+      'تآكد من إختيار الوردية و الوظيفة المناسبة. لا يمكنك التقديم مرة آخرى على نفس الفعالية.',
+    Confirm:
+      'تحقق هنا إذا كانت جميع المعلومات الواردة أعلاه صحيحة. لا يمكنك تعديل المعلومات لاحقًا.',
+    TimeTo: ' إلى ',
+    Apply: 'إرسال',
+    SigninRequired: 'تسجيل الدخول مطلوب!',
+    profilemsg: 'قم بتحديث بيانات ملفك الشخصي!',
+    next: 'التالي',
+    Thankyoumsg: 'شكرا لك على التقديم',
+    cantApply: 'لا يمكنك التقديم مرتين على نفس الفعالية',
+  },
+  ReviewProfile: {
+    name: 'الإسم',
+    nationality: 'الجنسية',
+    nationalID: 'رقم الهوية/الإقامة',
+    dateOfBirth: 'تاريخ الميلاد',
+    gender: 'الجنس',
+    male: 'ذكر',
+    female: 'آنثى',
+    shift: 'الوردية',
+    job: 'الوظيفة',
+    salary: 'الراتب',
+  },
+} as const;
 
 const I18n_en = {
   NavigationButton: {
@@ -249,6 +281,7 @@ const I18n_en = {
     SignIn: 'Incorrect email or password.',
     EmailUsed: 'Email already exists',
     unknown: 'An error occurred',
+    moment: 'Please wait a moment',
   },
   Jobs: {
     Currency: 'SAR',
@@ -274,6 +307,41 @@ const I18n_en = {
   Language: {
     Title: 'Language',
   },
-};
+  Apply: {
+    Title: '',
+    Header: 'Apply',
+    Select_Job: 'Select Job',
+    Select_Shift: 'Select Shift',
+    Confirm_Information: 'Applicant information',
+    back: 'Back',
+    Caption:
+      'Make sure you choose the right shift and job. You cannot apply again for the same event.',
+    Confirm:
+      "Check here if all the the information above are correct. you can't modify any information later.",
+    TimeTo: ' To ',
+    Apply: 'Send',
+    SigninRequired: 'Sign In required!',
+    profilemsg: 'Update your profile information!',
+    next: 'Next',
+    Thankyoumsg: 'Thank you for applying',
+    cantApply: "you can't apply twice to the same event",
+  },
+  ReviewProfile: {
+    name: 'Name',
+    nationality: 'Nationality',
+    nationalID: 'National/Iqama ID',
+    dateOfBirth: 'Date of birth',
+    gender: 'Gender',
+    male: 'Male',
+    female: 'Female',
+    shift: 'Shift',
+    salary: 'Salary',
+    job: 'Job',
+  },
+} as const;
+
+export type I18nKeys = keyof typeof I18n_ar;
+// export type I18nSubKeys = keyof typeof I18n_ar;
+// export type I18nValues = typeof I18n_ar[I18nKeys];
 
 export {I18n_ar, I18n_en};

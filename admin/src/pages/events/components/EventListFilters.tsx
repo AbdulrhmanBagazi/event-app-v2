@@ -1,7 +1,9 @@
 import { NullableBooleanInput, ReferenceInput, SelectInput } from 'react-admin'
 
 const EventListFilters = (val: string) => [
-  <NullableBooleanInput source="published" nullLabel="filters.all" />,
+  <ReferenceInput source="companyId" reference="Companies" label="resources.eventjob.fields.companyId">
+    <SelectInput optionText="name" fullWidth />
+  </ReferenceInput>,
   <SelectInput
     source="status"
     choices={[
@@ -18,6 +20,7 @@ const EventListFilters = (val: string) => [
       fullWidth
     />
   </ReferenceInput>,
+  <NullableBooleanInput source="published" />,
 ]
 
 export default EventListFilters

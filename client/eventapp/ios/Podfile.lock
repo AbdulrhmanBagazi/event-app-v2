@@ -363,9 +363,11 @@ PODS:
   - react-native-onesignal (4.4.1):
     - OneSignalXCFramework (= 3.11.2)
     - React (< 1.0.0, >= 0.13.0)
+  - react-native-render-html (6.3.4):
+    - React-Core
   - react-native-restart (0.0.24):
     - React-Core
-  - react-native-safe-area-context (4.3.4):
+  - react-native-safe-area-context (4.4.1):
     - RCT-Folly
     - RCTRequired
     - RCTTypeSafety
@@ -441,14 +443,14 @@ PODS:
     - React-Core
   - RNBootSplash (4.3.2):
     - React-Core
-  - RNFBAnalytics (15.6.0):
+  - RNFBAnalytics (15.7.0):
     - Firebase/Analytics (= 9.6.0)
     - React-Core
     - RNFBApp
-  - RNFBApp (15.6.0):
+  - RNFBApp (15.7.0):
     - Firebase/CoreOnly (= 9.6.0)
     - React-Core
-  - RNGestureHandler (2.6.2):
+  - RNGestureHandler (2.7.1):
     - React-Core
   - RNGoogleSignin (8.0.0):
     - GoogleSignIn (~> 6.2.2)
@@ -480,10 +482,10 @@ PODS:
     - React-RCTText
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNScreens (3.17.0):
+  - RNScreens (3.18.2):
     - React-Core
     - React-RCTImage
-  - RNShare (7.9.0):
+  - RNShare (7.9.1):
     - React-Core
   - RNSVG (12.4.4):
     - React-Core
@@ -516,6 +518,7 @@ DEPENDENCIES:
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - react-native-mmkv-storage (from `../node_modules/react-native-mmkv-storage`)
   - react-native-onesignal (from `../node_modules/react-native-onesignal`)
+  - react-native-render-html (from `../node_modules/react-native-render-html`)
   - react-native-restart (from `../node_modules/react-native-restart`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
@@ -612,6 +615,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-mmkv-storage"
   react-native-onesignal:
     :path: "../node_modules/react-native-onesignal"
+  react-native-render-html:
+    :path: "../node_modules/react-native-render-html"
   react-native-restart:
     :path: "../node_modules/react-native-restart"
   react-native-safe-area-context:
@@ -707,8 +712,9 @@ SPEC CHECKSUMS:
   React-logger: 48d82b9be8e44d86668de4453fdb60255516388b
   react-native-mmkv-storage: ba38e5e813ea3d5d37af834a9d867b1ce10aa96d
   react-native-onesignal: e1f82b98767a9014d2c46f395b083330cfa29cea
+  react-native-render-html: 984dfe2294163d04bf5fe25d7c9f122e60e05ebe
   react-native-restart: 45c8dca02491980f2958595333cbccd6877cb57e
-  react-native-safe-area-context: dfe5aa13bee37a0c7e8059d14f72ffc076d120e9
+  react-native-safe-area-context: 99b24a0c5acd0d5dcac2b1a7f18c49ea317be99a
   React-perflogger: 77947e49d84e31eb87d454d4ef327542dcfeaebc
   React-RCTActionSheet: 9f5fd6c1666c1a834ab7f45a452ed08b1de44eb8
   React-RCTAnimation: 6fd3db6ca387c8432fd6a26428e940a081bcb476
@@ -723,13 +729,13 @@ SPEC CHECKSUMS:
   ReactCommon: de55f940495d7bf87b5d7bf55b5b15cdd50d7d7b
   RNAppleAuthentication: 0571c08da8c327ae2afc0261b48b4a515b0286a6
   RNBootSplash: 5f346163977573d6b2aeba1b25df9d2245c0d73c
-  RNFBAnalytics: 0c7c1378e1eef64920df02fa620a3780fec014bb
-  RNFBApp: c14c5e27a6b0bf026fc1c60702603ae94eba6fb1
-  RNGestureHandler: 4defbd70b2faf3d6761b82fa7880285241762cb0
+  RNFBAnalytics: 93aa843ae9fcd86ee30267d04c25f56aa518cace
+  RNFBApp: ad6ad2dd37ccf10e737ec8688208761026331d64
+  RNGestureHandler: b7a872907ee289ada902127f2554fa1d2c076122
   RNGoogleSignin: b2179ba653c759b936404a7746fc5302f9de6a5a
   RNReanimated: f04e1498c69a001e3b352bf2b4b05581b0e16400
-  RNScreens: 0df01424e9e0ed7827200d6ed1087ddd06c493f9
-  RNShare: be91a5c149585affb02c25b351bd07ba927c7006
+  RNScreens: 34cc502acf1b916c582c60003dc3089fa01dc66d
+  RNShare: a5dc3b9c53ddc73e155b8cd9a94c70c91913c43c
   RNSVG: ecd661f380a07ba690c9c5929c475a44f432d674
   Yoga: 82c9e8f652789f67d98bed5aef9d6653f71b04a9
 

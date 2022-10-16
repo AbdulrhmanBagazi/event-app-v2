@@ -55,13 +55,14 @@ const EventList = () => {
       ) : (
         <Datagrid isRowSelectable={() => false} bulkActionButtons={false} rowClick="show">
           {/* <TextField source="id" sortable={false} /> */}
+          <TextField source="company.name" sortable={false} />
+          <TextField source={locale === 'en' ? 'title_en' : 'title'} />
+          <TextField source={locale === 'en' ? 'content_en' : 'content'} />
           <TextField
             source={locale === 'en' ? 'Location.title_en' : 'Location.title'}
             sortable={false}
             label="resources.Event.fields.location_title"
           />
-          <TextField source={locale === 'en' ? 'title_en' : 'title'} />
-          <TextField source={locale === 'en' ? 'content_en' : 'content'} />
           <ChipField source="status" size="small" />
           <SuspendedBooleanField source="published" />
           <DateField source="createdAt" />

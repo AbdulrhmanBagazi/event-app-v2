@@ -37,6 +37,7 @@ const EventJobList = () => {
   return (
     <List
       exporter={false}
+      hasCreate={false}
       emptyWhileLoading
       actions={<EventJobToolbar />}
       filters={locale === 'en' ? EventJobListFlitersEn : EventJobListFliters}
@@ -54,7 +55,8 @@ const EventJobList = () => {
       ) : (
         <Datagrid isRowSelectable={() => false} bulkActionButtons={false} rowClick="show">
           {/* <TextField source="id" sortable={false} /> */}
-          <TextField source={locale === 'en' ? 'Event.title_en' : 'Event.title'} />
+          <TextField source="company.name" sortable={false} />
+          <TextField source={locale === 'en' ? 'Event.title_en' : 'Event.title'} sortable={false} />
           <TextField source="title" />
           <TextField source="title_en" />
           <ChipField source="status" size="small" />

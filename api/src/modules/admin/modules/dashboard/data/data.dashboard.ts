@@ -11,6 +11,15 @@ export const data_Dashboard_TypeDefs = gql`
     Companies_count: Int
     Events_count: Int
     Locations_count: Int
+    Applicants_count: [Applicantscount]
+  }
+
+  type Applicantscount {
+    status: String
+    _count: countStatus
+  }
+  type countStatus {
+    status: Int
   }
 `;
 
@@ -34,6 +43,14 @@ export const data_Dashboard_Resolver = {
     },
     Locations_count: (_parent, _args, context: Context) => {
       return context.prisma.location.count({});
+    },
+    Applicants_count: async (_parent, _args, context: Context) => {
+      return context.prisma.applicants.groupBy({
+        by: ['status'],
+        _count: {
+          status: true,
+        },
+      });
     },
   },
 };

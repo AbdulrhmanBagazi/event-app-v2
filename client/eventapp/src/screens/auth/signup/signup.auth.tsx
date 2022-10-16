@@ -26,11 +26,11 @@ const Signup = () => {
 
   return (
     <Page paddingHorizontal={5}>
-      <View style={{height: useHeaderHeight()}} />
       <KeyboardAwareScrollView
         style={styles.container}
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}>
+        <View style={{height: useHeaderHeight()}} />
         <MySvg />
         <SignupForm />
       </KeyboardAwareScrollView>

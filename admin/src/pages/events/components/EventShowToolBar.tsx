@@ -1,5 +1,6 @@
 import { TopToolbar, Button, EditButton } from 'react-admin'
 import { Link } from 'react-router-dom'
+import { Add } from '../../../theme/icons'
 
 const AddNewCommentButton = ({ record }: any) => (
   <Button
@@ -9,14 +10,29 @@ const AddNewCommentButton = ({ record }: any) => (
       // Here we specify the initial record for the create view
       state: { record: { companyId: record.data.companyId, eventId: record.data.id } },
     }}
-    label="create_job"
-  />
+    label="create_job">
+    <Add />
+  </Button>
+)
+
+const AddNewShiftButton = ({ record }: any) => (
+  <Button
+    component={Link}
+    to={{
+      pathname: '/eventshift/create',
+      // Here we specify the initial record for the create view
+      state: { record: { companyId: record.data.companyId, eventId: record.data.id } },
+    }}
+    label="create_shift">
+    <Add />
+  </Button>
 )
 
 const EventShowToolBar = (data: any) => (
   <TopToolbar>
-    <EditButton />
     <AddNewCommentButton record={data} />
+    <AddNewShiftButton record={data} />
+    <EditButton />
   </TopToolbar>
 )
 
