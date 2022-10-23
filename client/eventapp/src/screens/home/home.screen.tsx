@@ -34,7 +34,11 @@ const Home = () => {
 
   return (
     <Page paddingHorizontal={0} loadingLayer={true}>
-      <View style={{height: headerHeight}} />
+      <View
+        style={{
+          height: headerHeight,
+        }}
+      />
       <FlatList
         ListHeaderComponent={<BannerLoading />}
         renderItem={({item, index}) => {

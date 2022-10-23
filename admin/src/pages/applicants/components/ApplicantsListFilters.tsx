@@ -1,8 +1,8 @@
 import { ReferenceInput, SelectInput } from 'react-admin'
 
-const ApplicantsListFilters = [
+const ApplicantsListFilters = (language: string) => [
   <ReferenceInput source="eventId" reference="Event" label="resources.applicants.fields.eventId" alwaysOn>
-    <SelectInput optionText="title" fullWidth />
+    <SelectInput optionText={language === 'en' ? 'title_en' : 'title'} fullWidth />
   </ReferenceInput>,
 ]
 

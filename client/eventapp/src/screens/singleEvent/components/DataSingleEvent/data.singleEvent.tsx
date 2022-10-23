@@ -13,12 +13,10 @@ import {Events} from '../../../../graphql/generated';
 import {I18nContextType, ThemeContextType} from '../../../../typs';
 import {styles} from './styles.data.singleEvent';
 import moment from 'moment';
-import Animated, {StyleProps} from 'react-native-reanimated';
 
 const DataSingleEvent: React.FC<{
   data: Events;
-  borderRadius: StyleProps;
-}> = ({data, borderRadius}) => {
+}> = ({data}) => {
   const {Colors} = UseThemeContext() as ThemeContextType;
   const {Lang, Locals} = UseI18nContext() as I18nContextType;
   const jobs = data.Event_Jobs;
@@ -29,13 +27,10 @@ const DataSingleEvent: React.FC<{
   });
 
   return (
-    <Animated.View
-      style={[
-        borderRadius,
-        {
-          backgroundColor: Colors.Background,
-        },
-      ]}>
+    <View
+      style={{
+        backgroundColor: Colors.Background,
+      }}>
       <View style={styles.container}>
         <View style={styles.TextView}>
           <Badge
@@ -104,7 +99,7 @@ const DataSingleEvent: React.FC<{
           </View>
         </View>
       </View>
-    </Animated.View>
+    </View>
   );
 };
 

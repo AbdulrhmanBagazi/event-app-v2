@@ -21,7 +21,7 @@ const customArabicMessages: TranslationMessages = {
   eventId: 'الفعالية',
   Event: 'الفعالية',
   show: 'عرض',
-  PENDING: 'معلق',
+  PENDING: 'قيد الإنتظار',
   APPROVED: 'مقبول',
   DECLINED: 'مرفوض',
   CANCELED: 'ملغي',

@@ -5,7 +5,7 @@ import {
   I18nContextType,
   ThemeContextType,
 } from '../../../../typs';
-import {Button, TextInput} from 'react-native-paper';
+import {Button, HelperText, TextInput} from 'react-native-paper';
 import {UseAuth} from '../../../../context/auth/auth.context';
 import {styles} from './styles.signupForm';
 import {UseThemeContext} from '../../../../context/theme/themeToggle.context';
@@ -167,7 +167,6 @@ const SignupForm = () => {
           />
         }
       />
-
       <TextInput
         label={Locals.Signup.PasswordRepeate}
         value={isPasswordRepeat}
@@ -186,6 +185,7 @@ const SignupForm = () => {
           />
         }
       />
+      <HelperText type="info">{Locals.Signup.passwordlength}</HelperText>
 
       <Button
         onPress={() => HandleLogin({email: isEmail, password: isPassword})}

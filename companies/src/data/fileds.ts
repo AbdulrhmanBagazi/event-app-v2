@@ -16,7 +16,7 @@ const Location: { [k: string]: string } = {
 }
 
 const dashboard: { [k: string]: string } = {
-  DashboardData: 'Events_count Jobs_count Shifts_count',
+  DashboardData: 'Events_count Jobs_count Shifts_count Applicants_count {status _count {status}}',
 }
 
 const eventjob: { [k: string]: string } = {

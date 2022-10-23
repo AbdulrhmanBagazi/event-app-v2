@@ -1,7 +1,11 @@
 import { NullableBooleanInput, ReferenceInput, SelectInput } from 'react-admin'
 
 const EventListFilters = (val: string) => [
-  <ReferenceInput source="companyId" reference="Companies" label="resources.eventjob.fields.companyId">
+  <ReferenceInput
+    source="companyId"
+    reference="Companies"
+    label="resources.eventjob.fields.companyId"
+    alwaysOn>
     <SelectInput optionText="name" fullWidth />
   </ReferenceInput>,
   <SelectInput

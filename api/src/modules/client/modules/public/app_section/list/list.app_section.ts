@@ -12,7 +12,7 @@ export const list_app_section_TypeDefs = gql`
   }
 
   input Filters {
-    published: Boolean!
+    published: Boolean
   }
 
   type app_section {

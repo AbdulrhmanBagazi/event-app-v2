@@ -23,20 +23,24 @@ export type Scalars = {
 
 export type Applicants = {
   __typename?: 'Applicants';
-  companyId?: Maybe<Scalars['String']>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  dateOfBirth?: Maybe<Scalars['String']>;
-  eventId?: Maybe<Scalars['String']>;
-  gender?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['String']>;
-  jobId?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
-  nationalID?: Maybe<Scalars['String']>;
-  nationality?: Maybe<Scalars['String']>;
-  shiftId?: Maybe<Scalars['String']>;
-  status?: Maybe<Applicants_Status>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  userId?: Maybe<Scalars['String']>;
+  company?: Maybe<Company>;
+  companyId: Scalars['String'];
+  createdAt: Scalars['DateTime'];
+  dateOfBirth: Scalars['String'];
+  event: Event;
+  eventId: Scalars['String'];
+  gender: Scalars['String'];
+  id: Scalars['String'];
+  job: Job;
+  jobId: Scalars['String'];
+  name: Scalars['String'];
+  nationalID: Scalars['String'];
+  nationality: Scalars['String'];
+  shift: Shift;
+  shiftId: Scalars['String'];
+  status: Applicants_Status;
+  updatedAt: Scalars['DateTime'];
+  userId: Scalars['String'];
 };
 
 export enum Applicants_Status {
@@ -100,7 +104,8 @@ export type Events = {
 };
 
 export type Filters = {
-  published: Scalars['Boolean'];
+  published?: InputMaybe<Scalars['Boolean']>;
+  status?: InputMaybe<Applicants_Status>;
 };
 
 export type ListMetadata = {
@@ -190,6 +195,8 @@ export type Query = {
   Events_list: Array<Events>;
   Events_list_meta?: Maybe<ListMetadata>;
   app_section_list: Array<App_Section>;
+  applicants_list: Array<Applicants>;
+  applicants_list_meta?: Maybe<ListMetadata>;
   test?: Maybe<Scalars['String']>;
 };
 
@@ -208,6 +215,13 @@ export type QueryEvents_List_MetaArgs = {
   app_sectionId?: InputMaybe<Scalars['String']>;
 };
 
+export type QueryApplicants_ListArgs = {
+  filter?: InputMaybe<Filters>;
+  page?: InputMaybe<Scalars['Int']>;
+  perPage?: InputMaybe<Scalars['Int']>;
+  sortOrder?: InputMaybe<Order>;
+};
+
 export enum Rate_Type {
   Day = 'DAY',
   Monthly = 'MONTHLY',
@@ -222,6 +236,21 @@ export type App_Section = {
   title: Scalars['String'];
   title_en: Scalars['String'];
   updatedAt: Scalars['DateTime'];
+};
+
+export type Company = {
+  __typename?: 'company';
+  logo_url?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+};
+
+export type Event = {
+  __typename?: 'event';
+  content: Scalars['String'];
+  content_en: Scalars['String'];
+  image_url: Scalars['String'];
+  title: Scalars['String'];
+  title_en: Scalars['String'];
 };
 
 export type Eventjob = {
@@ -244,6 +273,70 @@ export type Eventshift = {
   status: Event_JobsStatus;
 };
 
+export type Job = {
+  __typename?: 'job';
+  rate: Scalars['Int'];
+  rate_type: Rate_Type;
+  title: Scalars['String'];
+  title_en: Scalars['String'];
+};
+
+export type Shift = {
+  __typename?: 'shift';
+  end_time: Scalars['String'];
+  start_time: Scalars['String'];
+};
+
+export type Applicants_ListQueryVariables = Exact<{
+  page?: InputMaybe<Scalars['Int']>;
+  perPage?: InputMaybe<Scalars['Int']>;
+  sortOrder?: InputMaybe<Order>;
+  filter?: InputMaybe<Filters>;
+}>;
+
+export type Applicants_ListQuery = {
+  __typename?: 'Query';
+  applicants_list: Array<{
+    __typename?: 'Applicants';
+    id: string;
+    createdAt: any;
+    updatedAt: any;
+    eventId: string;
+    companyId: string;
+    userId: string;
+    shiftId: string;
+    jobId: string;
+    name: string;
+    nationality: string;
+    nationalID: string;
+    dateOfBirth: string;
+    gender: string;
+    status: Applicants_Status;
+    event: {
+      __typename?: 'event';
+      title: string;
+      title_en: string;
+      image_url: string;
+      content: string;
+      content_en: string;
+    };
+    company?: {
+      __typename?: 'company';
+      name: string;
+      logo_url?: string | null;
+    } | null;
+    shift: {__typename?: 'shift'; start_time: string; end_time: string};
+    job: {
+      __typename?: 'job';
+      title: string;
+      title_en: string;
+      rate: number;
+      rate_type: Rate_Type;
+    };
+  }>;
+  applicants_list_meta?: {__typename?: 'ListMetadata'; total: number} | null;
+};
+
 export type Create_ApplicantsMutationVariables = Exact<{
   eventId: Scalars['String'];
   companyId: Scalars['String'];
@@ -261,20 +354,20 @@ export type Create_ApplicantsMutation = {
   Create_Applicants?:
     | {
         __typename?: 'Applicants';
-        id?: string | null;
-        createdAt?: any | null;
-        updatedAt?: any | null;
-        eventId?: string | null;
-        companyId?: string | null;
-        userId?: string | null;
-        shiftId?: string | null;
-        jobId?: string | null;
-        name?: string | null;
-        nationality?: string | null;
-        nationalID?: string | null;
-        dateOfBirth?: string | null;
-        gender?: string | null;
-        status?: Applicants_Status | null;
+        id: string;
+        createdAt: any;
+        updatedAt: any;
+        eventId: string;
+        companyId: string;
+        userId: string;
+        shiftId: string;
+        jobId: string;
+        name: string;
+        nationality: string;
+        nationalID: string;
+        dateOfBirth: string;
+        gender: string;
+        status: Applicants_Status;
       }
     | {__typename?: 'CreateApplicantsExsist'; message: string}
     | {__typename?: 'CreateApplicantsUnknown'; message: string}
@@ -498,6 +591,114 @@ export type Update_UserProfileMutation = {
   } | null;
 };
 
+export const Applicants_ListDocument = gql`
+  query applicants_list(
+    $page: Int
+    $perPage: Int
+    $sortOrder: Order
+    $filter: Filters
+  ) {
+    applicants_list(
+      page: $page
+      perPage: $perPage
+      sortOrder: $sortOrder
+      filter: $filter
+    ) {
+      id
+      createdAt
+      updatedAt
+      eventId
+      companyId
+      userId
+      shiftId
+      jobId
+      name
+      nationality
+      nationalID
+      dateOfBirth
+      gender
+      status
+      event {
+        title
+        title_en
+        image_url
+        content
+        content_en
+      }
+      company {
+        name
+        logo_url
+      }
+      shift {
+        start_time
+        end_time
+      }
+      job {
+        title
+        title_en
+        rate
+        rate_type
+      }
+    }
+    applicants_list_meta {
+      total
+    }
+  }
+`;
+
+/**
+ * __useApplicants_ListQuery__
+ *
+ * To run a query within a React component, call `useApplicants_ListQuery` and pass it any options that fit your needs.
+ * When your component renders, `useApplicants_ListQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useApplicants_ListQuery({
+ *   variables: {
+ *      page: // value for 'page'
+ *      perPage: // value for 'perPage'
+ *      sortOrder: // value for 'sortOrder'
+ *      filter: // value for 'filter'
+ *   },
+ * });
+ */
+export function useApplicants_ListQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    Applicants_ListQuery,
+    Applicants_ListQueryVariables
+  >,
+) {
+  const options = {...defaultOptions, ...baseOptions};
+  return Apollo.useQuery<Applicants_ListQuery, Applicants_ListQueryVariables>(
+    Applicants_ListDocument,
+    options,
+  );
+}
+export function useApplicants_ListLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    Applicants_ListQuery,
+    Applicants_ListQueryVariables
+  >,
+) {
+  const options = {...defaultOptions, ...baseOptions};
+  return Apollo.useLazyQuery<
+    Applicants_ListQuery,
+    Applicants_ListQueryVariables
+  >(Applicants_ListDocument, options);
+}
+export type Applicants_ListQueryHookResult = ReturnType<
+  typeof useApplicants_ListQuery
+>;
+export type Applicants_ListLazyQueryHookResult = ReturnType<
+  typeof useApplicants_ListLazyQuery
+>;
+export type Applicants_ListQueryResult = Apollo.QueryResult<
+  Applicants_ListQuery,
+  Applicants_ListQueryVariables
+>;
 export const Create_ApplicantsDocument = gql`
   mutation Create_Applicants(
     $eventId: String!

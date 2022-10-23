@@ -14,6 +14,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {
   AuthScreens,
   EventsScreens,
+  JobScreen,
   LoadingScreen,
   ProfileScreens,
 } from './routes/routes';
@@ -114,6 +115,16 @@ const Index = () => {
               ))}
               {EventsScreens.map((route: RoutesType, i: number) => (
                 <Main.Screen name={route.name} key={i}>
+                  {props => <route.component {...props} />}
+                </Main.Screen>
+              ))}
+              {JobScreen.map((route: RoutesType, i: number) => (
+                <Main.Screen
+                  name={route.name}
+                  key={i}
+                  options={{
+                    title: '',
+                  }}>
                   {props => <route.component {...props} />}
                 </Main.Screen>
               ))}

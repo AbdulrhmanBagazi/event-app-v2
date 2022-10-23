@@ -11,6 +11,7 @@ const customEnglishMessages: TranslationMessages = {
   create: 'Create',
   create_job: 'Create Job',
   create_shift: 'Create Shift',
+  show_applicants: 'Show job applicants',
   show_event: 'Show Event',
   yes: 'yes',
   no: 'no',

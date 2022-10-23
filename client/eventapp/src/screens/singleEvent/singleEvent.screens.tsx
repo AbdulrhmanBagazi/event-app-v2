@@ -11,11 +11,9 @@ import {
 } from '../../typs';
 import {styles} from './styles.singleEvent';
 import DataSingleEvent from './components/DataSingleEvent/data.singleEvent';
-import {SCREEN_HEIGHT} from '../../layout/screenDimensions';
 import HeaderSingleEvent from './components/HeaderSingleEvent/header.singleEvent';
 import DescriptionSingleEvent from './components/DescriptionSingleEvent/description.singleEvent';
 import Animated, {
-  interpolate,
   interpolateColor,
   useAnimatedScrollHandler,
   useAnimatedStyle,
@@ -25,6 +23,7 @@ import {UseThemeContext} from '../../context/theme/themeToggle.context';
 import {Button} from 'react-native-paper';
 import {UseI18nContext} from '../../context/I18n/i18n.context';
 import {StackNavigationProp} from '@react-navigation/stack';
+import {SCREEN_HEIGHT} from '../../layout/screenDimensions';
 
 const SingleEvent = () => {
   const {Colors} = UseThemeContext() as ThemeContextType;
@@ -54,23 +53,6 @@ const SingleEvent = () => {
     };
   });
 
-  const borderRadius = useAnimatedStyle(() => {
-    const borderTopRightRadius = interpolate(
-      scrollY.value,
-      [-1, 0, 1],
-      [5, 5, 0],
-    );
-    const borderTopLeftRadius = interpolate(
-      scrollY.value,
-      [-1, 0, 1],
-      [5, 5, 0],
-    );
-    return {
-      borderTopRightRadius,
-      borderTopLeftRadius,
-    };
-  });
-
   React.useEffect(() => {
     return setOptions({
       title: '',
@@ -80,41 +62,31 @@ const SingleEvent = () => {
   return (
     <Page paddingHorizontal={0}>
       <View style={[styles.Container, {backgroundColor: Colors.Background}]}>
-        <HeaderSingleEvent data={route.params.params} style={spaceColor} />
-        <View style={[styles.Scroll, {top: getHeaderHeight}]}>
-          <View
-            style={[
-              styles.MainView,
-              {
-                height: SCREEN_HEIGHT - getHeaderHeight,
-              },
-            ]}>
-            <Animated.ScrollView
-              bounces={false}
-              onScroll={onScroll}
-              contentContainerStyle={{
+        <HeaderSingleEvent data={data} style={spaceColor} />
+        <View
+          style={[
+            styles.Scroll,
+            {
+              top: getHeaderHeight,
+              height: SCREEN_HEIGHT,
+            },
+          ]}>
+          <Animated.ScrollView
+            onScroll={onScroll}
+            contentContainerStyle={styles.contentContainerStyle}
+            stickyHeaderIndices={[1]}
+            showsVerticalScrollIndicator={false}>
+            <View
+              style={{
                 height:
                   Platform.OS === 'ios'
-                    ? SCREEN_HEIGHT - getHeaderHeight + getHeaderHeight * 1.5
-                    : SCREEN_HEIGHT - getHeaderHeight + getHeaderHeight * 2.5,
+                    ? getHeaderHeight * 1.5
+                    : getHeaderHeight * 2.5,
               }}
-              stickyHeaderIndices={[1]}
-              showsVerticalScrollIndicator={false}>
-              <View
-                style={{
-                  height:
-                    Platform.OS === 'ios'
-                      ? getHeaderHeight * 1.5
-                      : getHeaderHeight * 2.5,
-                }}
-              />
-              <DataSingleEvent
-                data={route.params.params}
-                borderRadius={borderRadius}
-              />
-              <DescriptionSingleEvent data={route.params.params} />
-            </Animated.ScrollView>
-          </View>
+            />
+            <DataSingleEvent data={data} />
+            <DescriptionSingleEvent data={data} />
+          </Animated.ScrollView>
         </View>
         <Button
           onPress={() =>

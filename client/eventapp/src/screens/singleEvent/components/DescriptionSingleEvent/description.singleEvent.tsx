@@ -16,9 +16,12 @@ const DescriptionSingleEvent: React.FC<{data: Events}> = ({data}) => {
 
   return (
     <View
-      style={{
-        backgroundColor: Colors.Background,
-      }}>
+      style={[
+        styles.Main,
+        {
+          backgroundColor: Colors.Background,
+        },
+      ]}>
       {DataLocal.map((val: {title: string; content: string}, i: number) => {
         return (
           <View style={styles.container} key={i}>

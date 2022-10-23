@@ -1,5 +1,5 @@
 import {Component} from 'react';
-import {Events} from './graphql/generated';
+import {Applicants, Events} from './graphql/generated';
 import {I18n_en} from './context/I18n/locals.i18n';
 
 type ParamList = {
@@ -12,6 +12,7 @@ type ParamList = {
   Apply: {
     params: Events;
   };
+  Job: Applicants;
 };
 
 export type RootStackParamList = {
@@ -35,6 +36,7 @@ export type RootStackParamList = {
   Apply: {
     params: Events;
   };
+  Job: Applicants;
 };
 
 //routes.tsx
@@ -64,6 +66,7 @@ interface ColorsType {
   OnSurface: string;
   Secondary: string;
   OnSecondary: string;
+  SurfaceRGBA: string;
   disabled: strig;
 }
 

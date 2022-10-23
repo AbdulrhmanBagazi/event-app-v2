@@ -1,15 +1,8 @@
 import { Card, CardContent } from '@mui/material'
-import { FilterList, FilterListItem, useGetList, useLocaleState } from 'react-admin'
-import { Festival, StackedBarChart } from '../../../theme/icons'
+import { FilterList, FilterListItem } from 'react-admin'
+import { StackedBarChart } from '../../../theme/icons'
 
 const EventShiftListAside = () => {
-  const { data } = useGetList('Event', {
-    pagination: { page: 1, perPage: 100 },
-    sort: { field: 'createdAt', order: 'ASC' },
-  })
-
-  const [locale] = useLocaleState()
-
   return (
     <Card
       sx={{
@@ -26,16 +19,6 @@ const EventShiftListAside = () => {
             key="CLOSED"
             value={{ status: 'CLOSED' }}
           />
-        </FilterList>
-        <FilterList label="resources.eventshift.fields.eventId" icon={<Festival />}>
-          {data &&
-            data.map((record: any) => (
-              <FilterListItem
-                label={locale === 'en' ? record.title_en : record.title}
-                key={record.id}
-                value={{ eventId: record.id }}
-              />
-            ))}
         </FilterList>
       </CardContent>
     </Card>

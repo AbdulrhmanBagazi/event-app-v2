@@ -1,6 +1,10 @@
 import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
+  Main: {
+    flex: 1,
+    paddingBottom: 250,
+  },
   container: {
     marginVertical: 5,
     marginHorizontal: 10,

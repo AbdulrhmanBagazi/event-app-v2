@@ -242,14 +242,14 @@ const Apply = () => {
   };
 
   return (
-    <Page paddingHorizontal={20}>
+    <Page paddingHorizontal={15}>
       <View style={{height: HeaderHeight}} />
       {!ConfirmInformation ? (
         <>
           <ScrollView showsVerticalScrollIndicator={false}>
             {/* <Text style={styles.title}>{Locals.Apply.Header}</Text> */}
             <Headline>{Locals.Apply.Select_Job}</Headline>
-            <ScrollView horizontal>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
               {data.Event_Jobs.map((val: Eventjob, i: number) => {
                 return (
                   <View key={i} style={styles.RadioItem}>
@@ -305,7 +305,7 @@ const Apply = () => {
             </View>
             <Divider style={styles.Divider} />
             <Headline>{Locals.Apply.Select_Shift}</Headline>
-            <ScrollView horizontal>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
               {data.Event_Shifts.map((val: Eventshift, i: number) => {
                 return (
                   <View key={i} style={styles.RadioItem}>

@@ -1,6 +1,6 @@
 import { TopToolbar, Button, EditButton } from 'react-admin'
 import { Link } from 'react-router-dom'
-import { Add } from '../../../theme/icons'
+import { Add, RemoveRedEye } from '../../../theme/icons'
 
 const AddNewCommentButton = ({ record }: any) => (
   <Button
@@ -28,10 +28,24 @@ const AddNewShiftButton = ({ record }: any) => (
   </Button>
 )
 
+const ShowApplicantsButton = ({ record }: any) => (
+  <Button
+    component={Link}
+    to={{
+      pathname: '/applicants',
+      // Here we specify the initial record for the create view
+      search: `filter=${JSON.stringify({ eventId: record.data.id, status: 'PENDING' })}`,
+    }}
+    label="show_applicants">
+    <RemoveRedEye />
+  </Button>
+)
+
 const EventShowToolBar = (data: any) => (
   <TopToolbar>
     <AddNewCommentButton record={data} />
     <AddNewShiftButton record={data} />
+    <ShowApplicantsButton record={data} />
     <EditButton />
   </TopToolbar>
 )

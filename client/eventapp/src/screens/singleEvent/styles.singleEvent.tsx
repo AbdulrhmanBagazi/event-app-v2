@@ -5,9 +5,7 @@ export const styles = StyleSheet.create({
   Container: {
     flex: 1,
   },
-  MainView: {
-    flex: 1,
-  },
+
   Scroll: {
     width: SCREEN_WIDTH,
     borderRadius: 5,
@@ -21,5 +19,8 @@ export const styles = StyleSheet.create({
     right: 0,
     position: 'absolute',
     marginHorizontal: 15,
+  },
+  contentContainerStyle: {
+    flexGrow: 1,
   },
 });

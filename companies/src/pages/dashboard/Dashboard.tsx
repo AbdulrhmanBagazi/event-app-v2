@@ -3,17 +3,30 @@ import { Loading, Title, useDataProvider, useTranslate } from 'react-admin'
 import TotalDashboard from './components/TotalDashboard'
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
-import { Festival, Work, AvTimer } from '../../theme/icons'
+import { Festival, Work, AvTimer, Article } from '../../theme/icons'
 import MyError from '../../layout/MyError'
+import Divider from '@mui/material/Divider'
+import Typography from '@mui/material/Typography'
+import TotalUsers from './components/TotalUsers'
 
 type Data = {
   data: gqlresponse | undefined
+}
+
+type Applicantscount = {
+  status: string
+  _count: countStatus
+}
+
+type countStatus = {
+  status: number
 }
 
 type gqlresponse = {
   Events_count: number
   Jobs_count: number
   Shifts_count: number
+  Applicants_count: [Applicantscount]
 }
 
 const Dashboard = () => {
@@ -65,6 +78,21 @@ const Dashboard = () => {
         <Grid item xs={12} sm={6} md={6} lg={6}>
           <TotalDashboard value={data.Shifts_count} title="eventshift" icon={AvTimer} />
         </Grid>
+      </Grid>
+      <Typography variant="h4" gutterBottom></Typography>
+      <Divider />
+      <Typography variant="h4" gutterBottom></Typography>
+      <Typography variant="h4" gutterBottom>
+        {translate('applicants')}
+      </Typography>
+      <Grid container spacing={0.5}>
+        {data.Applicants_count.map((val, i) => {
+          return (
+            <Grid item xs={12} sm={6} md={6} lg={6} key={i}>
+              <TotalUsers value={val._count.status} title={val.status} icon={Article} />
+            </Grid>
+          )
+        })}
       </Grid>
     </Box>
   )

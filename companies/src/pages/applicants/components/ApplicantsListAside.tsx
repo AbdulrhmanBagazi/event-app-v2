@@ -15,6 +15,29 @@ const JobsAsideFilter = () => {
   })
 
   useEffect(() => {
+    if (data) {
+      if (data.length >= 1) {
+        if (data[0].eventId === filterValues.eventId) {
+          return
+        }
+
+        setFilters(
+          { ...filterValues, eventId: filterValues.eventId },
+          {},
+          false // no debounce, we want the filter to fire immediately
+        )
+        return
+      }
+      delete filterValues['jobId']
+
+      setFilters(
+        { ...filterValues, eventId: filterValues.eventId },
+        {},
+        false // no debounce, we want the filter to fire immediately
+      )
+      return
+    }
+
     delete filterValues['jobId']
 
     setFilters(
@@ -22,6 +45,7 @@ const JobsAsideFilter = () => {
       {},
       false // no debounce, we want the filter to fire immediately
     )
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterValues.eventId])
 
@@ -50,6 +74,31 @@ const ApplicantsListAside = () => {
   })
 
   useEffect(() => {
+    if (data) {
+      if (data.length >= 1) {
+        if (data[0].eventId === filterValues.eventId) {
+          return
+        }
+
+        delete filterValues['shiftId']
+
+        setFilters(
+          { ...filterValues, eventId: filterValues.eventId },
+          {},
+          false // no debounce, we want the filter to fire immediately
+        )
+        return
+      }
+      delete filterValues['shiftId']
+
+      setFilters(
+        { ...filterValues, eventId: filterValues.eventId },
+        {},
+        false // no debounce, we want the filter to fire immediately
+      )
+      return
+    }
+
     delete filterValues['shiftId']
 
     setFilters(
@@ -57,6 +106,7 @@ const ApplicantsListAside = () => {
       {},
       false // no debounce, we want the filter to fire immediately
     )
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterValues.eventId])
 

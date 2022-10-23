@@ -13,6 +13,7 @@ import {
 import { useMediaQuery, Theme } from '@mui/material'
 import MyError from '../../layout/MyError'
 import EventJobListAside from './components/EventJobListAside'
+import EventJobListFliters from './components/EventJobListFliters'
 
 const EventJobList = () => {
   const { data, isLoading } = useGetList(
@@ -37,6 +38,7 @@ const EventJobList = () => {
     <List
       exporter={false}
       hasCreate={false}
+      filters={EventJobListFliters(locale)}
       aside={<EventJobListAside />}
       emptyWhileLoading
       perPage={25}

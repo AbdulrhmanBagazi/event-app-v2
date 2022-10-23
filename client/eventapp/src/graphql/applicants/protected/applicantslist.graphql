@@ -1,0 +1,52 @@
+query applicants_list(
+  $page: Int
+  $perPage: Int
+  $sortOrder: Order
+  $filter: Filters
+) {
+  applicants_list(
+    page: $page
+    perPage: $perPage
+    sortOrder: $sortOrder
+    filter: $filter
+  ) {
+    id
+    createdAt
+    updatedAt
+    eventId
+    companyId
+    userId
+    shiftId
+    jobId
+    name
+    nationality
+    nationalID
+    dateOfBirth
+    gender
+    status
+    event {
+      title
+      title_en
+      image_url
+      content
+      content_en
+    }
+    company {
+      name
+      logo_url
+    }
+    shift {
+      start_time
+      end_time
+    }
+    job {
+      title
+      title_en
+      rate
+      rate_type
+    }
+  }
+  applicants_list_meta {
+    total
+  }
+}

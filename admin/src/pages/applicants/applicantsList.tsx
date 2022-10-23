@@ -105,10 +105,12 @@ const TabbedDatagrid = () => {
 }
 
 const ApplicantsList = () => {
+  const [locale] = useLocaleState()
+
   return (
     <List
       filterDefaultValues={{ status: 'PENDING' }}
-      filters={ApplicantsListFilters}
+      filters={ApplicantsListFilters(locale)}
       sort={{ field: 'createdAt', order: 'DESC' }}
       aside={<ApplicantsListAside />}
       perPage={25}>

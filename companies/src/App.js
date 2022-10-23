@@ -15,6 +15,8 @@ import Configuration from './pages/configuration/Configuration'
 //theme
 import { lightTheme } from './theme/theme'
 import MyError from './layout/MyError'
+//custome route
+import ApplicantsList from './pages/applicants/applicantsList'
 
 export default function App() {
   const translate = useTranslate()
@@ -63,6 +65,7 @@ export default function App() {
       <CustomRoutes>
         <Route path="/configuration" element={<Configuration />} />
         <Route path="/error" element={<MyError />} />
+        <Route path="/applicants" element={<ApplicantsList />} />
       </CustomRoutes>
     </Admin>
   )

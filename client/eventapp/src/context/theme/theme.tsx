@@ -12,6 +12,7 @@ const myTheme = {
     //
     Surface: '#F8F8F8',
     OnSurface: '#000000',
+    SurfaceRGBA: 'rgba(248,248,248, 0.25)',
     //
     Secondary: '#00af86',
     OnSecondary: '#FFFFFF',
@@ -33,6 +34,7 @@ const myTheme = {
     //
     Surface: '#1e1e1e',
     OnSurface: '#FFFFFF',
+    SurfaceRGBA: 'rgba(30,30,30,0.75)',
     //
     // Secondary: '#00b58b',
     // OnSecondary: '#000000',

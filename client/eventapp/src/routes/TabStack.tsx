@@ -28,6 +28,8 @@ const TabStack = () => {
             iconName = 'home';
           } else if (route.name === 'Profile' && isAuthenticated) {
             iconName = 'account';
+          } else if (route.name === 'JobsList') {
+            iconName = 'briefcase';
           } else {
             iconName = 'login';
           }

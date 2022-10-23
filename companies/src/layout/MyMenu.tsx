@@ -14,16 +14,21 @@ const MyMenu = (props: MenuProps | any) => {
   return (
     <Menu {...props}>
       <DashboardMenuItem />
-      {Object.keys(resources).map((name) => (
-        <MenuItemLink
-          key={name}
-          to={`/${name}`}
-          primaryText={(resources[name].options && resources[name].options.label) || name}
-          leftIcon={resources[name].icon}
-          onClick={props.onMenuClick}
-          sidebarIsOpen={open}
-        />
-      ))}
+      {Object.keys(resources).map((name) => {
+        if (name === 'applicants') {
+          return null
+        }
+        return (
+          <MenuItemLink
+            key={name}
+            to={`/${name}`}
+            primaryText={(resources[name].options && resources[name].options.label) || name}
+            leftIcon={resources[name].icon}
+            onClick={props.onMenuClick}
+            sidebarIsOpen={open}
+          />
+        )
+      })}
       {/* add your custom menus here */}
     </Menu>
   )

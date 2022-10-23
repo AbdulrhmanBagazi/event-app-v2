@@ -6,25 +6,13 @@ import { AvTimer, Work } from '../../../theme/icons'
 
 const JobsAsideFilter = () => {
   const listContext = useListContext()
-  const { filterValues, setFilters } = listContext
+  const { filterValues } = listContext
   const [locale] = useLocaleState()
   const { data } = useGetList('eventjob', {
     pagination: { page: 1, perPage: 100 },
     filter: { eventId: filterValues.eventId },
     sort: { field: 'createdAt', order: 'ASC' },
   })
-
-  useEffect(() => {
-    delete filterValues['jobId']
-
-    setFilters(
-      { ...filterValues },
-      {},
-      false // no debounce, we want the filter to fire immediately
-    )
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filterValues.eventId])
 
   return (
     <FilterList label="resources.applicants.fields.job" icon={<Work />}>
@@ -51,10 +39,38 @@ const ApplicantsListAside = () => {
   })
 
   useEffect(() => {
+    if (data) {
+      if (data.length >= 1) {
+        if (data[0].eventId === filterValues.eventId) {
+          return
+        }
+
+        delete filterValues['shiftId']
+        delete filterValues['jobId']
+
+        setFilters(
+          { ...filterValues, eventId: filterValues.eventId },
+          {},
+          false // no debounce, we want the filter to fire immediately
+        )
+        return
+      }
+      delete filterValues['shiftId']
+      delete filterValues['jobId']
+
+      setFilters(
+        { ...filterValues, eventId: filterValues.eventId },
+        {},
+        false // no debounce, we want the filter to fire immediately
+      )
+      return
+    }
+
     delete filterValues['shiftId']
+    delete filterValues['jobId']
 
     setFilters(
-      { ...filterValues },
+      { ...filterValues, eventId: filterValues.eventId },
       {},
       false // no debounce, we want the filter to fire immediately
     )

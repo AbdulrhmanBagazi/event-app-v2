@@ -21,16 +21,6 @@ import ApplicantsListFilters from './components/ApplicantsListFilters'
 import Mobile from './components/Mobile'
 import ApplicantsListAside from './components/ApplicantsListAside'
 
-const tabs = [
-  { id: 'PENDING', name: 'PENDING' },
-  { id: 'CANCELED', name: 'CANCELED' },
-  { id: 'DECLINED', name: 'DECLINED' },
-  { id: 'WAITLIST', name: 'WAITLIST' },
-  { id: 'INTERVIEW', name: 'INTERVIEW' },
-  { id: 'APPROVED', name: 'APPROVED' },
-  { id: 'COMPLETED', name: 'COMPLETED' },
-]
-
 const TabbedDatagrid = () => {
   const listContext = useListContext()
   const { setFilters, isLoading, data, filterValues } = listContext
@@ -38,6 +28,15 @@ const TabbedDatagrid = () => {
   const translate = useTranslate()
   const refresh = useRefresh()
   const isXSmall = useMediaQuery<Theme>((theme) => theme.breakpoints.down('sm'))
+  const tabs = [
+    { id: 'PENDING', name: 'PENDING' },
+    // { id: 'CANCELED', name: 'CANCELED' },
+    { id: 'DECLINED', name: 'DECLINED' },
+    { id: 'WAITLIST', name: 'WAITLIST' },
+    { id: 'INTERVIEW', name: 'INTERVIEW' },
+    // { id: 'APPROVED', name: 'APPROVED' },
+    // { id: 'COMPLETED', name: 'COMPLETED' },
+  ]
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setFilters(
@@ -105,12 +104,17 @@ const TabbedDatagrid = () => {
 }
 
 const ApplicantsList = () => {
+  const [locale] = useLocaleState()
+
   return (
     <List
-      filterDefaultValues={{ status: 'PENDING' }}
-      filters={ApplicantsListFilters}
+      actions={false}
+      exporter={false}
+      // filterDefaultValues={{ status: 'PENDING' }}
+      filters={ApplicantsListFilters(locale)}
       sort={{ field: 'createdAt', order: 'DESC' }}
       aside={<ApplicantsListAside />}
+      resource="applicants"
       perPage={25}>
       <TabbedDatagrid />
     </List>

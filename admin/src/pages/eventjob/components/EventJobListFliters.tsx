@@ -17,7 +17,7 @@ const EventJobListFliters = [
   //   ]}
   //   optionText="name"
   // />,
-  <ReferenceInput source="eventId" reference="Event" label="resources.eventjob.fields.eventId">
+  <ReferenceInput source="eventId" reference="Event" label="resources.eventjob.fields.eventId" alwaysOn>
     <SelectInput optionText="title" fullWidth />
   </ReferenceInput>,
   <ReferenceInput source="companyId" reference="Companies" label="resources.eventjob.fields.companyId">
@@ -42,7 +42,7 @@ const EventJobListFlitersEn = [
   //   ]}
   //   optionText="name"
   // />,
-  <ReferenceInput source="eventId" reference="Event" label="resources.eventjob.fields.eventId">
+  <ReferenceInput source="eventId" reference="Event" label="resources.eventjob.fields.eventId" alwaysOn>
     <SelectInput optionText="title_en" fullWidth />
   </ReferenceInput>,
   <ReferenceInput source="companyId" reference="Companies" label="resources.eventjob.fields.companyId">

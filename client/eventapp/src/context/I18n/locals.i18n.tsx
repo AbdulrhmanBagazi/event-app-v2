@@ -1,6 +1,14 @@
 // import {I18nManager} from 'react-native';
 
 const I18n_ar = {
+  Status: 'الحالة',
+  PENDING: 'قيد الإنتظار',
+  APPROVED: 'مقبول',
+  DECLINED: 'مرفوض',
+  CANCELED: 'ملغي',
+  COMPLETED: 'مكتمل',
+  WAITLIST: 'قائمة الإنتظار',
+  INTERVIEW: 'قائمة المقابلة الشخصية',
   NavigationButton: {
     AuthStack: 'تسجيل الدخول',
     Signin: 'تسجيل الدخول',
@@ -68,6 +76,8 @@ const I18n_ar = {
     terms: 'شروط الخدمة',
     privacy: 'سياسة الخصوصية',
     and: ' و ',
+    passwordlength:
+      'يجب أن تحتوي كلمة المرور على الأقل على أحرف كبيرة ورموز خاصة وأرقام وأن تتكون من 8 أحرف أو أكثر',
   },
   Settings: {
     Title: 'الإعدادات',
@@ -168,9 +178,33 @@ const I18n_ar = {
     job: 'الوظيفة',
     salary: 'الراتب',
   },
+  Job: {
+    name: 'الإسم',
+    nationality: 'الجنسية',
+    nationalID: 'رقم الهوية/الإقامة',
+    dateOfBirth: 'تاريخ الميلاد',
+    gender: 'الجنس',
+    male: 'ذكر',
+    female: 'آنثى',
+    shift: 'الوردية',
+    job: 'الوظيفة',
+    salary: 'الراتب',
+    start_time: 'بدء العمل',
+    end_time: 'إنتهاء العمل',
+    employeeInfo: 'معلومات الموظف',
+    Timeline: 'الجدول الزمني',
+  },
 } as const;
 
 const I18n_en = {
+  Status: 'Status',
+  PENDING: 'Pending',
+  APPROVED: 'Approved',
+  DECLINED: 'Declinde',
+  CANCELED: 'Canceled',
+  COMPLETED: 'Completed',
+  WAITLIST: 'Wait-List',
+  INTERVIEW: 'Interview-List',
   NavigationButton: {
     AuthStack: 'SignIn',
     Signin: 'SignIn',
@@ -238,6 +272,8 @@ const I18n_en = {
     agreesocial:
       'By clicking "Continue with Google" or "Continue with Apple" you are agreeing to ',
     agreeGoole: 'By clicking "Continue with Google" you are agreeing to ',
+    passwordlength:
+      'password must contain at least capital letters, special symbols, numbers and be 8 or more characters',
   },
   Settings: {
     Title: 'Settings',
@@ -337,6 +373,22 @@ const I18n_en = {
     shift: 'Shift',
     salary: 'Salary',
     job: 'Job',
+  },
+  Job: {
+    name: 'Name',
+    nationality: 'Nationality',
+    nationalID: 'National/Iqama ID',
+    dateOfBirth: 'Date of birth',
+    gender: 'Gender',
+    male: 'Male',
+    female: 'Female',
+    shift: 'Shift',
+    salary: 'Salary',
+    job: 'Job',
+    start_time: 'Work starts',
+    end_time: 'Works ends',
+    employeeInfo: 'Employee info',
+    Timeline: 'Timeline',
   },
 } as const;
 

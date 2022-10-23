@@ -15,6 +15,7 @@ import { useMediaQuery, Theme } from '@mui/material'
 import MyError from '../../layout/MyError'
 import I18nTime from '../../components/I18nTime.apply'
 import EventShiftListAside from './components/EventShiftListAside'
+import EventShiftListFilter from './components/EventShiftListFilter'
 
 const EventShiftList = () => {
   const { data, isLoading } = useGetList(
@@ -40,6 +41,7 @@ const EventShiftList = () => {
       exporter={false}
       hasCreate={false}
       emptyWhileLoading
+      filters={EventShiftListFilter(locale)}
       aside={<EventShiftListAside />}
       perPage={25}
       queryOptions={{

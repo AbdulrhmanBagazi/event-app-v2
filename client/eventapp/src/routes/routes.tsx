@@ -12,6 +12,8 @@ import Contact from '../screens/profile/screens/contact/contact.screens.profile'
 import SingleEvent from '../screens/singleEvent/singleEvent.screens';
 import Language from '../screens/language/language.screen';
 import Apply from '../screens/apply/apply.screens';
+import JobsList from '../screens/jobslist/jobslist.screen';
+import Job from '../screens/jobslist/job.screen/job.screen';
 
 const ProfileScreens: RoutesType[] = [
   {
@@ -75,9 +77,27 @@ const TabScreens: RoutesType[] = [
     component: Home,
   },
   {
+    name: 'JobsList',
+    component: JobsList,
+  },
+  {
     name: 'Profile',
     component: Profile,
   },
 ];
 
-export {AuthScreens, LoadingScreen, TabScreens, EventsScreens, ProfileScreens};
+const JobScreen: RoutesType[] = [
+  {
+    name: 'Job',
+    component: Job,
+  },
+];
+
+export {
+  AuthScreens,
+  LoadingScreen,
+  TabScreens,
+  EventsScreens,
+  ProfileScreens,
+  JobScreen,
+};
