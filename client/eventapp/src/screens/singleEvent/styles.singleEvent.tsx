@@ -23,4 +23,10 @@ export const styles = StyleSheet.create({
   contentContainerStyle: {
     flexGrow: 1,
   },
+  fab: {
+    position: 'absolute',
+    margin: 16,
+    left: 0,
+    bottom: 80,
+  },
 });

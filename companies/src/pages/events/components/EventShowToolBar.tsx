@@ -32,9 +32,12 @@ const ShowApplicantsButton = ({ record }: any) => (
   <Button
     component={Link}
     to={{
-      pathname: '/applicants',
+      pathname: '/event_applicants',
       // Here we specify the initial record for the create view
-      search: `filter=${JSON.stringify({ eventId: record.data.id, status: 'PENDING' })}`,
+      search: `filter=${JSON.stringify({
+        eventId: record.data.id,
+        status: 'PENDING',
+      })}`,
     }}
     label="show_applicants">
     <RemoveRedEye />

@@ -9,6 +9,7 @@ import RemoveRedEye from '@mui/icons-material/RemoveRedEye'
 import Add from '@mui/icons-material/Add'
 import AvTimer from '@mui/icons-material/AvTimer'
 import Article from '@mui/icons-material/Article'
+import CalendarMonth from '@mui/icons-material/CalendarMonth'
 
 export {
   UserIcon,
@@ -22,4 +23,5 @@ export {
   Add,
   AvTimer,
   Article,
+  CalendarMonth,
 }

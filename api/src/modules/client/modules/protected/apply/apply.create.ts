@@ -30,6 +30,7 @@ export const Create_Applicants_TypeDefs = gql`
     INTERVIEW
     APPROVED
     COMPLETED
+    INACTIVE
   }
 
   type Applicants {

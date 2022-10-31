@@ -1,5 +1,6 @@
 import { Create_Event_Mutation, Create_Event_TypeDefs } from './create/create.events';
 import { getMany_Event_Query, getMany_Event_TypeDefs } from './getMany/getMany.events';
+import { eventday_Events_Query, eventday_Events_TypeDefs } from './getManyReference/eventday.events';
 import { eventjob_Events_Query, eventjob_Events_TypeDefs } from './getManyReference/eventjob.events';
 import { eventshift_Events_Query, eventshift_Events_TypeDefs } from './getManyReference/eventshift.events';
 import { getOne_Events_Query, getOne_Events_TypeDefs } from './getOne/getOne.events';
@@ -12,6 +13,7 @@ const Query = {
   ...getMany_Event_Query,
   ...eventjob_Events_Query,
   ...eventshift_Events_Query,
+  ...eventday_Events_Query,
 };
 
 const Mutation = { ...Update_Events_Mutation, ...Create_Event_Mutation };
@@ -26,6 +28,7 @@ const typeDef = [
   getMany_Event_TypeDefs,
   eventjob_Events_TypeDefs,
   eventshift_Events_TypeDefs,
+  eventday_Events_TypeDefs,
 ];
 
 export const Events = {

@@ -22,8 +22,11 @@ const customEnglishMessages: TranslationMessages = {
   COMPLETED: 'Completed',
   WAITLIST: 'Wait-List',
   INTERVIEW: 'Interview-List',
+  INACTIVE: 'InActive',
   eventId: 'Event',
   applicants: 'Applicants',
+  eventday: 'Attendance Days',
+  create_eventday: 'Create days',
   dashboard: {
     total_users: 'Users',
   },
@@ -56,11 +59,13 @@ const customEnglishMessages: TranslationMessages = {
         eventshift: 'Shifts',
         details: 'Event Details',
         details_en: 'Event Details (English)',
+        eventdays: 'Attendance Days',
       },
       edittabs: {
         editinfo: 'Edit informations',
         editdetails: 'Edit details',
         editdetails_en: 'Edit details (English)',
+        editdays: 'Edit Days',
       },
       fields: {
         id: 'ID',
@@ -84,6 +89,7 @@ const customEnglishMessages: TranslationMessages = {
         details_en: 'Event Details (English)',
         detailstitle: 'Title',
         detailscontent: 'Content',
+        eventcalendar: 'Event Days',
       },
       status: {
         soon: 'soon',
@@ -101,8 +107,8 @@ const customEnglishMessages: TranslationMessages = {
         id: 'id',
         createdAt: 'created At',
         updatedAt: 'updated At',
-        title: 'title',
-        title_en: 'title (en)',
+        title: 'Job',
+        title_en: 'Job (en)',
         rate: 'salary/SAR',
         rate_type: 'salary type',
         status: 'status',
@@ -168,6 +174,7 @@ const customEnglishMessages: TranslationMessages = {
       showtabs: {
         show: 'Details',
         edit: 'Edit',
+        update_status: 'Update Status',
       },
       fields: {
         id: 'id',

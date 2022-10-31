@@ -18,13 +18,16 @@ const customArabicMessages: TranslationMessages = {
   yes: 'نعم',
   no: 'لا',
   PENDING: 'قيد الإنتظار',
-  APPROVED: 'مقبول',
+  APPROVED: 'معتمد',
   DECLINED: 'مرفوض',
   CANCELED: 'ملغي',
   COMPLETED: 'مكتمل',
   WAITLIST: 'قائمة الإنتظار',
   INTERVIEW: 'قائمة المقابلة الشخصية',
+  INACTIVE: 'غير نشط',
   applicants: 'طلبات العمل',
+  eventday: 'سجلات التحضير',
+  create_eventday: 'إنشاء آيام',
   dashboard: {
     total_users: 'المستخدمين',
   },
@@ -58,11 +61,13 @@ const customArabicMessages: TranslationMessages = {
         company: 'الشركة',
         eventjob: 'الوظائف',
         eventshift: 'الورديات',
+        eventdays: 'سجلات التحضير',
       },
       edittabs: {
         editinfo: 'تعديل المعلومات',
         editdetails: 'تعديل التفاصيل',
         editdetails_en: 'تعديل التفاصيل (إنجليزي)',
+        editdays: 'تعديل آيام الفعالية',
       },
       fields: {
         id: 'معرف',
@@ -86,6 +91,7 @@ const customArabicMessages: TranslationMessages = {
         details_en: 'تفاصيل الفعالية (إنجليزي)',
         detailstitle: 'العنوان',
         detailscontent: 'المحتوى',
+        eventcalendar: 'آيام الفعالية',
       },
       status: {
         soon: 'قريبا',
@@ -103,8 +109,8 @@ const customArabicMessages: TranslationMessages = {
         id: 'معرف',
         createdAt: 'تاريخ الإنشاء',
         updatedAt: 'تاريخ التحديث',
-        title: 'الإسم',
-        title_en: 'الإسم (إنجليزي)',
+        title: 'الوظيفة',
+        title_en: 'الوظيفة (إنجليزي)',
         rate: 'الراتب/ريال سعودي',
         rate_type: 'نوع الراتب',
         status: 'الحالة',
@@ -166,6 +172,7 @@ const customArabicMessages: TranslationMessages = {
       showtabs: {
         show: 'التفاصيل',
         edit: 'تعديل',
+        update_status: 'تحديث الحالة',
       },
       fields: {
         id: 'معرف',

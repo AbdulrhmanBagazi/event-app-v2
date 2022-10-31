@@ -24,8 +24,11 @@ const customEnglishMessages: TranslationMessages = {
   COMPLETED: 'Completed',
   WAITLIST: 'Wait-List',
   INTERVIEW: 'Interview-List',
+  INACTIVE: 'InActive',
   eventId: 'Event',
   applicants: 'Applicants',
+  eventday: 'Attendance Days',
+  create_eventday: 'Create days',
   dashboard: {
     total_users: 'Users',
   },
@@ -136,11 +139,13 @@ const customEnglishMessages: TranslationMessages = {
         eventshift: 'Shifts',
         details: 'Event Details',
         details_en: 'Event Details (English)',
+        eventdays: 'Attendance Days',
       },
       edittabs: {
         editinfo: 'Edit informations',
         editdetails: 'Edit details',
         editdetails_en: 'Edit details (English)',
+        editdays: 'Edit Days',
       },
       fields: {
         id: 'ID',
@@ -162,6 +167,7 @@ const customEnglishMessages: TranslationMessages = {
         app_sectionId: 'App section',
         details: 'Event Details',
         details_en: 'Event Details (English)',
+        eventcalendar: 'Event Days',
         detailstitle: 'Title',
         detailscontent: 'Content',
         company: {

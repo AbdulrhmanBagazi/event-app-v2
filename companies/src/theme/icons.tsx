@@ -10,6 +10,9 @@ import Add from '@mui/icons-material/Add'
 import AvTimer from '@mui/icons-material/AvTimer'
 import StackedBarChart from '@mui/icons-material/StackedBarChart'
 import Article from '@mui/icons-material/Article'
+import WhatsApp from '@mui/icons-material/WhatsApp'
+import Phone from '@mui/icons-material/Phone'
+import CalendarMonth from '@mui/icons-material/CalendarMonth'
 
 export {
   UserIcon,
@@ -24,4 +27,7 @@ export {
   AvTimer,
   StackedBarChart,
   Article,
+  WhatsApp,
+  Phone,
+  CalendarMonth,
 }

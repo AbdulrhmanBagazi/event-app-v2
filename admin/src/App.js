@@ -1,7 +1,17 @@
 import { useEffect, useState } from 'react'
 import { Admin, Resource, Loading, useTranslate, CustomRoutes, Login } from 'react-admin'
 import { Route } from 'react-router'
-import { UserIcon, BusinessIcon, Festival, LocationOn, List, Work, AvTimer, Article } from './theme/icons'
+import {
+  UserIcon,
+  BusinessIcon,
+  Festival,
+  LocationOn,
+  List,
+  Work,
+  AvTimer,
+  Article,
+  // CalendarMonth,
+} from './theme/icons'
 import { MyLayout } from './layout/layout'
 import User from './pages/users'
 import Comapnies from './pages/companies'
@@ -11,6 +21,7 @@ import Appsection from './pages/app_section'
 import EventJob from './pages/eventjob'
 import EventShift from './pages/eventshift'
 import Applicants from './pages/applicants'
+// import EventDay from './pages/eventday'
 import authProvider from './auth/authProvider'
 import i18nProvider from './I18n/i18nProvider'
 import { dataProvider } from './data/dataProvider'
@@ -84,6 +95,13 @@ export default function App() {
         icon={<Article />}
         {...Applicants}
       />
+
+      {/* <Resource
+        options={{ label: translate('eventday') }}
+        name="eventday"
+        icon={<CalendarMonth />}
+        {...EventDay}
+      /> */}
       <CustomRoutes>
         <Route path="/configuration" element={<Configuration />} />
         <Route path="/error" element={<MyError />} />

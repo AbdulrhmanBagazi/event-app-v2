@@ -44,8 +44,8 @@ const EventData: React.FC<{
               style={[
                 styles.CardBadge,
                 {
-                  backgroundColor: Colors.Secondary,
-                  color: Colors.OnSecondary,
+                  backgroundColor: Colors.applicant_status[data.status],
+                  color: Colors.Background,
                 },
               ]}>
               {Locals[data.status]}

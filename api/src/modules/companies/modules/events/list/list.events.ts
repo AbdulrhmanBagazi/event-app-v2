@@ -34,6 +34,7 @@ export const list_Events_TypeDefs = gql`
     locationId: String
     details: [JSON!]!
     details_en: [JSON!]!
+    eventcalendar: [String!]!
   }
 
   type Location {
@@ -53,6 +54,7 @@ export const list_Events_TypeDefs = gql`
     PENDING
     INTERVIEW
     APPROVED
+    INACTIVE
   }
 
   scalar DateTime

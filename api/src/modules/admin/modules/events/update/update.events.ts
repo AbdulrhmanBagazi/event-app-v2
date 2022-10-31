@@ -21,6 +21,7 @@ export const Update_Events_TypeDefs = gql`
     locationId: String
     details: [detail!]!
     details_en: [detail!]!
+    eventcalendar: [String!]!
   }
 
   input detail {
@@ -53,6 +54,7 @@ export const Update_Events_Mutation = {
         locationId: args.data.locationId,
         details: json,
         details_en: json_en,
+        eventcalendar: args.data.eventcalendar,
       },
       include: {
         Location: true,

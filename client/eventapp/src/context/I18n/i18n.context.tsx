@@ -11,7 +11,9 @@ const I18nContext = createContext<I18nContextType | null>(null);
 export const I18nProvider: React.FC<{
   children: React.ReactNode;
 }> = ({children}) => {
-  const [isLocals, setLocals] = useState(I18n_en);
+  const [isLocals, setLocals] = useState<typeof I18n_ar | typeof I18n_en>(
+    I18n_en,
+  );
   const [isLang, setLang] = useState('en');
   const MMKV = new MMKVLoader().initialize();
   I18nManager.allowRTL(true);

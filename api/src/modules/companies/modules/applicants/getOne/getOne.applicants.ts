@@ -14,6 +14,10 @@ export const getOne_applicants_Query = {
         id: args.id,
         companyId: context.req.user.id,
       },
+      include: {
+        job: true,
+        shift: true,
+      },
     });
   },
 };

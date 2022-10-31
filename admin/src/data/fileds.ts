@@ -15,14 +15,15 @@ const companies: { [k: string]: string } = {
 
 const events: { [k: string]: string } = {
   Event_list:
-    'id published createdAt updatedAt companyId locationId app_sectionId title content title_en content_en image_url location_url status Location {title title_en} App_section {title title_en} details details_en company {name}',
+    'id published createdAt updatedAt companyId locationId app_sectionId title content title_en content_en image_url location_url status Location {title title_en} App_section {title title_en} details details_en eventcalendar company {name}',
   Event:
-    'id published createdAt updatedAt companyId locationId app_sectionId title content title_en content_en image_url location_url status Location {title title_en} App_section {title title_en} details details_en company {name}',
+    'id published createdAt updatedAt companyId locationId app_sectionId title content title_en content_en image_url location_url status Location {title title_en} App_section {title title_en} details details_en eventcalendar company {name}',
   update_Event:
-    'published status title content title_en content_en image_url location_url locationId app_sectionId details details_en',
+    'published status title content title_en content_en image_url location_url locationId app_sectionId details details_en eventcalendar',
   eventjobEvents:
     'id createdAt updatedAt title title_en status rate rate_type eventId Event {id title title_en}',
   eventshiftEvents: 'id createdAt updatedAt start_time end_time status eventId Event {id title title_en}',
+  eventdayEvents: 'id date status',
 }
 
 const location: { [k: string]: string } = {
@@ -64,11 +65,15 @@ const eventshift: { [k: string]: string } = {
   create_eventshift: 'start_time end_time status companyId eventId',
 }
 
+const eventday: { [k: string]: string } = {
+  create_eventshift: 'eventId date',
+}
+
 const applicants: { [k: string]: string } = {
   applicants_list:
-    'id createdAt updatedAt eventId companyId userId shiftId jobId name nationality nationalID dateOfBirth gender status contact {phone whatsapp} event {id title title_en}',
+    'id createdAt updatedAt eventId companyId userId shiftId jobId name nationality nationalID dateOfBirth gender status contact {phone whatsapp} event {id title title_en} job { id title title_en rate rate_type } shift { id start_time end_time }',
   applicants:
-    'id createdAt updatedAt eventId companyId userId shiftId jobId name nationality nationalID dateOfBirth gender status contact {phone whatsapp} event {id title title_en}',
+    'id createdAt updatedAt eventId companyId userId shiftId jobId name nationality nationalID dateOfBirth gender status contact {phone whatsapp} event {id title title_en} job { id title title_en rate rate_type } shift { id start_time end_time }',
 }
 
 const Fileds: { [k: string]: string } = {
@@ -80,6 +85,7 @@ const Fileds: { [k: string]: string } = {
   ...app_section,
   ...eventjob,
   ...eventshift,
+  ...eventday,
   ...applicants,
 }
 

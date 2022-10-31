@@ -30,6 +30,7 @@ import Divider from '@mui/material/Divider'
 import EventShowToolBar from './components/EventShowToolBar'
 import Grid from '@mui/material/Grid'
 import I18nTime from '../../components/I18nTime.apply'
+import moment from 'moment'
 
 const EventShow = () => {
   const [locale] = useLocaleState()
@@ -169,6 +170,21 @@ const EventShow = () => {
           </Labeled>
         </Tab>
 
+        <Tab label="resources.Event.fields.eventcalendar">
+          <Labeled label="resources.Event.fields.eventcalendar">
+            <FunctionField
+              render={(record: any) => (
+                <ul>
+                  {record.eventcalendar.map((item: Date, i: React.Key | null | undefined) => {
+                    const date = new Date(item)
+                    return <li key={i}>{item + ' ' + moment(date).format('dddd')}</li>
+                  })}
+                </ul>
+              )}
+            />
+          </Labeled>
+        </Tab>
+
         <Tab label="resources.Event.showtabs.details">
           <ArrayField source="details">
             <Datagrid isRowSelectable={() => false} bulkActionButtons={false}>
@@ -233,6 +249,24 @@ const EventShow = () => {
               />
               <ChipField source="status" size="small" />
               <DateField source="createdAt" />
+            </Datagrid>
+          </ReferenceManyField>
+        </Tab>
+
+        <Tab label="resources.Event.showtabs.eventdays">
+          <ReferenceManyField
+            pagination={<Pagination />}
+            label=""
+            reference="eventdayEvents"
+            target="eventday"
+            perPage={5}>
+            <Datagrid
+              isRowSelectable={() => false}
+              bulkActionButtons={false}
+              rowClick="show"
+              resource="eventshift">
+              <TextField source="id" sortable={false} />
+              <TextField source="date" sortable={false} />
             </Datagrid>
           </ReferenceManyField>
         </Tab>

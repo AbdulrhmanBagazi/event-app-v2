@@ -28,5 +28,6 @@ export const styles = StyleSheet.create({
   CardBadge: {
     alignSelf: 'center',
     marginRight: 10,
+    fontWeight: 'bold',
   },
 });

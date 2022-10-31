@@ -38,4 +38,7 @@ export const styles = StyleSheet.create({
   contentContainerStyle: {
     flexGrow: 1,
   },
+  Badge: {
+    alignSelf: 'center',
+  },
 });

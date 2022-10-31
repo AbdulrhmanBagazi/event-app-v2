@@ -107,6 +107,12 @@ const JobsListAuth = () => {
             onPress={() => HandleStatus(Applicants_Status.Declined)}>
             {Locals.DECLINED}
           </Chip>
+          <Chip
+            style={styles.RadioItem}
+            selected={Status === Applicants_Status.Inactive}
+            onPress={() => HandleStatus(Applicants_Status.Inactive)}>
+            {Locals.INACTIVE}
+          </Chip>
         </ScrollView>
       </View>
 

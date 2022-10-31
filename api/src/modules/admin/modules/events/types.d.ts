@@ -22,4 +22,5 @@ export type eventType = {
   app_sectionId: string;
   details: [{ title: string; content: string }];
   details_en: [{ title: string; content: string }];
+  eventcalendar: [string];
 };

@@ -27,6 +27,7 @@ query Events_list(
     app_sectionId
     details
     details_en
+    eventcalendar
     Location {
       title
       title_en
@@ -84,6 +85,7 @@ query Event($id: String!) {
     app_sectionId
     details
     details_en
+    eventcalendar
     Location {
       title
       title_en

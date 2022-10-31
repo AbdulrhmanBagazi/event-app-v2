@@ -13,6 +13,10 @@ export const getOne_applicants_Query = {
       where: {
         id: args.id,
       },
+      include: {
+        job: true,
+        shift: true,
+      },
     });
   },
 };

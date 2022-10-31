@@ -7,6 +7,7 @@ import { AppSection } from './modules/app_section/index.modules';
 import { eventjobs } from './modules/eventjobs/index.modules';
 import { eventshifts } from './modules/eventshifts/index.modules';
 import { Applicants } from './modules/applicants/index.modules';
+import { eventdays } from './modules/eventdays/index.modules';
 
 export const AdminResolvers = {
   Query: {
@@ -19,6 +20,7 @@ export const AdminResolvers = {
     ...eventjobs.Query,
     ...eventshifts.Query,
     ...Applicants.Query,
+    ...eventdays.Query,
   },
   Mutation: {
     ...Users.Mutation,
@@ -28,6 +30,7 @@ export const AdminResolvers = {
     ...AppSection.Mutation,
     ...eventjobs.Mutation,
     ...eventshifts.Mutation,
+    ...eventdays.Mutation,
   },
   // ...Users.Resolver,
   ...Dashboard.Resolver,
@@ -44,4 +47,5 @@ export const AdminTypeDefs = [
   eventjobs.typeDef,
   eventshifts.typeDef,
   Applicants.typeDef,
+  eventdays.typeDef,
 ];

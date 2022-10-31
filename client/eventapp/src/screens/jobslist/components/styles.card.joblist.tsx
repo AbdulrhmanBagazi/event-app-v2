@@ -37,5 +37,6 @@ export const styles = StyleSheet.create({
     top: -10,
     paddingLeft: 10,
     paddingRight: 10,
+    fontWeight: 'bold',
   },
 });

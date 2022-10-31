@@ -15,7 +15,7 @@ import Animated, {
   useSharedValue,
 } from 'react-native-reanimated';
 import HeaderSingleEvent from '../components/job/HeaderSingleEvent/header.singleEvent';
-import {Caption, Headline, Paragraph} from 'react-native-paper';
+import {Badge, Caption, Headline, Paragraph} from 'react-native-paper';
 import countries from 'i18n-iso-countries';
 import moment from 'moment';
 import Timeline from '../components/timeline/timeline.job';
@@ -77,6 +77,16 @@ const Job = () => {
                   <Headline style={styles.Headline} numberOfLines={2}>
                     {Locals.Job.employeeInfo}
                   </Headline>
+                  <Badge
+                    style={[
+                      styles.Badge,
+                      {
+                        backgroundColor: Colors.Secondary,
+                        color: Colors.OnSecondary,
+                      },
+                    ]}>
+                    {Locals.Job.contact}
+                  </Badge>
                 </View>
                 <View
                   style={[

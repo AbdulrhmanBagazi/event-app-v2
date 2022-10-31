@@ -48,7 +48,7 @@ const EventShiftEdit = () => {
         refetchOnWindowFocus: true,
       }}>
       <TabbedForm toolbar={<EventShiftEditToolbar />}>
-        <FormTab label="resources.app_section.showtabs.edit">
+        <FormTab label="resources.eventjob.showtabs.edit">
           <ReferenceInput source="eventId" reference="Event" label="resources.eventjob.fields.eventId">
             <SelectInput
               validate={required()}
@@ -62,12 +62,14 @@ const EventShiftEdit = () => {
             source="start_time"
             validate={[required()]}
             fullWidth
+            disabled
           />
           <TimeInput
             label="resources.eventshift.fields.end_time"
             source="end_time"
             validate={[required()]}
             fullWidth
+            disabled
           />
           <SelectInput
             source="status"

@@ -90,9 +90,25 @@ model Events {
   details_en    Json[]
   Event_Shifts  Event_Shifts[]
   Applicants    Applicants[]
+  Event_Days    Event_Days[]
+  eventcalendar String[]
 }
 
 enum EventStatus {
+  SOON
+  ACTIVE
+  COMPLETED
+}
+
+model Event_Days {
+  id      String          @id @default(uuid()) @db.Uuid
+  date    DateTime        @db.Date
+  status  EventDaysStatus @default(SOON)
+  Event   Events          @relation(fields: [eventId], references: [id])
+  eventId String          @db.Uuid
+}
+
+enum EventDaysStatus {
   SOON
   ACTIVE
   COMPLETED
@@ -162,13 +178,6 @@ model App_section {
   Events    Events[]
 }
 
-model Event_Days {
-  id        String   @id @default(uuid()) @db.Uuid
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  date      DateTime @db.Date
-}
-
 model Applicants {
   id          String            @id @default(uuid()) @db.Uuid
   createdAt   DateTime          @default(now())
@@ -201,6 +210,7 @@ enum Applicants_Status {
   INTERVIEW // if status pending or waitlist // will be showen in dashboard+
   APPROVED // will be showen in dashboard+
   COMPLETED // will be showen in dashboard+
+  INACTIVE // when event is closed all pending waitlist interview become INACTIVE
 }
 
 //$argon2id$v=19$m=4096,t=3,p=1$Org39QC+ENPL8d5yajfoug$XjvNjYvDYIlXh/zj2tjdRgWgYbqWikuzTOKQjo8pNas

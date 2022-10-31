@@ -80,6 +80,7 @@ export const list_Applicants_TypeDefs = gql`
     INTERVIEW
     APPROVED
     COMPLETED
+    INACTIVE
   }
 
   scalar DateTime

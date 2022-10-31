@@ -63,29 +63,22 @@ const EventJobEdit = () => {
             source="title"
             validate={[required()]}
             fullWidth
+            disabled
           />
           <TextInput
             label="resources.eventjob.fields.title_en"
             source="title_en"
             validate={[required()]}
             fullWidth
+            disabled
           />
-          <SelectInput
-            source="status"
-            label="resources.eventjob.fields.status"
-            choices={[
-              { id: 'OPEN', name: 'resources.eventjob.status.OPEN' },
-              { id: 'CLOSED', name: 'resources.eventjob.status.CLOSED' },
-            ]}
-            optionText="name"
-            validate={[required()]}
-            fullWidth
-          />
+
           <NumberInput
             label="resources.eventjob.fields.rate"
             source="rate"
             validate={[required()]}
             fullWidth
+            disabled
           />
           <SelectInput
             source="rate_type"
@@ -93,6 +86,18 @@ const EventJobEdit = () => {
             choices={[
               // { id: 'MONTHLY', name: 'resources.eventjob.rate_type.MONTHLY' },
               { id: 'DAY', name: 'resources.eventjob.rate_type.DAY' },
+            ]}
+            optionText="name"
+            validate={[required()]}
+            fullWidth
+            disabled
+          />
+          <SelectInput
+            source="status"
+            label="resources.eventjob.fields.status"
+            choices={[
+              { id: 'OPEN', name: 'resources.eventjob.status.OPEN' },
+              { id: 'CLOSED', name: 'resources.eventjob.status.CLOSED' },
             ]}
             optionText="name"
             validate={[required()]}

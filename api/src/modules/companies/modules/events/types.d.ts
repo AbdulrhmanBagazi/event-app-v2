@@ -32,4 +32,5 @@ export type update_Event = {
   status: EventStatus;
   details: [{ title: string; content: string }];
   details_en: [{ title: string; content: string }];
+  eventcalendar: [string];
 };

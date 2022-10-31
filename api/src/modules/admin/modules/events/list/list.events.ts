@@ -30,6 +30,7 @@ export const list_Events_TypeDefs = gql`
     PENDING
     INTERVIEW
     APPROVED
+    INACTIVE
   }
 
   type Event {
@@ -52,6 +53,7 @@ export const list_Events_TypeDefs = gql`
     details: [JSON!]!
     details_en: [JSON!]!
     company: Companies
+    eventcalendar: [String!]!
   }
 
   type Location {

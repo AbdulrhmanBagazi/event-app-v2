@@ -35,6 +35,8 @@ export const list_Applicants_TypeDefs = gql`
     status: Applicants_Status
     contact: contactInfo
     event: event
+    job: job
+    shift: shift
   }
 
   type event {
@@ -48,6 +50,20 @@ export const list_Applicants_TypeDefs = gql`
     whatsapp: String
   }
 
+  type job {
+    id: String
+    title: String
+    title_en: String
+    rate: Int
+    rate_type: String
+  }
+
+  type shift {
+    id: String
+    start_time: String
+    end_time: String
+  }
+
   enum Applicants_Status {
     CANCELED
     DECLINED
@@ -56,6 +72,7 @@ export const list_Applicants_TypeDefs = gql`
     INTERVIEW
     APPROVED
     COMPLETED
+    INACTIVE
   }
 
   scalar DateTime
@@ -84,7 +101,8 @@ export const list_Applicants_Query = {
         jobId: args.filter.jobId,
       },
       include: {
-        company: true,
+        job: true,
+        shift: true,
       },
     });
     // throw Error;

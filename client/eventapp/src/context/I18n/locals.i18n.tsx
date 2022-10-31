@@ -3,12 +3,13 @@
 const I18n_ar = {
   Status: 'الحالة',
   PENDING: 'قيد الإنتظار',
-  APPROVED: 'مقبول',
+  APPROVED: 'معتمد',
   DECLINED: 'مرفوض',
   CANCELED: 'ملغي',
   COMPLETED: 'مكتمل',
   WAITLIST: 'قائمة الإنتظار',
   INTERVIEW: 'قائمة المقابلة الشخصية',
+  INACTIVE: 'غير نشط',
   NavigationButton: {
     AuthStack: 'تسجيل الدخول',
     Signin: 'تسجيل الدخول',
@@ -193,6 +194,7 @@ const I18n_ar = {
     end_time: 'إنتهاء العمل',
     employeeInfo: 'معلومات الموظف',
     Timeline: 'الجدول الزمني',
+    contact: 'تآكد من تحديث معلومات التواصل',
   },
 } as const;
 
@@ -205,6 +207,7 @@ const I18n_en = {
   COMPLETED: 'Completed',
   WAITLIST: 'Wait-List',
   INTERVIEW: 'Interview-List',
+  INACTIVE: 'InActive',
   NavigationButton: {
     AuthStack: 'SignIn',
     Signin: 'SignIn',
@@ -389,6 +392,7 @@ const I18n_en = {
     end_time: 'Works ends',
     employeeInfo: 'Employee info',
     Timeline: 'Timeline',
+    contact: 'Make sure your contact information is up to date',
   },
 } as const;
 

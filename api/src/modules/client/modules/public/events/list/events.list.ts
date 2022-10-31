@@ -33,6 +33,7 @@ export const list_Events_TypeDefs = gql`
     Event_Shifts: [eventshift!]!
     details: [JSON!]!
     details_en: [JSON!]!
+    eventcalendar: [String!]!
   }
 
   type Location {

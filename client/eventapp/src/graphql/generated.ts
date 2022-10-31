@@ -48,6 +48,7 @@ export enum Applicants_Status {
   Canceled = 'CANCELED',
   Completed = 'COMPLETED',
   Declined = 'DECLINED',
+  Inactive = 'INACTIVE',
   Interview = 'INTERVIEW',
   Pending = 'PENDING',
   Waitlist = 'WAITLIST',
@@ -92,6 +93,7 @@ export type Events = {
   createdAt: Scalars['DateTime'];
   details: Array<Scalars['JSON']>;
   details_en: Array<Scalars['JSON']>;
+  eventcalendar: Array<Scalars['String']>;
   id: Scalars['String'];
   image_url: Scalars['String'];
   locationId: Scalars['String'];
@@ -191,7 +193,7 @@ export type Profile = {
 
 export type Query = {
   __typename?: 'Query';
-  Event?: Maybe<Events>;
+  Event: Events;
   Events_list: Array<Events>;
   Events_list_meta?: Maybe<ListMetadata>;
   app_section_list: Array<App_Section>;
@@ -402,6 +404,7 @@ export type Events_ListQuery = {
     app_sectionId: string;
     details: Array<any>;
     details_en: Array<any>;
+    eventcalendar: Array<string>;
     Location: {__typename?: 'Location'; title: string; title_en: string};
     Event_Jobs: Array<{
       __typename?: 'eventjob';
@@ -447,7 +450,7 @@ export type EventQueryVariables = Exact<{
 
 export type EventQuery = {
   __typename?: 'Query';
-  Event?: {
+  Event: {
     __typename?: 'Events';
     id: string;
     published: boolean;
@@ -466,6 +469,7 @@ export type EventQuery = {
     app_sectionId: string;
     details: Array<any>;
     details_en: Array<any>;
+    eventcalendar: Array<string>;
     Location: {__typename?: 'Location'; title: string; title_en: string};
     Event_Jobs: Array<{
       __typename?: 'eventjob';
@@ -485,7 +489,7 @@ export type EventQuery = {
       status: Event_JobsStatus;
       eventId: string;
     }>;
-  } | null;
+  };
 };
 
 export type Change_PasswordMutationVariables = Exact<{
@@ -828,6 +832,7 @@ export const Events_ListDocument = gql`
       app_sectionId
       details
       details_en
+      eventcalendar
       Location {
         title
         title_en
@@ -989,6 +994,7 @@ export const EventDocument = gql`
       app_sectionId
       details
       details_en
+      eventcalendar
       Location {
         title
         title_en

@@ -11,6 +11,7 @@ import {
   useLocaleState,
   useTranslate,
   DateField,
+  ChipField,
 } from 'react-admin'
 import { useParams } from 'react-router-dom'
 import MyError from '../../layout/MyError'
@@ -18,6 +19,7 @@ import Grid from '@mui/material/Grid'
 import countries from 'i18n-iso-countries'
 import moment from 'moment'
 import Chip from '@mui/material/Chip'
+import I18nTime from '../../components/I18nTime.apply'
 
 const ApplicantsShow = () => {
   const { id } = useParams()
@@ -116,6 +118,40 @@ const ApplicantsShow = () => {
                 <FunctionField
                   source="status"
                   render={(record: any) => <Chip label={translate(record.status)} />}
+                />
+              </Labeled>
+            </Grid>
+          </Grid>
+
+          <Grid container spacing={2}>
+            <Grid item xs>
+              <Labeled label="resources.eventjob.fields.title">
+                <TextField source={locale === 'en' ? 'job.title_en' : 'job.title'} />
+              </Labeled>
+            </Grid>
+            <Grid item xs>
+              <Labeled label="resources.eventjob.fields.rate">
+                <TextField source="job.rate" />
+              </Labeled>
+            </Grid>
+            <Grid item xs>
+              <Labeled label="resources.eventjob.fields.rate_type">
+                <ChipField source="job.rate_type" size="small" />
+              </Labeled>
+            </Grid>
+            <Grid item xs>
+              <Labeled label="resources.eventshift.fields.start_time">
+                <FunctionField
+                  source="shift.start_time"
+                  render={(record: any) => <I18nTime time={record.shift.start_time} Language={locale} />}
+                />
+              </Labeled>
+            </Grid>
+            <Grid item xs>
+              <Labeled label="resources.eventshift.fields.end_time">
+                <FunctionField
+                  source="shift.end_time"
+                  render={(record: any) => <I18nTime time={record.shift.end_time} Language={locale} />}
                 />
               </Labeled>
             </Grid>

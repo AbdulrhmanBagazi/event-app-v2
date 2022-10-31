@@ -15,21 +15,21 @@ const MyMenu = (props: MenuProps | any) => {
     <Menu {...props}>
       <DashboardMenuItem />
       {Object.keys(resources).map((name) => {
-        if (name === 'applicants') {
-          return null
-        }
+        // if (name === 'eventday') {
+        //   return null
+        // }
+
         return (
           <MenuItemLink
             key={name}
             to={`/${name}`}
             primaryText={(resources[name].options && resources[name].options.label) || name}
-            leftIcon={resources[name].icon}
             onClick={props.onMenuClick}
             sidebarIsOpen={open}
+            leftIcon={resources[name].icon}
           />
         )
       })}
-      {/* add your custom menus here */}
     </Menu>
   )
 }

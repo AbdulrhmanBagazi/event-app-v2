@@ -5,6 +5,7 @@ use_frameworks! :linkage => :static
 platform :ios, '12.4'
 install! 'cocoapods', :deterministic_uuids => false
 $RNFirebaseAsStaticFramework = true
+$RNFirebaseAnalyticsWithoutAdIdSupport = true
 # use_frameworks! :linkage => :static
 
 def fix_hermes(app_name)

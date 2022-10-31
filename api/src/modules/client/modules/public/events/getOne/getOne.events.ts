@@ -3,7 +3,7 @@ import { gql } from 'apollo-server';
 
 export const getOne_Events_TypeDefs = gql`
   type Query {
-    Event(id: String!): Events
+    Event(id: String!): Events!
   }
 `;
 

@@ -68,6 +68,7 @@ export const styles = StyleSheet.create({
   },
   Font: {
     fontSize: 12,
+    fontWeight: 'bold',
   },
   Item: {
     // flex: 2,

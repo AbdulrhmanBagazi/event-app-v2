@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View} from 'react-native';
 import {
   Headline,
@@ -25,6 +25,26 @@ const DataSingleEvent: React.FC<{
   const result = jobs.find(obj => {
     return obj.rate === min;
   });
+  const [initalDay, setinitalDay] = useState<
+    {first: string; last: string} | undefined
+  >(undefined);
+
+  useEffect(() => {
+    const mydays = data.eventcalendar;
+    const sort = mydays.sort((a: string, b: string) => {
+      const date1 = new Date(a) as any;
+      const date2 = new Date(b) as any;
+
+      return date1 - date2;
+    });
+
+    if (sort.length >= 1) {
+      setinitalDay({
+        first: sort[0],
+        last: sort[sort.length - 1],
+      });
+    }
+  }, [data.eventcalendar]);
 
   return (
     <View
@@ -37,18 +57,8 @@ const DataSingleEvent: React.FC<{
             style={[
               styles.CardBadge,
               {
-                backgroundColor:
-                  data.status === 'SOON'
-                    ? Colors.Primary
-                    : data.status === 'ACTIVE'
-                    ? Colors.Secondary
-                    : Colors.Surface,
-                color:
-                  data.status === 'SOON'
-                    ? Colors.OnPrimary
-                    : data.status === 'ACTIVE'
-                    ? Colors.OnSecondary
-                    : Colors.OnSurface,
+                backgroundColor: Colors.event_status[data.status],
+                color: Colors.Surface,
               },
             ]}>
             {Locals.Jobs[data.status]}
@@ -71,11 +81,19 @@ const DataSingleEvent: React.FC<{
 
           <View style={styles.Item}>
             <IconButton icon="calendar" color={Colors.Primary} size={20} />
-            <Text>{moment(new Date(data.createdAt)).format('YYYY-MM-DD')}</Text>
+            <Text>
+              {initalDay
+                ? moment(new Date(initalDay.first)).format('YYYY-MM-DD')
+                : '------------'}
+            </Text>
           </View>
           <View style={styles.Item}>
             <IconButton icon="calendar" color={Colors.Primary} size={20} />
-            <Text>{moment(new Date(data.updatedAt)).format('YYYY-MM-DD')}</Text>
+            <Text>
+              {initalDay
+                ? moment(new Date(initalDay.last)).format('YYYY-MM-DD')
+                : '------------'}
+            </Text>
           </View>
 
           <View style={styles.Item}>

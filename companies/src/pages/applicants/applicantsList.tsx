@@ -34,8 +34,8 @@ const TabbedDatagrid = () => {
     { id: 'DECLINED', name: 'DECLINED' },
     { id: 'WAITLIST', name: 'WAITLIST' },
     { id: 'INTERVIEW', name: 'INTERVIEW' },
-    // { id: 'APPROVED', name: 'APPROVED' },
-    // { id: 'COMPLETED', name: 'COMPLETED' },
+    { id: 'APPROVED', name: 'APPROVED' },
+    { id: 'COMPLETED', name: 'COMPLETED' },
   ]
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -110,7 +110,7 @@ const ApplicantsList = () => {
     <List
       actions={false}
       exporter={false}
-      // filterDefaultValues={{ status: 'PENDING' }}
+      filterDefaultValues={{ status: 'PENDING' }}
       filters={ApplicantsListFilters(locale)}
       sort={{ field: 'createdAt', order: 'DESC' }}
       aside={<ApplicantsListAside />}

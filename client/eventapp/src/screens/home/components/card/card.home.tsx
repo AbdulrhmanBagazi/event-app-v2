@@ -112,18 +112,8 @@ const MyCard: React.FC<{
                 styles.CardBadge,
                 styles.Font,
                 {
-                  backgroundColor:
-                    data.status === 'SOON'
-                      ? Colors.Primary
-                      : data.status === 'ACTIVE'
-                      ? Colors.Secondary
-                      : Colors.Surface,
-                  color:
-                    data.status === 'SOON'
-                      ? Colors.OnPrimary
-                      : data.status === 'ACTIVE'
-                      ? Colors.OnSecondary
-                      : Colors.OnSurface,
+                  backgroundColor: Colors.event_status[data.status],
+                  color: Colors.Surface,
                 },
               ]}>
               {Locals.Jobs[data.status]}

@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
 import { Admin, Resource, Loading, useTranslate, CustomRoutes, Login } from 'react-admin'
 import { Route } from 'react-router'
-import { Festival, Work, AvTimer, Article } from './theme/icons'
+import { Festival, Work, AvTimer, Article, CalendarMonth } from './theme/icons'
 import { MyLayout } from './layout/layout'
 import Events from './pages/events'
 import EventJob from './pages/eventjob'
 import EventShift from './pages/eventshift'
 import Applicants from './pages/applicants'
+import EventDay from './pages/eventday'
 import authProvider from './auth/authProvider'
 import i18nProvider from './I18n/i18nProvider'
 import { dataProvider } from './data/dataProvider'
@@ -16,7 +17,7 @@ import Configuration from './pages/configuration/Configuration'
 import { lightTheme } from './theme/theme'
 import MyError from './layout/MyError'
 //custome route
-import ApplicantsList from './pages/applicants/applicantsList'
+import ApplicantsListCustomRoute from './pages/applicants/customRoute/applicantsListCustomRoute'
 
 export default function App() {
   const translate = useTranslate()
@@ -62,10 +63,17 @@ export default function App() {
         icon={<Article />}
         {...Applicants}
       />
+
+      <Resource
+        options={{ label: translate('eventday') }}
+        name="eventday"
+        icon={<CalendarMonth />}
+        {...EventDay}
+      />
       <CustomRoutes>
         <Route path="/configuration" element={<Configuration />} />
         <Route path="/error" element={<MyError />} />
-        <Route path="/applicants" element={<ApplicantsList />} />
+        <Route path="/event_applicants" element={<ApplicantsListCustomRoute />} />
       </CustomRoutes>
     </Admin>
   )

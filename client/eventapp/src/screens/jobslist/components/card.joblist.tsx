@@ -40,8 +40,8 @@ const MyCardJoblist: React.FC<{
               style={[
                 styles.cardRightIcon,
                 {
-                  backgroundColor: Colors.Secondary,
-                  color: Colors.OnSecondary,
+                  backgroundColor: Colors.applicant_status[data.status],
+                  color: Colors.Surface,
                 },
               ]}>
               {Locals[data.status]}
