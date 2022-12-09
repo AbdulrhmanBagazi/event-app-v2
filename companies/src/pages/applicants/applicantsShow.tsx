@@ -11,7 +11,9 @@ import {
   useLocaleState,
   useTranslate,
   DateField,
-  ChipField,
+  Edit,
+  TabbedForm,
+  FormTab,
 } from 'react-admin'
 import { useParams } from 'react-router-dom'
 import MyError from '../../layout/MyError'
@@ -30,6 +32,9 @@ import {
 } from './updateApplicantStatus/ApplicantStatusButtons'
 import Stack from '@mui/material/Stack'
 import Divider from '@mui/material/Divider'
+//add start_date
+import ApplicantsEditToolbard from './components/ApplicantsEditToolbard'
+import MyDaysPicker from './components/ApplicantsDatePicker'
 
 const ApplicantsShow = () => {
   const { id } = useParams()
@@ -52,27 +57,49 @@ const ApplicantsShow = () => {
 
   return (
     <>
-      <Labeled
-        label="resources.applicants.showtabs.update_status"
-        sx={{
-          paddingTop: 5,
-          width: '100%',
-        }}>
-        <Stack
-          direction="row"
-          spacing={3}
-          divider={<Divider orientation="vertical" flexItem />}
+      {data.status === 'APPROVED' && data.start_date === null ? (
+        <Edit
+          actions={false}
+          mutationMode="pessimistic"
+          redirect="show"
+          queryOptions={{
+            onError: (err) => {
+              return null
+            },
+            refetchOnReconnect: true,
+            refetchOnMount: true,
+            refetchOnWindowFocus: true,
+          }}>
+          <TabbedForm toolbar={<ApplicantsEditToolbard />}>
+            <FormTab label="resources.applicants.fields.start_date">
+              <MyDaysPicker data={data} />
+            </FormTab>
+          </TabbedForm>
+        </Edit>
+      ) : (
+        <Labeled
+          label="resources.applicants.showtabs.update_status"
           sx={{
-            paddingTop: 1.5,
+            paddingTop: 5,
             width: '100%',
           }}>
-          {/* <PendingButton record={data} /> */}
-          <WaitlistButton record={data} />
-          <InterviewButton record={data} />
-          <ApprovedButton record={data} />
-          <DeclineButton record={data} />
-        </Stack>
-      </Labeled>
+          <Stack
+            direction="row"
+            spacing={3}
+            divider={<Divider orientation="vertical" flexItem />}
+            sx={{
+              paddingTop: 1.5,
+              width: '100%',
+            }}>
+            {/* <PendingButton record={data} /> */}
+            <WaitlistButton record={data} />
+            <InterviewButton record={data} />
+            <ApprovedButton record={data} />
+            <DeclineButton record={data} />
+          </Stack>
+        </Labeled>
+      )}
+
       <Show
         queryOptions={{
           onError: (err) => {
@@ -148,7 +175,7 @@ const ApplicantsShow = () => {
                       record.contact.whatsapp ? (
                         <>
                           <a href={'whatsapp://send?phone=+966' + Number(record.contact.whatsapp)}>
-                            <WhatsApp />
+                            <WhatsApp sx={{ color: 'green' }} />
                           </a>
                           {record.contact.whatsapp}
                         </>
@@ -162,11 +189,21 @@ const ApplicantsShow = () => {
             </Grid>
 
             <Grid container spacing={2}>
-              <Grid item xs>
+              <Grid item>
                 <Labeled label="resources.applicants.fields.status">
                   <FunctionField
                     source="status"
                     render={(record: any) => <Chip label={translate(record.status)} />}
+                  />
+                </Labeled>
+              </Grid>
+              <Grid item>
+                <Labeled label="resources.applicants.fields.start_date">
+                  <FunctionField
+                    source="start_date"
+                    render={(record: any) =>
+                      record.start_date ? <DateField source="start_date" /> : translate('set_start_date')
+                    }
                   />
                 </Labeled>
               </Grid>
@@ -184,7 +221,10 @@ const ApplicantsShow = () => {
               </Grid>
               <Grid item xs>
                 <Labeled label="resources.eventjob.fields.rate_type">
-                  <ChipField source="job.rate_type" size="small" />
+                  <FunctionField
+                    source="rate_type"
+                    render={(record: any) => <Chip label={translate(record.job.rate_type)} />}
+                  />
                 </Labeled>
               </Grid>
               <Grid item xs>

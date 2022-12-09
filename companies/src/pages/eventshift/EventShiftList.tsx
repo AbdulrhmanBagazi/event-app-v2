@@ -8,14 +8,15 @@ import {
   Loading,
   useRefresh,
   useLocaleState,
-  ChipField,
   FunctionField,
+  useTranslate,
 } from 'react-admin'
 import { useMediaQuery, Theme } from '@mui/material'
 import MyError from '../../layout/MyError'
 import I18nTime from '../../components/I18nTime.apply'
 import EventShiftListAside from './components/EventShiftListAside'
 import EventShiftListFilter from './components/EventShiftListFilter'
+import Chip from '@mui/material/Chip'
 
 const EventShiftList = () => {
   const { data, isLoading } = useGetList(
@@ -31,6 +32,7 @@ const EventShiftList = () => {
   const isSmall = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'))
   const refresh = useRefresh()
   const [locale] = useLocaleState()
+  const translate = useTranslate()
 
   if (isLoading) return <Loading />
 
@@ -66,7 +68,10 @@ const EventShiftList = () => {
             source="end_time"
             render={(record: any) => <I18nTime time={record.end_time} Language={locale} />}
           />
-          <ChipField source="status" size="small" />
+          <FunctionField
+            source="status"
+            render={(record: any) => <Chip label={translate(record.status)} />}
+          />
           <DateField source="createdAt" />
         </Datagrid>
       )}

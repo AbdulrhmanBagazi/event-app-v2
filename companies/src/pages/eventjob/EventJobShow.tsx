@@ -8,13 +8,15 @@ import {
   useGetOne,
   useRefresh,
   Loading,
-  ChipField,
   useLocaleState,
+  useTranslate,
+  FunctionField,
 } from 'react-admin'
 import { useParams } from 'react-router-dom'
 import MyError from '../../layout/MyError'
 import Grid from '@mui/material/Grid'
 import EventJobShowToolBar from './components/EventJobShowToolBar'
+import Chip from '@mui/material/Chip'
 
 const EventJobShow = () => {
   const [locale] = useLocaleState()
@@ -30,6 +32,7 @@ const EventJobShow = () => {
     }
   )
   const refresh = useRefresh()
+  const translate = useTranslate()
 
   if (isLoading) return <Loading />
   if (!data) return <MyError onClick={() => refresh()} />
@@ -67,7 +70,10 @@ const EventJobShow = () => {
             </Grid>
             <Grid item xs={4}>
               <Labeled label="resources.eventjob.fields.status">
-                <ChipField source="status" size="small" />
+                <FunctionField
+                  source="status"
+                  render={(record: any) => <Chip label={translate(record.status)} />}
+                />
               </Labeled>
             </Grid>
             <Grid item xs={4}>
@@ -77,7 +83,10 @@ const EventJobShow = () => {
             </Grid>
             <Grid item xs={4}>
               <Labeled label="resources.eventjob.fields.rate_type">
-                <ChipField source="rate_type" size="small" />
+                <FunctionField
+                  source="rate_type"
+                  render={(record: any) => <Chip label={translate(record.rate_type)} />}
+                />
               </Labeled>
             </Grid>
             <Grid item xs={4}>

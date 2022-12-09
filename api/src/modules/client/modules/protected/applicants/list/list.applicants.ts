@@ -35,6 +35,8 @@ export const list_Applicants_TypeDefs = gql`
     company: company
     shift: shift!
     job: job!
+    # new
+    start_date: DateTime!
   }
 
   type event {

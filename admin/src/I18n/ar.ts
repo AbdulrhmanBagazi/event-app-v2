@@ -316,6 +316,7 @@ const customArabicMessages: TranslationMessages = {
         status: 'الحالة',
         eventId: 'الفعالية',
         companyId: 'الشركة',
+        start_date: 'تاريخ بدء العمل',
         event: {
           title: 'الفعالية',
           title_en: 'الفعالية',

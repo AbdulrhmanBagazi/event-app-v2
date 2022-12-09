@@ -18,6 +18,7 @@ import {
   Datagrid,
   ArrayField,
   RichTextField,
+  useTranslate,
 } from 'react-admin'
 import SuspendedBooleanField from './components/SuspendedBooleanField'
 import { useParams } from 'react-router-dom'
@@ -26,6 +27,7 @@ import EventShowToolBar from './components/EventShowToolBar'
 import Grid from '@mui/material/Grid'
 import I18nTime from '../../components/I18nTime.apply'
 import moment from 'moment'
+import Chip from '@mui/material/Chip'
 
 const EventShow = () => {
   const [locale] = useLocaleState()
@@ -41,6 +43,7 @@ const EventShow = () => {
     }
   )
   const refresh = useRefresh()
+  const translate = useTranslate()
 
   if (isLoading) return <Loading />
   if (!data) return <MyError onClick={() => refresh()} />
@@ -86,7 +89,10 @@ const EventShow = () => {
           <Grid container spacing={2}>
             <Grid item xs>
               <Labeled label="resources.Event.fields.status">
-                <ChipField source="status" size="small" />
+                <FunctionField
+                  source="status"
+                  render={(record: any) => <Chip label={translate(record.status)} />}
+                />
               </Labeled>
             </Grid>
             <Grid item xs>

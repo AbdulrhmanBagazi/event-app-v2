@@ -113,7 +113,7 @@ const EventEdit = () => {
               choices={[
                 { id: 'SOON', name: 'resources.Event.status.soon' },
                 { id: 'ACTIVE', name: 'resources.Event.status.active' },
-                // { id: 'COMPLETED', name: 'resources.Event.status.completed' },
+                { id: 'COMPLETED', name: 'resources.Event.status.completed' },
               ]}
               optionText="name"
               validate={[required()]}

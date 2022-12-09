@@ -3,6 +3,7 @@ import englishMessages from 'ra-language-english'
 
 const customEnglishMessages: TranslationMessages = {
   ...englishMessages,
+  set_start_date: 'you can set the start date after approving the applicant',
   Events: 'Events',
   Dashboard: 'Dashboard',
   error: 'error!',
@@ -15,6 +16,10 @@ const customEnglishMessages: TranslationMessages = {
   show_event: 'Show Event',
   yes: 'yes',
   no: 'no',
+  ACTIVE: 'Active',
+  SOON: 'Soon',
+  OPEN: 'Open',
+  CLOSED: 'Closed',
   PENDING: 'Pending',
   APPROVED: 'Approved',
   DECLINED: 'Declinde',
@@ -197,6 +202,8 @@ const customEnglishMessages: TranslationMessages = {
         status: 'Status',
         eventId: 'Event',
         companyId: 'Company',
+        //
+        start_date: 'Start Date',
         event: {
           title: 'Event',
           title_en: 'Event',

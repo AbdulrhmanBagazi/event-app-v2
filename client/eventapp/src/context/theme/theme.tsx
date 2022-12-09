@@ -19,22 +19,22 @@ const myTheme = {
     //
     disabled: 'rgba(0,0,0,0.26)',
     applicant_status: {
-      PENDING: '#f2930c',
+      PENDING: '#FFB74D',
       //
-      WAITLIST: '#094b96',
-      INTERVIEW: '#094b96',
+      WAITLIST: '#4FC3F7',
+      INTERVIEW: '#4FC3F7',
       //
-      APPROVED: '#4b9609',
-      COMPLETED: '#4b9609',
+      APPROVED: '#81C784',
+      COMPLETED: '#81C784',
       //
-      CANCELED: '#cc060c',
-      DECLINED: '#cc060c',
+      CANCELED: '#E57373',
+      DECLINED: '#E57373',
       INACTIVE: '#5c5c5c',
     },
     event_status: {
-      SOON: '#f2930c',
-      ACTIVE: '#4b9609',
-      COMPLETED: '#094b96',
+      SOON: '#FFB74D',
+      ACTIVE: '#81C784',
+      COMPLETED: '#81C784',
     },
   },
   dark: {
@@ -61,22 +61,22 @@ const myTheme = {
     //
     disabled: 'rgba(255,255,255,0.3)',
     applicant_status: {
-      PENDING: '#ffc44a',
+      PENDING: '#FFCC80',
       //
-      WAITLIST: '#5076c7',
-      INTERVIEW: '#5076c7',
+      WAITLIST: '#81D4FA',
+      INTERVIEW: '#81D4FA',
       //
-      APPROVED: '#b1fa75',
-      COMPLETED: '#b1fa75',
+      APPROVED: '#A5D6A7',
+      COMPLETED: '#A5D6A7',
       //
-      CANCELED: '#ff5138',
-      DECLINED: '#ff5138',
+      CANCELED: '#EF9A9A',
+      DECLINED: '#EF9A9A',
       INACTIVE: '#5c5c5c',
     },
     event_status: {
-      SOON: '#ffc44a',
-      ACTIVE: '#b1fa75',
-      COMPLETED: '#5076c7',
+      SOON: '#FFCC80',
+      ACTIVE: '#A5D6A7',
+      COMPLETED: '#A5D6A7',
     },
   },
 };

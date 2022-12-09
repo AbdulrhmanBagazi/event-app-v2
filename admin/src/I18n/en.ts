@@ -320,6 +320,7 @@ const customEnglishMessages: TranslationMessages = {
         status: 'Status',
         eventId: 'Event',
         companyId: 'Company',
+        start_date: 'Start Date',
         event: {
           title: 'Event',
           title_en: 'Event',

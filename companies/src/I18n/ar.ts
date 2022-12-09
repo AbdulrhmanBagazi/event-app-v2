@@ -3,6 +3,7 @@ import arabicMessages from './arabic'
 
 const customArabicMessages: TranslationMessages = {
   ...arabicMessages,
+  set_start_date: 'يمكنك تحديد تاريخ بدء العمل بعد إعتماد المتقدم',
   Events: 'الفعاليات',
   'User Get': 'المستخدم',
   Dashboard: 'لوحة الإحصائيات',
@@ -17,9 +18,14 @@ const customArabicMessages: TranslationMessages = {
   show_event: 'عرض الفعالية',
   yes: 'نعم',
   no: 'لا',
+  ACTIVE: 'نشط',
+  SOON: 'قريبا',
+  OPEN: 'مفتوح',
+  CLOSED: 'مغلق',
+  DAY: 'يومي',
   PENDING: 'قيد الإنتظار',
   APPROVED: 'معتمد',
-  DECLINED: 'مرفوض',
+  DECLINED: 'رفض',
   CANCELED: 'ملغي',
   COMPLETED: 'مكتمل',
   WAITLIST: 'قائمة الإنتظار',
@@ -194,6 +200,8 @@ const customArabicMessages: TranslationMessages = {
         status: 'الحالة',
         eventId: 'الفعالية',
         companyId: 'الشركة',
+        //
+        start_date: 'تاريخ بدء العمل',
         event: {
           title: 'الفعالية',
           title_en: 'الفعالية',

@@ -8,12 +8,14 @@ import {
   Loading,
   useRefresh,
   useLocaleState,
-  ChipField,
+  useTranslate,
+  FunctionField,
 } from 'react-admin'
 import { useMediaQuery, Theme } from '@mui/material'
 import MyError from '../../layout/MyError'
 import EventJobListAside from './components/EventJobListAside'
 import EventJobListFliters from './components/EventJobListFliters'
+import Chip from '@mui/material/Chip'
 
 const EventJobList = () => {
   const { data, isLoading } = useGetList(
@@ -29,6 +31,7 @@ const EventJobList = () => {
   const isSmall = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'))
   const refresh = useRefresh()
   const [locale] = useLocaleState()
+  const translate = useTranslate()
 
   if (isLoading) return <Loading />
 
@@ -58,9 +61,15 @@ const EventJobList = () => {
           <TextField source={locale === 'en' ? 'Event.title_en' : 'Event.title'} sortable={false} />
           <TextField source="title" />
           <TextField source="title_en" />
-          <ChipField source="status" size="small" />
+          <FunctionField
+            source="status"
+            render={(record: any) => <Chip label={translate(record.status)} />}
+          />
           <TextField source="rate" />
-          <ChipField source="rate_type" size="small" />
+          <FunctionField
+            source="rate_type"
+            render={(record: any) => <Chip label={translate(record.rate_type)} />}
+          />
           <DateField source="createdAt" />
         </Datagrid>
       )}

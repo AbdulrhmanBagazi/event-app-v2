@@ -143,46 +143,46 @@ const MyCalendar: React.FC<{
     setdays(newDaysObject);
   }, [Colors.OnSecondary, Colors.Secondary, data]);
 
-  if (!days) {
-    return <Loading />;
-  }
-
   return (
     <Portal>
       <Modal
         visible={visible}
         contentContainerStyle={styles.container}
         onDismiss={onDismiss}>
-        <Calendar
-          // Initially visible month. Default = now
-          initialDate={initalDay}
-          markingType={'period'}
-          markedDates={days}
-          // Do not show days of other months in month page. Default = false
-          hideExtraDays={true}
-          // Disable all touch events for disabled days. can be override with disableTouchEvent in markedDates
-          disableAllTouchEventsForDisabledDays={true}
-          // Enable the option to swipe between months. Default = false
-          enableSwipeMonths={true}
-          style={styles.calendar}
-          theme={{
-            backgroundColor: Colors.Background,
-            calendarBackground: Colors.Surface,
-            textSectionTitleColor: Colors.OnBackground,
-            textSectionTitleDisabledColor: Colors.OnBackground,
-            selectedDayBackgroundColor: Colors.Secondary,
-            selectedDayTextColor: Colors.OnSecondary,
-            todayTextColor: Colors.Primary,
-            dayTextColor: Colors.OnBackground,
-            textDisabledColor: Colors.OnBackground,
-            dotColor: Colors.Primary,
-            selectedDotColor: Colors.Primary,
-            arrowColor: Colors.Secondary,
-            monthTextColor: Colors.Primary,
-            indicatorColor: Colors.Primary,
-            textDayHeaderFontSize: 9,
-          }}
-        />
+        {!days ? (
+          <Loading />
+        ) : (
+          <Calendar
+            // Initially visible month. Default = now
+            initialDate={initalDay}
+            markingType={'period'}
+            markedDates={days}
+            // Do not show days of other months in month page. Default = false
+            hideExtraDays={true}
+            // Disable all touch events for disabled days. can be override with disableTouchEvent in markedDates
+            disableAllTouchEventsForDisabledDays={true}
+            // Enable the option to swipe between months. Default = false
+            enableSwipeMonths={true}
+            style={styles.calendar}
+            theme={{
+              backgroundColor: Colors.Background,
+              calendarBackground: Colors.Surface,
+              textSectionTitleColor: Colors.OnBackground,
+              textSectionTitleDisabledColor: Colors.OnBackground,
+              selectedDayBackgroundColor: Colors.Secondary,
+              selectedDayTextColor: Colors.OnSecondary,
+              todayTextColor: Colors.Primary,
+              dayTextColor: Colors.OnBackground,
+              textDisabledColor: Colors.OnBackground,
+              dotColor: Colors.Primary,
+              selectedDotColor: Colors.Primary,
+              arrowColor: Colors.Secondary,
+              monthTextColor: Colors.Primary,
+              indicatorColor: Colors.Primary,
+              textDayHeaderFontSize: 9,
+            }}
+          />
+        )}
       </Modal>
     </Portal>
   );

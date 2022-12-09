@@ -8,15 +8,16 @@ import {
   useGetOne,
   useRefresh,
   Loading,
-  ChipField,
   useLocaleState,
   FunctionField,
+  useTranslate,
 } from 'react-admin'
 import { useParams } from 'react-router-dom'
 import MyError from '../../layout/MyError'
 import Grid from '@mui/material/Grid'
 import EventShiftShowToolBar from './components/EventShiftShowToolBar'
 import I18nTime from '../../components/I18nTime.apply'
+import Chip from '@mui/material/Chip'
 
 const EventShiftShow = () => {
   const [locale] = useLocaleState()
@@ -32,6 +33,7 @@ const EventShiftShow = () => {
     }
   )
   const refresh = useRefresh()
+  const translate = useTranslate()
 
   if (isLoading) return <Loading />
   if (!data) return <MyError onClick={() => refresh()} />
@@ -59,7 +61,10 @@ const EventShiftShow = () => {
             </Grid>
             <Grid item xs={4}>
               <Labeled label="resources.eventshift.fields.status">
-                <ChipField source="status" size="small" />
+                <FunctionField
+                  source="status"
+                  render={(record: any) => <Chip label={translate(record.status)} />}
+                />
               </Labeled>
             </Grid>
 

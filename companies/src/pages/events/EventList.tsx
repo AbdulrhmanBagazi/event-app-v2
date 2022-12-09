@@ -9,11 +9,14 @@ import {
   useRefresh,
   useLocaleState,
   ChipField,
+  useTranslate,
+  FunctionField,
 } from 'react-admin'
 import { useMediaQuery, Theme } from '@mui/material'
 import SuspendedBooleanField from './components/SuspendedBooleanField'
 import MyError from '../../layout/MyError'
 import EventListAside from './components/EventListAside'
+import Chip from '@mui/material/Chip'
 
 const EventList = () => {
   const { data, isLoading } = useGetList(
@@ -29,6 +32,7 @@ const EventList = () => {
   const isSmall = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'))
   const refresh = useRefresh()
   const [locale] = useLocaleState()
+  const translate = useTranslate()
 
   if (isLoading) return <Loading />
 
@@ -63,7 +67,10 @@ const EventList = () => {
           />
           <TextField source={locale === 'en' ? 'title_en' : 'title'} />
           <TextField source={locale === 'en' ? 'content_en' : 'content'} />
-          <ChipField source="status" size="small" />
+          <FunctionField
+            source="status"
+            render={(record: any) => <Chip label={translate(record.status)} />}
+          />
           <SuspendedBooleanField source="published" />
           <DateField source="createdAt" />
           <DateField source="updatedAt" />

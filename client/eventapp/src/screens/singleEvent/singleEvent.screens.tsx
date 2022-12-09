@@ -25,25 +25,19 @@ import {UseI18nContext} from '../../context/I18n/i18n.context';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {SCREEN_HEIGHT} from '../../layout/screenDimensions';
 import MyCalendar from './components/Calendar/myCalendar';
-// import {useQuery} from '@apollo/client';
-// import {
-//   EventDocument,
-//   EventQuery,
-//   EventQueryVariables,
-// } from '../../graphql/generated';
+import {useQuery} from '@apollo/client';
+import {
+  EventDocument,
+  EventQuery,
+  EventQueryVariables,
+} from '../../graphql/generated';
 
 const SingleEvent = () => {
   const route = useRoute<RouteProp<ParamList, 'Event'>>();
-  const [EventData] = useState(route.params.params);
-  // const {data, loading} = useQuery<EventQuery, EventQueryVariables>(
-  //   EventDocument,
-  //   {
-  //     variables: {
-  //       id: EventData.id,
-  //     },
-  //     context: {clientName: 'public_client'},
-  //   },
-  // );
+  const [EventData, setEventData] = useState({
+    data: route.params.params,
+    fetching: true,
+  });
   const {Colors} = UseThemeContext() as ThemeContextType;
   const {setOptions, navigate} =
     useNavigation<StackNavigationProp<RootStackParamList>>();
@@ -54,6 +48,16 @@ const SingleEvent = () => {
   const onScroll = useAnimatedScrollHandler(event => {
     scrollY.value = event.contentOffset.y;
   });
+  //refetch data
+  useQuery<EventQuery, EventQueryVariables>(EventDocument, {
+    variables: {
+      id: EventData.data.id,
+    },
+    context: {clientName: 'public_client'},
+    onCompleted: data =>
+      data.Event ? setEventData({data: data.Event, fetching: false}) : null,
+  });
+  //
 
   const spaceColor = useAnimatedStyle(() => {
     return {
@@ -74,16 +78,10 @@ const SingleEvent = () => {
     });
   }, [setOptions]);
 
-  // React.useEffect(() => {
-  //   if (data) {
-  //     setEventData(data.Event);
-  //   }
-  // }, [data]);
-
   return (
     <Page paddingHorizontal={0}>
       <View style={[styles.Container, {backgroundColor: Colors.Background}]}>
-        <HeaderSingleEvent data={EventData} style={spaceColor} />
+        <HeaderSingleEvent data={EventData.data} style={spaceColor} />
         <View
           style={[
             styles.Scroll,
@@ -105,12 +103,15 @@ const SingleEvent = () => {
                     : getHeaderHeight * 2.5,
               }}
             />
-            <DataSingleEvent data={EventData} />
-            <DescriptionSingleEvent data={EventData} />
+            <DataSingleEvent data={EventData.data} />
+            <DescriptionSingleEvent
+              data={EventData.data}
+              loading={EventData.fetching}
+            />
           </Animated.ScrollView>
         </View>
         <MyCalendar
-          data={EventData}
+          data={EventData.data}
           visible={visible}
           onDismiss={() => setVisible(false)}
         />
@@ -125,7 +126,7 @@ const SingleEvent = () => {
         <Button
           onPress={() =>
             navigate('Apply', {
-              params: EventData,
+              params: EventData.data,
             })
           }
           mode="contained"
@@ -135,7 +136,7 @@ const SingleEvent = () => {
           style={[styles.Button, {bottom: Platform.OS === 'ios' ? 40 : 20}]}
           disabled={
             route.params.params.Event_Jobs.length <= 0 ||
-            EventData.status !== 'ACTIVE'
+            EventData.data.status !== 'ACTIVE'
               ? true
               : false
           }>

@@ -10,6 +10,7 @@ export const Update_Applicants_TypeDefs = gql`
 
   input update_applicants {
     status: Applicants_Status_Update
+    start_date: Date
   }
 
   enum Applicants_Status_Update {
@@ -25,13 +26,18 @@ export const Update_Applicants_TypeDefs = gql`
 `;
 
 export const Update_Applicants_Mutation = {
-  update_applicants: async (_parent, args: { id: string; data: { status: Applicants_Status } }, context: Context) => {
+  update_applicants: async (
+    _parent,
+    args: { id: string; data: { status: Applicants_Status; start_date: Date } },
+    context: Context,
+  ) => {
     const updateApplicant = await context.prisma.applicants.update({
       where: {
         id: args.id,
       },
       data: {
         status: args.data.status,
+        start_date: args.data.start_date,
       },
       include: {
         job: true,
@@ -39,6 +45,10 @@ export const Update_Applicants_Mutation = {
         Event: true,
       },
     });
+
+    if (args.data.start_date) {
+      return updateApplicant;
+    }
 
     const SendNoti = await SendNotification(
       args.data.status,

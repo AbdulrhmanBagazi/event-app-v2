@@ -1,6 +1,6 @@
 import { Toolbar, SaveButton } from 'react-admin'
 
-const EventEditToolbar = (props: object) => (
+const ApplicantsEditToolbard = (props: object) => (
   <Toolbar {...props}>
     <SaveButton
       mutationOptions={{
@@ -14,4 +14,4 @@ const EventEditToolbar = (props: object) => (
   </Toolbar>
 )
 
-export default EventEditToolbar
+export default ApplicantsEditToolbard

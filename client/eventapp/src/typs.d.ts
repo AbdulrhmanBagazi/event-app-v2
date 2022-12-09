@@ -1,6 +1,6 @@
 import {Component} from 'react';
 import {Applicants, Events} from './graphql/generated';
-import {I18n_en, I18n_ar} from './context/I18n/locals.i18n';
+import {I18nKeys} from './context/I18n/locals.i18n';
 
 type ParamList = {
   Events: {
@@ -50,7 +50,7 @@ type Languges = 'ar' | 'en';
 
 export type I18nContextType = {
   ToggleI18n: (lang: Languges, firstTime: boolean) => void;
-  Locals: typeof I18n_en | typeof I18n_ar;
+  Locals: I18nKeys;
   Lang: string;
 };
 

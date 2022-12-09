@@ -113,12 +113,18 @@ const ApplicantsShow = () => {
           </Grid>
 
           <Grid container spacing={2}>
-            <Grid item xs>
+            <Grid item>
               <Labeled label="resources.applicants.fields.status">
                 <FunctionField
                   source="status"
                   render={(record: any) => <Chip label={translate(record.status)} />}
                 />
+              </Labeled>
+            </Grid>
+
+            <Grid item>
+              <Labeled label="resources.applicants.fields.start_date">
+                <DateField source="start_date" />
               </Labeled>
             </Grid>
           </Grid>

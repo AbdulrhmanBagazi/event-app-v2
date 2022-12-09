@@ -200,6 +200,8 @@ model Applicants {
   gender      String
   //
   status      Applicants_Status @default(PENDING)
+  //
+  start_date  DateTime?         @db.Date
 }
 
 enum Applicants_Status {

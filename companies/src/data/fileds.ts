@@ -39,10 +39,10 @@ const eventshift: { [k: string]: string } = {
 
 const applicants: { [k: string]: string } = {
   applicants_list:
-    'id createdAt updatedAt eventId companyId userId shiftId jobId name nationality nationalID dateOfBirth gender status contact {phone whatsapp} event {id title title_en} job { id title title_en rate rate_type } shift { id start_time end_time }',
+    'id createdAt updatedAt eventId companyId userId shiftId jobId name nationality nationalID dateOfBirth gender status contact {phone whatsapp} event {id title title_en} job { id title title_en rate rate_type } shift { id start_time end_time } start_date',
   applicants:
-    'id createdAt updatedAt eventId companyId userId shiftId jobId name nationality nationalID dateOfBirth gender status contact {phone whatsapp} event {id title title_en} job { id title title_en rate rate_type } shift { id start_time end_time }',
-  update_applicants: 'status',
+    'id createdAt updatedAt eventId companyId userId shiftId jobId name nationality nationalID dateOfBirth gender status contact {phone whatsapp} event {id title title_en} job { id title title_en rate rate_type } shift { id start_time end_time } start_date',
+  update_applicants: 'status start_date',
 }
 
 const eventday: { [k: string]: string } = {

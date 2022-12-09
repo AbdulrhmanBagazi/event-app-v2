@@ -1,4 +1,4 @@
-// import {I18nManager} from 'react-native';
+export type I18nKeys = typeof I18n_ar;
 
 const I18n_ar = {
   Status: 'الحالة',
@@ -196,9 +196,9 @@ const I18n_ar = {
     Timeline: 'الجدول الزمني',
     contact: 'تآكد من تحديث معلومات التواصل',
   },
-} as const;
+};
 
-const I18n_en = {
+const I18n_en: I18nKeys = {
   Status: 'Status',
   PENDING: 'Pending',
   APPROVED: 'Approved',
@@ -394,10 +394,6 @@ const I18n_en = {
     Timeline: 'Timeline',
     contact: 'Make sure your contact information is up to date',
   },
-} as const;
-
-export type I18nKeys = keyof typeof I18n_ar;
-// export type I18nSubKeys = keyof typeof I18n_ar;
-// export type I18nValues = typeof I18n_ar[I18nKeys];
+};
 
 export {I18n_ar, I18n_en};
