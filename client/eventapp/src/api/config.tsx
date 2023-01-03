@@ -1,4 +1,4 @@
-export const AuthApi = 'http://192.168.100.12:4000/client';
-export const GRAPHQL = 'http://192.168.100.12:4000/graphql/client';
+export const AuthApi = 'http://192.168.100.14:4000/client';
+export const GRAPHQL = 'http://192.168.100.14:4000/graphql/client';
 export const PUBLIC_GRAPHQL =
-  'http://192.168.100.12:4000/graphql/public_client';
+  'http://192.168.100.14:4000/graphql/public_client';
