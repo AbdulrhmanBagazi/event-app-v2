@@ -25,19 +25,20 @@ import {UseI18nContext} from '../../context/I18n/i18n.context';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {SCREEN_HEIGHT} from '../../layout/screenDimensions';
 import MyCalendar from './components/Calendar/myCalendar';
-import {useQuery} from '@apollo/client';
-import {
-  EventDocument,
-  EventQuery,
-  EventQueryVariables,
-} from '../../graphql/generated';
+// import {useQuery} from '@apollo/client';
+// import {
+//   EventDocument,
+//   EventQuery,
+//   EventQueryVariables,
+// } from '../../graphql/generated';
 
 const SingleEvent = () => {
   const route = useRoute<RouteProp<ParamList, 'Event'>>();
-  const [EventData, setEventData] = useState({
-    data: route.params.params,
-    fetching: true,
-  });
+  // const [EventData, setEventData] = useState({
+  //   data: route.params.params,
+  //   fetching: true,
+  // });
+  const EventData = {data: route.params.params};
   const {Colors} = UseThemeContext() as ThemeContextType;
   const {setOptions, navigate} =
     useNavigation<StackNavigationProp<RootStackParamList>>();
@@ -49,14 +50,14 @@ const SingleEvent = () => {
     scrollY.value = event.contentOffset.y;
   });
   //refetch data
-  useQuery<EventQuery, EventQueryVariables>(EventDocument, {
-    variables: {
-      id: EventData.data.id,
-    },
-    context: {clientName: 'public_client'},
-    onCompleted: data =>
-      data.Event ? setEventData({data: data.Event, fetching: false}) : null,
-  });
+  // useQuery<EventQuery, EventQueryVariables>(EventDocument, {
+  //   variables: {
+  //     id: EventData.data.id,
+  //   },
+  //   context: {clientName: 'public_client'},
+  //   onCompleted: data =>
+  //     data.Event ? setEventData({data: data.Event, fetching: false}) : null,
+  // });
   //
 
   const spaceColor = useAnimatedStyle(() => {
@@ -106,7 +107,7 @@ const SingleEvent = () => {
             <DataSingleEvent data={EventData.data} />
             <DescriptionSingleEvent
               data={EventData.data}
-              loading={EventData.fetching}
+              // loading={EventData.fetching}
             />
           </Animated.ScrollView>
         </View>

@@ -1,14 +1,8 @@
-import React, {useMemo} from 'react';
-import {StyleProp, TextStyle} from 'react-native';
+import React from 'react';
+import {StyleProp, Text, TextStyle} from 'react-native';
 import {UseThemeContext} from '../../context/theme/themeToggle.context';
 import {ThemeContextType} from '../../typs';
 import {styles} from './styles.customText';
-import Animated, {
-  useAnimatedStyle,
-  interpolateColor,
-  useDerivedValue,
-  withTiming,
-} from 'react-native-reanimated';
 
 type fontWeightType =
   | 'normal'
@@ -40,34 +34,19 @@ const CustomText: React.FC<{
 }> = ({text, fontWeight, style, Color, numberOfLines}) => {
   const {isDarkMode, Theme} = UseThemeContext() as ThemeContextType;
 
-  const progress = useDerivedValue(() => {
-    return isDarkMode ? withTiming(1) : withTiming(0);
-  });
-  const containerAnimatedStyle = useAnimatedStyle(() => ({
-    color: interpolateColor(
-      progress.value,
-      [0, 1],
-      [Theme.light[Color], Theme.dark[Color]],
-    ),
-  }));
-  const textStyle = useMemo(
-    () => [style, containerAnimatedStyle],
-    [style, containerAnimatedStyle],
-  );
-
   return (
-    <Animated.Text
+    <Text
       numberOfLines={numberOfLines}
       style={[
         style,
         styles.customeText,
-        textStyle,
         {
           fontWeight: fontWeight,
+          color: isDarkMode ? Theme.dark[Color] : Theme.light[Color],
         },
       ]}>
       {text}
-    </Animated.Text>
+    </Text>
   );
 };
 
